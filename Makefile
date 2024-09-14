@@ -1,7 +1,7 @@
 include common.mk
 
 # Sources and Objects
-SRCNAMES  = main.c
+SRCNAMES  = main.c bolota.c
 SOURCES  += $(addprefix $(SRCDIR)/, $(SRCNAMES))
 OBJECTS  := $(patsubst $(SRCDIR)/%.c, $(BUILDDIR)/%.o, $(SOURCES))
 
