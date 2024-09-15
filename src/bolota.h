@@ -37,14 +37,15 @@ typedef enum bolota_type_e {
  */
 typedef struct bolota_field_s {
 	/* Header */
-	bolota_type_t type;
-	uint8_t depth;
-	uint16_t length;
+	bolota_type_t type;  /* Field type. (uint8) */
+	uint8_t depth;       /* Level of indentation of the topic in the note. */
+	uint16_t length;     /* Length of the data part of the field (does not
+                          * include header). */
 
 	/* Data */
 	union {
-		char *text;
-		uint8_t *data;
+		char *text;      /* Text associated with the field. (not NUL terminated */
+		uint8_t *data;   /* when saved to file) */
 	};
 
 	/* Not saved to file. */
@@ -57,20 +58,24 @@ typedef struct bolota_field_s {
  */
 typedef struct bolota_doc_s {
 	/* Header */
-	uint8_t magic;
-	uint8_t version;
-	uint16_t props_len;
-	uint32_t topics_len;
-	uint32_t attach_len;
+	char magic[3];        /* File magic definition. Should be 'BLT'. */
+	uint8_t version;      /* Version number of the file specification. */
+	struct {
+		uint32_t props;   /* Length of the entire properties section. */
+		uint32_t topics;  /* Length of the entire topics section. */
+		uint32_t attach;  /* Length of the entire attachments section. */
+	} length;             /* All lengths in this section are in bytes. */
 
 	/* Document Properties */
-	struct props {
-		bolota_field_t title;
-		bolota_field_t subtitle;
-		bolota_field_t date;
-	};
+	struct {
+		bolota_field_t title;     /* Title text for the document. */
+		bolota_field_t subtitle;  /* Subtitle text of the document. */
+		bolota_field_t date;      /* Date when the note was created. */
+	} props;                      /* Various properties about the document. */
 
-	bolota_field_t *field;
+	/* Not saved to file as is. Saved in sequence and not as a linked list. */
+	bolota_field_t *topics;       /* Linked list of topics fields. */
+	bolota_field_t *attachments;  /* Linked list of topics fields. */
 } bolota_doc_t;
 
 /* Field handling. */
