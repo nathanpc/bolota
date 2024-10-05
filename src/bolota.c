@@ -11,6 +11,79 @@
 #include <stdio.h>
 #include <string.h>
 
+/*
+ * +===========================================================================+
+ * |                                                                           |
+ * |                            Document Handling                              |
+ * |                                                                           |
+ * +===========================================================================+
+ */
+
+/**
+ * Creates a new empty document object.
+ *
+ * @warning This function allocates memory dynamically.
+ *
+ * @return The newly allocated document object or NULL if an error occurred.
+ */
+bolota_doc_t *bolota_doc_new(void) {
+	bolota_doc_t *doc;
+
+	/* Allocate memory for document object. */
+	doc = (bolota_doc_t *)malloc(sizeof(bolota_doc_t));
+	if (doc == NULL)
+		return NULL;
+
+	/* Set some sane defaults. */
+	doc->magic[0] = 'B';
+	doc->magic[1] = 'L';
+	doc->magic[2] = 'T';
+	doc->version = 1;
+	doc->length.props = 0;
+	doc->length.topics = 0;
+	doc->length.attach = 0;
+	doc->props.title = bolota_field_new(BOLOTA_TYPE_TEXT, 0);
+	doc->props.subtitle = bolota_field_new(BOLOTA_TYPE_TEXT, 0);
+	doc->props.date = bolota_field_new(BOLOTA_TYPE_DATE, 0);
+	doc->topics = NULL;
+	doc->attachments = NULL;
+
+	return doc;
+}
+
+/**
+ * Sets the contents of a property in a document.
+ *
+ * @param doc  Document object.
+ * @param prop Property field that should be edited.
+ * @param text New text to assign to the property field.
+ *
+ * @return Error code if an exception occurred.
+ */
+bec_t bolota_doc_prop_set_str(bolota_doc_t *doc, bolota_field_t *prop,
+                              const char *text) {
+	bec_t err;
+
+	/* Set the text in the property field. */
+	err = bolota_field_set_text(prop, text);
+	if (err > BOLOTA_OK)
+		return err;
+
+	/* Recalculate the property section length. */
+	doc->length.props = doc->props.title->length + doc->props.subtitle->length +
+	                    doc->props.date->length;
+
+	return BOLOTA_OK;
+}
+
+/*
+ * +===========================================================================+
+ * |                                                                           |
+ * |                              Field Handling                               |
+ * |                                                                           |
+ * +===========================================================================+
+ */
+
 /**
  * Creates a new field object.
  *

@@ -61,22 +61,27 @@ typedef struct bolota_doc_s {
 	char magic[3];        /* File magic definition. Should be 'BLT'. */
 	uint8_t version;      /* Version number of the file specification. */
 	struct {
-		uint32_t props;   /* Length of the entire properties section. */
+		uint16_t props;   /* Length of the entire properties section. */
 		uint32_t topics;  /* Length of the entire topics section. */
 		uint32_t attach;  /* Length of the entire attachments section. */
 	} length;             /* All lengths in this section are in bytes. */
 
 	/* Document Properties */
 	struct {
-		bolota_field_t title;     /* Title text for the document. */
-		bolota_field_t subtitle;  /* Subtitle text of the document. */
-		bolota_field_t date;      /* Date when the note was created. */
-	} props;                      /* Various properties about the document. */
+		bolota_field_t *title;     /* Title text for the document. */
+		bolota_field_t *subtitle;  /* Subtitle text of the document. */
+		bolota_field_t *date;      /* Date when the note was created. */
+	} props;                       /* Various properties about the document. */
 
 	/* Not saved to file as is. Saved in sequence and not as a linked list. */
 	bolota_field_t *topics;       /* Linked list of topics fields. */
 	bolota_field_t *attachments;  /* Linked list of topics fields. */
 } bolota_doc_t;
+
+/* Document handling. */
+bolota_doc_t *bolota_doc_new(void);
+bec_t bolota_doc_prop_set_str(bolota_doc_t *doc, bolota_field_t *prop,
+                              const char *text);
 
 /* Field handling. */
 bolota_field_t *bolota_field_new(bolota_type_t type, uint8_t depth);
