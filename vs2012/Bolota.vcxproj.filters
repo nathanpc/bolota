@@ -19,60 +19,63 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Utilities\DialogWindow.h">
+    <ClInclude Include="..\src\Utilities\DialogWindow.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Utilities\MsgBoxes.h">
+    <ClInclude Include="..\src\Utilities\MsgBoxes.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Utilities\WindowUtilities.h">
+    <ClInclude Include="..\src\Utilities\WindowUtilities.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="AboutDialog.h">
+    <ClInclude Include="..\src\AboutDialog.h">
       <Filter>Windows and Dialogs</Filter>
     </ClInclude>
-    <ClInclude Include="MainWindow.h">
+    <ClInclude Include="..\src\MainWindow.h">
       <Filter>Windows and Dialogs</Filter>
     </ClInclude>
-    <ClInclude Include="Bolota\bolota.h">
+    <ClInclude Include="..\src\Bolota\bolota.h">
       <Filter>Bolota</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
+    <ClInclude Include="..\src\targetver.h">
       <Filter>Application</Filter>
     </ClInclude>
-    <ClInclude Include="Application.h">
+    <ClInclude Include="..\src\Application.h">
       <Filter>Application</Filter>
     </ClInclude>
-    <ClInclude Include="stdafx.h">
+    <ClInclude Include="..\src\stdafx.h">
       <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SharedResources.h">
+      <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Utilities\DialogWindow.cpp">
+    <ClCompile Include="..\src\Utilities\DialogWindow.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="Utilities\MsgBoxes.cpp">
+    <ClCompile Include="..\src\Utilities\MsgBoxes.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="Utilities\WindowUtilities.c">
+    <ClCompile Include="..\src\Utilities\WindowUtilities.c">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="AboutDialog.cpp">
+    <ClCompile Include="..\src\AboutDialog.cpp">
       <Filter>Windows and Dialogs</Filter>
     </ClCompile>
-    <ClCompile Include="MainWindow.cpp">
+    <ClCompile Include="..\src\MainWindow.cpp">
       <Filter>Windows and Dialogs</Filter>
     </ClCompile>
-    <ClCompile Include="Bolota\bolota.c">
+    <ClCompile Include="..\src\Bolota\bolota.c">
       <Filter>Bolota</Filter>
     </ClCompile>
-    <ClCompile Include="Application.cpp">
+    <ClCompile Include="..\src\Application.cpp">
       <Filter>Application</Filter>
     </ClCompile>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="..\src\stdafx.cpp">
       <Filter>Application</Filter>
     </ClCompile>
   </ItemGroup>

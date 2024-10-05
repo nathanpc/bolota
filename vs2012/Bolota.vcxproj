@@ -76,29 +76,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AboutDialog.h" />
-    <ClInclude Include="Application.h" />
-    <ClInclude Include="Bolota\bolota.h" />
-    <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="..\src\AboutDialog.h" />
+    <ClInclude Include="..\src\Application.h" />
+    <ClInclude Include="..\src\Bolota\bolota.h" />
+    <ClInclude Include="..\src\MainWindow.h" />
+    <ClInclude Include="..\src\SharedResources.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
-    <ClInclude Include="Utilities\DialogWindow.h" />
-    <ClInclude Include="Utilities\MsgBoxes.h" />
-    <ClInclude Include="Utilities\WindowUtilities.h" />
+    <ClInclude Include="..\src\stdafx.h" />
+    <ClInclude Include="..\src\targetver.h" />
+    <ClInclude Include="..\src\Utilities\DialogWindow.h" />
+    <ClInclude Include="..\src\Utilities\MsgBoxes.h" />
+    <ClInclude Include="..\src\Utilities\WindowUtilities.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AboutDialog.cpp" />
-    <ClCompile Include="Application.cpp" />
-    <ClCompile Include="Bolota\bolota.c" />
-    <ClCompile Include="MainWindow.cpp" />
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="..\src\AboutDialog.cpp" />
+    <ClCompile Include="..\src\Application.cpp" />
+    <ClCompile Include="..\src\Bolota\bolota.c" />
+    <ClCompile Include="..\src\MainWindow.cpp" />
+    <ClCompile Include="..\src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Utilities\DialogWindow.cpp" />
-    <ClCompile Include="Utilities\MsgBoxes.cpp" />
-    <ClCompile Include="Utilities\WindowUtilities.c" />
+    <ClCompile Include="..\src\Utilities\DialogWindow.cpp" />
+    <ClCompile Include="..\src\Utilities\MsgBoxes.cpp" />
+    <ClCompile Include="..\src\Utilities\WindowUtilities.c" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Bolota.rc" />

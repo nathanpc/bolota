@@ -46,7 +46,10 @@
 #endif // UNICODE
 
 // Resource definitions.
-#include "Resource.h"
+#if _MSC_VER == 1700
+	#include "../vs2012/Resource.h"
+#endif // _MSC_VER
+#include "SharedResources.h"
 
 // Utilities
 #include "Utilities/MsgBoxes.h"
