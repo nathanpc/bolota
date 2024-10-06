@@ -52,6 +52,9 @@
     <ClInclude Include="..\src\SharedResources.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Bolota\UString.h">
+      <Filter>Bolota</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Utilities\DialogWindow.cpp">
@@ -77,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="..\src\stdafx.cpp">
       <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Bolota\UString.cpp">
+      <Filter>Bolota</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
