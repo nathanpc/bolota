@@ -17,9 +17,7 @@
  * Initializes an empty universal Unicode string.
  */
 UString::UString() {
-	m_mbstr = NULL;
-	m_wstr = NULL;
-	m_length = 0;
+	Initialize();
 }
 
 /**
@@ -29,7 +27,7 @@ UString::UString() {
  * @param mbstr UTF-8 encoded multi-byte C string.
  */
 UString::UString(const char *mbstr) {
-	m_wstr = NULL;
+	Initialize();
 	SetString(_strdup(mbstr));
 }
 
@@ -39,7 +37,7 @@ UString::UString(const char *mbstr) {
  * @param wstr UTF-16 encoded wide C string.
  */
 UString::UString(const wchar_t *wstr) {
-	m_mbstr = NULL;
+	Initialize();
 	SetString(_wcsdup(wstr));
 }
 
@@ -58,6 +56,15 @@ UString::~UString() {
 		free(m_wstr);
 		m_wstr = NULL;
 	}
+}
+
+/**
+ * Initializes the object with some sane defaults.
+ */
+void UString::Initialize() {
+	m_mbstr = NULL;
+	m_wstr = NULL;
+	m_length = 0;
 }
 
 /**
@@ -245,6 +252,19 @@ const wchar_t *UString::GetWideString() {
 	}
 
 	return const_cast<const wchar_t *>(m_wstr);
+}
+
+/**
+ * Gets a string in the native format of the platform (set at compile time).
+ *
+ * @return String in the native (at compile time) format of the platform.
+ */
+const TCHAR *UString::GetNativeString() {
+#ifdef UNICODE
+	return GetWideString();
+#else
+	return GetMultiByteString();
+#endif // UNICODE
 }
 
 /**

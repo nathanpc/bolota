@@ -15,7 +15,7 @@
 
 #include <string>
 #include <string.h>
-#include <wchar.h>
+#include <tchar.h>
 
 /**
  * A universal string class that can be used to represent both UTF-8 and UTF-16
@@ -41,6 +41,7 @@ public:
 	// Access to the internal strings.
 	const char *GetMultiByteString();
 	const wchar_t *GetWideString();
+	const TCHAR *GetNativeString();
 
 	// Getters
 	size_t Length();
@@ -50,6 +51,9 @@ public:
 	UString& operator=(const wchar_t *wstr);
 
 protected:
+	// Constructor helper.
+	void Initialize();
+
 	// Setters for internal strings.
 	void SetString(char *mbstr);
 	void SetString(wchar_t *wstr);
