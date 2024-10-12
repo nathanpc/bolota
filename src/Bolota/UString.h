@@ -39,11 +39,15 @@ public:
 	void TakeOwnership(wchar_t *wstr);
 
 	// Access to the internal strings.
-	const char *c_mbstr();
-	const wchar_t *c_wstr();
+	const char *GetMultiByteString();
+	const wchar_t *GetWideString();
 
 	// Getters
 	size_t Length();
+
+	// Operators
+	UString& operator=(const char *mbstr);
+	UString& operator=(const wchar_t *wstr);
 
 protected:
 	// Setters for internal strings.

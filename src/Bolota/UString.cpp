@@ -130,7 +130,7 @@ void UString::SetString(wchar_t *wstr) {
  * @return Pointer to the internal C string. Pointer changes whenever the
  *         contents of the object change.
  */
-const char *UString::c_mbstr() {
+const char *UString::GetMultiByteString() {
 	// Check if we have a string to return.
 	if (m_mbstr == NULL) {
 		// Check if we have no string at all.
@@ -233,7 +233,7 @@ failure:
  * @return Pointer to the internal wide string. Pointer changes whenever the
  *         contents of the object change.
  */
-const wchar_t *UString::c_wstr() {
+const wchar_t *UString::GetWideString() {
 	// Check if we have a string to return.
 	if (m_wstr == NULL) {
 		// Check if we have no string at all.
@@ -254,4 +254,24 @@ const wchar_t *UString::c_wstr() {
  */
 size_t UString::Length() {
 	return m_length;
+}
+
+/**
+ * Sets the string contents using a multi-byte character string.
+ *
+ * @param mbstr Multi-byte character string.
+ */
+UString& UString::operator=(const char *mbstr) {
+	SetString(_strdup(mbstr));
+	return *this;
+}
+
+/**
+ * Sets the string contents using a wide character string.
+ *
+ * @param wstr Wide character string.
+ */
+UString& UString::operator=(const wchar_t *wstr) {
+	SetString(_wcsdup(wstr));
+	return *this;
 }
