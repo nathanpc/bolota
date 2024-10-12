@@ -78,7 +78,7 @@
   <ItemGroup>
     <ClInclude Include="..\src\AboutDialog.h" />
     <ClInclude Include="..\src\Application.h" />
-    <ClInclude Include="..\src\Bolota\bolota.h" />
+    <ClInclude Include="..\src\Bolota\Field.h" />
     <ClInclude Include="..\src\Bolota\UString.h" />
     <ClInclude Include="..\src\MainWindow.h" />
     <ClInclude Include="..\src\SharedResources.h" />
@@ -92,7 +92,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\AboutDialog.cpp" />
     <ClCompile Include="..\src\Application.cpp" />
-    <ClCompile Include="..\src\Bolota\bolota.c" />
+    <ClCompile Include="..\src\Bolota\Field.cpp" />
     <ClCompile Include="..\src\Bolota\UString.cpp" />
     <ClCompile Include="..\src\MainWindow.cpp" />
     <ClCompile Include="..\src\stdafx.cpp">
