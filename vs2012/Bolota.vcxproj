@@ -50,7 +50,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;DEBUG;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -78,8 +78,10 @@
   <ItemGroup>
     <ClInclude Include="..\src\AboutDialog.h" />
     <ClInclude Include="..\src\Application.h" />
+    <ClInclude Include="..\src\Bolota\Document.h" />
     <ClInclude Include="..\src\Bolota\Field.h" />
     <ClInclude Include="..\src\Bolota\UString.h" />
+    <ClInclude Include="..\src\Components\BolotaView.h" />
     <ClInclude Include="..\src\MainWindow.h" />
     <ClInclude Include="..\src\SharedResources.h" />
     <ClInclude Include="Resource.h" />
@@ -92,8 +94,10 @@
   <ItemGroup>
     <ClCompile Include="..\src\AboutDialog.cpp" />
     <ClCompile Include="..\src\Application.cpp" />
+    <ClCompile Include="..\src\Bolota\Document.cpp" />
     <ClCompile Include="..\src\Bolota\Field.cpp" />
     <ClCompile Include="..\src\Bolota\UString.cpp" />
+    <ClCompile Include="..\src\Components\BolotaView.cpp" />
     <ClCompile Include="..\src\MainWindow.cpp" />
     <ClCompile Include="..\src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

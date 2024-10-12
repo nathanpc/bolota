@@ -7,6 +7,8 @@
 
 #include "MainWindow.h"
 
+#include <commctrl.h>
+
 /**
  * Constructs the main window object.
  *
@@ -19,12 +21,17 @@ MainWindow::MainWindow(HINSTANCE hInstance, LPCTSTR szURI) {
 
 	// Initialize default values.
 	this->hWnd = NULL;
+	m_wndBolota = NULL;
 }
 
 /**
  * Cleans up everything that was allocated by the main window.
  */
 MainWindow::~MainWindow() {
+	// Destroy the document viewer.
+	delete m_wndBolota;
+	m_wndBolota = NULL;
+
 	// Destroy the main window.
 	DestroyWindow(this->hWnd);
 	this->hWnd = NULL;
@@ -47,6 +54,14 @@ BOOL MainWindow::SetupControls(HWND hWnd) {
 	// Ensure we have a copy of the window handle.
 	this->hWnd = hWnd;
 
+	// Grab the dimensions of the client area.
+	RECT rcClient;
+	GetClientRect(this->hWnd, &rcClient);
+
+	// Setup the document viewer.
+	m_wndBolota = new BolotaView(this->hInst, this->hWnd, rcClient);
+	m_wndBolota->OpenExampleDocument();
+
 	return TRUE;
 }
 
@@ -61,6 +76,9 @@ BOOL MainWindow::ResizeWindows(HWND hwndParent) {
 	// Get the client area of the parent window.
 	RECT rcParent;
 	GetClientRect(hwndParent, &rcParent);
+
+	// Resize document viewer.
+	m_wndBolota->Resize(rcParent);
 
 	return TRUE;
 }

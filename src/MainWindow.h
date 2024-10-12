@@ -13,9 +13,12 @@
 #endif // _MSC_VER > 1000
 
 #include "stdafx.h"
+#include "Components/BolotaView.h"
 
 class MainWindow {
 private:
+	// UI components.
+	BolotaView *m_wndBolota;
 
 public:
 	// Global handles.
