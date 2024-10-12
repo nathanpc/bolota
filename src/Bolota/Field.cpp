@@ -67,6 +67,26 @@ void Field::Initialize(bolota_type_t type, UString *text, Field *parent,
 	SetNext(next);
 }
 
+/**
+ * Destroy the field and all of its childs and/or next items in the list if
+ * required.
+ *
+ * @param include_child Also destroy all of the child fields?
+ * @param include_next  Also destroy all next fields in the list?
+ */
+void Field::Destroy(bool include_child, bool include_next) {
+	// Recursively destroy all child fields.
+	if (include_child && HasChild())
+		Child()->Destroy(true, true);
+
+	// Recursively destroy all next fields.
+	if (include_next && HasNext())
+		Next()->Destroy(true, true);
+
+	// Commit suicide.
+	delete this;
+}
+
 /*
  * +===========================================================================+
  * |                                                                           |
@@ -199,6 +219,8 @@ Field* Field::Parent() const {
  */
 void Field::SetParent(Field *parent) {
 	m_parent = parent;
+	if ((m_parent != NULL) && (m_parent->Child() != this))
+		m_parent->SetChild(this);
 }
 
 /**
@@ -226,6 +248,8 @@ Field* Field::Child() const {
  */
 void Field::SetChild(Field *child) {
 	m_child = child;
+	if ((m_child != NULL) && (m_child->Parent() != this))
+		m_child->SetParent(this);
 }
 
 /**
@@ -253,6 +277,8 @@ Field* Field::Previous() const {
  */
 void Field::SetPrevious(Field *prev) {
 	m_prev = prev;
+	if ((m_prev != NULL) && (m_prev->Next() != this))
+		m_prev->SetNext(this);
 }
 
 /**
@@ -280,4 +306,6 @@ Field* Field::Next() const {
  */
 void Field::SetNext(Field *next) {
 	m_next = next;
+	if ((m_next != NULL) && (m_next->Previous() != this))
+		m_next->SetPrevious(this);
 }

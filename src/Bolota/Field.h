@@ -70,6 +70,7 @@ namespace Bolota {
 		Field(bolota_type_t type);
 		Field(Field *parent, bolota_type_t type);
 		virtual ~Field();
+		void Destroy(bool include_child, bool include_next);
 
 		// Getters and setters.
 		bolota_type_t Type() const;
@@ -99,6 +100,37 @@ namespace Bolota {
 		// Constructor helper.
 		void Initialize(bolota_type_t type, UString *text, Field *parent,
 			Field *child, Field *prev, Field *next);
+	};
+
+	/**
+	 * A Bolota text-type field.
+	 */
+	class TextField : public Field {
+	public:
+		TextField() : Field(BOLOTA_TYPE_TEXT) {};
+		TextField(Field *parent) : Field(parent, BOLOTA_TYPE_TEXT) {};
+
+		TextField(Field *parent, const char *mbstr) : Field(parent, BOLOTA_TYPE_TEXT) {
+			SetText(mbstr);
+		};
+		TextField(const char *mbstr) : Field(BOLOTA_TYPE_TEXT) {
+			SetText(mbstr);
+		};
+
+		TextField(Field *parent, const wchar_t *wstr) : Field(parent, BOLOTA_TYPE_TEXT) {
+			SetText(wstr);
+		};
+		TextField(const wchar_t *wstr) : Field(BOLOTA_TYPE_TEXT) {
+			SetText(wstr);
+		};
+	};
+
+	/**
+	 * A Bolota date-type field.
+	 */
+	class DateField : public Field {
+	public:
+		DateField() : Field(BOLOTA_TYPE_DATE) {};
 	};
 }
 
