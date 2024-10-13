@@ -82,6 +82,7 @@
     <ClInclude Include="..\src\Bolota\Field.h" />
     <ClInclude Include="..\src\Bolota\UString.h" />
     <ClInclude Include="..\src\Components\BolotaView.h" />
+    <ClInclude Include="..\src\FieldManagerDialog.h" />
     <ClInclude Include="..\src\MainWindow.h" />
     <ClInclude Include="..\src\SharedResources.h" />
     <ClInclude Include="Resource.h" />
@@ -98,6 +99,7 @@
     <ClCompile Include="..\src\Bolota\Field.cpp" />
     <ClCompile Include="..\src\Bolota\UString.cpp" />
     <ClCompile Include="..\src\Components\BolotaView.cpp" />
+    <ClCompile Include="..\src\FieldManagerDialog.cpp" />
     <ClCompile Include="..\src\MainWindow.cpp" />
     <ClCompile Include="..\src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

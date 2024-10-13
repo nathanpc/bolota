@@ -64,6 +64,9 @@
     <ClInclude Include="..\src\Components\BolotaView.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\FieldManagerDialog.h">
+      <Filter>Windows and Dialogs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Utilities\DialogWindow.cpp">
@@ -98,6 +101,9 @@
     </ClCompile>
     <ClCompile Include="..\src\Bolota\Document.cpp">
       <Filter>Bolota</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\FieldManagerDialog.cpp">
+      <Filter>Windows and Dialogs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

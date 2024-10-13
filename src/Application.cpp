@@ -266,8 +266,12 @@ LRESULT WndMainCreate(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
  * @return 0 if everything worked.
  */
 LRESULT WndMainCommand(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
-	int wmId = LOWORD(wParam);
-	int wmEvent = HIWORD(wParam);
+	UINT_PTR wmId = LOWORD(wParam);
+	UINT_PTR wmEvent = HIWORD(wParam);
+
+	// Handle menu item commands.
+	if ((wmId > IDM_BASE) && (wmId < IDC_BASE))
+		return wndMain->OnMenuCommand(wmId, wmEvent);
 
 	switch (wmId) {
 		case IDM_ABOUT:
@@ -276,9 +280,9 @@ LRESULT WndMainCommand(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
 		case IDM_EXIT:
 			DestroyWindow(hWnd);
 			return 0;
+		default:
+			return DefWindowProc(hWnd, wMsg, wParam, lParam);
 	}
-
-	return DefWindowProc(hWnd, wMsg, wParam, lParam);
 }
 
 /**

@@ -9,6 +9,14 @@
 
 #include <commctrl.h>
 
+/*
+ * +===========================================================================+
+ * |                                                                           |
+ * |                      Constructors and destructors                         |
+ * |                                                                           |
+ * +===========================================================================+
+ */
+
 /**
  * Constructs the main window object.
  *
@@ -36,6 +44,14 @@ MainWindow::~MainWindow() {
 	DestroyWindow(this->hWnd);
 	this->hWnd = NULL;
 }
+
+/*
+ * +===========================================================================+
+ * |                                                                           |
+ * |                             Controls Setup                                |
+ * |                                                                           |
+ * +===========================================================================+
+ */
 
 /**
  * Sets up the layout of the window's controls.
@@ -81,4 +97,71 @@ BOOL MainWindow::ResizeWindows(HWND hwndParent) {
 	m_wndBolota->Resize(rcParent);
 
 	return TRUE;
+}
+
+/*
+ * +===========================================================================+
+ * |                                                                           |
+ * |                             Event Handlers                                |
+ * |                                                                           |
+ * +===========================================================================+
+ */
+
+/**
+ * Opens the appropriate field manager dialog window for the desired action.
+ *
+ * @param type Type of action to be performed in the manager dialog.
+ *
+ * @return 0 if everything worked.
+ */
+LRESULT MainWindow::OpenFieldManager(FieldManagerDialog::DialogType type) {
+	// Get the currently selected field in the Tree-View.
+	HTREEITEM hti;
+	Bolota::Field *field = m_wndBolota->GetSelectedField(&hti);
+	if (field == NULL) {
+		MsgBoxError(this->hWnd, _T("No field selected"),
+			_T("In order to perform this operation a field must be selected."));
+		return 1;
+	}
+
+	// Setup and open the manager dialog.
+	FieldManagerDialog dlgManager(this->hInst, this->hWnd, type, field);
+	INT_PTR iRet = dlgManager.ShowModal();
+
+	// Update the document viewer.
+	switch (type) {
+	case FieldManagerDialog::DialogType::EditField:
+		m_wndBolota->RefreshField(hti, field);
+		break;
+	default:
+		MsgBoxError(this->hWnd, _T("Unknown operation type"), _T("Unable to ")
+			_T("perform post-dialog operation on unknown operation type."));
+	}
+
+	return 0;
+}
+
+/**
+ * Handles the WM_COMMAND messages from menu items and accelerators.
+ *
+ * @param wmId    ID of the control that sent the message.
+ * @param wmEvent Extra event information.
+ *
+ * @return 0 if everything worked.
+ */
+LRESULT MainWindow::OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent) {
+	switch (wmId) {
+	case IDM_FIELD_EDIT:
+		return OpenFieldManager(FieldManagerDialog::DialogType::EditField);
+	case IDM_FIELD_APPEND:
+		return OpenFieldManager(FieldManagerDialog::DialogType::AppendField);
+	case IDM_FIELD_PREPEND:
+		return OpenFieldManager(FieldManagerDialog::DialogType::PrependField);
+	case IDM_FIELD_CREATECHILD:
+		return OpenFieldManager(FieldManagerDialog::DialogType::NewChildField);
+	default:
+		MsgBoxInfo(this->hWnd, _T("Unknown Command ID"),
+			_T("WM_COMMAND for MainWindow with unknown ID"));
+		return 0;
+	}
 }
