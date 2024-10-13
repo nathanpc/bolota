@@ -179,12 +179,17 @@ HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
  * @param field New field to be reloaded into the node.
  */
 void BolotaView::RefreshField(HTREEITEM hti, Field *field) {
+	// Refresh the node.
 	TVITEM tvi;
 	tvi.mask = TVIF_TEXT | TVIF_PARAM;
 	tvi.hItem = hti;
 	tvi.pszText = const_cast<LPTSTR>(field->Text()->GetNativeString());
 	tvi.lParam = reinterpret_cast<LPARAM>(field);
 	TreeView_SetItem(m_hWnd, &tvi);
+
+	// Select the refreshed node.
+	TreeView_SelectItem(m_hWnd, hti);
+	SetFocus(m_hWnd);
 }
 
 /*
