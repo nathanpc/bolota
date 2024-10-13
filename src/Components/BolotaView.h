@@ -37,11 +37,16 @@ public:
 	void OpenDocument(Bolota::Document *doc);
 	void CloseDocument();
 
+	// Field updates.
+	void RefreshField(HTREEITEM hti, Bolota::Field *field);
+
 	// Event handling.
 	void ReloadView();
 	void Resize(RECT rc) const;
 
 	// Getters and setters.
+	Bolota::Field* GetSelectedField();
+	Bolota::Field* GetSelectedField(HTREEITEM *htiSelected);
 	HWND WindowHandle() const;
 
 	// Examples

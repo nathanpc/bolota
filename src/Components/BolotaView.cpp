@@ -152,14 +152,39 @@ HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
 	HTREEITEM hti = TreeView_InsertItem(m_hWnd, &tvins);
 	
 	// Go through child and next fields inserting them into the Tree-View as well.
-	if (field->HasChild())
+	if (field->HasChild()) {
 		AddTreeViewItem(hti, TVI_FIRST, field->Child());
+		TreeView_Expand(m_hWnd, hti, TVE_EXPAND);
+	}
 
 	// Insert next fields into the Tree-View as well.
 	if (field->HasNext())
 		AddTreeViewItem(htiParent, hti, field->Next());
 
 	return hti;
+}
+
+/*
+ * +===========================================================================+
+ * |                                                                           |
+ * |                               Field Updates                               |
+ * |                                                                           |
+ * +===========================================================================+
+ */
+
+/**
+ * Refreshes a node in the Tree-View window with data from a field.
+ *
+ * @param hti   Tree-View node item to be updated.
+ * @param field New field to be reloaded into the node.
+ */
+void BolotaView::RefreshField(HTREEITEM hti, Field *field) {
+	TVITEM tvi;
+	tvi.mask = TVIF_TEXT | TVIF_PARAM;
+	tvi.hItem = hti;
+	tvi.pszText = const_cast<LPTSTR>(field->Text()->GetNativeString());
+	tvi.lParam = reinterpret_cast<LPARAM>(field);
+	TreeView_SetItem(m_hWnd, &tvi);
 }
 
 /*
@@ -199,6 +224,43 @@ void BolotaView::Resize(RECT rc) const {
  * |                                                                           |
  * +===========================================================================+
  */
+
+/**
+ * Gets the currently selected item in the viewer.
+ *
+ * @param htiSelected Returns selected Tree-View item handle. Set to NULL if it
+ *                    should be ignored.
+ *
+ * @return Currently selected field or NULL if none are selected.
+ */
+Field* BolotaView::GetSelectedField(HTREEITEM *htiSelected) {
+	// Get the currently selected item handle in the Tree-View.
+	HTREEITEM hti = TreeView_GetSelection(m_hWnd);
+	if (hti == NULL)
+		return NULL;
+
+	// Get the selected item from the handle.
+	TVITEM tvi;
+	tvi.hItem = hti;
+	tvi.mask = TVIF_PARAM;
+	if (!TreeView_GetItem(m_hWnd, &tvi))
+		throw std::exception("Failed to get Tree-View item from selection");
+
+	// Return item handle.
+	if (htiSelected != NULL)
+		*htiSelected = hti;
+
+	return reinterpret_cast<Field*>(tvi.lParam);
+}
+
+/**
+ * Gets the currently selected item in the viewer.
+ *
+ * @return Currently selected field or NULL if none are selected.
+ */
+Field* BolotaView::GetSelectedField() {
+	return GetSelectedField(NULL);
+}
 
 /**
  * Gets the component's window handle.
