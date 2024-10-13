@@ -10,6 +10,14 @@
 
 using namespace Bolota;
 
+/*
+ * +===========================================================================+
+ * |                                                                           |
+ * |                      Constructors and destructors                         |
+ * |                                                                           |
+ * +===========================================================================+
+ */
+
 /**
  * Initializes the dialog window object.
  *
@@ -20,8 +28,52 @@ using namespace Bolota;
 FieldManagerDialog::FieldManagerDialog(HINSTANCE& hInst, HWND& hwndParent,
 									   DialogType type, Field *field) :
 	DialogWindow(hInst, hwndParent, IDD_FIELDMAN) {
-	m_type = type;
+	SetType(type);
 	m_field = field;
+}
+
+/*
+ * +===========================================================================+
+ * |                                                                           |
+ * |                             Event Handlers                                |
+ * |                                                                           |
+ * +===========================================================================+
+ */
+
+/**
+ * Handles the dialog WM_INITDIALOG message.
+ *
+ * @param hDlg Dialog handle.
+ *
+ * @return TRUE if we handled the initialization or FALSE if we should pass the
+ *         handling to the default dialog procedure.
+ */
+bool FieldManagerDialog::OnInit(HWND hDlg) {
+	// Get the handle of every useful control in the window.
+	lblContext = GetDlgItem(hDlg, IDC_FM_LBLCONTEXT);
+	txtValue = GetDlgItem(hDlg, IDC_FM_EDTCONTENT);
+	btnAltOK = GetDlgItem(hDlg, IDC_FM_BTNALTOK);
+	btnOK = GetDlgItem(hDlg, IDOK);
+	btnCancel = GetDlgItem(hDlg, IDCANCEL);
+
+	// Set the content of the edit field.
+	if (m_field->HasText())
+		SetWindowText(txtValue, m_field->Text()->GetNativeString());
+
+	// Decide which setup to use.
+	switch (m_type) {
+	case EditField:
+		return SetupEditControls();
+	case AppendField:
+		return SetupAppendControls();
+	default:
+		MsgBoxError(hDlg, _T("Unknown dialog type"), _T("Couldn't setup ")
+			_T("the Field Manager dialog box for the requested type."));
+		Close(IDCANCEL);
+		return true;
+	}
+
+	return false;
 }
 
 /**
@@ -40,6 +92,7 @@ bool FieldManagerDialog::OnOK() {
 	// Perform specific operations if needed.
 	switch (m_type) {
 	case EditField:
+	case AppendField:
 		return true;
 	default:
 		MsgBoxError(hDlg, _T("Unknown type"),
@@ -56,6 +109,16 @@ bool FieldManagerDialog::OnOK() {
  * @return TRUE if we properly handled the event.
  */
 bool FieldManagerDialog::OnAlternativeOK() {
+	// Perform specific operations if needed.
+	switch (m_type) {
+	case AppendField:
+		// Prepend
+		SetType(DialogType::PrependField);
+		return true;
+	default:
+		MsgBoxError(hDlg, _T("Unknown type"),
+			_T("This type of operation wasn't yet implemented."));
+	}
 	return true;
 }
 
@@ -69,14 +132,45 @@ bool FieldManagerDialog::OnCancel() {
 	return true;
 }
 
+/*
+ * +===========================================================================+
+ * |                                                                           |
+ * |                             Controls Setup                                |
+ * |                                                                           |
+ * +===========================================================================+
+ */
+
 /**
  * Sets up the dialog for editing an existing field.
+ *
+ * @return TRUE if everything worked.
  */
-void FieldManagerDialog::SetupEditControls() {
+bool FieldManagerDialog::SetupEditControls() {
 	SetTitle(_T("Edit Field"));
 	SetContextLabel(_T("Editing the field..."));
 	SetButtons(NULL, _T("Save"), _T("Cancel"));
+	return true;
 }
+
+/**
+ * Sets up the dialog for appending to an existing field.
+ *
+ * @return TRUE if everything worked.
+ */
+bool FieldManagerDialog::SetupAppendControls() {
+	SetTitle(_T("Appending Field"));
+	SetContextLabel(_T("Appending field..."));
+	SetButtons(_T("Prepend"), _T("Append"), _T("Cancel"));
+	return true;
+}
+
+/*
+ * +===========================================================================+
+ * |                                                                           |
+ * |                                Actions                                    |
+ * |                                                                           |
+ * +===========================================================================+
+ */
 
 /**
  * Gets the content of the edit field in the dialog.
@@ -85,7 +179,7 @@ void FieldManagerDialog::SetupEditControls() {
  *
  * @return Contents of the edit field.
  */
-LPTSTR FieldManagerDialog::GetContentText() {
+LPTSTR FieldManagerDialog::GetContentText() const {
 	// Get the length of the required string.
 	int nLen = GetWindowTextLength(txtValue);
 	if (nLen == 0)
@@ -148,6 +242,41 @@ void FieldManagerDialog::SetButtons(LPCTSTR szAltOK, LPCTSTR szOK, LPCTSTR szCan
 	}
 }
 
+/*
+ * +===========================================================================+
+ * |                                                                           |
+ * |                           Getters and Setters                             |
+ * |                                                                           |
+ * +===========================================================================+
+ */
+
+/**
+ * Sets the type of the operation being performed in the dialog.
+ *
+ * @param type Type of operation being performed.
+ */
+void FieldManagerDialog::SetType(FieldManagerDialog::DialogType type) {
+	m_type = type;
+}
+
+/**
+ * Gets the type of the operation performed in the dialog. This may have changed
+ * depending if the user clicked the Alternative OK button.
+ *
+ * @return Updated type of operation performed in the dialog box.
+ */
+FieldManagerDialog::DialogType FieldManagerDialog::Type() const {
+	return m_type;
+}
+
+/*
+ * +===========================================================================+
+ * |                                                                           |
+ * |                            Dialog Procedure                               |
+ * |                                                                           |
+ * +===========================================================================+
+ */
+
 /**
  * Dialog window procedure.
  *
@@ -165,32 +294,16 @@ INT_PTR CALLBACK FieldManagerDialog::DlgProc(HWND hDlg, UINT wMsg,
 	// Handle messages.
 	switch (wMsg) {
 		case WM_INITDIALOG:
-			// Get the handle of every useful control in the window.
-			lblContext = GetDlgItem(hDlg, IDC_FM_LBLCONTEXT);
-			txtValue = GetDlgItem(hDlg, IDC_FM_EDTCONTENT);
-			btnAltOK = GetDlgItem(hDlg, IDC_FM_BTNALTOK);
-			btnOK = GetDlgItem(hDlg, IDOK);
-			btnCancel = GetDlgItem(hDlg, IDCANCEL);
-
-			// Set the content of the edit field.
-			SetWindowText(txtValue, m_field->Text()->GetNativeString());
-
-			// Decide which setup to use.
-			switch (m_type) {
-			case EditField:
-				SetupEditControls();
+			if (OnInit(hDlg))
 				return TRUE;
-			default:
-				MsgBoxError(hDlg, _T("Unknown dialog type"), _T("Couldn't setup ")
-					_T("the Field Manager dialog box for the requested type."));
-				Close(IDCANCEL);
-				return TRUE;
-			}
 			break;
 		case WM_COMMAND:
 			switch (LOWORD(wParam)) {
 			case IDC_FM_BTNALTOK:
-				return static_cast<INT_PTR>(OnAlternativeOK());
+				if (OnAlternativeOK()) {
+					Close(IDC_FM_BTNALTOK);
+					return TRUE;
+				}
 			case IDOK:
 				if (!OnOK())
 					return FALSE;

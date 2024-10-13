@@ -46,23 +46,32 @@ protected:
 	void SetTitle(LPCTSTR szTitle);
 	void SetContextLabel(LPCTSTR szContext);
 	void SetButtons(LPCTSTR szAltOK, LPCTSTR szOK, LPCTSTR szCancel);
-	LPTSTR GetContentText();
+	LPTSTR GetContentText() const;
 
 	// Events
+	bool OnInit(HWND hDlg);
 	bool OnOK();
 	bool OnAlternativeOK();
 	bool OnCancel();
 
 	// Setups
-	void SetupEditControls();
+	bool SetupEditControls();
+	bool SetupAppendControls();
+
+	// Setters
+	void SetType(DialogType type);
 	
 	// Dialog Procedure
 	INT_PTR CALLBACK DlgProc(HWND hDlg, UINT wMsg, WPARAM wParam,
 		LPARAM lParam);
 
 public:
+	// Constructors and destructors.
 	FieldManagerDialog(HINSTANCE& hInst, HWND& hwndParent, DialogType type,
 		Bolota::Field *field);
+
+	// Getters
+	DialogType Type() const;
 };
 
 #endif // _BOLOTA_FIELDMANAGERDIALOG_H

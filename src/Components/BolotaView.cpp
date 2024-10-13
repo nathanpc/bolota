@@ -126,16 +126,18 @@ void BolotaView::OpenExampleDocument() {
  */
 
 /**
- * Adds a topic field item to the Tree-View.
+ * Adds topic field items to the Tree-View.
  *
  * @param htiParent      Parent Tree-View item.
  * @param htiInsertAfter Tree-View item that will appear before this one.
  * @param field          Field to be added to the view.
+ * @param bRecurse       Should we add fields recursively (childs and next)?
  *
- * @return Tree-View item that was just added.
+ * @return Tree-View item root node that was just added.
  */
 HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
-									  HTREEITEM htiInsertAfter, Field *field) {
+									  HTREEITEM htiInsertAfter, Field *field,
+									  bool bRecurse) {
 	// Build up the tree item object from the topic.
 	TVITEM tvi;
 	tvi.mask = TVIF_TEXT | TVIF_PARAM;
@@ -150,18 +152,46 @@ HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
 
 	// Insert the item in the Tree-View.
 	HTREEITEM hti = TreeView_InsertItem(m_hWnd, &tvins);
+
+	// Return the item immediately if we are to do a single append.
+	if (!bRecurse)
+		return hti;
 	
 	// Go through child and next fields inserting them into the Tree-View as well.
 	if (field->HasChild()) {
-		AddTreeViewItem(hti, TVI_FIRST, field->Child());
+		AddTreeViewItem(hti, TVI_FIRST, field->Child(), bRecurse);
 		TreeView_Expand(m_hWnd, hti, TVE_EXPAND);
 	}
 
 	// Insert next fields into the Tree-View as well.
 	if (field->HasNext())
-		AddTreeViewItem(htiParent, hti, field->Next());
+		AddTreeViewItem(htiParent, hti, field->Next(), bRecurse);
 
 	return hti;
+}
+
+/**
+ * Adds a single topic field item to the Tree-View.
+ *
+ * @param htiParent      Parent Tree-View item.
+ * @param htiInsertAfter Tree-View item that will appear before this one.
+ * @param field          Field to be added to the view.
+ *
+ * @return Tree-View item that was just added.
+ */
+HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
+									  HTREEITEM htiInsertAfter, Field *field) {
+	return AddTreeViewItem(htiParent, htiInsertAfter, field, false);
+}
+
+/**
+ * Selects and focuses on a Tree-View node.
+ *
+ * @param hti Tree-View item handle to be selected.
+ */
+void BolotaView::SelectTreeViewItem(HTREEITEM hti) {
+	TreeView_SelectItem(m_hWnd, hti);
+	SetFocus(m_hWnd);
 }
 
 /*
@@ -188,8 +218,26 @@ void BolotaView::RefreshField(HTREEITEM hti, Field *field) {
 	TreeView_SetItem(m_hWnd, &tvi);
 
 	// Select the refreshed node.
-	TreeView_SelectItem(m_hWnd, hti);
-	SetFocus(m_hWnd);
+	SelectTreeViewItem(hti);
+}
+
+/**
+ * Appends a new field to the Tree-View.
+ *
+ * @param htiPrev Tree-View node item to be before the new one.
+ * @param field   New field to be inserted.
+ */
+void BolotaView::AppendField(HTREEITEM htiPrev, Bolota::Field *prev,
+							 Field *field) {
+	// Append the field in the document.
+	m_doc->AppendTopic(prev, field);
+
+	// Append the field to the Tree-View and select the new node.
+	HTREEITEM htiParent = TreeView_GetParent(m_hWnd, htiPrev);
+	if (htiParent == NULL)
+		htiParent = TVI_ROOT;
+	HTREEITEM hti = AddTreeViewItem(htiParent, htiPrev, field);
+	SelectTreeViewItem(hti);
 }
 
 /*
@@ -209,7 +257,7 @@ void BolotaView::ReloadView() {
 	TreeView_DeleteAllItems(m_hWnd);
 
 	// Populate the Tree-View with topics.
-	AddTreeViewItem(TVI_ROOT, TVI_FIRST, m_doc->FirstTopic());
+	AddTreeViewItem(TVI_ROOT, TVI_FIRST, m_doc->FirstTopic(), true);
 }
 
 /**

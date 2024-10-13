@@ -9,6 +9,8 @@
 
 #include <commctrl.h>
 
+using namespace Bolota;
+
 /*
  * +===========================================================================+
  * |                                                                           |
@@ -117,21 +119,43 @@ BOOL MainWindow::ResizeWindows(HWND hwndParent) {
 LRESULT MainWindow::OpenFieldManager(FieldManagerDialog::DialogType type) {
 	// Get the currently selected field in the Tree-View.
 	HTREEITEM hti;
-	Bolota::Field *field = m_wndBolota->GetSelectedField(&hti);
+	Field *field = m_wndBolota->GetSelectedField(&hti);
 	if (field == NULL) {
 		MsgBoxError(this->hWnd, _T("No field selected"),
 			_T("In order to perform this operation a field must be selected."));
 		return 1;
 	}
 
+	// Should we get a brand new field?
+	Field *fldNew = NULL;
+	if (type != FieldManagerDialog::DialogType::EditField)
+		fldNew = new TextField();
+
 	// Setup and open the manager dialog.
-	FieldManagerDialog dlgManager(this->hInst, this->hWnd, type, field);
+	FieldManagerDialog dlgManager(this->hInst, this->hWnd, type,
+		(fldNew) ? fldNew : field);
 	INT_PTR iRet = dlgManager.ShowModal();
 
+	// Check if the dialog returned from a Cancel operation.
+	if (iRet == IDCANCEL) {
+		// Clean up our unused field.
+		if (fldNew) {
+			delete fldNew;
+			fldNew = NULL;
+		}
+
+		// Get the focus back on the component.
+		SetFocus(m_wndBolota->WindowHandle());
+		return IDCANCEL;
+	}
+
 	// Update the document viewer.
-	switch (type) {
+	switch (dlgManager.Type()) {
 	case FieldManagerDialog::DialogType::EditField:
 		m_wndBolota->RefreshField(hti, field);
+		break;
+	case FieldManagerDialog::DialogType::AppendField:
+		m_wndBolota->AppendField(hti, field, fldNew);
 		break;
 	default:
 		MsgBoxError(this->hWnd, _T("Unknown operation type"), _T("Unable to ")

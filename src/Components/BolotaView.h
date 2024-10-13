@@ -39,6 +39,8 @@ public:
 
 	// Field updates.
 	void RefreshField(HTREEITEM hti, Bolota::Field *field);
+	void AppendField(HTREEITEM htiPrev, Bolota::Field *prev,
+		Bolota::Field *field);
 
 	// Event handling.
 	void ReloadView();
@@ -55,7 +57,10 @@ public:
 protected:
 	// Tree-View item handling.
 	HTREEITEM AddTreeViewItem(HTREEITEM htiParent, HTREEITEM htiInsertAfter,
+		Bolota::Field *field, bool bRecurse);
+	HTREEITEM AddTreeViewItem(HTREEITEM htiParent, HTREEITEM htiInsertAfter,
 		Bolota::Field *field);
+	void SelectTreeViewItem(HTREEITEM hti);
 };
 
 #endif // _BOLOTA_BOLOTAVIEW_H

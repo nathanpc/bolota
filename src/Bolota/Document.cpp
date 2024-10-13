@@ -66,6 +66,18 @@ Field* Document::FirstTopic() const {
 }
 
 /**
+ * Appends a new topic after a field in the topics liked list.
+ *
+ * @param prev  Previous topic field to be modified.
+ * @param field Topic field to be appended to the list.
+ */
+void Document::AppendTopic(Field *prev, Field *field) {
+	// Shuffle things around.
+	field->SetNext(prev->Next());
+	prev->SetNext(field);
+}
+
+/**
  * Appends a new topic to the end of the document's topic list.
  *
  * @param field Topic field to be appended to the document.
@@ -81,5 +93,5 @@ void Document::AppendTopic(Field *field) {
 	Field *last = m_topics;
 	while (last->HasNext())
 		last = last->Next();
-	last->SetNext(field);
+	AppendTopic(last, field);
 }
