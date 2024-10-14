@@ -118,7 +118,7 @@ BOOL MainWindow::ResizeWindows(HWND hwndParent) {
  */
 LRESULT MainWindow::OpenFieldManager(FieldManagerDialog::DialogType type) {
 	// Get the currently selected field in the Tree-View.
-	HTREEITEM hti;
+	HTREEITEM hti = NULL;
 	Field *field = m_wndBolota->GetSelectedField(&hti);
 	if (field == NULL) {
 		MsgBoxError(this->hWnd, _T("No field selected"),
@@ -175,6 +175,9 @@ LRESULT MainWindow::OpenFieldManager(FieldManagerDialog::DialogType type) {
  */
 LRESULT MainWindow::OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent) {
 	switch (wmId) {
+	case IDM_FILE_RELOAD:
+		m_wndBolota->ReloadView();
+		return 0;
 	case IDM_FIELD_EDIT:
 		return OpenFieldManager(FieldManagerDialog::DialogType::EditField);
 	case IDM_FIELD_APPEND:
