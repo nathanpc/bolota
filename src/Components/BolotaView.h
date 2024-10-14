@@ -41,6 +41,8 @@ public:
 	void RefreshField(HTREEITEM hti, Bolota::Field *field);
 	void AppendField(HTREEITEM htiPrev, Bolota::Field *prev,
 		Bolota::Field *field);
+	void PrependField(HTREEITEM htiNext, Bolota::Field *next,
+		Bolota::Field *field);
 
 	// Event handling.
 	void ReloadView();

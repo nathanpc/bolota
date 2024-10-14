@@ -78,6 +78,26 @@ void Document::AppendTopic(Field *prev, Field *field) {
 }
 
 /**
+ * Prepends a new topic before a field in the topics liked list.
+ *
+ * @param next  Next topic field (after the one to be prepended) to be modified.
+ * @param field Topic field to be prepended to the list.
+ */
+void Document::PrependTopic(Field *next, Field *field) {
+	// Are we prepending to the first element of the linked list?
+	if (m_topics == next)
+		m_topics = field;
+
+	// Shuffle things around.
+	field->SetPrevious(next->Previous());
+	next->SetPrevious(field);
+
+	// Ensure we inherit the parent if we prepended to the first item.
+	if (!field->HasPrevious() && next->HasParent())
+		next->Parent()->SetChild(field);
+}
+
+/**
  * Appends a new topic to the end of the document's topic list.
  *
  * @param field Topic field to be appended to the document.

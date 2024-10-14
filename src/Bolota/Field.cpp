@@ -219,6 +219,7 @@ Field* Field::Parent() const {
  */
 void Field::SetParent(Field *parent) {
 	m_parent = parent;
+	SetPrevious(NULL);
 	if ((m_parent != NULL) && (m_parent->Child() != this))
 		m_parent->SetChild(this);
 }

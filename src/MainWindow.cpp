@@ -157,6 +157,9 @@ LRESULT MainWindow::OpenFieldManager(FieldManagerDialog::DialogType type) {
 	case FieldManagerDialog::DialogType::AppendField:
 		m_wndBolota->AppendField(hti, field, fldNew);
 		break;
+	case FieldManagerDialog::DialogType::PrependField:
+		m_wndBolota->PrependField(hti, field, fldNew);
+		break;
 	default:
 		MsgBoxError(this->hWnd, _T("Unknown operation type"), _T("Unable to ")
 			_T("perform post-dialog operation on unknown operation type."));

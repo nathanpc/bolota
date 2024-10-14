@@ -57,6 +57,7 @@ protected:
 	// Setups
 	bool SetupEditControls();
 	bool SetupAppendControls();
+	bool SetupPrependControls();
 
 	// Setters
 	void SetType(DialogType type);

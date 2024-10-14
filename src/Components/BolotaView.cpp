@@ -225,6 +225,7 @@ void BolotaView::RefreshField(HTREEITEM hti, Field *field) {
  * Appends a new field to the Tree-View.
  *
  * @param htiPrev Tree-View node item to be before the new one.
+ * @param prev    Field before the one to be inserted.
  * @param field   New field to be inserted.
  */
 void BolotaView::AppendField(HTREEITEM htiPrev, Bolota::Field *prev,
@@ -236,6 +237,29 @@ void BolotaView::AppendField(HTREEITEM htiPrev, Bolota::Field *prev,
 	HTREEITEM htiParent = TreeView_GetParent(m_hWnd, htiPrev);
 	if (htiParent == NULL)
 		htiParent = TVI_ROOT;
+	HTREEITEM hti = AddTreeViewItem(htiParent, htiPrev, field);
+	SelectTreeViewItem(hti);
+}
+
+/**
+ * Prepends a new field to the Tree-View.
+ *
+ * @param htiNext Tree-View node item to be after the new one.
+ * @param next    Field after the one to be inserted.
+ * @param field   New field to be inserted.
+ */
+void BolotaView::PrependField(HTREEITEM htiNext, Bolota::Field *next,
+							 Field *field) {
+	// Append the field in the document.
+	m_doc->PrependTopic(next, field);
+
+	// Prepend the field to the Tree-View and select the new node.
+	HTREEITEM htiParent = TreeView_GetParent(m_hWnd, htiNext);
+	if (htiParent == NULL)
+		htiParent = TVI_ROOT;
+	HTREEITEM htiPrev = TreeView_GetPrevSibling(m_hWnd, htiNext);
+	if (htiPrev == NULL)
+		htiPrev = TVI_FIRST;
 	HTREEITEM hti = AddTreeViewItem(htiParent, htiPrev, field);
 	SelectTreeViewItem(hti);
 }

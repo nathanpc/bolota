@@ -66,6 +66,8 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 		return SetupEditControls();
 	case AppendField:
 		return SetupAppendControls();
+	case PrependField:
+		return SetupPrependControls();
 	default:
 		MsgBoxError(hDlg, _T("Unknown dialog type"), _T("Couldn't setup ")
 			_T("the Field Manager dialog box for the requested type."));
@@ -93,6 +95,7 @@ bool FieldManagerDialog::OnOK() {
 	switch (m_type) {
 	case EditField:
 	case AppendField:
+	case PrependField:
 		return true;
 	default:
 		MsgBoxError(hDlg, _T("Unknown type"),
@@ -114,6 +117,10 @@ bool FieldManagerDialog::OnAlternativeOK() {
 	case AppendField:
 		// Prepend
 		SetType(DialogType::PrependField);
+		return true;
+	case PrependField:
+		// Append
+		SetType(DialogType::AppendField);
 		return true;
 	default:
 		MsgBoxError(hDlg, _T("Unknown type"),
@@ -161,6 +168,18 @@ bool FieldManagerDialog::SetupAppendControls() {
 	SetTitle(_T("Appending Field"));
 	SetContextLabel(_T("Appending field..."));
 	SetButtons(_T("Prepend"), _T("Append"), _T("Cancel"));
+	return true;
+}
+
+/**
+ * Sets up the dialog for prepending to an existing field.
+ *
+ * @return TRUE if everything worked.
+ */
+bool FieldManagerDialog::SetupPrependControls() {
+	SetTitle(_T("Prepending Field"));
+	SetContextLabel(_T("Prepending field..."));
+	SetButtons(_T("Append"), _T("Prepend"), _T("Cancel"));
 	return true;
 }
 
