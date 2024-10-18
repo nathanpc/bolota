@@ -34,6 +34,7 @@ protected:
 	// Properties
 	DialogType m_type;
 	Bolota::Field *m_field;
+	bool m_bAlternative;
 
 	// Controls
 	HWND lblContext;
@@ -61,6 +62,7 @@ protected:
 
 	// Setters
 	void SetType(DialogType type);
+	void SetAlternativeSelected(bool bAlternative);
 	
 	// Dialog Procedure
 	INT_PTR CALLBACK DlgProc(HWND hDlg, UINT wMsg, WPARAM wParam,
@@ -73,6 +75,7 @@ public:
 
 	// Getters
 	DialogType Type() const;
+	bool AlternativeSelected() const;
 };
 
 #endif // _BOLOTA_FIELDMANAGERDIALOG_H

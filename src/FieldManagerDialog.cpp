@@ -29,6 +29,8 @@ FieldManagerDialog::FieldManagerDialog(HINSTANCE& hInst, HWND& hwndParent,
 									   DialogType type, Field *field) :
 	DialogWindow(hInst, hwndParent, IDD_FIELDMAN) {
 	SetType(type);
+	
+	SetAlternativeSelected(false);
 	m_field = field;
 }
 
@@ -112,20 +114,28 @@ bool FieldManagerDialog::OnOK() {
  * @return TRUE if we properly handled the event.
  */
 bool FieldManagerDialog::OnAlternativeOK() {
+	// Flag that the alternative OK was pressed.
+	SetAlternativeSelected(true);
+
 	// Perform specific operations if needed.
 	switch (m_type) {
 	case AppendField:
 		// Prepend
 		SetType(DialogType::PrependField);
-		return true;
+		break;
 	case PrependField:
 		// Append
 		SetType(DialogType::AppendField);
-		return true;
+		break;
 	default:
 		MsgBoxError(hDlg, _T("Unknown type"),
 			_T("This type of operation wasn't yet implemented."));
+		return true;
 	}
+
+	// Perform the equivalent of an OK action.
+	OnOK();
+
 	return true;
 }
 
@@ -270,6 +280,16 @@ void FieldManagerDialog::SetButtons(LPCTSTR szAltOK, LPCTSTR szOK, LPCTSTR szCan
  */
 
 /**
+ * Gets the type of the operation performed in the dialog. This may have changed
+ * depending if the user clicked the Alternative OK button.
+ *
+ * @return Updated type of operation performed in the dialog box.
+ */
+FieldManagerDialog::DialogType FieldManagerDialog::Type() const {
+	return m_type;
+}
+
+/**
  * Sets the type of the operation being performed in the dialog.
  *
  * @param type Type of operation being performed.
@@ -279,13 +299,21 @@ void FieldManagerDialog::SetType(FieldManagerDialog::DialogType type) {
 }
 
 /**
- * Gets the type of the operation performed in the dialog. This may have changed
- * depending if the user clicked the Alternative OK button.
+ * Gets the flag that defines if the alternative OK button was selected.
  *
- * @return Updated type of operation performed in the dialog box.
+ * @return TRUE if the alternative OK was selected.
  */
-FieldManagerDialog::DialogType FieldManagerDialog::Type() const {
-	return m_type;
+bool FieldManagerDialog::AlternativeSelected() const {
+	return m_bAlternative;
+}
+
+/**
+ * Sets the flag that defines if the alternative OK button was selected.
+ *
+ * @param bAlternative Has the alternative OK button been pressed?
+ */
+void FieldManagerDialog::SetAlternativeSelected(bool bAlternative) {
+	m_bAlternative = bAlternative;
 }
 
 /*

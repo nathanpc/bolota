@@ -45,7 +45,7 @@ BEGIN
     BEGIN
         MENUITEM "&New...",                     IDM_FILE_NEW
         MENUITEM "&Open...",                    IDM_FILE_OPEN
-        MENUITEM "&Reload...",                  IDM_FILE_RELOAD
+        MENUITEM "&Reload",                     IDM_FILE_RELOAD
         MENUITEM SEPARATOR
         MENUITEM "&Save",                       IDM_FILE_SAVE
         MENUITEM "Save &As...",                 IDM_FILE_SAVEAS
