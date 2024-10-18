@@ -155,7 +155,6 @@ LRESULT MainWindow::OpenFieldManager(FieldManagerDialog::DialogType type) {
 		m_wndBolota->RefreshField(hti, field);
 		break;
 	case FieldManagerDialog::DialogType::AppendField:
-		// TODO: Fix alternative OK.
 		m_wndBolota->AppendField(hti, field, fldNew);
 		break;
 	case FieldManagerDialog::DialogType::PrependField:

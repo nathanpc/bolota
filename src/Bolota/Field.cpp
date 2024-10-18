@@ -167,6 +167,34 @@ void Field::SetText(const wchar_t *wstr) {
 }
 
 /**
+ * Sets the field's text component by taking ownership of the passed string.
+ *
+ * @param mbstr Multi byte string of text to be owned by the field.
+ */
+void Field::SetTextOwner(char *mbstr) {
+	if (HasText()) {
+		m_text->TakeOwnership(mbstr);
+	} else {
+		m_text = new UString();
+		m_text->TakeOwnership(mbstr);
+	}
+}
+
+/**
+ * Sets the field's text component by taking ownership of the passed string.
+ *
+ * @param wstr Wide character string of text to be owned by the field.
+ */
+void Field::SetTextOwner(wchar_t *wstr) {
+	if (HasText()) {
+		m_text->TakeOwnership(wstr);
+	} else {
+		m_text = new UString();
+		m_text->TakeOwnership(wstr);
+	}
+}
+
+/**
  * Generates a struct with the information contained in the object.
  *
  * @warning Do not free or manipulate the text field. It's shared internally

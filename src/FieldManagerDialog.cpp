@@ -87,11 +87,7 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
  */
 bool FieldManagerDialog::OnOK() {
 	// Set the field's text property.
-	// TODO: Rewrite this to allow an ownership takeover.
-	LPTSTR szValue = GetContentText();
-	m_field->SetText(szValue);
-	free(szValue);
-	szValue = NULL;
+	m_field->SetTextOwner(GetContentText());
 
 	// Perform specific operations if needed.
 	switch (m_type) {

@@ -80,6 +80,8 @@ namespace Bolota {
 		UString* Text() const;
 		void SetText(const char *mbstr);
 		void SetText(const wchar_t *wstr);
+		void SetTextOwner(char *mbstr);
+		void SetTextOwner(wchar_t *wstr);
 		bolota_field_t Struct() const;
 
 		// Linked list.
