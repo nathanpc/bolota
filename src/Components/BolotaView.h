@@ -27,6 +27,7 @@ private:
 
 	// Window handles.
 	HWND m_hWnd;
+	HWND m_hwndParent;
 
 public:
 	// Constructors and destructors.
@@ -45,6 +46,7 @@ public:
 		Bolota::Field *field);
 
 	// Event handling.
+	bool Save(bool bSaveAs);
 	void ReloadView();
 	void Resize(RECT rc) const;
 

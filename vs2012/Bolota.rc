@@ -23,6 +23,7 @@
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -85,9 +86,11 @@ BEGIN
     "P",            IDM_FIELD_CREATECHILD,  VIRTKEY, NOINVERT
     "D",            IDM_FIELD_DELETE,       VIRTKEY, NOINVERT
     "I",            IDM_FIELD_EDIT,         VIRTKEY, NOINVERT
-    "U",            IDM_FIELD_PREPEND,      VIRTKEY, NOINVERT
-    "K",            IDM_FIELD_MOVEUP,       VIRTKEY, NOINVERT
     "J",            IDM_FIELD_MOVEDOWN,     VIRTKEY, NOINVERT
+    "K",            IDM_FIELD_MOVEUP,       VIRTKEY, NOINVERT
+    "U",            IDM_FIELD_PREPEND,      VIRTKEY, NOINVERT
+    "S",            IDM_FILE_SAVE,          VIRTKEY, CONTROL, NOINVERT
+    "S",            IDM_FILE_SAVEAS,        VIRTKEY, SHIFT, CONTROL, NOINVERT
 END
 
 
@@ -186,7 +189,6 @@ END
 //
 
 1                       RT_MANIFEST             "manifest.xml"
-
 
 /////////////////////////////////////////////////////////////////////////////
 //

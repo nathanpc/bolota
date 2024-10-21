@@ -7,6 +7,8 @@
 
 #include "BolotaView.h"
 
+#include <shlwapi.h>
+
 using namespace Bolota;
 
 /*
@@ -27,6 +29,7 @@ using namespace Bolota;
 BolotaView::BolotaView(HINSTANCE hInst, HWND hwndParent, RECT rc) {
 	// Initialize some defaults.
 	m_doc = NULL;
+	m_hwndParent = hwndParent;
 
 	// Create the window instance.
 	m_hWnd = CreateWindowEx(
@@ -271,6 +274,52 @@ void BolotaView::PrependField(HTREEITEM htiNext, Bolota::Field *next,
  * |                                                                           |
  * +===========================================================================+
  */
+
+/**
+ * Tries to save the current document to a file.
+ *
+ * @param bSaveAs Should we perform the default for a Save As operation?
+ *
+ * @return TRUE if everything worked, FALSE otherwise.
+ */
+bool BolotaView::Save(bool bSaveAs) {
+	TCHAR szFilename[MAX_PATH];
+	szFilename[0] = _T('\0');
+
+	// Check if we are just doing an incremental save.
+	if (m_doc->HasFileAssociated()) {
+		if (bSaveAs) {
+			_tcscpy(szFilename, m_doc->FilePath().GetNativeString());
+		} else {
+			m_doc->WriteFile();
+			return true;
+		}
+	}
+
+	// Setup save file dialog.
+	OPENFILENAME ofn;
+	ZeroMemory(&ofn, sizeof(OPENFILENAME));
+	ofn.lStructSize = sizeof(OPENFILENAME);
+	ofn.hwndOwner = m_hwndParent;
+	ofn.lpstrTitle = _T("Save Document As...");
+	ofn.Flags = OFN_EXPLORER | OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT |
+		OFN_PATHMUSTEXIST;
+	ofn.lpstrFilter = _T("Bolota Documents (*.bol)\0*.bol\0")
+		_T("All Files (*.*)\0*.*\0");
+	ofn.lpstrFile = szFilename;
+	ofn.nMaxFile = MAX_PATH;
+	ofn.lpstrDefExt = _T("bol");
+
+	// Open the save file dialog and process the user selection.
+	if (!GetSaveFileName(&ofn))
+		return true;
+	m_doc->WriteFile(szFilename, true);
+
+	// Set the window title.
+	SetWindowText(m_hwndParent, PathFindFileName(szFilename));
+
+	return true;
+}
 
 /**
  * Completely reloads the Tree-View component with data from the opened

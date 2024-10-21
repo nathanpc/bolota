@@ -15,6 +15,9 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
+
+#include <windows.h>
+
 #include "UString.h"
 
 extern "C" {
@@ -72,6 +75,9 @@ namespace Bolota {
 		virtual ~Field();
 		void Destroy(bool include_child, bool include_next);
 
+		// File operations.
+		size_t Write(HANDLE hFile) const;
+
 		// Getters and setters.
 		bolota_type_t Type() const;
 		void SetType(bolota_type_t type);
@@ -82,15 +88,19 @@ namespace Bolota {
 		void SetText(const wchar_t *wstr);
 		void SetTextOwner(char *mbstr);
 		void SetTextOwner(wchar_t *wstr);
+		uint16_t Length() const;
+		uint16_t DataLength() const;
 		bolota_field_t Struct() const;
 
 		// Linked list.
 		bool HasParent() const;
 		Field* Parent() const;
 		void SetParent(Field *parent);
+		void SetParent(Field *parent, bool bPassive);
 		bool HasChild() const;
 		Field* Child() const;
 		void SetChild(Field *child);
+		void SetChild(Field *child, bool bPassive);
 		bool HasPrevious() const;
 		Field* Previous() const;
 		void SetPrevious(Field *prev);

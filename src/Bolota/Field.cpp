@@ -90,6 +90,50 @@ void Field::Destroy(bool include_child, bool include_next) {
 /*
  * +===========================================================================+
  * |                                                                           |
+ * |                             File Operations                               |
+ * |                                                                           |
+ * +===========================================================================+
+ */
+
+/**
+ * Writes the field contents to a file.
+ *
+ * @param hFile File handle to write the field to.
+ *
+ * @return Number of bytes written to the file.
+ */
+size_t Field::Write(HANDLE hFile) const {
+	size_t ulBytes = 0;
+	DWORD dwWritten = 0;
+
+	// Type of the field.
+	uint8_t iValue = m_type;
+	::WriteFile(hFile, &iValue, sizeof(uint8_t), &dwWritten, NULL);
+	ulBytes += dwWritten;
+
+	// Depth of the field.
+	iValue = Depth();
+	::WriteFile(hFile, &iValue, sizeof(uint8_t), &dwWritten, NULL);
+	ulBytes += dwWritten;
+
+	// Length of data.
+	uint16_t usLength = DataLength();
+	::WriteFile(hFile, &usLength, sizeof(uint16_t), &dwWritten, NULL);
+	ulBytes += dwWritten;
+
+	// Data of the field.
+	if (m_text) {
+		::WriteFile(hFile, m_text->GetMultiByteString(), DataLength(),
+			&dwWritten, NULL);
+		ulBytes += dwWritten;
+	}
+
+	return ulBytes;
+}
+
+/*
+ * +===========================================================================+
+ * |                                                                           |
  * |                           Getters and Setters                             |
  * |                                                                           |
  * +===========================================================================+
@@ -195,6 +239,27 @@ void Field::SetTextOwner(wchar_t *wstr) {
 }
 
 /**
+ * Gets the length of the entire field structure when written to a file.
+ *
+ * @return Length of the entire field structure (including header) in bytes.
+ */
+uint16_t Field::Length() const {
+	return (sizeof(uint8_t) * 2) + sizeof(uint16_t) + DataLength();
+}
+
+/**
+ * Gets the length of the data part of the field when written to a file.
+ *
+ * @return Length of the data part of the field structure in bytes.
+ */
+uint16_t Field::DataLength() const {
+	if (m_text == NULL)
+		return 0;
+
+	return m_text->Length() * sizeof(char);
+}
+
+/**
  * Generates a struct with the information contained in the object.
  *
  * @warning Do not free or manipulate the text field. It's shared internally
@@ -243,13 +308,26 @@ Field* Field::Parent() const {
 /**
  * Sets the parent field of this object.
  *
+ * @param bPassive Should we not propagate changes to the parent? Set to FALSE
+ *                 if we should also set the parent's child property.
+ *
+ * @param parent Parent field.
+ */
+void Field::SetParent(Field *parent, bool bPassive) {
+	m_parent = parent;
+	SetPrevious(NULL);
+	if (!bPassive && (m_parent != NULL) && (m_parent->Child() != this))
+		m_parent->SetChild(this);
+}
+
+/**
+ * Sets the parent field of this object and propagates this change to the
+ * parent.
+ *
  * @param parent Parent field.
  */
 void Field::SetParent(Field *parent) {
-	m_parent = parent;
-	SetPrevious(NULL);
-	if ((m_parent != NULL) && (m_parent->Child() != this))
-		m_parent->SetChild(this);
+	SetParent(parent, false);
 }
 
 /**
@@ -273,12 +351,24 @@ Field* Field::Child() const {
 /**
  * Sets the child field of this object.
  *
+ * @param bPassive Should we not propagate changes to the child? Set to FALSE if
+ *                 we should also set the child's parent property.
+ *
+ * @param child Child field.
+ */
+void Field::SetChild(Field *child, bool bPassive) {
+	m_child = child;
+	if (!bPassive && (m_child != NULL) && (m_child->Parent() != this))
+		m_child->SetParent(this);
+}
+
+/**
+ * Sets the child field of this object and propagates this change to the child.
+ *
  * @param child Child field.
  */
 void Field::SetChild(Field *child) {
-	m_child = child;
-	if ((m_child != NULL) && (m_child->Parent() != this))
-		m_child->SetParent(this);
+	SetChild(child, false);
 }
 
 /**
@@ -305,6 +395,11 @@ Field* Field::Previous() const {
  * @param prev Previous field.
  */
 void Field::SetPrevious(Field *prev) {
+	// Ensure we have the same parent.
+	//if ((prev != NULL) && (Parent() != prev->Parent()))
+	//	m_parent = prev->Parent();
+
+	// Set the previous field.
 	m_prev = prev;
 	if ((m_prev != NULL) && (m_prev->Next() != this))
 		m_prev->SetNext(this);
@@ -334,6 +429,11 @@ Field* Field::Next() const {
  * @param next Next field.
  */
 void Field::SetNext(Field *next) {
+	// Ensure we have the same parent.
+	//if ((next != NULL) && (Parent() != next->Parent()))
+	//	m_parent = next->Parent();
+
+	// Set the next field.
 	m_next = next;
 	if ((m_next != NULL) && (m_next->Previous() != this))
 		m_next->SetPrevious(this);

@@ -178,6 +178,12 @@ LRESULT MainWindow::OpenFieldManager(FieldManagerDialog::DialogType type) {
  */
 LRESULT MainWindow::OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent) {
 	switch (wmId) {
+	case IDM_FILE_SAVE:
+		m_wndBolota->Save(false);
+		return 0;
+	case IDM_FILE_SAVEAS:
+		m_wndBolota->Save(true);
+		return 0;
 	case IDM_FILE_RELOAD:
 		m_wndBolota->ReloadView();
 		return 0;
