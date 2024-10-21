@@ -44,7 +44,8 @@ public:
 	const TCHAR *GetNativeString();
 
 	// Getters
-	size_t Length();
+	size_t Length() const;
+	bool Empty() const;
 
 	// Operators
 	UString& operator=(const char *mbstr);

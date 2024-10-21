@@ -272,8 +272,17 @@ const TCHAR *UString::GetNativeString() {
  *
  * @return Length of the string.
  */
-size_t UString::Length() {
+size_t UString::Length() const {
 	return m_length;
+}
+
+/**
+ * Checks if the string is currently empty.
+ *
+ * @return TRUE if the string is empty, FALSE otherwise.
+ */
+bool UString::Empty() const {
+	return m_length == 0;
 }
 
 /**
