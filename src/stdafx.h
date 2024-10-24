@@ -16,6 +16,7 @@
 // Windows Header Files
 #include <windows.h>
 #include <shellapi.h>
+#include <shlwapi.h>
 #include <commctrl.h>
 #include <commdlg.h>
 

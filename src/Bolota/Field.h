@@ -76,6 +76,7 @@ namespace Bolota {
 		void Destroy(bool include_child, bool include_next);
 
 		// File operations.
+		static Field* Read(HANDLE hFile, size_t *bytes, uint8_t *depth);
 		size_t Write(HANDLE hFile) const;
 
 		// Getters and setters.
@@ -88,40 +89,51 @@ namespace Bolota {
 		void SetText(const wchar_t *wstr);
 		void SetTextOwner(char *mbstr);
 		void SetTextOwner(wchar_t *wstr);
-		uint16_t Length() const;
-		uint16_t DataLength() const;
+		virtual uint16_t FieldLength() const;
+		uint16_t TextLength() const;
 		bolota_field_t Struct() const;
 
 		// Linked list.
 		bool HasParent() const;
 		Field* Parent() const;
-		void SetParent(Field *parent);
-		void SetParent(Field *parent, bool bPassive);
+		Field* SetParent(Field *parent);
+		Field* SetParent(Field *parent, bool bPassive);
 		bool HasChild() const;
 		Field* Child() const;
-		void SetChild(Field *child);
-		void SetChild(Field *child, bool bPassive);
+		Field* SetChild(Field *child);
+		Field* SetChild(Field *child, bool bPassive);
 		bool HasPrevious() const;
 		Field* Previous() const;
-		void SetPrevious(Field *prev);
+		Field* SetPrevious(Field *prev);
+		Field* SetPrevious(Field *prev, bool bPassive);
 		bool HasNext() const;
 		Field* Next() const;
-		void SetNext(Field *next);
+		Field* SetNext(Field *next);
+		Field* SetNext(Field *next, bool bPassive);
 
 	protected:
 		// Constructor helper.
 		void Initialize(bolota_type_t type, UString *text, Field *parent,
 			Field *child, Field *prev, Field *next);
+
+		// File operations.
+		virtual uint8_t ReadField(HANDLE hFile, size_t *bytes);
 	};
+
+
+	// TODO: Make TextField the base class for every field. Merge it into Field.
+
 
 	/**
 	 * A Bolota text-type field.
 	 */
 	class TextField : public Field {
 	public:
+		// Generics
 		TextField() : Field(BOLOTA_TYPE_TEXT) {};
 		TextField(Field *parent) : Field(parent, BOLOTA_TYPE_TEXT) {};
 
+		// Multi-byte string.
 		TextField(Field *parent, const char *mbstr) : Field(parent, BOLOTA_TYPE_TEXT) {
 			SetText(mbstr);
 		};
@@ -129,6 +141,7 @@ namespace Bolota {
 			SetText(mbstr);
 		};
 
+		// Wide-character string.
 		TextField(Field *parent, const wchar_t *wstr) : Field(parent, BOLOTA_TYPE_TEXT) {
 			SetText(wstr);
 		};

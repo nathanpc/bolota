@@ -7,6 +7,8 @@
 
 #include "Field.h"
 
+#include "Exceptions.h"
+
 using namespace Bolota;
 
 /*
@@ -61,8 +63,8 @@ void Field::Initialize(bolota_type_t type, UString *text, Field *parent,
 	m_text = text;
 
 	// Setup the linked list.
-	SetParent(parent);
-	SetChild(child);
+	SetParent(parent, true);
+	SetChild(child, true);
 	SetPrevious(prev);
 	SetNext(next);
 }
@@ -96,6 +98,83 @@ void Field::Destroy(bool include_child, bool include_next) {
  */
 
 /**
+ * Reads a field from a file into a fully populated and specific field object
+ * that can later be cast to the appropriate object type for its field type.
+ *
+ * @param hFile File handle to read the field from.
+ * @param bytes Pointer to the counter storing the number of bytes read so far.
+ * @param depth Pointer to store the depth of the field found in the file.
+ *
+ * @return Fully populated field object that can later be cast to the
+ *         appropriate specific object type.
+ */
+Field* Field::Read(HANDLE hFile, size_t *bytes, uint8_t *depth) {
+	Field *self;
+	uint8_t ucType;
+	DWORD dwRead = 0;
+
+	// Get the type of the field to know which class to instantiate.
+	if (!::ReadFile(hFile, &ucType, sizeof(uint8_t), &dwRead, NULL))
+		throw ReadError(hFile, *bytes, true);
+	*bytes += dwRead;
+
+	// Instantiate the correct field object.
+	bolota_type_t type = static_cast<bolota_type_t>(ucType);
+	switch (type) {
+	case BOLOTA_TYPE_TEXT:
+		self = new TextField();
+		break;
+	case BOLOTA_TYPE_DATE:
+		self = new DateField();
+		break;
+	default:
+		throw UnknownFieldType(hFile, *bytes, true, type);
+	}
+
+	// Parse the field.
+	*depth = self->ReadField(hFile, bytes);
+
+	return self;
+}
+
+/**
+ * Reads the entire field from a file.
+ *
+ * @param hFile File handle to read the field from.
+ * @param bytes Pointer to the counter storing the number of bytes read so far.
+ *
+ * @return Depth of the field found in the file.
+ */
+uint8_t Field::ReadField(HANDLE hFile, size_t *bytes) {
+	DWORD dwRead = 0;
+	uint8_t depth = 0;
+	uint16_t usTextLength = 0;
+
+	// Read important bits.
+	if (!::ReadFile(hFile, &depth, sizeof(uint8_t), &dwRead, NULL))
+		throw ReadError(hFile, *bytes, true);
+	*bytes += dwRead;
+	if (!::ReadFile(hFile, &usTextLength, sizeof(uint16_t), &dwRead, NULL))
+		throw ReadError(hFile, *bytes, true);
+	*bytes += dwRead;
+
+	// Allocate and read the text from the text from the field.
+	char *szText = (char *)malloc((usTextLength + 1) * sizeof(char));
+	if (szText == NULL)
+		SystemException("Failed to allocate memory for field text");
+	dwRead = 0;
+	if (usTextLength > 0) {
+		if (!::ReadFile(hFile, szText, usTextLength, &dwRead, NULL))
+			throw ReadError(hFile, *bytes, true);
+	}
+	*bytes += dwRead;
+	szText[usTextLength] = '\0';
+	SetTextOwner(szText);
+
+	return depth;
+}
+
+/**
  * Writes the field contents to a file.
  *
  * @param hFile File handle to write the field to.
@@ -117,13 +196,13 @@ size_t Field::Write(HANDLE hFile) const {
 	ulBytes += dwWritten;
 
 	// Length of data.
-	uint16_t usLength = DataLength();
+	uint16_t usLength = TextLength();
 	::WriteFile(hFile, &usLength, sizeof(uint16_t), &dwWritten, NULL);
 	ulBytes += dwWritten;
 
 	// Data of the field.
 	if (m_text) {
-		::WriteFile(hFile, m_text->GetMultiByteString(), DataLength(),
+		::WriteFile(hFile, m_text->GetMultiByteString(), TextLength(),
 			&dwWritten, NULL);
 		ulBytes += dwWritten;
 	}
@@ -243,8 +322,8 @@ void Field::SetTextOwner(wchar_t *wstr) {
  *
  * @return Length of the entire field structure (including header) in bytes.
  */
-uint16_t Field::Length() const {
-	return (sizeof(uint8_t) * 2) + sizeof(uint16_t) + DataLength();
+uint16_t Field::FieldLength() const {
+	return (sizeof(uint8_t) * 2) + sizeof(uint16_t) + TextLength();
 }
 
 /**
@@ -252,7 +331,7 @@ uint16_t Field::Length() const {
  *
  * @return Length of the data part of the field structure in bytes.
  */
-uint16_t Field::DataLength() const {
+uint16_t Field::TextLength() const {
 	if (m_text == NULL)
 		return 0;
 
@@ -273,7 +352,7 @@ bolota_field_t Field::Struct() const {
 	// Initialize the structure.
 	field.type = Type();
 	field.depth = Depth();
-	field.length = static_cast<uint16_t>(Text()->Length());
+	field.length = static_cast<uint16_t>(TextLength());
 	field.text = const_cast<char *>(Text()->GetMultiByteString());
 
 	return field;
@@ -308,16 +387,19 @@ Field* Field::Parent() const {
 /**
  * Sets the parent field of this object.
  *
+ * @param parent   Parent field.
  * @param bPassive Should we not propagate changes to the parent? Set to FALSE
  *                 if we should also set the parent's child property.
  *
- * @param parent Parent field.
+ * @return Parent field.
  */
-void Field::SetParent(Field *parent, bool bPassive) {
+Field* Field::SetParent(Field *parent, bool bPassive) {
 	m_parent = parent;
 	SetPrevious(NULL);
 	if (!bPassive && (m_parent != NULL) && (m_parent->Child() != this))
 		m_parent->SetChild(this);
+
+	return parent;
 }
 
 /**
@@ -325,9 +407,11 @@ void Field::SetParent(Field *parent, bool bPassive) {
  * parent.
  *
  * @param parent Parent field.
+ *
+ * @return Parent field.
  */
-void Field::SetParent(Field *parent) {
-	SetParent(parent, false);
+Field* Field::SetParent(Field *parent) {
+	return SetParent(parent, false);
 }
 
 /**
@@ -351,24 +435,29 @@ Field* Field::Child() const {
 /**
  * Sets the child field of this object.
  *
+ * @param child    Child field.
  * @param bPassive Should we not propagate changes to the child? Set to FALSE if
  *                 we should also set the child's parent property.
  *
- * @param child Child field.
+ * @return Child field.
  */
-void Field::SetChild(Field *child, bool bPassive) {
+Field* Field::SetChild(Field *child, bool bPassive) {
 	m_child = child;
 	if (!bPassive && (m_child != NULL) && (m_child->Parent() != this))
 		m_child->SetParent(this);
+
+	return child;
 }
 
 /**
  * Sets the child field of this object and propagates this change to the child.
  *
  * @param child Child field.
+ *
+ * @return Child field.
  */
-void Field::SetChild(Field *child) {
-	SetChild(child, false);
+Field* Field::SetChild(Field *child) {
+	return SetChild(child, false);
 }
 
 /**
@@ -392,17 +481,33 @@ Field* Field::Previous() const {
 /**
  * Sets the previous field in the linked list.
  *
- * @param prev Previous field.
+ * @param prev     Previous field.
+ * @param bPassive Should we NOT propagate parent of the previous field to the
+ *                 current one? Set to FALSE if we should also set this object's
+ *                 parent property.
+ *
+ * @return Previous field.
  */
-void Field::SetPrevious(Field *prev) {
-	// Ensure we have the same parent.
-	//if ((prev != NULL) && (Parent() != prev->Parent()))
-	//	m_parent = prev->Parent();
-
+Field* Field::SetPrevious(Field *prev, bool bPassive) {
 	// Set the previous field.
 	m_prev = prev;
+	if (!bPassive && (prev != NULL))
+		prev->SetParent(Parent(), true);
 	if ((m_prev != NULL) && (m_prev->Next() != this))
 		m_prev->SetNext(this);
+
+	return prev;
+}
+
+/**
+ * Sets the previous field in the linked list.
+ *
+ * @param prev Previous field.
+ *
+ * @return Previous field.
+ */
+Field* Field::SetPrevious(Field *prev) {
+	return SetPrevious(prev, true);
 }
 
 /**
@@ -426,15 +531,31 @@ Field* Field::Next() const {
 /**
  * Sets the next field in the linked list.
  *
- * @param next Next field.
+ * @param next     Next field.
+ * @param bPassive Should we NOT propagate parent of the next field to the
+ *                 current one? Set to FALSE if we should also set this object's
+ *                 parent property.
+ *
+ * @return Next field.
  */
-void Field::SetNext(Field *next) {
-	// Ensure we have the same parent.
-	//if ((next != NULL) && (Parent() != next->Parent()))
-	//	m_parent = next->Parent();
-
+Field* Field::SetNext(Field *next, bool bPassive) {
 	// Set the next field.
 	m_next = next;
+	if (!bPassive && (next != NULL))
+		next->SetParent(Parent(), true);
 	if ((m_next != NULL) && (m_next->Previous() != this))
 		m_next->SetPrevious(this);
+
+	return next;
+}
+
+/**
+ * Sets the next field in the linked list.
+ *
+ * @param next Next field.
+ *
+ * @return Next field.
+ */
+Field* Field::SetNext(Field *next) {
+	return SetNext(next, true);
 }

@@ -20,6 +20,9 @@
     <Filter Include="Components">
       <UniqueIdentifier>{cee9864e-64ee-4d37-b9a8-ffe149338e4d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Exceptions">
+      <UniqueIdentifier>{420f3a40-4f33-4a28-aebc-0886415c5dfb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Utilities\DialogWindow.h">
@@ -67,6 +70,12 @@
     <ClInclude Include="..\src\FieldManagerDialog.h">
       <Filter>Windows and Dialogs</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Bolota\Exceptions.h">
+      <Filter>Bolota</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Exceptions\SystemException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Utilities\DialogWindow.cpp">
@@ -104,6 +113,9 @@
     </ClCompile>
     <ClCompile Include="..\src\FieldManagerDialog.cpp">
       <Filter>Windows and Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Exceptions\SystemException.cpp">
+      <Filter>Exceptions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

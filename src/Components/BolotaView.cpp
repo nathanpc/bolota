@@ -7,7 +7,10 @@
 
 #include "BolotaView.h"
 
-#include <shlwapi.h>
+#include "../stdafx.h"
+#ifdef DEBUG
+	#include <string>
+#endif // DEBUG
 
 using namespace Bolota;
 
@@ -106,14 +109,14 @@ void BolotaView::OpenExampleDocument() {
 	// Populate example document.
 	doc->AppendTopic(new TextField(_T("First top element")));
 	TextField *tmpField = new TextField(_T("Second top element"));
-	TextField *tmpField2 = new TextField(tmpField,
-		_T("A sub-element of the second element"));
-	tmpField2->SetNext(new TextField(_T("Yet another sub-element of the second element")));
+	tmpField->SetChild(new TextField(
+		_T("A sub-element of the second element")))
+		->SetNext(new TextField(
+		_T("Yet another sub-element of the second element")), false);
 	doc->AppendTopic(tmpField);
-	tmpField = new TextField(_T("Third top element"));
-	doc->AppendTopic(tmpField);
-	tmpField2 = new TextField(tmpField, _T("A sub-element of the third element"));
-	tmpField2->SetChild(new TextField(_T("A sub-sub-element of the third element")));
+	tmpField->SetNext(new TextField(_T("Third top element")))
+		->SetChild(new TextField(_T("A sub-element of the third element")))
+		->SetChild(new TextField(_T("A sub-sub-element of the third element")));
 	doc->AppendTopic(new TextField(_T("Fourth top element")));
 
 	// Open the example document.
@@ -155,6 +158,15 @@ HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
 
 	// Insert the item in the Tree-View.
 	HTREEITEM hti = TreeView_InsertItem(m_hWnd, &tvins);
+
+#ifdef DEBUG
+	// Print out details about the added field for debugging.
+	TCHAR szDebugMsg[256];
+	_snwprintf(szDebugMsg, 255, _T("(%u) %s\r\n"), field->Depth(),
+		field->Text()->GetNativeString());
+	szDebugMsg[255] = _T('\0');
+	OutputDebugString(szDebugMsg);
+#endif // DEBUG
 
 	// Return the item immediately if we are to do a single append.
 	if (!bRecurse)
@@ -296,29 +308,72 @@ bool BolotaView::Save(bool bSaveAs) {
 		}
 	}
 
-	// Setup save file dialog.
+	// Show the save file dialog and process the user selection.
+	if (!ShowFileDialog(szFilename, true))
+		return true;
+	try {
+		// Write the file and set the window title.
+		m_doc->WriteFile(szFilename, true);
+		SetWindowText(m_hwndParent, PathFindFileName(szFilename));
+	} catch (std::exception& e) {
+		MsgBoxException(m_hwndParent, e, _T("Cannot save document"));
+	}
+
+	return true;
+}
+
+/**
+ * Tries to open a new document from a file.
+ *
+ * @return TRUE if everything worked, FALSE otherwise.
+ */
+bool BolotaView::OpenFile() {
+	TCHAR szFilename[MAX_PATH];
+	szFilename[0] = _T('\0');
+
+	// Show the open file dialog and process the user selection.
+	if (!ShowFileDialog(szFilename, false))
+		return true;
+	try {
+		// Open the document and set the window title.
+		OpenDocument(Document::ReadFile(szFilename));
+		SetWindowText(m_hwndParent, PathFindFileName(szFilename));
+	} catch (std::exception& e) {
+		MsgBoxException(m_hwndParent, e, _T("Cannot open document"));
+	}
+
+	return true;
+}
+
+/**
+ * Sets up an open/save file dialog structure.
+ *
+ * @param szFilename Pointer to store (and retrieve) the path to the file.
+ * @param bSave      Is this a save file dialog?
+ *
+ * @return TRUE if the operation was successful. FALSE if the user canceled or
+ *         an error occurred.
+ */
+bool BolotaView::ShowFileDialog(LPTSTR szFilename, bool bSave) {
+	// Setup file dialog.
 	OPENFILENAME ofn;
 	ZeroMemory(&ofn, sizeof(OPENFILENAME));
 	ofn.lStructSize = sizeof(OPENFILENAME);
 	ofn.hwndOwner = m_hwndParent;
-	ofn.lpstrTitle = _T("Save Document As...");
-	ofn.Flags = OFN_EXPLORER | OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT |
-		OFN_PATHMUSTEXIST;
+	ofn.lpstrTitle = (bSave) ? _T("Save Document As...") : _T("Open Document");
+	ofn.Flags = OFN_EXPLORER | OFN_HIDEREADONLY;
+	ofn.Flags |= (bSave) ? OFN_PATHMUSTEXIST | OFN_OVERWRITEPROMPT :
+		OFN_FILEMUSTEXIST;
 	ofn.lpstrFilter = _T("Bolota Documents (*.bol)\0*.bol\0")
 		_T("All Files (*.*)\0*.*\0");
 	ofn.lpstrFile = szFilename;
 	ofn.nMaxFile = MAX_PATH;
 	ofn.lpstrDefExt = _T("bol");
 
-	// Open the save file dialog and process the user selection.
-	if (!GetSaveFileName(&ofn))
-		return true;
-	m_doc->WriteFile(szFilename, true);
-
-	// Set the window title.
-	SetWindowText(m_hwndParent, PathFindFileName(szFilename));
-
-	return true;
+	// Open the common file dialog.
+	if (bSave)
+		return GetSaveFileName(&ofn) != 0;
+	return GetOpenFileName(&ofn) != 0;
 }
 
 /**
@@ -328,6 +383,11 @@ bool BolotaView::Save(bool bSaveAs) {
 void BolotaView::ReloadView() {
 	// Clear the Tree-View for good measure.
 	TreeView_DeleteAllItems(m_hWnd);
+
+	// Handle empty documents.
+	if (m_doc->IsEmpty())
+		return;
+	// TODO: Show a nice label with a message about creating a new topic.
 
 	// Populate the Tree-View with topics.
 	AddTreeViewItem(TVI_ROOT, TVI_FIRST, m_doc->FirstTopic(), true);

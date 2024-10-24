@@ -79,6 +79,7 @@ namespace Bolota {
 		// File handle.
 		HANDLE m_hFile;
 		UString m_strPath;
+
 	public:
 		// Constructors and destructors.
 		Document(TextField *title, TextField *subtitle, DateField *date);
@@ -89,14 +90,21 @@ namespace Bolota {
 		void AppendTopic(Field *field);
 		void AppendTopic(Field *prev, Field *field);
 		void PrependTopic(Field *next, Field *field);
+		bool IsEmpty() const;
 
 		// File operations.
+		static Document* ReadFile(LPCTSTR szPath);
 		size_t WriteFile();
 		size_t WriteFile(LPCTSTR szPath, bool bAssociate);
 		bool HasFileAssociated() const;
 		UString& FilePath();
 
 	protected:
+		// Construtor helpers.
+		Document();
+		void Initialize(TextField *title, TextField *subtitle, DateField *date,
+			LPCTSTR szPath, HANDLE hFile);
+
 		// Section lengths.
 		uint32_t PropertiesLength() const;
 		uint32_t TopicsLength() const;
@@ -106,6 +114,13 @@ namespace Bolota {
 		size_t WriteProperties() const;
 		size_t WriteTopics() const;
 		size_t WriteTopics(Field *field) const;
+
+		// Read sections from file.
+		void ReadProperties(size_t *ulBytes);
+		void ReadTopics(uint32_t dwLengthTopics, size_t *ulBytes);
+
+		// File operations.
+		void CloseFile();
 	};
 }
 

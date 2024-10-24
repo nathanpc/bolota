@@ -47,6 +47,7 @@ public:
 
 	// Event handling.
 	bool Save(bool bSaveAs);
+	bool OpenFile();
 	void ReloadView();
 	void Resize(RECT rc) const;
 
@@ -65,6 +66,9 @@ protected:
 	HTREEITEM AddTreeViewItem(HTREEITEM htiParent, HTREEITEM htiInsertAfter,
 		Bolota::Field *field);
 	void SelectTreeViewItem(HTREEITEM hti);
+
+	// Common dialogs.
+	bool ShowFileDialog(LPTSTR szFilename, bool bSave);
 };
 
 #endif // _BOLOTA_BOLOTAVIEW_H

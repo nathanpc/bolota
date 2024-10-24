@@ -184,6 +184,9 @@ LRESULT MainWindow::OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent) {
 	case IDM_FILE_SAVEAS:
 		m_wndBolota->Save(true);
 		return 0;
+	case IDM_FILE_OPEN:
+		m_wndBolota->OpenFile();
+		return 0;
 	case IDM_FILE_RELOAD:
 		m_wndBolota->ReloadView();
 		return 0;

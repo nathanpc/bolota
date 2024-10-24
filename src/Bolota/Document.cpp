@@ -7,6 +7,8 @@
 
 #include "Document.h"
 
+#include "Exceptions.h"
+
 using namespace Bolota;
 
 /*
@@ -18,6 +20,13 @@ using namespace Bolota;
  */
 
 /**
+ * Constrcuts an empty Bolota document object.
+ */
+Document::Document() {
+	Initialize(NULL, NULL, NULL, NULL, NULL);
+}
+
+/**
  * Construct a Bolota document object.
  *
  * @param title    Document title.
@@ -25,11 +34,7 @@ using namespace Bolota;
  * @param date     Date and time when the note was taken.
  */
 Document::Document(TextField *title, TextField *subtitle, DateField *date) {
-	m_title = title;
-	m_subtitle = subtitle;
-	m_date = date;
-	m_topics = NULL;
-	m_hFile = NULL;
+	Initialize(title, subtitle, date, NULL, NULL);
 }
 
 /**
@@ -52,6 +57,26 @@ Document::~Document() {
 		CloseHandle(m_hFile);
 		m_hFile = NULL;
 	}
+}
+
+/**
+ * A simple constructor helper for common things we need to initialize.
+ *
+ * @param title    Document title.
+ * @param subtitle Document subtitle with more context.
+ * @param date     Date and time when the note was taken.
+ * @param szPath   A path to a file to be associated with this object.
+ * @param hFile    A file handle to be associated with the object.
+ */
+void Document::Initialize(TextField *title, TextField *subtitle,
+						  DateField *date, LPCTSTR szPath, HANDLE hFile) {
+	m_title = title;
+	m_subtitle = subtitle;
+	m_date = date;
+	m_topics = NULL;
+	m_hFile = hFile;
+	if (szPath != NULL)
+		m_strPath = szPath;
 }
 
 /*
@@ -79,6 +104,17 @@ Field* Document::FirstTopic() const {
  * @param field Topic field to be appended to the list.
  */
 void Document::AppendTopic(Field *prev, Field *field) {
+	// Check if this is the first topic to be added to the document.
+	if (m_topics == NULL) {
+		if (prev != NULL) {
+			throw std::exception("Tried to append a topic from the middle of "
+				"the linked list as the root element");
+		}
+		
+		m_topics = field;
+		return;
+	}
+
 	// Shuffle things around.
 	field->SetNext(prev->Next());
 	prev->SetNext(field);
@@ -125,6 +161,15 @@ void Document::AppendTopic(Field *field) {
 	AppendTopic(last, field);
 }
 
+/**
+ * Checks if the document is currently empty.
+ *
+ * @return TRUE if the document has no topics yet.
+ */
+bool Document::IsEmpty() const {
+	return m_topics == NULL;
+}
+
 /*
  * +===========================================================================+
  * |                                                                           |
@@ -132,6 +177,65 @@ void Document::AppendTopic(Field *field) {
  * |                                                                           |
  * +===========================================================================+
  */
+
+/**
+ * Reads a document object from a file.
+ *
+ * @param szPath Path to the file to be read and parsed into an object.
+ *
+ * @return The object representation of the read document.
+ */
+Document* Document::ReadFile(LPCTSTR szPath) {
+	size_t ulLength = 0;
+	DWORD dwRead = 0;
+
+	// Open a file handle for us to operate on.
+	HANDLE hFile = CreateFile(szPath, GENERIC_READ, FILE_SHARE_READ, NULL,
+		OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+	if (hFile == INVALID_HANDLE_VALUE)
+		throw SystemException("Could not open file for reading");
+
+	// Read the file magic anc check if it's a Bolota document.
+	char szMagic[BOLOTA_DOC_MAGIC_LEN + 1];
+	if (!::ReadFile(hFile, szMagic, BOLOTA_DOC_MAGIC_LEN, &dwRead, NULL))
+		throw ReadError(hFile, ulLength, true);
+	ulLength += dwRead;
+	szMagic[BOLOTA_DOC_MAGIC_LEN] = '\0';
+	if (strcmp(szMagic, BOLOTA_DOC_MAGIC))
+		throw InvalidMagic(hFile);
+
+	// Read and check if the version number is compatible.
+	uint8_t ucVersion = 0;
+	if (!::ReadFile(hFile, &ucVersion, sizeof(uint8_t), &dwRead, NULL))
+		throw ReadError(hFile, ulLength, true);
+	ulLength += dwRead;
+	if (ucVersion < BOLOTA_DOC_VER)
+		throw InvalidVersion(hFile);
+
+	//  Read the length of the properties section.
+	uint32_t dwLengthProp = 0;
+	if (!::ReadFile(hFile, &dwLengthProp, sizeof(uint32_t), &dwRead, NULL))
+		throw ReadError(hFile, ulLength, true);
+	ulLength += dwRead;
+
+	// Read the length of the topics section.
+	uint32_t dwLengthTopics = 0;
+	if (!::ReadFile(hFile, &dwLengthTopics, sizeof(uint32_t), &dwRead, NULL))
+		throw ReadError(hFile, ulLength, true);
+	ulLength += dwRead;
+
+	// Create the new document and start parsing.
+	Document *self = new Document();
+	self->m_hFile = hFile;
+	self->m_strPath = szPath;
+	self->ReadProperties(&ulLength);
+	self->ReadTopics(dwLengthTopics, &ulLength);
+
+	// Close the file handle.
+	self->CloseFile();
+
+	return self;
+}
 
 /**
  * Writes the document to the currently associated file.
@@ -162,7 +266,7 @@ size_t Document::WriteFile(LPCTSTR szPath, bool bAssociate) {
 	m_hFile = CreateFile(szPath, GENERIC_WRITE, FILE_SHARE_READ, NULL,
 		CREATE_ALWAYS, FILE_ATTRIBUTE_ARCHIVE, NULL);
 	if (m_hFile == INVALID_HANDLE_VALUE)
-		throw std::exception("CreateFile failed");
+		throw SystemException("Could not open file for writing");
 	if (bAssociate)
 		m_strPath = szPath;
 
@@ -170,8 +274,8 @@ size_t Document::WriteFile(LPCTSTR szPath, bool bAssociate) {
 	::WriteFile(m_hFile, BOLOTA_DOC_MAGIC, BOLOTA_DOC_MAGIC_LEN, &dwWritten,
 		NULL);
 	ulBytes += dwWritten;
-	uint8_t iVersion = BOLOTA_DOC_VER;
-	::WriteFile(m_hFile, &iVersion, sizeof(uint8_t), &dwWritten, NULL);
+	uint8_t ucVersion = BOLOTA_DOC_VER;
+	::WriteFile(m_hFile, &ucVersion, sizeof(uint8_t), &dwWritten, NULL);
 	ulBytes += dwWritten;
 
 	// Write properties section length.
@@ -195,10 +299,67 @@ size_t Document::WriteFile(LPCTSTR szPath, bool bAssociate) {
 	// TODO: ulBytes += WriteAttachments();
 
 	// Close the file handle.
-	CloseHandle(m_hFile);
-	m_hFile = NULL;
+	CloseFile();
 
 	return ulBytes;
+}
+
+/**
+ * Reads the property fields from a file parsing them into the object.
+ *
+ * @param ulBytes Pointer to the counter storing the number of bytes read from
+ *                the file so far.
+ */
+void Document::ReadProperties(size_t *ulBytes) {
+	uint8_t ucDepth = 0;
+
+	// Read each property field in order.
+	m_title = static_cast<TextField*>(Field::Read(m_hFile, ulBytes, &ucDepth));
+	m_subtitle = static_cast<TextField*>(Field::Read(m_hFile, ulBytes,
+		&ucDepth));
+	m_date = static_cast<DateField*>(Field::Read(m_hFile, ulBytes, &ucDepth));
+}
+
+/**
+ * Reads the topics section of the file into the topics linked list.
+ *
+ * @param dwLengthTopics Length of the topics scetion of the file.
+ * @param ulBytes        Pointer to the counter storing the number of bytes read
+ *                       from the file so far.
+ */
+void Document::ReadTopics(uint32_t dwLengthTopics, size_t *ulBytes) {
+	size_t ulStartBytes = *ulBytes;
+	uint8_t ucLastDepth = 0;
+	uint8_t ucDepth = 0;
+	
+	// Go through the fields section parsing out individual fields.
+	Field *fieldLast = NULL;
+	Field *field = NULL;
+	while ((*ulBytes - ulStartBytes) < dwLengthTopics) {
+		// Read the field.
+		field = Field::Read(m_hFile, ulBytes, &ucDepth);
+
+		if (ucDepth > ucLastDepth) {
+			// Child of the last field.
+			if ((ucDepth - ucLastDepth) > 1)
+				throw std::exception("Field depth forward jump greater than 1");
+			field->SetParent(fieldLast, false);
+		} else if (ucDepth < ucLastDepth) {
+			// Next topic of the parent field.
+			Field *parent = fieldLast->Parent();
+			///////// TODO: Fix here. apparently parent is NULL for the last elem.
+			while (parent->Depth() != ucDepth)
+				parent = parent->Parent();
+			parent->SetNext(field, false);
+		} else {
+			// This is just the next field in line.
+			AppendTopic(fieldLast, field);
+		}
+
+		// Set the last field for the next iteration.
+		ucLastDepth = ucDepth;
+		fieldLast = field;
+	}
 }
 
 /**
@@ -254,7 +415,8 @@ size_t Document::WriteTopics() const {
  * @return Length of the properties section in bytes.
  */
 uint32_t Document::PropertiesLength() const {
-	return m_title->Length() + m_subtitle->Length() + m_date->Length();
+	return m_title->FieldLength() + m_subtitle->FieldLength() +
+		m_date->FieldLength();
 }
 
 /**
@@ -278,7 +440,7 @@ uint32_t Document::TopicsLength(Field *field) const {
 
 	// Go through the fields recursively.
 	do {
-		ulLength += field->Length();
+		ulLength += field->FieldLength();
 		if (field->HasChild())
 			ulLength += TopicsLength(field->Child());
 		field = field->Next();
@@ -303,4 +465,12 @@ bool Document::HasFileAssociated() const {
  */
 UString& Document::FilePath() {
 	return m_strPath;
+}
+
+/**
+ * Closes the file handle associated with this document.
+ */
+void Document::CloseFile() {
+	CloseHandle(m_hFile);
+	m_hFile = NULL;
 }
