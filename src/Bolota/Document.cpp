@@ -116,9 +116,9 @@ void Document::AppendTopic(Field *prev, Field *field) {
 	}
 
 	// Shuffle things around.
-	field->SetNext(prev->Next());
-	prev->SetNext(field);
 	field->SetParent(prev->Parent(), true);
+	field->SetNext(prev->Next(), false);
+	prev->SetNext(field, false);
 }
 
 /**
@@ -133,13 +133,13 @@ void Document::PrependTopic(Field *next, Field *field) {
 		m_topics = field;
 
 	// Shuffle things around.
-	field->SetPrevious(next->Previous());
-	next->SetPrevious(field);
 	field->SetParent(next->Parent(), true);
+	field->SetPrevious(next->Previous(), false);
+	next->SetPrevious(field, false);
 
 	// Set ourselves as the parent's child if we prepended to the first item.
 	if (!field->HasPrevious() && next->HasParent())
-		next->Parent()->SetChild(field);
+		next->Parent()->SetChild(field, false);
 }
 
 /**
@@ -347,7 +347,6 @@ void Document::ReadTopics(uint32_t dwLengthTopics, size_t *ulBytes) {
 		} else if (ucDepth < ucLastDepth) {
 			// Next topic of the parent field.
 			Field *parent = fieldLast->Parent();
-			///////// TODO: Fix here. apparently parent is NULL for the last elem.
 			while (parent->Depth() != ucDepth)
 				parent = parent->Parent();
 			parent->SetNext(field, false);

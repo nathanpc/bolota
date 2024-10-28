@@ -112,7 +112,7 @@ void BolotaView::OpenExampleDocument() {
 	tmpField->SetChild(new TextField(
 		_T("A sub-element of the second element")))
 		->SetNext(new TextField(
-		_T("Yet another sub-element of the second element")), false);
+		_T("Yet another sub-element of the second element")));
 	doc->AppendTopic(tmpField);
 	tmpField->SetNext(new TextField(_T("Third top element")))
 		->SetChild(new TextField(_T("A sub-element of the third element")))

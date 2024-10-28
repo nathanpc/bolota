@@ -395,7 +395,6 @@ Field* Field::Parent() const {
  */
 Field* Field::SetParent(Field *parent, bool bPassive) {
 	m_parent = parent;
-	SetPrevious(NULL);
 	if (!bPassive && (m_parent != NULL) && (m_parent->Child() != this))
 		m_parent->SetChild(this);
 
@@ -491,10 +490,10 @@ Field* Field::Previous() const {
 Field* Field::SetPrevious(Field *prev, bool bPassive) {
 	// Set the previous field.
 	m_prev = prev;
-	if (!bPassive && (prev != NULL))
-		prev->SetParent(Parent(), true);
+	if (prev != NULL)
+		SetParent(prev->Parent(), true);
 	if ((m_prev != NULL) && (m_prev->Next() != this))
-		m_prev->SetNext(this);
+		m_prev->SetNext(this, true);
 
 	return prev;
 }
@@ -507,7 +506,7 @@ Field* Field::SetPrevious(Field *prev, bool bPassive) {
  * @return Previous field.
  */
 Field* Field::SetPrevious(Field *prev) {
-	return SetPrevious(prev, true);
+	return SetPrevious(prev, false);
 }
 
 /**
@@ -541,10 +540,10 @@ Field* Field::Next() const {
 Field* Field::SetNext(Field *next, bool bPassive) {
 	// Set the next field.
 	m_next = next;
-	if (!bPassive && (next != NULL))
+	if (next != NULL)
 		next->SetParent(Parent(), true);
 	if ((m_next != NULL) && (m_next->Previous() != this))
-		m_next->SetPrevious(this);
+		m_next->SetPrevious(this, true);
 
 	return next;
 }
@@ -557,5 +556,5 @@ Field* Field::SetNext(Field *next, bool bPassive) {
  * @return Next field.
  */
 Field* Field::SetNext(Field *next) {
-	return SetNext(next, true);
+	return SetNext(next, false);
 }
