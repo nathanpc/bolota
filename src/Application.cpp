@@ -278,7 +278,7 @@ LRESULT WndMainCommand(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
 			AboutDialog(wndMain->hInst, hWnd).ShowModal();
 			return 0;
 		case IDM_EXIT:
-			DestroyWindow(hWnd);
+			PostMessage(wndMain->hWnd, WM_CLOSE, (WPARAM)0, (LPARAM)0);
 			return 0;
 		default:
 			return DefWindowProc(hWnd, wMsg, wParam, lParam);
