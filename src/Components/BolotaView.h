@@ -49,8 +49,8 @@ public:
 	LRESULT Resize(RECT rc) const;
 
 	// Getters and setters.
-	Bolota::Field* GetSelectedField();
-	Bolota::Field* GetSelectedField(HTREEITEM *htiSelected);
+	Bolota::Field* GetSelectedField(bool bShowError);
+	Bolota::Field* GetSelectedField(HTREEITEM *htiSelected, bool bShowError);
 	HWND WindowHandle() const;
 
 	// Examples

@@ -319,12 +319,9 @@ void BolotaView::CreateChildField(HTREEITEM htiParent, Bolota::Field *parent,
 LRESULT BolotaView::OpenFieldManager(FieldManagerDialog::DialogType type) {
 	// Get the currently selected field in the Tree-View.
 	HTREEITEM hti = NULL;
-	Field *field = GetSelectedField(&hti);
-	if (field == NULL) {
-		MsgBoxError(this->m_hwndParent, _T("No field selected"),
-			_T("In order to perform this operation a field must be selected."));
+	Field *field = GetSelectedField(&hti, true);
+	if (field == NULL)
 		return 1;
-	}
 
 	// Should we get a brand new field?
 	Field *fldNew;
@@ -388,12 +385,9 @@ LRESULT BolotaView::OpenFieldManager(FieldManagerDialog::DialogType type) {
 LRESULT BolotaView::AskDeleteField() {
 	// Get the currently selected field in the Tree-View.
 	HTREEITEM hti = NULL;
-	Field *field = GetSelectedField(&hti);
-	if (field == NULL) {
-		MsgBoxError(this->m_hwndParent, _T("No field selected"),
-			_T("In order to perform this operation a field must be selected."));
+	Field *field = GetSelectedField(&hti, true);
+	if (field == NULL)
 		return 1;
-	}
 
 	// Create message for the question dialog.
 	LPCTSTR szQuestion = (field->HasChild()) ?
@@ -567,14 +561,21 @@ LRESULT BolotaView::Resize(RECT rc) const {
  *
  * @param htiSelected Returns selected Tree-View item handle. Set to NULL if it
  *                    should be ignored.
+ * @param bShowError  Should we show an error dialog if no field is selected?
  *
  * @return Currently selected field or NULL if none are selected.
  */
-Field* BolotaView::GetSelectedField(HTREEITEM *htiSelected) {
+Field* BolotaView::GetSelectedField(HTREEITEM *htiSelected, bool bShowError) {
 	// Get the currently selected item handle in the Tree-View.
 	HTREEITEM hti = TreeView_GetSelection(m_hWnd);
-	if (hti == NULL)
+	if (hti == NULL) {
+		if (bShowError) {
+			MsgBoxError(this->m_hwndParent, _T("No field selected"),
+				_T("In order to perform this operation a field must be ")
+				_T("selected."));
+		}
 		return NULL;
+	}
 
 	// Get the selected item from the handle.
 	TVITEM tvi;
@@ -593,10 +594,12 @@ Field* BolotaView::GetSelectedField(HTREEITEM *htiSelected) {
 /**
  * Gets the currently selected item in the viewer.
  *
+ * @param bShowError Should we show an error dialog if no field is selected?
+ *
  * @return Currently selected field or NULL if none are selected.
  */
-Field* BolotaView::GetSelectedField() {
-	return GetSelectedField(NULL);
+Field* BolotaView::GetSelectedField(bool bShowError) {
+	return GetSelectedField(NULL, bShowError);
 }
 
 /**
