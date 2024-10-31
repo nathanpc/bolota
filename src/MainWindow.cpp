@@ -110,71 +110,6 @@ BOOL MainWindow::ResizeWindows(HWND hwndParent) {
  */
 
 /**
- * Opens the appropriate field manager dialog window for the desired action.
- *
- * @param type Type of action to be performed in the manager dialog.
- *
- * @return 0 if everything worked.
- */
-LRESULT MainWindow::OpenFieldManager(FieldManagerDialog::DialogType type) {
-	// Get the currently selected field in the Tree-View.
-	HTREEITEM hti = NULL;
-	Field *field = m_wndBolota->GetSelectedField(&hti);
-	if (field == NULL) {
-		MsgBoxError(this->hWnd, _T("No field selected"),
-			_T("In order to perform this operation a field must be selected."));
-		return 1;
-	}
-
-	// Should we get a brand new field?
-	Field *fldNew;
-	switch (type) {
-	case FieldManagerDialog::DialogType::AppendField:
-	case FieldManagerDialog::DialogType::PrependField:
-		fldNew = new TextField(field->Parent());
-		break;
-	default:
-		fldNew = NULL;
-	}
-
-	// Setup and open the manager dialog.
-	FieldManagerDialog dlgManager(this->hInst, this->hWnd, type,
-		(fldNew) ? fldNew : field, field);
-	INT_PTR iRet = dlgManager.ShowModal();
-
-	// Check if the dialog returned from a Cancel operation.
-	if (iRet == IDCANCEL) {
-		// Clean up our unused field.
-		if (fldNew) {
-			delete fldNew;
-			fldNew = NULL;
-		}
-
-		// Get the focus back on the component.
-		SetFocus(m_wndBolota->WindowHandle());
-		return IDCANCEL;
-	}
-
-	// Update the document viewer.
-	switch (dlgManager.Type()) {
-	case FieldManagerDialog::DialogType::EditField:
-		m_wndBolota->RefreshField(hti, field);
-		break;
-	case FieldManagerDialog::DialogType::AppendField:
-		m_wndBolota->AppendField(hti, field, fldNew);
-		break;
-	case FieldManagerDialog::DialogType::PrependField:
-		m_wndBolota->PrependField(hti, field, fldNew);
-		break;
-	default:
-		MsgBoxError(this->hWnd, _T("Unknown operation type"), _T("Unable to ")
-			_T("perform post-dialog operation on unknown operation type."));
-	}
-
-	return 0;
-}
-
-/**
  * Handles the WM_COMMAND messages from menu items and accelerators.
  *
  * @param wmId    ID of the control that sent the message.
@@ -197,11 +132,14 @@ LRESULT MainWindow::OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent) {
 		m_wndBolota->ReloadView();
 		return 0;
 	case IDM_FIELD_EDIT:
-		return OpenFieldManager(FieldManagerDialog::DialogType::EditField);
+		return m_wndBolota->OpenFieldManager(
+			FieldManagerDialog::DialogType::EditField);
 	case IDM_FIELD_APPEND:
-		return OpenFieldManager(FieldManagerDialog::DialogType::AppendField);
+		return m_wndBolota->OpenFieldManager(
+			FieldManagerDialog::DialogType::AppendField);
 	case IDM_FIELD_PREPEND:
-		return OpenFieldManager(FieldManagerDialog::DialogType::PrependField);
+		return m_wndBolota->OpenFieldManager(
+			FieldManagerDialog::DialogType::PrependField);
 	case IDM_FIELD_CREATECHILD:
 		return OpenFieldManager(FieldManagerDialog::DialogType::NewChildField);
 	default:

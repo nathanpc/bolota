@@ -32,6 +32,7 @@ using namespace Bolota;
 BolotaView::BolotaView(HINSTANCE hInst, HWND hwndParent, RECT rc) {
 	// Initialize some defaults.
 	m_doc = NULL;
+	m_hInst = hInst;
 	m_hwndParent = hwndParent;
 
 	// Create the window instance.
@@ -286,6 +287,71 @@ void BolotaView::PrependField(HTREEITEM htiNext, Bolota::Field *next,
  * |                                                                           |
  * +===========================================================================+
  */
+
+/**
+ * Opens the appropriate field manager dialog window for the desired action.
+ *
+ * @param type Type of action to be performed in the manager dialog.
+ *
+ * @return 0 if everything worked.
+ */
+LRESULT BolotaView::OpenFieldManager(FieldManagerDialog::DialogType type) {
+	// Get the currently selected field in the Tree-View.
+	HTREEITEM hti = NULL;
+	Field *field = GetSelectedField(&hti);
+	if (field == NULL) {
+		MsgBoxError(this->m_hwndParent, _T("No field selected"),
+			_T("In order to perform this operation a field must be selected."));
+		return 1;
+	}
+
+	// Should we get a brand new field?
+	Field *fldNew;
+	switch (type) {
+	case FieldManagerDialog::DialogType::AppendField:
+	case FieldManagerDialog::DialogType::PrependField:
+		fldNew = new TextField(field->Parent());
+		break;
+	default:
+		fldNew = NULL;
+	}
+
+	// Setup and open the manager dialog.
+	FieldManagerDialog dlgManager(this->m_hInst, this->m_hWnd, type,
+		(fldNew) ? fldNew : field, field);
+	INT_PTR iRet = dlgManager.ShowModal();
+
+	// Check if the dialog returned from a Cancel operation.
+	if (iRet == IDCANCEL) {
+		// Clean up our unused field.
+		if (fldNew) {
+			delete fldNew;
+			fldNew = NULL;
+		}
+
+		// Get the focus back on the component.
+		SetFocus(m_hWnd);
+		return IDCANCEL;
+	}
+
+	// Update the document viewer.
+	switch (dlgManager.Type()) {
+	case FieldManagerDialog::DialogType::EditField:
+		RefreshField(hti, field);
+		break;
+	case FieldManagerDialog::DialogType::AppendField:
+		AppendField(hti, field, fldNew);
+		break;
+	case FieldManagerDialog::DialogType::PrependField:
+		PrependField(hti, field, fldNew);
+		break;
+	default:
+		MsgBoxError(this->m_hWnd, _T("Unknown operation type"), _T("Unable to ")
+			_T("perform post-dialog operation on unknown operation type."));
+	}
+
+	return 0;
+}
 
 /**
  * Tries to save the current document to a file.

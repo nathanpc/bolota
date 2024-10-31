@@ -14,7 +14,6 @@
 
 #include "stdafx.h"
 #include "Components/BolotaView.h"
-#include "FieldManagerDialog.h"
 
 class MainWindow {
 private:
@@ -36,7 +35,6 @@ public:
 
 	// Event handlers.
 	LRESULT OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent);
-	LRESULT OpenFieldManager(FieldManagerDialog::DialogType type);
 };
 
 #endif // _BOLOTA_MAINWINDOW_H
