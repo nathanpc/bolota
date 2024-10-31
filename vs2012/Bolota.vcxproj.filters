@@ -124,14 +124,11 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="small.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Bolota.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
+    <Xml Include="manifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="manifest.xml" />
+    <Image Include="..\icons\bolota-icon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

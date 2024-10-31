@@ -32,8 +32,8 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_BOLOTA              ICON                    "Bolota.ico"
-IDI_SMALL               ICON                    "small.ico"
+IDI_BOLOTA              ICON                    "../icons/bolota-icon.ico"
+IDI_SMALL               ICON                    "../icons/bolota-icon.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -124,11 +124,10 @@
     <ResourceCompile Include="Bolota.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Bolota.ico" />
-    <Image Include="small.ico" />
+    <Xml Include="manifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="manifest.xml" />
+    <Image Include="..\icons\bolota-icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
