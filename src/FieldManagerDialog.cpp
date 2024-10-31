@@ -24,14 +24,17 @@ using namespace Bolota;
  * @param hInst      Application's instance that this dialog belongs to.
  * @param hwndParent Parent window handle.
  * @param field      Field to be associated with this dialog.
+ * @param context    Field providing context to the operation.
  */
 FieldManagerDialog::FieldManagerDialog(HINSTANCE& hInst, HWND& hwndParent,
-									   DialogType type, Field *field) :
+									   DialogType type, Field *field,
+									   Field *context) :
 	DialogWindow(hInst, hwndParent, IDD_FIELDMAN) {
 	SetType(type);
 	
 	SetAlternativeSelected(false);
 	m_field = field;
+	m_context = context;
 }
 
 /*
@@ -160,7 +163,7 @@ bool FieldManagerDialog::OnCancel() {
  */
 bool FieldManagerDialog::SetupEditControls() {
 	SetTitle(_T("Edit Field"));
-	SetContextLabel(_T("Editing the field..."));
+	SetContextLabel(m_context->Text()->GetNativeString());
 	SetButtons(NULL, _T("Save"), _T("Cancel"));
 	return true;
 }
@@ -172,7 +175,7 @@ bool FieldManagerDialog::SetupEditControls() {
  */
 bool FieldManagerDialog::SetupAppendControls() {
 	SetTitle(_T("Appending Field"));
-	SetContextLabel(_T("Appending field..."));
+	SetContextLabel(m_context->Text()->GetNativeString());
 	SetButtons(_T("Prepend"), _T("Append"), _T("Cancel"));
 	return true;
 }
@@ -184,7 +187,7 @@ bool FieldManagerDialog::SetupAppendControls() {
  */
 bool FieldManagerDialog::SetupPrependControls() {
 	SetTitle(_T("Prepending Field"));
-	SetContextLabel(_T("Prepending field..."));
+	SetContextLabel(m_context->Text()->GetNativeString());
 	SetButtons(_T("Append"), _T("Prepend"), _T("Cancel"));
 	return true;
 }

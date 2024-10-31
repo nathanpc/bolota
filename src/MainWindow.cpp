@@ -127,13 +127,19 @@ LRESULT MainWindow::OpenFieldManager(FieldManagerDialog::DialogType type) {
 	}
 
 	// Should we get a brand new field?
-	Field *fldNew = NULL;
-	if (type != FieldManagerDialog::DialogType::EditField)
-		fldNew = new TextField();
+	Field *fldNew;
+	switch (type) {
+	case FieldManagerDialog::DialogType::AppendField:
+	case FieldManagerDialog::DialogType::PrependField:
+		fldNew = new TextField(field->Parent());
+		break;
+	default:
+		fldNew = NULL;
+	}
 
 	// Setup and open the manager dialog.
 	FieldManagerDialog dlgManager(this->hInst, this->hWnd, type,
-		(fldNew) ? fldNew : field);
+		(fldNew) ? fldNew : field, field);
 	INT_PTR iRet = dlgManager.ShowModal();
 
 	// Check if the dialog returned from a Cancel operation.
