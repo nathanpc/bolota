@@ -472,28 +472,35 @@ bool BolotaView::ShowFileDialog(LPTSTR szFilename, bool bSave) {
 /**
  * Completely reloads the Tree-View component with data from the opened
  * document.
+ *
+ * @return 0 if everything worked.
  */
-void BolotaView::ReloadView() {
+LRESULT BolotaView::ReloadView() {
 	// Clear the Tree-View for good measure.
 	TreeView_DeleteAllItems(m_hWnd);
 
 	// Handle empty documents.
 	if (m_doc->IsEmpty())
-		return;
-	// TODO: Show a nice label with a message about creating a new topic.
+		// TODO: Show a nice label with a message about creating a new topic.
+		return 0;
 
 	// Populate the Tree-View with topics.
 	AddTreeViewItem(TVI_ROOT, TVI_FIRST, m_doc->FirstTopic(), true);
+
+	return 0;
 }
 
 /**
  * Resizes the component window.
  *
  * @param rc Desired position and size of the component.
+ *
+ * @return 0 if everything worked.
  */
-void BolotaView::Resize(RECT rc) const {
+LRESULT BolotaView::Resize(RECT rc) const {
 	SetWindowPos(m_hWnd, NULL, rc.left, rc.top, rc.right, rc.bottom,
 		SWP_NOZORDER);
+	return 0;
 }
 
 /*

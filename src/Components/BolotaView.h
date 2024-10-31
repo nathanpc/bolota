@@ -44,8 +44,8 @@ public:
 	LRESULT OpenFieldManager(FieldManagerDialog::DialogType type);
 	bool Save(bool bSaveAs);
 	bool OpenFile();
-	void ReloadView();
-	void Resize(RECT rc) const;
+	LRESULT ReloadView();
+	LRESULT Resize(RECT rc) const;
 
 	// Getters and setters.
 	Bolota::Field* GetSelectedField();
