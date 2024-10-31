@@ -110,6 +110,7 @@ namespace Bolota {
 		Field* Next() const;
 		Field* SetNext(Field *next);
 		Field* SetNext(Field *next, bool bPassive);
+		bool IsFirstChild() const;
 
 	protected:
 		// Constructor helper.

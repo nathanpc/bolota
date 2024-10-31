@@ -381,6 +381,57 @@ LRESULT BolotaView::OpenFieldManager(FieldManagerDialog::DialogType type) {
 }
 
 /**
+ * Handles the deletion of the currently selected field item.
+ *
+ * @return 0 if everything worked.
+ */
+LRESULT BolotaView::AskDeleteField() {
+	// Get the currently selected field in the Tree-View.
+	HTREEITEM hti = NULL;
+	Field *field = GetSelectedField(&hti);
+	if (field == NULL) {
+		MsgBoxError(this->m_hwndParent, _T("No field selected"),
+			_T("In order to perform this operation a field must be selected."));
+		return 1;
+	}
+
+	// Create message for the question dialog.
+	LPCTSTR szQuestion = (field->HasChild()) ?
+		_T("Are you sure you want to delete this field and all its children?") :
+		_T("Are you sure you want to delete this field?");
+	LPTSTR szMsg = (LPTSTR)LocalAlloc(LMEM_FIXED,
+		(_tcslen(szQuestion) + field->TextLength() + 4 + 1) * sizeof(TCHAR));
+	if (szMsg == NULL) {
+		MsgBoxError(m_hWnd, _T("Failed to allocate memory"),
+			_T("Failed to allocate memory for the delete dialog message."));
+		return 1;
+	}
+	_stprintf(szMsg, _T("%s\r\n\"%s\""), szQuestion,
+		field->Text()->GetNativeString());
+
+	// Ask the user if they are sure about this operation.
+	int iRet = MsgBox(m_hWnd, MB_ICONQUESTION | MB_OKCANCEL, _T("Delete field"),
+		szMsg);
+	LocalFree(szMsg);
+	szMsg = NULL;
+	if (iRet != IDOK)
+		return 0;
+
+	// Get the next Tree-View item to be selected after we delete the field.
+	HTREEITEM htiNext = TreeView_GetNextSibling(m_hWnd, hti);
+	if (htiNext == NULL)
+		TreeView_GetPrevSibling(m_hWnd, hti);
+
+	// Delete the field and remove the item from the Tree-View.
+	m_doc->DeleteTopic(field);
+	TreeView_DeleteItem(m_hWnd, hti);
+	if (htiNext != NULL)
+		SelectTreeViewItem(htiNext);
+
+	return 0;
+}
+
+/**
  * Tries to save the current document to a file.
  *
  * @param bSaveAs Should we perform the default for a Save As operation?

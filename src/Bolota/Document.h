@@ -90,6 +90,7 @@ namespace Bolota {
 		void AppendTopic(Field *field);
 		void AppendTopic(Field *prev, Field *field);
 		void PrependTopic(Field *next, Field *field);
+		void DeleteTopic(Field *field);
 		bool IsEmpty() const;
 
 		// File operations.

@@ -558,3 +558,12 @@ Field* Field::SetNext(Field *next, bool bPassive) {
 Field* Field::SetNext(Field *next) {
 	return SetNext(next, false);
 }
+
+/**
+ * Checks if this field is the first child of its parent.
+ *
+ * @return TRUE if the is the first child of its parent.
+ */
+bool Field::IsFirstChild() const {
+	return !HasPrevious() && HasParent();
+}

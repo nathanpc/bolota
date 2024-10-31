@@ -133,6 +133,8 @@ LRESULT MainWindow::OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent) {
 	case IDM_FIELD_EDIT:
 		return m_wndBolota->OpenFieldManager(
 			FieldManagerDialog::DialogType::EditField);
+	case IDM_FIELD_DELETE:
+		return m_wndBolota->AskDeleteField();
 	case IDM_FIELD_APPEND:
 		return m_wndBolota->OpenFieldManager(
 			FieldManagerDialog::DialogType::AppendField);

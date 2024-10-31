@@ -84,13 +84,14 @@ BEGIN
     "O",            IDM_FIELD_APPEND,       VIRTKEY, NOINVERT
     "P",            IDM_FIELD_CREATECHILD,  VIRTKEY, NOINVERT
     "D",            IDM_FIELD_DELETE,       VIRTKEY, NOINVERT
+    VK_DELETE,      IDM_FIELD_DELETE,       VIRTKEY, NOINVERT
     "I",            IDM_FIELD_EDIT,         VIRTKEY, NOINVERT
     "J",            IDM_FIELD_MOVEDOWN,     VIRTKEY, NOINVERT
     "K",            IDM_FIELD_MOVEUP,       VIRTKEY, NOINVERT
     "U",            IDM_FIELD_PREPEND,      VIRTKEY, NOINVERT
+    "O",            IDM_FILE_OPEN,          VIRTKEY, CONTROL, NOINVERT
     "S",            IDM_FILE_SAVE,          VIRTKEY, CONTROL, NOINVERT
     "S",            IDM_FILE_SAVEAS,        VIRTKEY, SHIFT, CONTROL, NOINVERT
-    "O",            IDM_FILE_OPEN,          VIRTKEY, CONTROL, NOINVERT
 END
 
 

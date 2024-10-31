@@ -42,6 +42,7 @@ public:
 
 	// Event handling.
 	LRESULT OpenFieldManager(FieldManagerDialog::DialogType type);
+	LRESULT AskDeleteField();
 	bool Save(bool bSaveAs);
 	bool OpenFile();
 	LRESULT ReloadView();

@@ -162,6 +162,31 @@ void Document::AppendTopic(Field *field) {
 }
 
 /**
+ * Deletes a topic and all of its child fields from the document's topic list.
+ *
+ * @param field Topic field to be deleted from the document.
+ */
+void Document::DeleteTopic(Field *field) {
+	// Ensure we pass along the first topic of the linked list.
+	if (m_topics == field)
+		m_topics = field->Next();
+	
+	// Rearrange parent's first child if needed.
+	if (field->IsFirstChild())
+		field->Parent()->SetChild(field->Next(), false);
+
+	// Shuffle things around.
+	if (field->HasPrevious()) {
+		field->Previous()->SetNext(field->Next(), false);
+	} else if (field->HasNext()) {
+		field->Next()->SetPrevious(NULL, true);
+	}
+
+	// Delete the field and all of its children.
+	field->Destroy(true, false);
+}
+
+/**
  * Checks if the document is currently empty.
  *
  * @return TRUE if the document has no topics yet.
