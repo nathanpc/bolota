@@ -62,6 +62,8 @@ protected:
 		Bolota::Field *field);
 	void PrependField(HTREEITEM htiNext, Bolota::Field *next,
 		Bolota::Field *field);
+	void CreateChildField(HTREEITEM htiParent, Bolota::Field *parent,
+		Bolota::Field *field);
 
 	// Tree-View item handling.
 	HTREEITEM AddTreeViewItem(HTREEITEM htiParent, HTREEITEM htiInsertAfter,

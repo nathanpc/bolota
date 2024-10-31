@@ -73,6 +73,8 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 		return SetupAppendControls();
 	case PrependField:
 		return SetupPrependControls();
+	case NewChildField:
+		return SetupCreateChildControls();
 	default:
 		MsgBoxError(hDlg, _T("Unknown dialog type"), _T("Couldn't setup ")
 			_T("the Field Manager dialog box for the requested type."));
@@ -97,6 +99,7 @@ bool FieldManagerDialog::OnOK() {
 	case EditField:
 	case AppendField:
 	case PrependField:
+	case NewChildField:
 		return true;
 	default:
 		MsgBoxError(hDlg, _T("Unknown type"),
@@ -189,6 +192,18 @@ bool FieldManagerDialog::SetupPrependControls() {
 	SetTitle(_T("Prepending Field"));
 	SetContextLabel(m_context->Text()->GetNativeString());
 	SetButtons(_T("Append"), _T("Prepend"), _T("Cancel"));
+	return true;
+}
+
+/**
+ * Sets up the dialog for creating a child of an existing field.
+ *
+ * @return TRUE if everything worked.
+ */
+bool FieldManagerDialog::SetupCreateChildControls() {
+	SetTitle(_T("Creating Child Field"));
+	SetContextLabel(m_context->Text()->GetNativeString());
+	SetButtons(NULL, _T("Create"), _T("Cancel"));
 	return true;
 }
 

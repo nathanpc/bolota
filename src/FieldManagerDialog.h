@@ -60,6 +60,7 @@ protected:
 	bool SetupEditControls();
 	bool SetupAppendControls();
 	bool SetupPrependControls();
+	bool SetupCreateChildControls();
 
 	// Setters
 	void SetType(DialogType type);

@@ -60,11 +60,10 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Prepend Fie&ld...",           IDM_FIELD_PREPEND
         MENUITEM "A&ppend Field...",            IDM_FIELD_APPEND
+        MENUITEM "Cre&ate Child Field...",      IDM_FIELD_CREATECHILD
         MENUITEM SEPARATOR
         MENUITEM "Move Up",                     IDM_FIELD_MOVEUP
         MENUITEM "Move Down",                   IDM_FIELD_MOVEDOWN
-        MENUITEM SEPARATOR
-        MENUITEM "Cre&ate Child Field...",      IDM_FIELD_CREATECHILD
     END
     POPUP "&Help"
     BEGIN

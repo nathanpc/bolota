@@ -280,6 +280,27 @@ void BolotaView::PrependField(HTREEITEM htiNext, Bolota::Field *next,
 	SelectTreeViewItem(hti);
 }
 
+/**
+ * Appends a new child field to the Tree-View.
+ *
+ * @param htiParent Tree-View node item to be the parent the new one.
+ * @param parent    Parent field.
+ * @param field     New field to be inserted.
+ */
+void BolotaView::CreateChildField(HTREEITEM htiParent, Bolota::Field *parent,
+							 Field *field) {
+	// Simply prepend to the first child if the parent already has one.
+	if (parent->HasChild()) {
+		PrependField(TreeView_GetChild(m_hWnd, htiParent), parent->Child(),
+			field);
+		return;
+	}
+
+	// Set the child field in the document and update the Tree-View.
+	parent->SetChild(field, false);
+	SelectTreeViewItem(AddTreeViewItem(htiParent, TVI_FIRST, field));
+}
+
 /*
  * +===========================================================================+
  * |                                                                           |
@@ -311,6 +332,9 @@ LRESULT BolotaView::OpenFieldManager(FieldManagerDialog::DialogType type) {
 	case FieldManagerDialog::DialogType::AppendField:
 	case FieldManagerDialog::DialogType::PrependField:
 		fldNew = new TextField(field->Parent());
+		break;
+	case FieldManagerDialog::DialogType::NewChildField:
+		fldNew = new TextField(field);
 		break;
 	default:
 		fldNew = NULL;
@@ -344,6 +368,9 @@ LRESULT BolotaView::OpenFieldManager(FieldManagerDialog::DialogType type) {
 		break;
 	case FieldManagerDialog::DialogType::PrependField:
 		PrependField(hti, field, fldNew);
+		break;
+	case FieldManagerDialog::DialogType::NewChildField:
+		CreateChildField(hti, field, fldNew);
 		break;
 	default:
 		MsgBoxError(this->m_hWnd, _T("Unknown operation type"), _T("Unable to ")
