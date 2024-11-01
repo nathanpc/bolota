@@ -115,6 +115,9 @@ void BolotaView::OpenExampleDocument() {
 		->SetNext(new TextField(
 		_T("Yet another sub-element of the second element")));
 	doc->AppendTopic(tmpField);
+	tmpField = static_cast<TextField*>(
+		tmpField->SetNext(new TextField(_T("Element 1")))
+		->SetNext(new TextField(_T("Element 2"))));
 	tmpField->SetNext(new TextField(_T("Third top element")))
 		->SetChild(new TextField(_T("A sub-element of the third element")))
 		->SetChild(new TextField(_T("A sub-sub-element of the third element")));
@@ -443,14 +446,24 @@ LRESULT BolotaView::MoveField(bool bUp) {
 	if (bUp && (m_doc->FirstTopic() == field))
 		return 0;
 
+	// Last field cannot be moved down so ignore it.
+	if (!bUp && field->IsDocumentLast())
+		return 0;
+
 	// Get the next visible item in the Tree-View.
 	HTREEITEM htiNext = (bUp) ? TreeView_GetPrevVisible(m_hWnd, hti) :
+		(field->HasChild()) ? TreeView_GetNextSibling(m_hWnd, hti) :
 		TreeView_GetNextVisible(m_hWnd, hti);
+	if (!bUp && field->HasChild() && (htiNext == NULL))
+		// Moving the last child of a node and it has children of its own.
+		htiNext = TreeView_GetNextSibling(m_hWnd, TreeView_GetParent(m_hWnd, hti));
 	Field *fldNext = GetFieldFromTreeItem(htiNext);
 
 	// Shuffle things around.
 	if (bUp) {
 		m_doc->MoveTopicAbove(field, fldNext);
+	} else {
+		m_doc->MoveTopicBelow(field, fldNext);
 	}
 
 	// TODO: Delete item and append it to htiNext.

@@ -567,3 +567,12 @@ Field* Field::SetNext(Field *next) {
 bool Field::IsFirstChild() const {
 	return !HasPrevious() && HasParent();
 }
+
+/**
+ * Checks if this field is the last element of the document.
+ *
+ * @return TRUE if the is the field is the last field in the document.
+ */
+bool Field::IsDocumentLast() const {
+	return !HasNext() && !HasParent();
+}

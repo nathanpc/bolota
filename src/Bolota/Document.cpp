@@ -217,6 +217,34 @@ void Document::MoveTopicAbove(Field *above, Field *below) {
 }
 
 /**
+ * Moves a topic below another in the document's topic list.
+ *
+ * @param below Topic field to be below. This is the one that will be moved.
+ * @param above Reference topic field for the move.
+ */
+void Document::MoveTopicBelow(Field *below, Field *above) {
+	// Fill the space left behind by the moved topic.
+	if (below->IsFirstChild()) {
+		below->Parent()->SetChild(below->Next(), false);
+		if (below->HasNext())
+			below->Next()->SetPrevious(NULL, true);
+	} else if (below->HasPrevious()) {
+		below->Previous()->SetNext(below->Next(), false);
+	}
+
+	// Shuffle things around to make space for us at our new home.
+	if (above->HasChild()) {
+		below->SetNext(above->Child(), false);
+		above->SetPrevious(below->Previous(), false);
+		above->SetChild(below, false);
+		below->SetPrevious(NULL, true);
+	} else {
+		below->SetNext(above->Next(), false);
+		below->SetPrevious(above, false);
+	}
+}
+
+/**
  * Checks if the document is currently empty.
  *
  * @return TRUE if the document has no topics yet.
