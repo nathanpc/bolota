@@ -454,12 +454,17 @@ LRESULT BolotaView::MoveField(bool bUp) {
 	HTREEITEM htiNext = (bUp) ? TreeView_GetPrevVisible(m_hWnd, hti) :
 		(field->HasChild()) ? TreeView_GetNextSibling(m_hWnd, hti) :
 		TreeView_GetNextVisible(m_hWnd, hti);
-	if (!bUp && field->HasChild() && (htiNext == NULL))
-		// Moving the last child of a node and it has children of its own.
-		htiNext = TreeView_GetNextSibling(m_hWnd, TreeView_GetParent(m_hWnd, hti));
-	Field *fldNext = GetFieldFromTreeItem(htiNext);
+
+	// Handle moving the last child of a node and it has children of its own.
+	HTREEITEM htiParent = hti;
+	while (!bUp && field->HasChild() && (htiNext == NULL) &&
+			(htiParent != NULL)) {
+		htiParent = TreeView_GetParent(m_hWnd, htiParent);
+		htiNext = TreeView_GetNextSibling(m_hWnd, htiParent);
+	}
 
 	// Shuffle things around.
+	Field *fldNext = GetFieldFromTreeItem(htiNext);
 	if (bUp) {
 		m_doc->MoveTopicAbove(field, fldNext);
 	} else {
