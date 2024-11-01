@@ -426,6 +426,40 @@ LRESULT BolotaView::AskDeleteField() {
 }
 
 /**
+ * Moves a field up or down the tree.
+ *
+ * @param bUp Should we move the field upwards? Set to FALSE to move downwards.
+ *
+ * @return 0 if everything worked.
+ */
+LRESULT BolotaView::MoveField(bool bUp) {
+	// Get the currently selected field in the Tree-View.
+	HTREEITEM hti = NULL;
+	Field *field = GetSelectedField(&hti, true);
+	if (field == NULL)
+		return 1;
+
+	// Root field cannot be moved up so ignore it.
+	if (bUp && (m_doc->FirstTopic() == field))
+		return 0;
+
+	// Get the next visible item in the Tree-View.
+	HTREEITEM htiNext = (bUp) ? TreeView_GetPrevVisible(m_hWnd, hti) :
+		TreeView_GetNextVisible(m_hWnd, hti);
+	Field *fldNext = GetFieldFromTreeItem(htiNext);
+
+	// Shuffle things around.
+	if (bUp) {
+		m_doc->MoveTopicAbove(field, fldNext);
+	}
+
+	// TODO: Delete item and append it to htiNext.
+	ReloadView();
+
+	return 0;
+}
+
+/**
  * Tries to save the current document to a file.
  *
  * @param bSaveAs Should we perform the default for a Save As operation?
@@ -557,6 +591,28 @@ LRESULT BolotaView::Resize(RECT rc) const {
  */
 
 /**
+ * Gets the associated field object from a Tree-View item.
+ *
+ * @param hti Tree-View item handle.
+ *
+ * @return Field object associated with the Tree-View item.
+ */
+Field* BolotaView::GetFieldFromTreeItem(HTREEITEM hti) const {
+	// Check if we have a valid item handle.
+	if (hti == NULL)
+		throw std::exception("Tree-View item for field retrieval is NULL");
+
+	// Get the selected item from the handle.
+	TVITEM tvi;
+	tvi.hItem = hti;
+	tvi.mask = TVIF_PARAM;
+	if (!TreeView_GetItem(m_hWnd, &tvi))
+		throw std::exception("Failed to get Tree-View item from handle");
+
+	return reinterpret_cast<Field*>(tvi.lParam);
+}
+
+/**
  * Gets the currently selected item in the viewer.
  *
  * @param htiSelected Returns selected Tree-View item handle. Set to NULL if it
@@ -565,7 +621,8 @@ LRESULT BolotaView::Resize(RECT rc) const {
  *
  * @return Currently selected field or NULL if none are selected.
  */
-Field* BolotaView::GetSelectedField(HTREEITEM *htiSelected, bool bShowError) {
+Field* BolotaView::GetSelectedField(HTREEITEM *htiSelected,
+									bool bShowError) const {
 	// Get the currently selected item handle in the Tree-View.
 	HTREEITEM hti = TreeView_GetSelection(m_hWnd);
 	if (hti == NULL) {
@@ -577,18 +634,11 @@ Field* BolotaView::GetSelectedField(HTREEITEM *htiSelected, bool bShowError) {
 		return NULL;
 	}
 
-	// Get the selected item from the handle.
-	TVITEM tvi;
-	tvi.hItem = hti;
-	tvi.mask = TVIF_PARAM;
-	if (!TreeView_GetItem(m_hWnd, &tvi))
-		throw std::exception("Failed to get Tree-View item from selection");
-
 	// Return item handle.
 	if (htiSelected != NULL)
 		*htiSelected = hti;
 
-	return reinterpret_cast<Field*>(tvi.lParam);
+	return GetFieldFromTreeItem(hti);
 }
 
 /**
@@ -598,7 +648,7 @@ Field* BolotaView::GetSelectedField(HTREEITEM *htiSelected, bool bShowError) {
  *
  * @return Currently selected field or NULL if none are selected.
  */
-Field* BolotaView::GetSelectedField(bool bShowError) {
+Field* BolotaView::GetSelectedField(bool bShowError) const {
 	return GetSelectedField(NULL, bShowError);
 }
 

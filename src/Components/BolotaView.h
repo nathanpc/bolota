@@ -43,14 +43,17 @@ public:
 	// Event handling.
 	LRESULT OpenFieldManager(FieldManagerDialog::DialogType type);
 	LRESULT AskDeleteField();
+	LRESULT MoveField(bool bUp);
 	bool Save(bool bSaveAs);
 	bool OpenFile();
 	LRESULT ReloadView();
 	LRESULT Resize(RECT rc) const;
 
 	// Getters and setters.
-	Bolota::Field* GetSelectedField(bool bShowError);
-	Bolota::Field* GetSelectedField(HTREEITEM *htiSelected, bool bShowError);
+	Bolota::Field* GetFieldFromTreeItem(HTREEITEM hti) const;
+	Bolota::Field* GetSelectedField(bool bShowError) const;
+	Bolota::Field* GetSelectedField(HTREEITEM *htiSelected,
+		bool bShowError) const;
 	HWND WindowHandle() const;
 
 	// Examples

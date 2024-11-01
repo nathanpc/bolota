@@ -144,6 +144,10 @@ LRESULT MainWindow::OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent) {
 	case IDM_FIELD_CREATECHILD:
 		return m_wndBolota->OpenFieldManager(
 			FieldManagerDialog::DialogType::NewChildField);
+	case IDM_FIELD_MOVEUP:
+		return m_wndBolota->MoveField(true);
+	case IDM_FIELD_MOVEDOWN:
+		return m_wndBolota->MoveField(false);
 	default:
 		MsgBoxInfo(this->hWnd, _T("Unknown Command ID"),
 			_T("WM_COMMAND for MainWindow with unknown ID"));

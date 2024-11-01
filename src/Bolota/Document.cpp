@@ -187,6 +187,36 @@ void Document::DeleteTopic(Field *field) {
 }
 
 /**
+ * Moves a topic above another in the document's topic list.
+ *
+ * @param above Topic field to be above. This is the one that will be moved.
+ * @param below Reference topic field for the move.
+ */
+void Document::MoveTopicAbove(Field *above, Field *below) {
+	// Are we moving to the first node in our document?
+	if (below == m_topics)
+		m_topics = above;
+
+	// Fill the space left behind by the moved topic.
+	if (above->IsFirstChild()) {
+		above->Parent()->SetChild(above->Next(), false);
+		if (above->HasNext())
+			above->Next()->SetPrevious(NULL, true);
+	} else if (above->HasPrevious()) {
+		above->Previous()->SetNext(above->Next(), false);
+	}
+
+	// Shuffle things around to make space for us at our new home.
+	if (below->IsFirstChild()) {
+		below->Parent()->SetChild(above, false);
+	} else {
+		above->SetParent(below->Parent(), true);
+	}
+	above->SetPrevious(below->Previous(), false);
+	above->SetNext(below, false);
+}
+
+/**
  * Checks if the document is currently empty.
  *
  * @return TRUE if the document has no topics yet.
