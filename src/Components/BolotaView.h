@@ -47,6 +47,7 @@ public:
 	bool Save(bool bSaveAs);
 	bool OpenFile();
 	LRESULT ReloadView();
+	LRESULT ReloadView(Bolota::Field *fldSelected);
 	LRESULT Resize(RECT rc) const;
 
 	// Getters and setters.
@@ -71,7 +72,7 @@ protected:
 
 	// Tree-View item handling.
 	HTREEITEM AddTreeViewItem(HTREEITEM htiParent, HTREEITEM htiInsertAfter,
-		Bolota::Field *field, bool bRecurse);
+		Bolota::Field *field, bool bRecurse, Bolota::Field *fldSelected);
 	HTREEITEM AddTreeViewItem(HTREEITEM htiParent, HTREEITEM htiInsertAfter,
 		Bolota::Field *field);
 	void SelectTreeViewItem(HTREEITEM hti);

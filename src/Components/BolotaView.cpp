@@ -78,7 +78,7 @@ void BolotaView::OpenDocument(Document *doc) {
 	m_doc = doc;
 
 	// Populate the view.
-	ReloadView();
+	ReloadView(doc->FirstTopic());
 }
 
 /**
@@ -142,12 +142,13 @@ void BolotaView::OpenExampleDocument() {
  * @param htiInsertAfter Tree-View item that will appear before this one.
  * @param field          Field to be added to the view.
  * @param bRecurse       Should we add fields recursively (childs and next)?
+ * @param fldSelected    Optional. Which field should automatically be selected.
  *
  * @return Tree-View item root node that was just added.
  */
 HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
 									  HTREEITEM htiInsertAfter, Field *field,
-									  bool bRecurse) {
+									  bool bRecurse, Field *fldSelected) {
 	// Build up the tree item object from the topic.
 	TVITEM tvi;
 	tvi.mask = TVIF_TEXT | TVIF_PARAM;
@@ -162,6 +163,10 @@ HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
 
 	// Insert the item in the Tree-View.
 	HTREEITEM hti = TreeView_InsertItem(m_hWnd, &tvins);
+
+	// Select the desired field if necessary.
+	if (fldSelected && (field == fldSelected))
+		SelectTreeViewItem(hti);
 
 #ifdef DEBUG
 	// Print out details about the added field for debugging.
@@ -178,13 +183,13 @@ HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
 	
 	// Go through child and next fields inserting them into the Tree-View as well.
 	if (field->HasChild()) {
-		AddTreeViewItem(hti, TVI_FIRST, field->Child(), bRecurse);
+		AddTreeViewItem(hti, TVI_FIRST, field->Child(), bRecurse, fldSelected);
 		TreeView_Expand(m_hWnd, hti, TVE_EXPAND);
 	}
 
 	// Insert next fields into the Tree-View as well.
 	if (field->HasNext())
-		AddTreeViewItem(htiParent, hti, field->Next(), bRecurse);
+		AddTreeViewItem(htiParent, hti, field->Next(), bRecurse, fldSelected);
 
 	return hti;
 }
@@ -200,7 +205,7 @@ HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
  */
 HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
 									  HTREEITEM htiInsertAfter, Field *field) {
-	return AddTreeViewItem(htiParent, htiInsertAfter, field, false);
+	return AddTreeViewItem(htiParent, htiInsertAfter, field, false, NULL);
 }
 
 /**
@@ -456,11 +461,11 @@ LRESULT BolotaView::MoveField(bool bUp) {
 		TreeView_GetNextVisible(m_hWnd, hti);
 
 	// Handle moving the last child of a node and it has children of its own.
-	HTREEITEM htiParent = hti;
+	HTREEITEM htiParent = TreeView_GetParent(m_hWnd, hti);
 	while (!bUp && field->HasChild() && (htiNext == NULL) &&
 			(htiParent != NULL)) {
-		htiParent = TreeView_GetParent(m_hWnd, htiParent);
 		htiNext = TreeView_GetNextSibling(m_hWnd, htiParent);
+		htiParent = TreeView_GetParent(m_hWnd, htiParent);
 	}
 
 	// Shuffle things around.
@@ -471,8 +476,8 @@ LRESULT BolotaView::MoveField(bool bUp) {
 		m_doc->MoveTopicBelow(field, fldNext);
 	}
 
-	// TODO: Delete item and append it to htiNext.
-	ReloadView();
+	// Reload the view to reflect the newest change and select the moved field.
+	ReloadView(field);
 
 	return 0;
 }
@@ -570,9 +575,11 @@ bool BolotaView::ShowFileDialog(LPTSTR szFilename, bool bSave) {
  * Completely reloads the Tree-View component with data from the opened
  * document.
  *
+ * @param fldSelected Optional. Which field should automatically be selected.
+ *
  * @return 0 if everything worked.
  */
-LRESULT BolotaView::ReloadView() {
+LRESULT BolotaView::ReloadView(Field *fldSelected) {
 	// Clear the Tree-View for good measure.
 	TreeView_DeleteAllItems(m_hWnd);
 
@@ -582,9 +589,22 @@ LRESULT BolotaView::ReloadView() {
 		return 0;
 
 	// Populate the Tree-View with topics.
-	AddTreeViewItem(TVI_ROOT, TVI_FIRST, m_doc->FirstTopic(), true);
+	AddTreeViewItem(TVI_ROOT, TVI_FIRST, m_doc->FirstTopic(), true,
+		fldSelected);
 
 	return 0;
+}
+
+/**
+ * Completely reloads the Tree-View component with data from the opened
+ * document.
+ *
+ * @param fldSelected Optional. Which field should automatically be selected.
+ *
+ * @return 0 if everything worked.
+ */
+LRESULT BolotaView::ReloadView() {
+	return ReloadView(NULL);
 }
 
 /**
