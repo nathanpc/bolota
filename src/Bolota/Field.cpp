@@ -574,5 +574,6 @@ bool Field::IsFirstChild() const {
  * @return TRUE if the is the field is the last field in the document.
  */
 bool Field::IsDocumentLast() const {
-	return !HasNext() && !HasParent();
+	return (!HasNext() && !HasParent()) || (HasParent() &&
+		Parent()->IsDocumentLast());
 }
