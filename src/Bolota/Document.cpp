@@ -214,6 +214,10 @@ void Document::MoveTopicAbove(Field *above, Field *below) {
 	}
 	above->SetPrevious(below->Previous(), false);
 	above->SetNext(below, false);
+
+	// Ensure we reset the previous field if we are at the top.
+	if (above == m_topics)
+		above->SetPrevious(NULL, true);
 }
 
 /**
@@ -223,6 +227,10 @@ void Document::MoveTopicAbove(Field *above, Field *below) {
  * @param above Reference topic field for the move.
  */
 void Document::MoveTopicBelow(Field *below, Field *above) {
+	// Are we moving the first node in our document?
+	if (below == m_topics)
+		m_topics = above;
+
 	// Fill the space left behind by the moved topic.
 	if (below->IsFirstChild()) {
 		below->Parent()->SetChild(below->Next(), false);
@@ -242,6 +250,10 @@ void Document::MoveTopicBelow(Field *below, Field *above) {
 		below->SetNext(above->Next(), false);
 		below->SetPrevious(above, false);
 	}
+
+	// Ensure we reset the previous field if we are at the top.
+	if (above == m_topics)
+		above->SetPrevious(NULL, true);
 }
 
 /**
