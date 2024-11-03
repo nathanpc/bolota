@@ -26,6 +26,8 @@
 #define IDM_FIELD_CREATECHILD           (IDM_BASE + 10)
 #define IDM_FIELD_MOVEUP                (IDM_BASE + 11)
 #define IDM_FIELD_MOVEDOWN              (IDM_BASE + 12)
+#define IDM_FIELD_INDENT                (IDM_BASE + 13)
+#define IDM_FIELD_DEINDENT              (IDM_BASE + 14)
 
 // Controls (Main Window)
 #define IDC_BASE                        2100

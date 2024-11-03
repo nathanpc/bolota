@@ -483,6 +483,52 @@ LRESULT BolotaView::MoveField(bool bUp) {
 }
 
 /**
+ * Indents a field relative to the one above it.
+ *
+ * @return 0 if everything worked.
+ */
+LRESULT BolotaView::IndentField() {
+	// Get the currently selected field in the Tree-View.
+	HTREEITEM hti = NULL;
+	Field *field = GetSelectedField(&hti, true);
+	if (field == NULL)
+		return 1;
+
+	// Nothing can be done about top fields.
+	if (!field->HasPrevious())
+		return 0;
+
+	// Move the field and reload the view to reflect the change.
+	m_doc->IndentTopic(field);
+	ReloadView(field);
+
+	return 0;
+}
+
+/**
+ * De-indents a field relative to its parent.
+ *
+ * @return 0 if everything worked.
+ */
+LRESULT BolotaView::DeindentField() {
+	// Get the currently selected field in the Tree-View.
+	HTREEITEM hti = NULL;
+	Field *field = GetSelectedField(&hti, true);
+	if (field == NULL)
+		return 1;
+
+	// Nothing can be done about orphan fields.
+	if (!field->HasParent())
+		return 0;
+	
+	// Move the field and reload the view to reflect the change.
+	m_doc->DeindentTopic(field);
+	ReloadView(field);
+
+	return 0;
+}
+
+/**
  * Tries to save the current document to a file.
  *
  * @param bSaveAs Should we perform the default for a Save As operation?

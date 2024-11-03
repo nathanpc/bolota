@@ -257,6 +257,59 @@ void Document::MoveTopicBelow(Field *below, Field *above) {
 }
 
 /**
+ * Indents a topic field relative to the one above it.
+ */
+void Document::IndentTopic(Field *field) {
+	// Nothing can be done about top fields.
+	if (!field->HasPrevious())
+		throw std::exception("Cannot indent topic without previous field");
+	
+	// Shuffle things around in preparation for the move.
+	Field *prev = field->Previous();
+	prev->SetNext(field->Next(), false);
+	field->SetPrevious(NULL, true);
+	field->SetNext(NULL, true);
+
+	// Perform the actual move.
+	if (prev->HasChild()) {
+		// Move field to become the new last child of its previous field.
+		Field *last = prev->Child();
+		while (last->HasNext())
+			last = last->Next();
+		last->SetNext(field, false);
+	} else {
+		// Field will become the new first child of its previous field.
+		prev->SetChild(field, false);
+	}
+}
+
+/**
+ * De-indents a topic field relative to its parent.
+ */
+void Document::DeindentTopic(Field *field) {
+	// Nothing can be done about orphan fields.
+	if (!field->HasParent())
+		throw std::exception("Cannot deindent topic without parent field");
+	
+	// Shuffle things around in preparation for the move.
+	Field *parent = field->Parent();
+	if (field->HasPrevious()) {
+		// Field in the middle of a parent.
+		field->Previous()->SetNext(field->Next(), false);
+	} else {
+		// Field is the first child of its parent.
+		if (field->HasNext())
+			field->Next()->SetPrevious(NULL, true);
+		parent->SetChild(field->Next(), false);
+	}
+
+	// Perform the actual move.
+	field->SetNext(parent->Next(), false);
+	field->SetPrevious(parent, false);
+	field->SetParent(parent->Parent(), true);
+}
+
+/**
  * Checks if the document is currently empty.
  *
  * @return TRUE if the document has no topics yet.

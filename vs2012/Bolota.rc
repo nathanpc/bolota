@@ -62,8 +62,11 @@ BEGIN
         MENUITEM "A&ppend Field...",            IDM_FIELD_APPEND
         MENUITEM "Cre&ate Child Field...",      IDM_FIELD_CREATECHILD
         MENUITEM SEPARATOR
-        MENUITEM "Move Up",                     IDM_FIELD_MOVEUP
-        MENUITEM "Move Down",                   IDM_FIELD_MOVEDOWN
+        MENUITEM "Move &Up",                    IDM_FIELD_MOVEUP
+        MENUITEM "Move Dow&n",                  IDM_FIELD_MOVEDOWN
+        MENUITEM SEPARATOR
+        MENUITEM "Inden&t",                     IDM_FIELD_INDENT
+        MENUITEM "D&e-indent",                  IDM_FIELD_DEINDENT
     END
     POPUP "&Help"
     BEGIN
@@ -91,6 +94,10 @@ BEGIN
     "K",            IDM_FIELD_MOVEUP,       VIRTKEY, NOINVERT
     VK_UP,          IDM_FIELD_MOVEUP,       VIRTKEY, SHIFT, NOINVERT
     "U",            IDM_FIELD_PREPEND,      VIRTKEY, NOINVERT
+    "L",            IDM_FIELD_INDENT,       VIRTKEY, NOINVERT
+    VK_TAB,         IDM_FIELD_INDENT,       VIRTKEY, NOINVERT
+    "H",            IDM_FIELD_DEINDENT,     VIRTKEY, NOINVERT
+    VK_TAB,         IDM_FIELD_DEINDENT,     VIRTKEY, SHIFT, NOINVERT
     "O",            IDM_FILE_OPEN,          VIRTKEY, CONTROL, NOINVERT
     "S",            IDM_FILE_SAVE,          VIRTKEY, CONTROL, NOINVERT
     "S",            IDM_FILE_SAVEAS,        VIRTKEY, SHIFT, CONTROL, NOINVERT

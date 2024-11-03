@@ -44,6 +44,8 @@ public:
 	LRESULT OpenFieldManager(FieldManagerDialog::DialogType type);
 	LRESULT AskDeleteField();
 	LRESULT MoveField(bool bUp);
+	LRESULT IndentField();
+	LRESULT DeindentField();
 	bool Save(bool bSaveAs);
 	bool OpenFile();
 	LRESULT ReloadView();

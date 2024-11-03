@@ -148,6 +148,10 @@ LRESULT MainWindow::OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent) {
 		return m_wndBolota->MoveField(true);
 	case IDM_FIELD_MOVEDOWN:
 		return m_wndBolota->MoveField(false);
+	case IDM_FIELD_INDENT:
+		return m_wndBolota->IndentField();
+	case IDM_FIELD_DEINDENT:
+		return m_wndBolota->DeindentField();
 	default:
 		MsgBoxInfo(this->hWnd, _T("Unknown Command ID"),
 			_T("WM_COMMAND for MainWindow with unknown ID"));

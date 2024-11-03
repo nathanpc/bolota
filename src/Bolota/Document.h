@@ -93,6 +93,8 @@ namespace Bolota {
 		void DeleteTopic(Field *field);
 		void MoveTopicAbove(Field *above, Field *below);
 		void MoveTopicBelow(Field *below, Field *above);
+		void IndentTopic(Field *field);
+		void DeindentTopic(Field *field);
 		bool IsEmpty() const;
 
 		// File operations.
