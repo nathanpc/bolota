@@ -71,7 +71,11 @@ namespace Bolota {
 	public:
 		// Constructors and destructors.
 		Field(bolota_type_t type);
+		Field(bolota_type_t type, const char *mbstr);
+		Field(bolota_type_t type, const wchar_t *wstr);
 		Field(Field *parent, bolota_type_t type);
+		Field(Field *parent, bolota_type_t type, const char *mbstr);
+		Field(Field *parent, bolota_type_t type, const wchar_t *wstr);
 		virtual ~Field();
 		void Destroy(bool include_child, bool include_next);
 
@@ -123,9 +127,6 @@ namespace Bolota {
 	};
 
 
-	// TODO: Make TextField the base class for every field. Merge it into Field.
-
-
 	/**
 	 * A Bolota text-type field.
 	 */
@@ -136,20 +137,12 @@ namespace Bolota {
 		TextField(Field *parent) : Field(parent, BOLOTA_TYPE_TEXT) {};
 
 		// Multi-byte string.
-		TextField(Field *parent, const char *mbstr) : Field(parent, BOLOTA_TYPE_TEXT) {
-			SetText(mbstr);
-		};
-		TextField(const char *mbstr) : Field(BOLOTA_TYPE_TEXT) {
-			SetText(mbstr);
-		};
+		TextField(Field *parent, const char *mbstr) : Field(parent, BOLOTA_TYPE_TEXT, mbstr) {};
+		TextField(const char *mbstr) : Field(BOLOTA_TYPE_TEXT, mbstr) {};
 
 		// Wide-character string.
-		TextField(Field *parent, const wchar_t *wstr) : Field(parent, BOLOTA_TYPE_TEXT) {
-			SetText(wstr);
-		};
-		TextField(const wchar_t *wstr) : Field(BOLOTA_TYPE_TEXT) {
-			SetText(wstr);
-		};
+		TextField(Field *parent, const wchar_t *wstr) : Field(parent, BOLOTA_TYPE_TEXT, wstr) {};
+		TextField(const wchar_t *wstr) : Field(BOLOTA_TYPE_TEXT, wstr) {};
 	};
 
 	/**

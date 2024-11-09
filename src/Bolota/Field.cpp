@@ -29,6 +29,26 @@ Field::Field(bolota_type_t type) {
 }
 
 /**
+ * Constructs a field object with a predefined type and text.
+ *
+ * @param type  Type of the field.
+ * @param mbstr Text associated with the field.
+ */
+Field::Field(bolota_type_t type, const char *mbstr) {
+	Initialize(type, new UString(mbstr), NULL, NULL, NULL, NULL);
+}
+
+/**
+ * Constructs a field object with a predefined type and text.
+ *
+ * @param type Type of the field.
+ * @param wstr Text associated with the field.
+ */
+Field::Field(bolota_type_t type, const wchar_t *wstr) {
+	Initialize(type, new UString(wstr), NULL, NULL, NULL, NULL);
+}
+
+/**
  * Constructs a field object with a predefined type and a parent field.
  *
  * @param parent Parent field.
@@ -36,6 +56,28 @@ Field::Field(bolota_type_t type) {
  */
 Field::Field(Field *parent, bolota_type_t type) {
 	Initialize(type, NULL, parent, NULL, NULL, NULL);
+}
+
+/**
+ * Constructs a field object with a predefined type, text, and a parent field.
+ *
+ * @param parent Parent field.
+ * @param type   Type of the field.
+ * @param mbstr  Text associated with the field.
+ */
+Field::Field(Field *parent, bolota_type_t type, const char *mbstr) {
+	Initialize(type, new UString(mbstr), parent, NULL, NULL, NULL);
+}
+
+/**
+ * Constructs a field object with a predefined type, text, and a parent field.
+ *
+ * @param parent Parent field.
+ * @param type   Type of the field.
+ * @param wstr   Text associated with the field.
+ */
+Field::Field(Field *parent, bolota_type_t type, const wchar_t *wstr) {
+	Initialize(type, new UString(wstr), parent, NULL, NULL, NULL);
 }
 
 /**
