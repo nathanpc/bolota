@@ -717,3 +717,12 @@ void Document::SetDate(DateField *date) {
 		delete this->m_date;
 	this->m_date = date;
 }
+
+/**
+ * Sets the document's creation date property.
+ *
+ * @param st New creation date based on a system time object.
+ */
+void Document::SetDate(const SYSTEMTIME *st) {
+	this->m_date->SetTimestamp(st);
+}

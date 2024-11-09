@@ -15,9 +15,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-
 #include <windows.h>
-
 #include "UString.h"
 
 extern "C" {
@@ -57,7 +55,7 @@ namespace Bolota {
 	 * Field object abstraction of a Bolota document.
 	 */
 	class Field {
-	private:
+	protected:
 		// Internals
 		bolota_type_t m_type;
 		UString *m_text;
@@ -81,7 +79,7 @@ namespace Bolota {
 
 		// File operations.
 		static Field* Read(HANDLE hFile, size_t *bytes, uint8_t *depth);
-		size_t Write(HANDLE hFile) const;
+		virtual size_t Write(HANDLE hFile) const;
 
 		// Getters and setters.
 		bolota_type_t Type() const;
@@ -95,7 +93,6 @@ namespace Bolota {
 		void SetTextOwner(wchar_t *wstr);
 		virtual uint16_t FieldLength() const;
 		uint16_t TextLength() const;
-		bolota_field_t Struct() const;
 
 		// Linked list.
 		bool HasParent() const;
@@ -126,7 +123,6 @@ namespace Bolota {
 		virtual uint8_t ReadField(HANDLE hFile, size_t *bytes);
 	};
 
-
 	/**
 	 * A Bolota text-type field.
 	 */
@@ -137,20 +133,14 @@ namespace Bolota {
 		TextField(Field *parent) : Field(parent, BOLOTA_TYPE_TEXT) {};
 
 		// Multi-byte string.
-		TextField(Field *parent, const char *mbstr) : Field(parent, BOLOTA_TYPE_TEXT, mbstr) {};
+		TextField(Field *parent, const char *mbstr) :
+			Field(parent, BOLOTA_TYPE_TEXT, mbstr) {};
 		TextField(const char *mbstr) : Field(BOLOTA_TYPE_TEXT, mbstr) {};
 
 		// Wide-character string.
-		TextField(Field *parent, const wchar_t *wstr) : Field(parent, BOLOTA_TYPE_TEXT, wstr) {};
+		TextField(Field *parent, const wchar_t *wstr) :
+			Field(parent, BOLOTA_TYPE_TEXT, wstr) {};
 		TextField(const wchar_t *wstr) : Field(BOLOTA_TYPE_TEXT, wstr) {};
-	};
-
-	/**
-	 * A Bolota date-type field.
-	 */
-	class DateField : public Field {
-	public:
-		DateField() : Field(BOLOTA_TYPE_DATE) {};
 	};
 }
 

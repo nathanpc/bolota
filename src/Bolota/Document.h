@@ -20,6 +20,7 @@
 
 #include "UString.h"
 #include "Field.h"
+#include "DateField.h"
 
 extern "C" {
 #endif // __cplusplus
@@ -113,6 +114,7 @@ namespace Bolota {
 		void SetSubTitle(LPTSTR szSubTitle);
 		DateField* Date() const;
 		void SetDate(DateField *date);
+		void SetDate(const SYSTEMTIME *st);
 
 	protected:
 		// Construtor helpers.

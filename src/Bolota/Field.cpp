@@ -8,6 +8,7 @@
 #include "Field.h"
 
 #include "Exceptions.h"
+#include "DateField.h"
 
 using namespace Bolota;
 
@@ -378,26 +379,6 @@ uint16_t Field::TextLength() const {
 		return 0;
 
 	return m_text->Length() * sizeof(char);
-}
-
-/**
- * Generates a struct with the information contained in the object.
- *
- * @warning Do not free or manipulate the text field. It's shared internally
- *          with another object.
- *
- * @return A struct with the information from the object.
- */
-bolota_field_t Field::Struct() const {
-	bolota_field_t field;
-
-	// Initialize the structure.
-	field.type = Type();
-	field.depth = Depth();
-	field.length = static_cast<uint16_t>(TextLength());
-	field.text = const_cast<char *>(Text()->GetMultiByteString());
-
-	return field;
 }
 
 /*
