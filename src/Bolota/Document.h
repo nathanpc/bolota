@@ -104,6 +104,16 @@ namespace Bolota {
 		bool HasFileAssociated() const;
 		UString& FilePath();
 
+		// Properties getters and setters.
+		TextField* Title() const;
+		void SetTitle(TextField *title);
+		void SetTitle(LPTSTR szTitle);
+		TextField* SubTitle() const;
+		void SetSubTitle(TextField *subtitle);
+		void SetSubTitle(LPTSTR szSubTitle);
+		DateField* Date() const;
+		void SetDate(DateField *date);
+
 	protected:
 		// Construtor helpers.
 		Document();

@@ -621,3 +621,99 @@ void Document::CloseFile() {
 	CloseHandle(m_hFile);
 	m_hFile = NULL;
 }
+
+/*
+ * +===========================================================================+
+ * |                                                                           |
+ * |                      Properties Getters and Setters                       |
+ * |                                                                           |
+ * +===========================================================================+
+ */
+
+/**
+ * Gets the document's title property.
+ *
+ * @return Document's title property field.
+ */
+TextField* Document::Title() const {
+	return this->m_title;
+}
+
+/**
+ * Sets the document's title property.
+ *
+ * @warning This method takes ownership of the field object.
+ *
+ * @param title Document's new title field.
+ */
+void Document::SetTitle(TextField *title) {
+	if (this->m_title)
+		delete this->m_title;
+	this->m_title = title;
+}
+
+/**
+ * Sets the document's title property.
+ *
+ * @warning This method takes ownership of the string.
+ *
+ * @param szTitle Document's new title text.
+ */
+void Document::SetTitle(LPTSTR szTitle) {
+	this->m_title->SetTextOwner(szTitle);
+}
+
+/**
+ * Gets the document's subtitle property.
+ *
+ * @return Document's subtitle property field.
+ */
+TextField* Document::SubTitle() const {
+	return this->m_subtitle;
+}
+
+/**
+ * Sets the document's subtitle property.
+ *
+ * @warning This method takes ownership of the field object.
+ *
+ * @param subtitle Document's new subtitle field.
+ */
+void Document::SetSubTitle(TextField *subtitle) {
+	if (this->m_subtitle)
+		delete this->m_subtitle;
+	this->m_subtitle = subtitle;
+}
+
+/**
+ * Sets the document's subtitle property.
+ *
+ * @warning This method takes ownership of the string.
+ *
+ * @param szSubTitle Document's new subtitle text.
+ */
+void Document::SetSubTitle(LPTSTR szSubTitle) {
+	this->m_subtitle->SetTextOwner(szSubTitle);
+}
+
+/**
+ * Gets the document's creation date property.
+ *
+ * @return Document's creation date property field.
+ */
+DateField* Document::Date() const {
+	return this->m_date;
+}
+
+/**
+ * Sets the document's creation date property.
+ *
+ * @warning This method takes ownership of the field object.
+ *
+ * @param date New creation date field.
+ */
+void Document::SetDate(DateField *date) {
+	if (this->m_date)
+		delete this->m_date;
+	this->m_date = date;
+}
