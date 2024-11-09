@@ -130,6 +130,8 @@ LRESULT MainWindow::OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent) {
 		return 0;
 	case IDM_FILE_RELOAD:
 		return m_wndBolota->ReloadView();
+	case IDM_FILE_PROPERTIES:
+		return m_wndBolota->EditProperties();
 	case IDM_FIELD_EDIT:
 		return m_wndBolota->OpenFieldManager(
 			FieldManagerDialog::DialogType::EditField);

@@ -76,6 +76,9 @@
     <ClInclude Include="..\src\Exceptions\SystemException.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\PropertiesDialog.h">
+      <Filter>Windows and Dialogs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Utilities\DialogWindow.cpp">
@@ -116,6 +119,9 @@
     </ClCompile>
     <ClCompile Include="..\src\Exceptions\SystemException.cpp">
       <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\PropertiesDialog.cpp">
+      <Filter>Windows and Dialogs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

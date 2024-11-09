@@ -48,6 +48,7 @@ public:
 	LRESULT DeindentField();
 	bool Save(bool bSaveAs);
 	bool OpenFile();
+	LRESULT EditProperties();
 	LRESULT ReloadView();
 	LRESULT ReloadView(Bolota::Field *fldSelected);
 	LRESULT Resize(RECT rc) const;

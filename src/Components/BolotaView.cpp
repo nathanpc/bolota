@@ -8,6 +8,7 @@
 #include "BolotaView.h"
 
 #include "../stdafx.h"
+#include "../PropertiesDialog.h"
 #ifdef DEBUG
 	#include <string>
 #endif // DEBUG
@@ -615,6 +616,22 @@ bool BolotaView::ShowFileDialog(LPTSTR szFilename, bool bSave) {
 	if (bSave)
 		return GetSaveFileName(&ofn) != 0;
 	return GetOpenFileName(&ofn) != 0;
+}
+
+/**
+ * Opens the document properties editor dialog window and performs any updates
+ * to the associated document.
+ *
+ * @return 0 if everything worked.
+ */
+LRESULT BolotaView::EditProperties() {
+	// Setup and open the properties editor dialog.
+	PropertiesDialog dlgEditor(this->m_hInst, this->m_hWnd, m_doc);
+	INT_PTR iRet = dlgEditor.ShowModal();
+
+	// Get the focus back on the component and return.
+	SetFocus(m_hWnd);
+	return 0;
 }
 
 /**

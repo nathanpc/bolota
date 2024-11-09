@@ -94,6 +94,7 @@
     <ClInclude Include="..\src\Exceptions\SystemException.h" />
     <ClInclude Include="..\src\FieldManagerDialog.h" />
     <ClInclude Include="..\src\MainWindow.h" />
+    <ClInclude Include="..\src\PropertiesDialog.h" />
     <ClInclude Include="..\src\SharedResources.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="..\src\stdafx.h" />
@@ -112,6 +113,7 @@
     <ClCompile Include="..\src\Exceptions\SystemException.cpp" />
     <ClCompile Include="..\src\FieldManagerDialog.cpp" />
     <ClCompile Include="..\src\MainWindow.cpp" />
+    <ClCompile Include="..\src\PropertiesDialog.cpp" />
     <ClCompile Include="..\src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
