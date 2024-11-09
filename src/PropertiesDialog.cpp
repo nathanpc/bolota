@@ -28,6 +28,7 @@ PropertiesDialog::PropertiesDialog(HINSTANCE& hInst, HWND& hwndParent,
 								   Bolota::Document *doc) :
 	DialogWindow(hInst, hwndParent, IDD_DOCPROPS) {
 	m_doc = doc;
+	ZeroMemory(&m_st, sizeof(SYSTEMTIME));
 }
 
 /*
@@ -54,10 +55,13 @@ bool PropertiesDialog::OnInit(HWND hDlg) {
 	btnOK = GetDlgItem(hDlg, IDOK);
 	btnCancel = GetDlgItem(hDlg, IDCANCEL);
 
+	// Ensure the Date Time Picker shows the timestamp in ISO8601.
+	DateTime_SetFormat(dtpDate, _T("yyyy'-'MM'-'dd HH':'mm':'ss"));
+
 	// Set the contents of the fields according to the document properties.
 	SetWindowText(txtTitle, m_doc->Title()->Text()->GetNativeString());
 	SetWindowText(txtSubTitle, m_doc->SubTitle()->Text()->GetNativeString());
-	// TODO: Handle date field.
+	DateTime_SetSystemtime(dtpDate, GDT_VALID, &m_doc->Date()->ToSystemTime());
 
 	// TODO: Change the Save button to Create if we are creating a new document.
 
@@ -73,7 +77,8 @@ bool PropertiesDialog::OnOK() {
 	// Update document properties.
 	m_doc->SetTitle(GetFieldText(txtTitle));
 	m_doc->SetSubTitle(GetFieldText(txtSubTitle));
-	// TODO: Update the date property of the document.
+	if (m_st.wYear != 0)
+		m_doc->SetDate(&m_st);
 
 	return true;
 }
@@ -86,6 +91,20 @@ bool PropertiesDialog::OnOK() {
  */
 bool PropertiesDialog::OnCancel() {
 	return true;
+}
+
+/**
+ * Event that occurs whenever the user changes the value of the Date Time
+ * Picker.
+ *
+ * @param dtc Date Time Picker change object from the WM_NOTIFY message.
+ *
+ * @return TRUE if we handled the message. FALSE otherwise.
+ */
+INT_PTR PropertiesDialog::OnDateTimeChange(LPNMDATETIMECHANGE dtc) {
+	if (dtc->dwFlags == GDT_VALID)
+		m_st = dtc->st;
+	return TRUE;
 }
 
 /*
@@ -160,6 +179,14 @@ INT_PTR CALLBACK PropertiesDialog::DlgProc(HWND hDlg, UINT wMsg, WPARAM wParam,
 			case IDCANCEL:
 				if (!OnCancel())
 					return FALSE;
+				break;
+			}
+			break;
+		case WM_NOTIFY:
+			switch (((LPNMHDR)lParam)->code) {
+			case DTN_DATETIMECHANGE:
+				if (((LPNMHDR)lParam)->idFrom == IDC_DP_DTPTIMESTAMP)
+					return OnDateTimeChange((LPNMDATETIMECHANGE)lParam);
 				break;
 			}
 			break;

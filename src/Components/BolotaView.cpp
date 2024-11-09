@@ -106,7 +106,7 @@ void BolotaView::OpenExampleDocument() {
 	Document *doc = new Document(
 		new TextField(_T("Example Document")),
 		new TextField(_T("This is a test document for the Bolota application")),
-		new DateField());
+		DateField::Now());
 
 	// Populate example document.
 	doc->AppendTopic(new TextField(_T("First top element")));

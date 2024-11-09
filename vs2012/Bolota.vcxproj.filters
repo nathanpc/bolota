@@ -79,6 +79,9 @@
     <ClInclude Include="..\src\PropertiesDialog.h">
       <Filter>Windows and Dialogs</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Bolota\DateField.h">
+      <Filter>Bolota</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Utilities\DialogWindow.cpp">
@@ -122,6 +125,9 @@
     </ClCompile>
     <ClCompile Include="..\src\PropertiesDialog.cpp">
       <Filter>Windows and Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Bolota\DateField.cpp">
+      <Filter>Bolota</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

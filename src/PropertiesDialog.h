@@ -23,6 +23,7 @@ class PropertiesDialog : public DialogWindow {
 protected:
 	// Properties
 	Bolota::Document *m_doc;
+	SYSTEMTIME m_st;
 
 	// Controls
 	HWND txtTitle;
@@ -35,6 +36,7 @@ protected:
 	bool OnInit(HWND hDlg);
 	bool OnOK();
 	bool OnCancel();
+	INT_PTR OnDateTimeChange(LPNMDATETIMECHANGE dtc);
 
 	// Helpers
 	LPTSTR GetFieldText(HWND hwndEdit) const;
