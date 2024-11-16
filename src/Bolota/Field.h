@@ -16,6 +16,7 @@
 
 #ifdef __cplusplus
 #include <windows.h>
+#include <vector>
 #include "UString.h"
 
 extern "C" {
@@ -51,6 +52,53 @@ typedef struct bolota_field_s {
 }
 
 namespace Bolota {
+	/**
+	 * Detailed field type container.
+	 */
+	struct FieldType {
+		bolota_type_t code;
+		UString *name;
+
+		FieldType(bolota_type_t code, const TCHAR *name) {
+			this->code = code;
+			this->name = new UString(name);
+		};
+
+		virtual ~FieldType() {
+			delete name;
+		};
+	};
+
+	/**
+	 * Container for a list of detailed field types.
+	 */
+	struct FieldTypeList {
+		std::vector<FieldType*> list;
+
+		FieldTypeList() {
+			list.push_back(new FieldType(BOLOTA_TYPE_TEXT, _T("Text")));
+			list.push_back(new FieldType(BOLOTA_TYPE_DATE, _T("Date & Time")));
+		};
+
+		virtual ~FieldTypeList() {
+			for (uint8_t i = 0; i < list.size(); ++i)
+				delete list[i];
+		};
+
+		FieldType* operator[](uint8_t index) {
+			return list[index];
+		}
+
+		size_t size() const {
+			return list.size();
+		}
+	};
+
+	/**
+	 * List of detailed field types.
+	 */
+	static FieldTypeList fieldTypesList;
+
 	/**
 	 * Field object abstraction of a Bolota document.
 	 */
