@@ -35,11 +35,16 @@ protected:
 	DialogType m_type;
 	Bolota::Field *m_field;
 	Bolota::Field *m_context;
+	Bolota::FieldType *m_fieldType;
 	bool m_bAlternative;
+	SYSTEMTIME m_stTimestamp;
+	RECT rcEditorArea;
 
 	// Controls
 	HWND lblContext;
 	HWND txtValue;
+	HWND cmbType;
+	HWND dtpTimestamp;
 	HWND btnOK;
 	HWND btnAltOK;
 	HWND btnCancel;
@@ -52,11 +57,13 @@ protected:
 
 	// Events
 	bool OnInit(HWND hDlg);
+	INT_PTR OnTypeChange(int index);
 	bool OnOK();
 	bool OnAlternativeOK();
 	bool OnCancel();
 
 	// Setups
+	void SetupFieldTypeCombo();
 	bool SetupEditControls();
 	bool SetupAppendControls();
 	bool SetupPrependControls();

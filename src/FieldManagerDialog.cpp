@@ -7,6 +7,10 @@
  */
 
 #include "FieldManagerDialog.h"
+#include "Bolota/DateField.h"
+
+// Spacing between controls.
+#define CONTROL_SPACING 7
 
 using namespace Bolota;
 
@@ -35,6 +39,7 @@ FieldManagerDialog::FieldManagerDialog(HINSTANCE& hInst, HWND& hwndParent,
 	SetAlternativeSelected(false);
 	m_field = field;
 	m_context = context;
+	m_fieldType = NULL;
 }
 
 /*
@@ -57,13 +62,35 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 	// Get the handle of every useful control in the window.
 	lblContext = GetDlgItem(hDlg, IDC_FM_LBLCONTEXT);
 	txtValue = GetDlgItem(hDlg, IDC_FM_EDTCONTENT);
+	cmbType = GetDlgItem(hDlg, IDC_FM_CMBTYPE);
 	btnAltOK = GetDlgItem(hDlg, IDC_FM_BTNALTOK);
 	btnOK = GetDlgItem(hDlg, IDOK);
 	btnCancel = GetDlgItem(hDlg, IDCANCEL);
+	
+	// Get editor window position and dimensions.
+	GetWindowRect(txtValue, &rcEditorArea);
+	RectScreenToClient(&rcEditorArea, hDlg);
+	RECT rcEdit = rcEditorArea;
 
-	// Set the content of the edit field.
+	// Create timestamp Date Time Picker.
+	dtpTimestamp = CreateWindowEx(0, DATETIMEPICK_CLASS, _T("DateTime"),
+		WS_CHILD | WS_TABSTOP | DTS_RIGHTALIGN | DTS_APPCANPARSE,
+		rcEdit.left, rcEdit.top, 150, rcEdit.bottom - rcEdit.top,
+		hDlg, NULL, this->hInst, NULL);
+	DateTime_SetFormat(dtpTimestamp, _T("yyyy'-'MM'-'dd HH':'mm':'ss"));
+
+	// Set the content of the editor fields.
 	if (m_field->HasText())
 		SetWindowText(txtValue, m_field->Text()->GetNativeString());
+	if (m_field->Type() == BOLOTA_TYPE_DATE) {
+		DateField *field = static_cast<DateField*>(m_field);
+		DateTime_SetSystemtime(dtpTimestamp, GDT_VALID,
+			(LPARAM)&field->ToSystemTime());
+		m_stTimestamp = field->ToSystemTime();
+	}
+
+	// Set up the type ComboBox and switch to the correct layout for the dialog.
+	SetupFieldTypeCombo();
 
 	// Decide which setup to use.
 	switch (m_type) {
@@ -86,13 +113,59 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 }
 
 /**
+ * Handles the change of the field type combobox selected item.
+ *
+ * @param index Index of the newly selected field type.
+ *
+ * @return TRUE if the event was handled.
+ */
+INT_PTR FieldManagerDialog::OnTypeChange(int index) {
+	m_fieldType = Bolota::fieldTypesList[index];
+	
+	// Get date time picker window position and dimensions.
+	RECT rcDTP;
+	GetWindowRect(dtpTimestamp, &rcDTP);
+	RectScreenToClient(&rcDTP, hDlg);
+
+	// Handle each type change.
+	if (m_fieldType->code == BOLOTA_TYPE_TEXT) {
+		MoveWindow(txtValue, rcEditorArea.left, rcEditorArea.top,
+			rcEditorArea.right - rcEditorArea.left,
+			rcEditorArea.bottom - rcEditorArea.top, TRUE);
+		ShowWindow(dtpTimestamp, SW_HIDE);
+		ShowWindow(txtValue, SW_SHOW);
+	} else if (m_fieldType->code == BOLOTA_TYPE_DATE) {
+		MoveWindow(txtValue, rcDTP.right + CONTROL_SPACING, rcEditorArea.top,
+			rcEditorArea.right - (rcDTP.right + CONTROL_SPACING),
+			rcEditorArea.bottom - rcEditorArea.top, TRUE);
+		ShowWindow(txtValue, SW_SHOW);
+		ShowWindow(dtpTimestamp, SW_SHOW);
+	}
+
+	return TRUE;
+}
+
+/**
  * Event that occurs whenever the default OK button is pressed in the dialog.
  *
  * @return TRUE to close the dialog. FALSE to prevent it from closing.
  */
 bool FieldManagerDialog::OnOK() {
-	// Set the field's text property.
+	// Set the field's values.
 	m_field->SetTextOwner(GetContentText());
+	switch (m_field->Type()) {
+	case BOLOTA_TYPE_TEXT:
+		break;
+	case BOLOTA_TYPE_DATE:
+	{
+		DateField *field = static_cast<DateField*>(m_field);
+		field->SetTimestamp(&m_stTimestamp);
+		break;
+	}
+	default:
+		MsgBoxError(hDlg, _T("Unknown field type"),
+			_T("This type of field saving wasn't yet implemented."));
+	}
 
 	// Perform specific operations if needed.
 	switch (m_type) {
@@ -102,7 +175,7 @@ bool FieldManagerDialog::OnOK() {
 	case NewChildField:
 		return true;
 	default:
-		MsgBoxError(hDlg, _T("Unknown type"),
+		MsgBoxError(hDlg, _T("Unknown dialog type"),
 			_T("This type of operation wasn't yet implemented."));
 	}
 
@@ -158,6 +231,26 @@ bool FieldManagerDialog::OnCancel() {
  * |                                                                           |
  * +===========================================================================+
  */
+
+/**
+ * Sets up the field type combobox and selects the current field type.
+ */
+void FieldManagerDialog::SetupFieldTypeCombo() {
+	// Add field types to the combobox.
+	for (uint8_t i = 0; i < Bolota::fieldTypesList.size(); ++i) {
+		SendMessage(cmbType, CB_ADDSTRING, 0,
+			(LPARAM)Bolota::fieldTypesList[i]->name->GetNativeString());
+	}
+
+	// Select our field type.
+	for (uint8_t i = 0; i < Bolota::fieldTypesList.size(); ++i) {
+		if (m_field->Type() == Bolota::fieldTypesList[i]->code) {
+			SendMessage(cmbType, CB_SETCURSEL, i, 0);
+			OnTypeChange(i);
+			break;
+		}
+	}
+}
 
 /**
  * Sets up the dialog for editing an existing field.
@@ -360,6 +453,12 @@ INT_PTR CALLBACK FieldManagerDialog::DlgProc(HWND hDlg, UINT wMsg,
 			break;
 		case WM_COMMAND:
 			switch (LOWORD(wParam)) {
+			case IDC_FM_CMBTYPE:
+				if (HIWORD(wParam) == CBN_SELCHANGE) {
+					return OnTypeChange(SendMessage((HWND)lParam, CB_GETCURSEL,
+						0, 0));
+				}
+				break;
 			case IDC_FM_BTNALTOK:
 				if (OnAlternativeOK()) {
 					Close(IDC_FM_BTNALTOK);
@@ -372,6 +471,14 @@ INT_PTR CALLBACK FieldManagerDialog::DlgProc(HWND hDlg, UINT wMsg,
 			case IDCANCEL:
 				if (!OnCancel())
 					return FALSE;
+				break;
+			}
+			break;
+		case WM_NOTIFY:
+			switch (((LPNMHDR)lParam)->code) {
+			case DTN_DATETIMECHANGE:
+				if (((LPNMDATETIMECHANGE)lParam)->dwFlags == GDT_VALID)
+					m_stTimestamp = ((LPNMDATETIMECHANGE)lParam)->st;
 				break;
 			}
 			break;
