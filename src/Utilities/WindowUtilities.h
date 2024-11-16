@@ -24,6 +24,8 @@ BOOL SetWindowFormatText(HWND hWnd, LPCTSTR szFormat, ...);
 
 void SetDlgDefaultButton(HWND hDlg, int nID);
 
+void RectScreenToClient(RECT *rc, HWND hWnd);
+
 #ifdef  __cplusplus
 }
 #endif  // __cplusplus

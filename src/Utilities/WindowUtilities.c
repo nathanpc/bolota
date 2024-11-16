@@ -110,3 +110,30 @@ void SetDlgDefaultButton(HWND hDlg, int nID) {
 	// Set the new default button.
 	SendMessage(hDlg, DM_SETDEFID, nID, 0);
 }
+
+/**
+ * Converts the values of a RECT from screen coordinates to client coordinates
+ * of a given window handle.
+ *
+ * @param rc   Screen coordinates rectangle to be converted.
+ * @param hWnd Convert relative to this window handle.
+ */
+void RectScreenToClient(RECT *rc, HWND hWnd) {
+	POINT pt;
+
+	// Convert top and left.
+	pt.x = rc->left;
+	pt.y = rc->top;
+	if (ScreenToClient(hWnd, &pt)) {
+		rc->left = pt.x;
+		rc->top = pt.y;
+	}
+
+	// Convert bottom and right.
+	pt.x = rc->right;
+	pt.y = rc->bottom;
+	if (ScreenToClient(hWnd, &pt)) {
+		rc->right = pt.x;
+		rc->bottom = pt.y;
+	}
+}
