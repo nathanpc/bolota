@@ -505,7 +505,8 @@ Field* Field::Previous() const {
  *
  * @param prev     Previous field.
  * @param bPassive Set to FALSE if the next property of the previous field must
- *                 also be changed to this one.
+ *                 also be changed to this one. This will also make us a child
+ *                 of the previous' parent.
  *
  * @return Previous field.
  */
@@ -557,7 +558,8 @@ Field* Field::Next() const {
  *
  * @param next     Next field.
  * @param bPassive Set to FALSE if the previous property of the next field must
- *                 also be changed to this one.
+ *                 also be changed to this one. This will also make next a child
+ *                 of our parent.
  *
  * @return Next field.
  */
