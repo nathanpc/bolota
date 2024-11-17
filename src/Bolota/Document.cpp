@@ -187,37 +187,57 @@ void Document::DeleteTopic(Field *field) {
 }
 
 /**
- * Moves a topic above another in the document's topic list.
+ * Detaches a topic from the document's topic list and fills its gap. Should be
+ * used for moving topics around.
  *
- * @param above Topic field to be above. This is the one that will be moved.
- * @param below Reference topic field for the move.
+ * @warning The field will still be valid, but won't be referenced anywhere in
+ *          the topics tree.
+ *
+ * @param field Field to be detached from the topics tree.
  */
-void Document::MoveTopicAbove(Field *above, Field *below) {
-	// Are we moving to the first node in our document?
-	if (below == m_topics)
-		m_topics = above;
-
-	// Fill the space left behind by the moved topic.
-	if (above->IsFirstChild()) {
-		above->Parent()->SetChild(above->Next(), false);
-		if (above->HasNext())
-			above->Next()->SetPrevious(NULL, true);
-	} else if (above->HasPrevious()) {
-		above->Previous()->SetNext(above->Next(), false);
-	}
-
-	// Shuffle things around to make space for us at our new home.
-	if (below->IsFirstChild()) {
-		below->Parent()->SetChild(above, false);
+void Document::PopTopic(Field *field) {
+	// Fill the space that will be left behind by the detaching topic.
+	if (field->IsFirstChild()) {
+		// Is the first child.
+		field->Parent()->SetChild(field->Next(), false);
+		if (field->HasNext())
+			field->Next()->SetPrevious(NULL, true);
+	} else if (field->HasPrevious()) {
+		// In the middle of two topics.
+		field->Previous()->SetNext(field->Next(), false);
+	} else if (field == FirstTopic()) {
+		// Is the first topic of the document.
+		m_topics = field->Next();
+		if (m_topics != NULL) {
+			m_topics->SetPrevious(NULL, true);
+			m_topics->SetParent(NULL, true);
+		}
 	} else {
-		above->SetParent(below->Parent(), true);
+		throw std::exception("Unknown/unhandled condition when trying to pop "
+			"topic from document");
 	}
-	above->SetPrevious(below->Previous(), false);
-	above->SetNext(below, false);
 
-	// Ensure we reset the previous field if we are at the top.
-	if (above == m_topics)
-		above->SetPrevious(NULL, true);
+	// Blank out the moving object.
+	field->SetParent(NULL, true);
+	field->SetPrevious(NULL, true);
+	field->SetNext(NULL, true);
+}
+
+/**
+ * Moves a topic to become the first element of the topics list.
+ *
+ * @param field Field to become the new topmost element.
+ */
+void Document::MoveTopicToTop(Field *field) {
+	// Just to be sure.
+	Field *first = FirstTopic();
+	if (field == first)
+		return;
+
+	// Detach topic and replace the topmost one.
+	PopTopic(field);
+	field->SetNext(first, false);
+	m_topics = field;
 }
 
 /**
@@ -227,33 +247,18 @@ void Document::MoveTopicAbove(Field *above, Field *below) {
  * @param above Reference topic field for the move.
  */
 void Document::MoveTopicBelow(Field *below, Field *above) {
-	// Are we moving the first node in our document?
-	if (below == m_topics)
-		m_topics = above;
-
-	// Fill the space left behind by the moved topic.
-	if (below->IsFirstChild()) {
-		below->Parent()->SetChild(below->Next(), false);
-		if (below->HasNext())
-			below->Next()->SetPrevious(NULL, true);
-	} else if (below->HasPrevious()) {
-		below->Previous()->SetNext(below->Next(), false);
-	}
+	// Detach the moving topic.
+	PopTopic(below);
 
 	// Shuffle things around to make space for us at our new home.
 	if (above->HasChild()) {
+		// Below will become the first child of above.
 		below->SetNext(above->Child(), false);
-		above->SetPrevious(below->Previous(), false);
 		above->SetChild(below, false);
-		below->SetPrevious(NULL, true);
 	} else {
 		below->SetNext(above->Next(), false);
-		below->SetPrevious(above, false);
+		above->SetNext(below, false);
 	}
-
-	// Ensure we reset the previous field if we are at the top.
-	if (above == m_topics)
-		above->SetPrevious(NULL, true);
 }
 
 /**

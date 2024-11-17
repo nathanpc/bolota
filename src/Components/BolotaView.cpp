@@ -449,35 +449,47 @@ LRESULT BolotaView::MoveField(bool bUp) {
 	if (field == NULL)
 		return 1;
 
-	// Root field cannot be moved up so ignore it.
-	if (bUp && (m_doc->FirstTopic() == field))
-		return 0;
-
-	// Last field cannot be moved down so ignore it.
-	if (!bUp && field->IsDocumentLast())
-		return 0;
-
 	// Get the next visible item in the Tree-View.
-	HTREEITEM htiNext = (bUp) ? TreeView_GetPrevVisible(m_hWnd, hti) :
-		(field->HasChild()) ? TreeView_GetNextSibling(m_hWnd, hti) :
-		TreeView_GetNextVisible(m_hWnd, hti);
+	HTREEITEM htiAbove = NULL;
+	if (bUp) {
+		// Root field cannot be moved up so ignore it.
+		if (m_doc->FirstTopic() == field)
+			return 0;
 
-	// Handle moving the last child of a node and it has children of its own.
-	HTREEITEM htiParent = TreeView_GetParent(m_hWnd, hti);
-	while (!bUp && field->HasChild() && (htiNext == NULL) &&
-			(htiParent != NULL)) {
-		htiNext = TreeView_GetNextSibling(m_hWnd, htiParent);
-		htiParent = TreeView_GetParent(m_hWnd, htiParent);
+		// To go up we need to get the item that's twice above us.
+		htiAbove = TreeView_GetPrevVisible(m_hWnd,
+			TreeView_GetPrevVisible(m_hWnd, hti));
+
+		// Moving to the top of the tree.
+		if (htiAbove == NULL) {
+			m_doc->MoveTopicToTop(field);
+			goto refresh;
+		}
+	} else {
+		// Last field cannot be moved down so ignore it.
+		if (field->IsDocumentLast())
+			return 0;
+
+		if (!field->HasChild()) {
+			htiAbove = TreeView_GetNextVisible(m_hWnd, hti);
+		} else {
+			// To go down we have to take our child with us.
+			htiAbove = TreeView_GetNextSibling(m_hWnd, hti);
+
+			// Handle last child of a node that has children of its own.
+			HTREEITEM htiParent = TreeView_GetParent(m_hWnd, hti);
+			while ((htiAbove == NULL) && (htiParent != NULL)) {
+				htiAbove = TreeView_GetNextSibling(m_hWnd, htiParent);
+				htiParent = TreeView_GetParent(m_hWnd, htiParent);
+			}
+		}
 	}
 
 	// Shuffle things around.
-	Field *fldNext = GetFieldFromTreeItem(htiNext);
-	if (bUp) {
-		m_doc->MoveTopicAbove(field, fldNext);
-	} else {
-		m_doc->MoveTopicBelow(field, fldNext);
-	}
+	Field *fldAbove = GetFieldFromTreeItem(htiAbove);
+	m_doc->MoveTopicBelow(field, fldAbove);
 
+refresh:
 	// Reload the view to reflect the newest change and select the moved field.
 	ReloadView(field);
 

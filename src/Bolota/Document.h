@@ -92,7 +92,8 @@ namespace Bolota {
 		void AppendTopic(Field *prev, Field *field);
 		void PrependTopic(Field *next, Field *field);
 		void DeleteTopic(Field *field);
-		void MoveTopicAbove(Field *above, Field *below);
+		void PopTopic(Field *field);
+		void MoveTopicToTop(Field *field);
 		void MoveTopicBelow(Field *below, Field *above);
 		void IndentTopic(Field *field);
 		void DeindentTopic(Field *field);

@@ -107,9 +107,9 @@ void Field::Initialize(bolota_type_t type, UString *text, Field *parent,
 
 	// Setup the linked list.
 	SetParent(parent, true);
-	SetChild(child, true);
-	SetPrevious(prev);
-	SetNext(next);
+	SetChild(child, false);
+	SetPrevious(prev, false);
+	SetNext(next, false);
 }
 
 /**
@@ -419,7 +419,7 @@ Field* Field::Parent() const {
 Field* Field::SetParent(Field *parent, bool bPassive) {
 	m_parent = parent;
 	if (!bPassive && (m_parent != NULL) && (m_parent->Child() != this))
-		m_parent->SetChild(this);
+		m_parent->SetChild(this, true);
 
 	return parent;
 }
@@ -466,7 +466,7 @@ Field* Field::Child() const {
 Field* Field::SetChild(Field *child, bool bPassive) {
 	m_child = child;
 	if (!bPassive && (m_child != NULL) && (m_child->Parent() != this))
-		m_child->SetParent(this);
+		m_child->SetParent(this, true);
 
 	return child;
 }
@@ -504,19 +504,21 @@ Field* Field::Previous() const {
  * Sets the previous field in the linked list.
  *
  * @param prev     Previous field.
- * @param bPassive Should we NOT propagate parent of the previous field to the
- *                 current one? Set to FALSE if we should also set this object's
- *                 parent property.
+ * @param bPassive Set to FALSE if the next property of the previous field must
+ *                 also be changed to this one.
  *
  * @return Previous field.
  */
 Field* Field::SetPrevious(Field *prev, bool bPassive) {
 	// Set the previous field.
 	m_prev = prev;
-	if (prev != NULL)
+
+	// Update relatives.
+	if (!bPassive && (prev != NULL)) {
 		SetParent(prev->Parent(), true);
-	if ((m_prev != NULL) && (m_prev->Next() != this))
-		m_prev->SetNext(this, true);
+		if (prev->Next() != this)
+			prev->SetNext(this, true);
+	}
 
 	return prev;
 }
@@ -554,19 +556,21 @@ Field* Field::Next() const {
  * Sets the next field in the linked list.
  *
  * @param next     Next field.
- * @param bPassive Should we NOT propagate parent of the next field to the
- *                 current one? Set to FALSE if we should also set this object's
- *                 parent property.
+ * @param bPassive Set to FALSE if the previous property of the next field must
+ *                 also be changed to this one.
  *
  * @return Next field.
  */
 Field* Field::SetNext(Field *next, bool bPassive) {
 	// Set the next field.
 	m_next = next;
-	if (next != NULL)
+
+	// Update relatives.
+	if (!bPassive && (next != NULL)) {
 		next->SetParent(Parent(), true);
-	if ((m_next != NULL) && (m_next->Previous() != this))
-		m_next->SetPrevious(this, true);
+		if (next->Previous() != this)
+			next->SetPrevious(this, true);
+	}
 
 	return next;
 }
@@ -588,7 +592,7 @@ Field* Field::SetNext(Field *next) {
  * @return TRUE if the is the first child of its parent.
  */
 bool Field::IsFirstChild() const {
-	return !HasPrevious() && HasParent();
+	return HasParent() && (Parent()->Child() == this);
 }
 
 /**
