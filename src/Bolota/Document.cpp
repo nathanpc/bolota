@@ -253,9 +253,11 @@ void Document::MoveTopicBelow(Field *below, Field *above) {
 	// Shuffle things around to make space for us at our new home.
 	if (above->HasChild()) {
 		// Below will become the first child of above.
+		below->SetParent(above->Parent(), true);
 		below->SetNext(above->Child(), false);
 		above->SetChild(below, false);
 	} else {
+		below->SetParent(above->Parent(), true);
 		below->SetNext(above->Next(), false);
 		above->SetNext(below, false);
 	}
@@ -271,9 +273,7 @@ void Document::IndentTopic(Field *field) {
 	
 	// Shuffle things around in preparation for the move.
 	Field *prev = field->Previous();
-	prev->SetNext(field->Next(), false);
-	field->SetPrevious(NULL, true);
-	field->SetNext(NULL, true);
+	PopTopic(field);
 
 	// Perform the actual move.
 	if (prev->HasChild()) {
@@ -281,6 +281,7 @@ void Document::IndentTopic(Field *field) {
 		Field *last = prev->Child();
 		while (last->HasNext())
 			last = last->Next();
+		field->SetParent(prev, true);
 		last->SetNext(field, false);
 	} else {
 		// Field will become the new first child of its previous field.
@@ -298,20 +299,12 @@ void Document::DeindentTopic(Field *field) {
 	
 	// Shuffle things around in preparation for the move.
 	Field *parent = field->Parent();
-	if (field->HasPrevious()) {
-		// Field in the middle of a parent.
-		field->Previous()->SetNext(field->Next(), false);
-	} else {
-		// Field is the first child of its parent.
-		if (field->HasNext())
-			field->Next()->SetPrevious(NULL, true);
-		parent->SetChild(field->Next(), false);
-	}
+	PopTopic(field);
 
 	// Perform the actual move.
+	field->SetParent(parent->Parent(), true);
 	field->SetNext(parent->Next(), false);
 	field->SetPrevious(parent, false);
-	field->SetParent(parent->Parent(), true);
 }
 
 /**

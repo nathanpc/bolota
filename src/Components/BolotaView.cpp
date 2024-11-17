@@ -514,6 +514,8 @@ LRESULT BolotaView::IndentField() {
 
 	// Move the field and reload the view to reflect the change.
 	m_doc->IndentTopic(field);
+	if (field->Parent() == field->Next())
+		throw std::exception("An infinite loop created when indenting field");
 	ReloadView(field);
 
 	return 0;
