@@ -66,12 +66,9 @@ namespace Bolota {
 			Field(parent, BOLOTA_TYPE_DATE) {
 			InitializeDate(ts);
 		};
-
-		// Replace
-		static DateField* Replace(const DateField *field);
-		static DateField* Replace(const Field *field);
 		
 		// Helpers
+		virtual void Copy(const DateField *field, bool bReplace);
 		static DateField* Now();
 		void RefreshText();
 		SYSTEMTIME ToSystemTime() const;
@@ -88,7 +85,6 @@ namespace Bolota {
 
 	protected:
 		// Helpers
-		virtual void Copy(const DateField *field, bool bReplace);
 		void InitializeDate(const timestamp_t *ts);
 	};
 }

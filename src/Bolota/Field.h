@@ -129,7 +129,7 @@ namespace Bolota {
 		Field(const Field *field);
 		virtual ~Field();
 		void Destroy(bool include_child, bool include_next);
-		static Field* Replace(const Field *field);
+		virtual void Copy(const Field *field, bool bReplace);
 
 		// File operations.
 		static Field* Read(HANDLE hFile, size_t *bytes, uint8_t *depth);
@@ -173,9 +173,6 @@ namespace Bolota {
 		void Initialize(bolota_type_t type, UString *text, Field *parent,
 			Field *child, Field *prev, Field *next);
 
-		// Copy
-		virtual void Copy(const Field *field, bool bReplace);
-
 		// File operations.
 		virtual uint8_t ReadField(HANDLE hFile, size_t *bytes);
 	};
@@ -199,15 +196,6 @@ namespace Bolota {
 			Field(parent, BOLOTA_TYPE_TEXT, wstr) {};
 		TextField(const wchar_t *wstr) : Field(BOLOTA_TYPE_TEXT, wstr) {};
 
-		// Replace
-		static TextField* Replace(const Field *field) {
-			TextField *copy = new TextField();
-			copy->Field::Copy(field, true);
-			delete field;
-			return copy;
-		};
-
-	protected:
 		// Copy
 		virtual void Copy(const TextField *field, bool bReplace) {
 			Field::Copy(field, bReplace);

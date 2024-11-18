@@ -164,23 +164,6 @@ void Field::Copy(const Field *field, bool bReplace) {
 	SetNext(field->Next(), !bReplace);
 }
 
-/**
- * Replaces the field with a copy in the linked list. This operation affects
- * related fields.
- *
- * @warning This method will delete the old field.
- *
- * @param field Field to be replaced. Will be destroyed by this operation.
- *
- * @return A duplicate field that took the place of its base in the linked list.
- */
-Field* Field::Replace(const Field *field) {
-	Field *copy = new Field(field->Type());
-	copy->Copy(field, true);
-	delete field;
-	return copy;
-}
-
 /*
  * +===========================================================================+
  * |                                                                           |
