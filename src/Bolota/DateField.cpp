@@ -20,6 +20,56 @@ using namespace Bolota;
  */
 
 /**
+ * Replaces the field with a copy in the linked list. This operation affects
+ * related fields.
+ *
+ * @warning This method will delete the old field.
+ *
+ * @param field Field to be replaced. Will be destroyed by this operation.
+ *
+ * @return A duplicate field that took the place of its base in the linked list.
+ */
+DateField* DateField::Replace(const DateField *field) {
+	DateField *copy = new DateField();
+	copy->Copy(field, true);
+	delete field;
+	return copy;
+}
+
+/**
+ * Replaces the field with a copy in the linked list. This operation affects
+ * related fields.
+ *
+ * @warning This method will delete the old field.
+ *
+ * @param field Field to be replaced. Will be destroyed by this operation.
+ *
+ * @return A duplicate field that took the place of its base in the linked list.
+ */
+DateField* DateField::Replace(const Field *field) {
+	DateField *copy = new DateField();
+	copy->Field::Copy(field, true);
+	delete field;
+	return copy;
+}
+
+/**
+ * Creates a duplicate of the field with the option of taking its place in the
+ * linked list.
+ *
+ * @param field    Field to be copied over.
+ * @param bReplace Should we change references in its relatives to point to the
+ *                 new copied object?
+ */
+void DateField::Copy(const DateField *field, bool bReplace) {
+	// Copy field base.
+	Field::Copy(field, bReplace);
+
+	// Copy specific properties.
+	SetTimestamp(&field->Timestamp());
+}
+
+/**
  * Initializes the date field object.
  *
  * @param ts Optional. Timestamp for the field. If set to NULL the system's

@@ -82,6 +82,17 @@ Field::Field(Field *parent, bolota_type_t type, const wchar_t *wstr) {
 }
 
 /**
+ * Creates a copy of another field.
+ *
+ * @warning Relatives won't point to the copy in the linked list.
+ *
+ * @param field Field to be copied over.
+ */
+Field::Field(const Field *field) {
+	Copy(field, false);
+}
+
+/**
  * Handles the object destruction and cleaning up of resources.
  */
 Field::~Field() {
@@ -130,6 +141,44 @@ void Field::Destroy(bool include_child, bool include_next) {
 
 	// Commit suicide.
 	delete this;
+}
+
+/**
+ * Creates a duplicate of the field with the option of taking its place in the
+ * linked list.
+ *
+ * @warning Does not copy the field type.
+ *
+ * @param field    Field to be copied over.
+ * @param bReplace Should we change references in its relatives to point to the
+ *                 new copied object?
+ */
+void Field::Copy(const Field *field, bool bReplace) {
+	// Basics
+	SetText(field->Text()->GetNativeString());
+
+	// Linked list.
+	SetParent(field->Parent(), !(bReplace && field->IsFirstChild()));
+	SetChild(field->Child(), !bReplace);
+	SetPrevious(field->Previous(), !bReplace);
+	SetNext(field->Next(), !bReplace);
+}
+
+/**
+ * Replaces the field with a copy in the linked list. This operation affects
+ * related fields.
+ *
+ * @warning This method will delete the old field.
+ *
+ * @param field Field to be replaced. Will be destroyed by this operation.
+ *
+ * @return A duplicate field that took the place of its base in the linked list.
+ */
+Field* Field::Replace(const Field *field) {
+	Field *copy = new Field(field->Type());
+	copy->Copy(field, true);
+	delete field;
+	return copy;
 }
 
 /*
