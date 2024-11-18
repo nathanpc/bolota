@@ -49,11 +49,23 @@
 // Resource definitions.
 #if _MSC_VER == 1700
 	#include "../vs2012/Resource.h"
-#endif // _MSC_VER
+#endif // _MSC_VER == 1700
+#if _MSC_VER == 1200
+	#include "../vc6/resource.h"
+#endif // _MSC_VER == 1200
 #include "SharedResources.h"
+
+// Shims for older versions.
+#if _MSC_VER <= 1200
+	#include <newcpp.h>
+#endif // _MSC_VER == 1200
 
 // Utilities
 #include "Utilities/MsgBoxes.h"
 #include "Utilities/WindowUtilities.h"
+
+//{{AFX_INSERT_LOCATION}}
+// Microsoft Visual C++ will insert additional declarations immediately before
+// the previous line.
 
 #endif // _BOLOTA_STDAFX_H

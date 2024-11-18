@@ -298,9 +298,9 @@ LRESULT WndMainCommand(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
 LRESULT WndMainNotify(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
 	LPNMHDR nmh = (LPNMHDR)lParam;
 	switch (nmh->code) {
+	default:
+		return DefWindowProc(hWnd, wMsg, wParam, lParam);
 	}
-
-	return DefWindowProc(hWnd, wMsg, wParam, lParam);
 }
 
 /**

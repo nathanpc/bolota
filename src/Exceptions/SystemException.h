@@ -15,6 +15,10 @@
 #include <windows.h>
 #include <stdexcept>
 #include <string>
+#if _MSC_VER <= 1200
+	#include <newcpp.h>
+#endif // _MSC_VER == 1200
+
 
 /**
  * A C++ wrapper for GetLastError() in Win32 API.

@@ -17,6 +17,10 @@
 #ifdef __cplusplus
 #include <windows.h>
 #include <vector>
+#if _MSC_VER <= 1200
+	#include <newcpp.h>
+#endif // _MSC_VER == 1200
+
 #include "UString.h"
 
 extern "C" {

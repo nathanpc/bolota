@@ -7,6 +7,7 @@
 
 #include "DialogWindow.h"
 
+#include <stdint.h>
 #include <tchar.h>
 
 #include "MsgBoxes.h"
@@ -52,7 +53,8 @@ bool DialogWindow::Show() {
 
 	// Create the dialog and pass our object to its initialization.
 	hWnd = CreateDialogParam(this->hInst, MAKEINTRESOURCE(this->wResID),
-		this->hwndParent, DlgProcWrapper, reinterpret_cast<LPARAM>(this));
+		this->hwndParent, reinterpret_cast<DLGPROC>(DlgProcWrapper),
+		reinterpret_cast<LPARAM>(this));
 	if (hWnd == NULL) {
 		MsgBoxLastError(NULL);
 		return false;
@@ -74,7 +76,7 @@ bool DialogWindow::Show() {
 INT_PTR DialogWindow::ShowModal() {
 	this->bIsModal = true;
 	return DialogBoxParam(this->hInst, MAKEINTRESOURCE(this->wResID),
-		this->hwndParent, DialogWindow::DlgProcWrapper,
+		this->hwndParent, reinterpret_cast<DLGPROC>(DlgProcWrapper),
 		reinterpret_cast<LPARAM>(this));
 }
 
@@ -200,12 +202,21 @@ INT_PTR CALLBACK DialogWindow::DlgProcWrapper(HWND hDlg, UINT wMsg,
 	// Handle the translation to a C++ call.
 	if (WM_INITDIALOG == wMsg) {
 		pThis = reinterpret_cast<DialogWindow *>(lParam);
+#ifdef SetWindowLongPtr
 		SetWindowLongPtr(hDlg, GWLP_USERDATA,
 						 reinterpret_cast<LONG_PTR>(pThis));
+#else
+		SetWindowLong(hDlg, GWL_USERDATA, reinterpret_cast<LONG_PTR>(pThis));
+#endif // SetWindowLongPtr
 		pThis->RegisterHandle(hDlg);
 	} else {
+#ifdef GetWindowLongPtr
 		pThis = reinterpret_cast<DialogWindow *>(
 			GetWindowLongPtr(hDlg, GWLP_USERDATA));
+#else
+		pThis = reinterpret_cast<DialogWindow *>(
+			GetWindowLong(hDlg, GWL_USERDATA));
+#endif // GetWindowLongPtr
 	}
 
 	// Call our object's dialog procedure.

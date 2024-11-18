@@ -236,14 +236,16 @@ bool FieldManagerDialog::OnCancel() {
  * Sets up the field type combobox and selects the current field type.
  */
 void FieldManagerDialog::SetupFieldTypeCombo() {
+	uint8_t i = 0;
+
 	// Add field types to the combobox.
-	for (uint8_t i = 0; i < Bolota::fieldTypesList.size(); ++i) {
+	for (i = 0; i < Bolota::fieldTypesList.size(); ++i) {
 		SendMessage(cmbType, CB_ADDSTRING, 0,
 			(LPARAM)Bolota::fieldTypesList[i]->name->GetNativeString());
 	}
 
 	// Select our field type.
-	for (uint8_t i = 0; i < Bolota::fieldTypesList.size(); ++i) {
+	for (i = 0; i < Bolota::fieldTypesList.size(); ++i) {
 		if (m_field->Type() == Bolota::fieldTypesList[i]->code) {
 			SendMessage(cmbType, CB_SETCURSEL, i, 0);
 			OnTypeChange(i);

@@ -443,6 +443,8 @@ LRESULT BolotaView::AskDeleteField() {
  * @return 0 if everything worked.
  */
 LRESULT BolotaView::MoveField(bool bUp) {
+	Field *fldAbove = NULL;
+
 	// Get the currently selected field in the Tree-View.
 	HTREEITEM hti = NULL;
 	Field *field = GetSelectedField(&hti, true);
@@ -486,7 +488,7 @@ LRESULT BolotaView::MoveField(bool bUp) {
 	}
 
 	// Shuffle things around.
-	Field *fldAbove = GetFieldFromTreeItem(htiAbove);
+	fldAbove = GetFieldFromTreeItem(htiAbove);
 	m_doc->MoveTopicBelow(field, fldAbove);
 
 refresh:

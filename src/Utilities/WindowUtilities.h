@@ -12,10 +12,6 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#ifdef  __cplusplus
-extern "C" {
-#endif  // __cplusplus
-
 #include <windows.h>
 #include <stdarg.h>
 
@@ -25,9 +21,5 @@ BOOL SetWindowFormatText(HWND hWnd, LPCTSTR szFormat, ...);
 void SetDlgDefaultButton(HWND hDlg, int nID);
 
 void RectScreenToClient(RECT *rc, HWND hWnd);
-
-#ifdef  __cplusplus
-}
-#endif  // __cplusplus
 
 #endif // _WINCOMMON_WINDOWUTILITIES_H
