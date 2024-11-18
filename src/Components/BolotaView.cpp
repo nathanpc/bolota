@@ -349,7 +349,7 @@ LRESULT BolotaView::OpenFieldManager(FieldManagerDialog::DialogType type) {
 
 	// Setup and open the manager dialog.
 	FieldManagerDialog dlgManager(this->m_hInst, this->m_hWnd, type,
-		(fldNew) ? fldNew : field, field);
+		(fldNew) ? &fldNew : &field, field);
 	INT_PTR iRet = dlgManager.ShowModal();
 
 	// Check if the dialog returned from a Cancel operation.

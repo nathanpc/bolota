@@ -31,7 +31,7 @@ using namespace Bolota;
  * @param context    Field providing context to the operation.
  */
 FieldManagerDialog::FieldManagerDialog(HINSTANCE& hInst, HWND& hwndParent,
-									   DialogType type, Field *field,
+									   DialogType type, Field **field,
 									   Field *context) :
 	DialogWindow(hInst, hwndParent, IDD_FIELDMAN) {
 	SetType(type);
@@ -80,10 +80,10 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 	DateTime_SetFormat(dtpTimestamp, _T("yyyy'-'MM'-'dd HH':'mm':'ss"));
 
 	// Set the content of the editor fields.
-	if (m_field->HasText())
-		SetWindowText(txtValue, m_field->Text()->GetNativeString());
-	if (m_field->Type() == BOLOTA_TYPE_DATE) {
-		DateField *field = static_cast<DateField*>(m_field);
+	if (AssociatedField()->HasText())
+		SetWindowText(txtValue, AssociatedField()->Text()->GetNativeString());
+	if (AssociatedField()->Type() == BOLOTA_TYPE_DATE) {
+		DateField *field = static_cast<DateField*>(AssociatedField());
 		DateTime_SetSystemtime(dtpTimestamp, GDT_VALID,
 			(LPARAM)&field->ToSystemTime());
 		m_stTimestamp = field->ToSystemTime();
@@ -151,14 +151,37 @@ INT_PTR FieldManagerDialog::OnTypeChange(int index) {
  * @return TRUE to close the dialog. FALSE to prevent it from closing.
  */
 bool FieldManagerDialog::OnOK() {
+	// Change field type if needed.
+	if (AssociatedField()->Type() != m_fieldType->code) {
+		// Create the new field.
+		Field *old = AssociatedField();
+		switch (m_fieldType->code) {
+		case BOLOTA_TYPE_TEXT:
+			*m_field = new TextField();
+			break;
+		case BOLOTA_TYPE_DATE:
+			*m_field = new DateField();
+			break;
+		default:
+			MsgBoxError(hDlg, _T("Unknown field type"),
+				_T("This type of field conversion wasn't yet implemented."));
+			goto skipreplace;
+		}
+		
+		// Replace the actual field.
+		(*m_field)->Copy(old, true);
+		delete old;
+	}
+
+skipreplace:
 	// Set the field's values.
-	m_field->SetTextOwner(GetContentText());
-	switch (m_field->Type()) {
+	AssociatedField()->SetTextOwner(GetContentText());
+	switch (AssociatedField()->Type()) {
 	case BOLOTA_TYPE_TEXT:
 		break;
 	case BOLOTA_TYPE_DATE:
 	{
-		DateField *field = static_cast<DateField*>(m_field);
+		DateField *field = static_cast<DateField*>(AssociatedField());
 		field->SetTimestamp(&m_stTimestamp);
 		break;
 	}
@@ -246,7 +269,7 @@ void FieldManagerDialog::SetupFieldTypeCombo() {
 
 	// Select our field type.
 	for (i = 0; i < Bolota::fieldTypesList.size(); ++i) {
-		if (m_field->Type() == Bolota::fieldTypesList[i]->code) {
+		if (AssociatedField()->Type() == Bolota::fieldTypesList[i]->code) {
 			SendMessage(cmbType, CB_SETCURSEL, i, 0);
 			OnTypeChange(i);
 			break;
@@ -360,7 +383,8 @@ void FieldManagerDialog::SetContextLabel(LPCTSTR szContext) {
  * @param szOK     Caption of the default OK button. Use NULL to hide it.
  * @param szCancel Caption of the default cancel button. Use NULL to hide it.
  */
-void FieldManagerDialog::SetButtons(LPCTSTR szAltOK, LPCTSTR szOK, LPCTSTR szCancel) {
+void FieldManagerDialog::SetButtons(LPCTSTR szAltOK, LPCTSTR szOK,
+									LPCTSTR szCancel) {
 	if (szAltOK != NULL) {
 		SetWindowText(btnAltOK, szAltOK);
 	} else {
@@ -405,6 +429,15 @@ FieldManagerDialog::DialogType FieldManagerDialog::Type() const {
  */
 void FieldManagerDialog::SetType(FieldManagerDialog::DialogType type) {
 	m_type = type;
+}
+
+/**
+ * Gets the field object that is being edited by this dialog.
+ *
+ * @return Field object associated with this dialog.
+ */
+Field* FieldManagerDialog::AssociatedField() const {
+	return *m_field;
 }
 
 /**

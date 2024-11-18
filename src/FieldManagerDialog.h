@@ -33,7 +33,7 @@ public:
 protected:
 	// Properties
 	DialogType m_type;
-	Bolota::Field *m_field;
+	Bolota::Field **m_field;
 	Bolota::Field *m_context;
 	Bolota::FieldType *m_fieldType;
 	bool m_bAlternative;
@@ -80,10 +80,11 @@ protected:
 public:
 	// Constructors and destructors.
 	FieldManagerDialog(HINSTANCE& hInst, HWND& hwndParent, DialogType type,
-		Bolota::Field *field, Bolota::Field *context);
+		Bolota::Field **field, Bolota::Field *context);
 
 	// Getters
 	DialogType Type() const;
+	Bolota::Field* AssociatedField() const;
 	bool AlternativeSelected() const;
 };
 
