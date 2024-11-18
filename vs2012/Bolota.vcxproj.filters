@@ -90,9 +90,6 @@
     <ClCompile Include="..\src\Utilities\MsgBoxes.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Utilities\WindowUtilities.c">
-      <Filter>Utilities</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\AboutDialog.cpp">
       <Filter>Windows and Dialogs</Filter>
     </ClCompile>
@@ -128,6 +125,9 @@
     </ClCompile>
     <ClCompile Include="..\src\Bolota\DateField.cpp">
       <Filter>Bolota</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Utilities\WindowUtilities.cpp">
+      <Filter>Utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
