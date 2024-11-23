@@ -72,6 +72,7 @@ protected:
 		Bolota::Field *field);
 	void CreateChildField(HTREEITEM htiParent, Bolota::Field *parent,
 		Bolota::Field *field);
+	void CheckTreeConsistency(HTREEITEM hti);
 
 	// Tree-View item handling.
 	HTREEITEM AddTreeViewItem(HTREEITEM htiParent, HTREEITEM htiInsertAfter,

@@ -243,8 +243,9 @@ void BolotaView::RefreshField(HTREEITEM hti, Field *field) {
 	tvi.lParam = reinterpret_cast<LPARAM>(field);
 	TreeView_SetItem(m_hWnd, &tvi);
 
-	// Select the refreshed node.
+	// Select the refreshed node and check the consistency of the tree.
 	SelectTreeViewItem(hti);
+	CheckTreeConsistency(hti);
 }
 
 /**
@@ -265,6 +266,9 @@ void BolotaView::AppendField(HTREEITEM htiPrev, Bolota::Field *prev,
 		htiParent = TVI_ROOT;
 	HTREEITEM hti = AddTreeViewItem(htiParent, htiPrev, field);
 	SelectTreeViewItem(hti);
+
+	// Check the consistency of the tree.
+	CheckTreeConsistency(hti);
 }
 
 /**
@@ -288,6 +292,9 @@ void BolotaView::PrependField(HTREEITEM htiNext, Bolota::Field *next,
 		htiPrev = TVI_FIRST;
 	HTREEITEM hti = AddTreeViewItem(htiParent, htiPrev, field);
 	SelectTreeViewItem(hti);
+
+	// Check the consistency of the tree.
+	CheckTreeConsistency(hti);
 }
 
 /**
@@ -308,7 +315,55 @@ void BolotaView::CreateChildField(HTREEITEM htiParent, Bolota::Field *parent,
 
 	// Set the child field in the document and update the Tree-View.
 	parent->SetChild(field, false);
-	SelectTreeViewItem(AddTreeViewItem(htiParent, TVI_FIRST, field));
+	HTREEITEM hti = AddTreeViewItem(htiParent, TVI_FIRST, field);
+	SelectTreeViewItem(hti);
+
+	// Check the consistency of the tree.
+	CheckTreeConsistency(hti);
+}
+
+/**
+ * Checks if the internal field objects around a Tree-View item are all
+ * consistent with eachother in their relationships.
+ *
+ * @param hti Tree-View item to check for consistency.
+ *
+ * @throws ConsistencyException if an inconsistency is found.
+ */
+void BolotaView::CheckTreeConsistency(HTREEITEM hti) {
+	// Check if this is even valid.
+	if (hti == NULL)
+		throw std::exception("No Tree-View item passed for consistency check");
+
+	// Get reference field.
+	Field *ref = GetFieldFromTreeItem(hti);
+	if (ref == NULL) {
+		throw std::exception("Reference field for consistency check not found "
+			"in Tree-View");
+	}
+
+	// Get parent field.
+	HTREEITEM htiParent = TreeView_GetParent(m_hWnd, hti);
+	Field *parent = (htiParent == NULL) ? NULL :
+		GetFieldFromTreeItem(htiParent);
+
+	// Get child field.
+	HTREEITEM htiChild = TreeView_GetChild(m_hWnd, hti);
+	Field *child = (htiChild == NULL) ? NULL :
+		GetFieldFromTreeItem(htiChild);
+
+	// Get previous field.
+	HTREEITEM htiPrev = TreeView_GetPrevSibling(m_hWnd, hti);
+	Field *prev = (htiPrev == NULL) ? NULL :
+		GetFieldFromTreeItem(htiPrev);
+
+	// Get next field.
+	HTREEITEM htiNext = TreeView_GetNextSibling(m_hWnd, hti);
+	Field *next = (htiNext == NULL) ? NULL :
+		GetFieldFromTreeItem(htiNext);
+
+	// Check our overall consistency.
+	m_doc->CheckFieldConsistency(ref, parent, child, prev, next);
 }
 
 /*
@@ -429,8 +484,10 @@ LRESULT BolotaView::AskDeleteField() {
 	// Delete the field and remove the item from the Tree-View.
 	m_doc->DeleteTopic(field);
 	TreeView_DeleteItem(m_hWnd, hti);
-	if (htiNext != NULL)
+	if (htiNext != NULL) {
 		SelectTreeViewItem(htiNext);
+		CheckTreeConsistency(htiNext);
+	}
 
 	return 0;
 }
@@ -495,6 +552,9 @@ refresh:
 	// Reload the view to reflect the newest change and select the moved field.
 	ReloadView(field);
 
+	// Check the consistency of the tree.
+	CheckTreeConsistency(TreeView_GetSelection(m_hWnd));
+
 	return 0;
 }
 
@@ -520,6 +580,9 @@ LRESULT BolotaView::IndentField() {
 		throw std::exception("An infinite loop created when indenting field");
 	ReloadView(field);
 
+	// Check the consistency of the tree.
+	CheckTreeConsistency(TreeView_GetSelection(m_hWnd));
+
 	return 0;
 }
 
@@ -542,6 +605,9 @@ LRESULT BolotaView::DeindentField() {
 	// Move the field and reload the view to reflect the change.
 	m_doc->DeindentTopic(field);
 	ReloadView(field);
+
+	// Check the consistency of the tree.
+	CheckTreeConsistency(TreeView_GetSelection(m_hWnd));
 
 	return 0;
 }
