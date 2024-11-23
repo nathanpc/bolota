@@ -623,9 +623,17 @@ LRESULT BolotaView::DeindentField() {
 	if (!field->HasParent())
 		return 0;
 	
-	// Move the field and reload the view to reflect the change.
+	// Deindent the field internally.
 	m_doc->DeindentTopic(field);
-	ReloadView(field);
+
+	// Get the right parent and previous items.
+	HTREEITEM htiPrev = TreeView_GetParent(m_hWnd, hti);
+	HTREEITEM htiParent = !field->HasParent() ? TVI_ROOT :
+		TreeView_GetParent(m_hWnd, htiPrev);
+
+	// Deindent the field in the Tree-View.
+	TreeView_DeleteItem(m_hWnd, hti);
+	hti = AddTreeViewItem(htiParent, htiPrev, field, true, false, field);
 
 	// Check the consistency of the tree.
 	CheckTreeConsistency(TreeView_GetSelection(m_hWnd));
