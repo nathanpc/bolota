@@ -118,45 +118,50 @@ BOOL MainWindow::ResizeWindows(HWND hwndParent) {
  * @return 0 if everything worked.
  */
 LRESULT MainWindow::OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent) {
-	switch (wmId) {
-	case IDM_FILE_SAVE:
-		m_wndBolota->Save(false);
-		return 0;
-	case IDM_FILE_SAVEAS:
-		m_wndBolota->Save(true);
-		return 0;
-	case IDM_FILE_OPEN:
-		m_wndBolota->OpenFile();
-		return 0;
-	case IDM_FILE_RELOAD:
-		return m_wndBolota->ReloadView();
-	case IDM_FILE_PROPERTIES:
-		return m_wndBolota->EditProperties();
-	case IDM_FIELD_EDIT:
-		return m_wndBolota->OpenFieldManager(
-			FieldManagerDialog::DialogType::EditField);
-	case IDM_FIELD_DELETE:
-		return m_wndBolota->AskDeleteField();
-	case IDM_FIELD_APPEND:
-		return m_wndBolota->OpenFieldManager(
-			FieldManagerDialog::DialogType::AppendField);
-	case IDM_FIELD_PREPEND:
-		return m_wndBolota->OpenFieldManager(
-			FieldManagerDialog::DialogType::PrependField);
-	case IDM_FIELD_CREATECHILD:
-		return m_wndBolota->OpenFieldManager(
-			FieldManagerDialog::DialogType::NewChildField);
-	case IDM_FIELD_MOVEUP:
-		return m_wndBolota->MoveField(true);
-	case IDM_FIELD_MOVEDOWN:
-		return m_wndBolota->MoveField(false);
-	case IDM_FIELD_INDENT:
-		return m_wndBolota->IndentField();
-	case IDM_FIELD_DEINDENT:
-		return m_wndBolota->DeindentField();
-	default:
-		MsgBoxInfo(this->hWnd, _T("Unknown Command ID"),
-			_T("WM_COMMAND for MainWindow with unknown ID"));
-		return 0;
+	try {
+		switch (wmId) {
+		case IDM_FILE_SAVE:
+			m_wndBolota->Save(false);
+			return 0;
+		case IDM_FILE_SAVEAS:
+			m_wndBolota->Save(true);
+			return 0;
+		case IDM_FILE_OPEN:
+			m_wndBolota->OpenFile();
+			return 0;
+		case IDM_FILE_RELOAD:
+			return m_wndBolota->ReloadView();
+		case IDM_FILE_PROPERTIES:
+			return m_wndBolota->EditProperties();
+		case IDM_FIELD_EDIT:
+			return m_wndBolota->OpenFieldManager(
+				FieldManagerDialog::DialogType::EditField);
+		case IDM_FIELD_DELETE:
+			return m_wndBolota->AskDeleteField();
+		case IDM_FIELD_APPEND:
+			return m_wndBolota->OpenFieldManager(
+				FieldManagerDialog::DialogType::AppendField);
+		case IDM_FIELD_PREPEND:
+			return m_wndBolota->OpenFieldManager(
+				FieldManagerDialog::DialogType::PrependField);
+		case IDM_FIELD_CREATECHILD:
+			return m_wndBolota->OpenFieldManager(
+				FieldManagerDialog::DialogType::NewChildField);
+		case IDM_FIELD_MOVEUP:
+			return m_wndBolota->MoveField(true);
+		case IDM_FIELD_MOVEDOWN:
+			return m_wndBolota->MoveField(false);
+		case IDM_FIELD_INDENT:
+			return m_wndBolota->IndentField();
+		case IDM_FIELD_DEINDENT:
+			return m_wndBolota->DeindentField();
+		default:
+			MsgBoxInfo(this->hWnd, _T("Unknown Command ID"),
+				_T("WM_COMMAND for MainWindow with unknown ID"));
+			return 0;
+		}
+	} catch (std::exception& exc) {
+		MsgBoxException(this->hWnd, exc, _T("Operation failed with an ")
+			_T("exception"));
 	}
 }
