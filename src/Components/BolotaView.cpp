@@ -588,11 +588,18 @@ LRESULT BolotaView::IndentField() {
 	if (!field->HasPrevious())
 		return 0;
 
-	// Move the field and reload the view to reflect the change.
+	// Indent the field internally.
 	m_doc->IndentTopic(field);
 	if (field->Parent() == field->Next())
-		throw std::exception("An infinite loop created when indenting field");
-	ReloadView(field);
+		throw std::exception("Infinite loop was created when indenting field");
+
+	// Get the right parent and previous items.
+	HTREEITEM htiParent = TreeView_GetPrevSibling(m_hWnd, hti);
+	HTREEITEM htiPrev = field->IsFirstChild() ? TVI_FIRST : TVI_LAST;
+
+	// Indent the field in the Tree-View.
+	TreeView_DeleteItem(m_hWnd, hti);
+	hti = AddTreeViewItem(htiParent, htiPrev, field, true, false, field);
 
 	// Check the consistency of the tree.
 	CheckTreeConsistency(TreeView_GetSelection(m_hWnd));
