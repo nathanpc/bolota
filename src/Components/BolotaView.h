@@ -76,7 +76,8 @@ protected:
 
 	// Tree-View item handling.
 	HTREEITEM AddTreeViewItem(HTREEITEM htiParent, HTREEITEM htiInsertAfter,
-		Bolota::Field *field, bool bRecurse, Bolota::Field *fldSelected);
+		Bolota::Field *field, bool bRecurse, bool bNext,
+		Bolota::Field *fldSelected);
 	HTREEITEM AddTreeViewItem(HTREEITEM htiParent, HTREEITEM htiInsertAfter,
 		Bolota::Field *field);
 	void SelectTreeViewItem(HTREEITEM hti);

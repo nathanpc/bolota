@@ -143,14 +143,16 @@ void BolotaView::OpenExampleDocument() {
  * @param htiParent      Parent Tree-View item.
  * @param htiInsertAfter Tree-View item that will appear before this one.
  * @param field          Field to be added to the view.
- * @param bRecurse       Should we add fields recursively (childs and next)?
+ * @param bRecurse       Should we add child fields recursively?
+ * @param bNext          Should we add next fields as well?
  * @param fldSelected    Optional. Which field should automatically be selected.
  *
  * @return Tree-View item root node that was just added.
  */
 HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
 									  HTREEITEM htiInsertAfter, Field *field,
-									  bool bRecurse, Field *fldSelected) {
+									  bool bRecurse, bool bNext,
+									  Field *fldSelected) {
 	// Build up the tree item object from the topic.
 	TVITEM tvi;
 	tvi.mask = TVIF_TEXT | TVIF_PARAM;
@@ -179,19 +181,16 @@ HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
 	OutputDebugString(szDebugMsg);
 #endif // DEBUG
 
-	// Return the item immediately if we are to do a single append.
-	if (!bRecurse)
-		return hti;
-	
 	// Go through child and next fields inserting them into the Tree-View as well.
-	if (field->HasChild()) {
-		AddTreeViewItem(hti, TVI_FIRST, field->Child(), bRecurse, fldSelected);
+	if (bRecurse && field->HasChild()) {
+		AddTreeViewItem(hti, TVI_FIRST, field->Child(), bRecurse, true,
+			fldSelected);
 		TreeView_Expand(m_hWnd, hti, TVE_EXPAND);
 	}
 
 	// Insert next fields into the Tree-View as well.
-	if (field->HasNext())
-		AddTreeViewItem(htiParent, hti, field->Next(), bRecurse, fldSelected);
+	if (bNext && field->HasNext())
+		AddTreeViewItem(htiParent, hti, field->Next(), true, true, fldSelected);
 
 	return hti;
 }
@@ -207,7 +206,8 @@ HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
  */
 HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
 									  HTREEITEM htiInsertAfter, Field *field) {
-	return AddTreeViewItem(htiParent, htiInsertAfter, field, false, NULL);
+	return AddTreeViewItem(htiParent, htiInsertAfter, field, false, false,
+		NULL);
 }
 
 /**
@@ -522,6 +522,7 @@ LRESULT BolotaView::MoveField(bool bUp) {
 		// Moving to the top of the tree.
 		if (htiAbove == NULL) {
 			m_doc->MoveTopicToTop(field);
+			htiAbove = TVI_FIRST;
 			goto refresh;
 		}
 	} else {
@@ -549,11 +550,24 @@ LRESULT BolotaView::MoveField(bool bUp) {
 	m_doc->MoveTopicBelow(field, fldAbove);
 
 refresh:
-	// Reload the view to reflect the newest change and select the moved field.
-	ReloadView(field);
+	// Get the right parent for our Tree-View item.
+	HTREEITEM htiParent = (htiAbove == TVI_FIRST) ? TVI_ROOT :
+		TreeView_GetParent(m_hWnd, htiAbove);
+	if (field->IsFirstChild()) {
+		// Field became the first child of a topic.
+		htiParent = htiAbove;
+		htiAbove = TVI_FIRST;
+	} else if (htiParent == NULL) {
+		// Parent is the top-level.
+		htiParent = TVI_ROOT;
+	} 
+	
+	// Shuffle things around in the Tree-View.
+	TreeView_DeleteItem(m_hWnd, hti);
+	hti = AddTreeViewItem(htiParent, htiAbove, field, true, false, field);
 
 	// Check the consistency of the tree.
-	CheckTreeConsistency(TreeView_GetSelection(m_hWnd));
+	CheckTreeConsistency(hti);
 
 	return 0;
 }
@@ -735,7 +749,7 @@ LRESULT BolotaView::ReloadView(Field *fldSelected) {
 		return 0;
 
 	// Populate the Tree-View with topics.
-	AddTreeViewItem(TVI_ROOT, TVI_FIRST, m_doc->FirstTopic(), true,
+	AddTreeViewItem(TVI_ROOT, TVI_FIRST, m_doc->FirstTopic(), true, true,
 		fldSelected);
 
 	return 0;
