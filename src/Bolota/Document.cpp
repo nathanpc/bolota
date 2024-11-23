@@ -316,6 +316,34 @@ bool Document::IsEmpty() const {
 	return m_topics == NULL;
 }
 
+/**
+ * Checks the consistency of the relationships of a reference field against
+ * its expected related fields.
+ *
+ * @param ref    Reference field to check.
+ * @param parent Expected field parent.
+ * @param child  Expected field child.
+ * @param prev   Expected field previous.
+ * @param next   Expected field next.
+ *
+ * @throws ConsistencyException if an inconsistency is found.
+ */
+void Document::CheckFieldConsistency(Field *ref, Field *parent, Field *child,
+									 Field *prev, Field *next) {
+	// Check ourselves first.
+	ref->CheckConsistency();
+
+	// Check expected relationships.
+	if (ref->Parent() != parent)
+		throw ConsistencyException(ref, parent, ref->Parent(), "Parent");
+	if (ref->Child() != child)
+		throw ConsistencyException(ref, child, ref->Child(), "Child");
+	if (ref->Previous() != prev)
+		throw ConsistencyException(ref, prev, ref->Previous(), "Previous");
+	if (ref->Next() != next)
+		throw ConsistencyException(ref, next, ref->Next(), "Next");
+}
+
 /*
  * +===========================================================================+
  * |                                                                           |

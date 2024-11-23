@@ -167,6 +167,7 @@ namespace Bolota {
 		Field* SetNext(Field *next, bool bPassive);
 		bool IsFirstChild() const;
 		bool IsDocumentLast() const;
+		void CheckConsistency();
 
 	protected:
 		// Constructor helper.

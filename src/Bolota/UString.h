@@ -18,6 +18,19 @@
 #include <tchar.h>
 
 /**
+ * Definition of the system's preferred line ending sequence.
+ */
+#ifdef _WIN32
+	#define LINEND  "\r\n"
+	#define LINENDW L"\r\n"
+	#define LINENDT _T("\r\n")
+#else
+	#define LINEND  "\n"
+	#define LINENDW L"\n"
+	#define LINENDT LINEND
+#endif // _WIN32
+
+/**
  * A universal string class that can be used to represent both UTF-8 and UTF-16
  * encoded strings and work with them at the same time.
  */

@@ -638,3 +638,43 @@ bool Field::IsDocumentLast() const {
 	return (!HasNext() && !HasParent()) || (HasParent() &&
 		Parent()->IsDocumentLast());
 }
+
+/**
+ * Checks the consistency of the relationships of the relationships of a the
+ * field. In other words, it checks if the field related to this actually point
+ * to it in the correct manner (next's previous points to us, previous's next
+ * points to us, etc.)
+ *
+ * @throws ConsistencyException if an inconsistency is found.
+ */
+void Field::CheckConsistency() {
+	// Check if the first child of a parent has a previous field.
+	if (HasParent() && (Parent()->Child() == this) && HasPrevious()) {
+		throw ConsistencyException(this, NULL, Previous(),
+			"First Child Previous");
+	}
+
+	// Are we the child's parent?
+	if (HasChild() && (Child()->Parent() != this)) {
+		throw ConsistencyException(this, this, Child()->Parent(),
+			"Child Parent");
+
+		// Is the child holding a previous?
+		if (Child()->HasPrevious()) {
+			throw ConsistencyException(this, NULL, Child()->Previous(),
+				"Child Previous");
+		}
+	}
+
+	// Are we the previous's next?
+	if (HasPrevious() && (Previous()->Next() != this)) {
+		throw ConsistencyException(this, this, Previous()->Next(),
+			"Previous Next");
+	}
+
+	// Are we the next's previous?
+	if (HasNext() && (Next()->Previous() != this)) {
+		throw ConsistencyException(this, this, Next()->Previous(),
+			"Next Previous");
+	}
+}

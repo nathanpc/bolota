@@ -16,10 +16,62 @@
 #include <windows.h>
 #include <stdexcept>
 #include <string>
+#if _MSC_VER <= 1200
+	#include <newcpp.h>
+#endif // _MSC_VER == 1200
 
+#include "Field.h"
 #include "../Exceptions/SystemException.h"
 
 namespace Bolota {
+	/**
+	 * Exception that's thrown whenever there's an inconsistency between related
+	 * fields.
+	 */
+	class ConsistencyException : public std::exception {
+	public:
+		Field *fieldReference;
+		Field *fieldExpected;
+		Field *fieldFound;
+		std::string strRelationship;
+		std::string strMessage;
+
+		ConsistencyException(Field *reference, Field *expected, Field *found,
+							 const char *relationship) {
+			// Set class properties.
+			fieldReference = reference;
+			fieldExpected = expected;
+			fieldFound = found;
+			strRelationship = relationship;
+
+			// Create a temporary buffer for building up a complex string.
+			char szBuffer[255];
+			szBuffer[254] = '\0';
+
+			// Build up our message string.
+			strMessage = "An inconsistency was found between fields ";
+			_snprintf(szBuffer, 254, "%p (reference), %p (expected), and %p "
+				"(found) in relation to their %s property." LINEND LINEND,
+				reference, expected, found, relationship);
+			strMessage += szBuffer;
+			_snprintf(szBuffer, 254, "Reference (%p): %s" LINEND,
+				reference, reference->Text()->GetMultiByteString());
+			strMessage += szBuffer;
+			_snprintf(szBuffer, 254, "%s Expected (%p): %s" LINEND,
+				relationship, expected, (expected == NULL) ? NULL :
+				expected->Text()->GetMultiByteString());
+			strMessage += szBuffer;
+			_snprintf(szBuffer, 254, "%s Found (%p): %s",
+				relationship, found, (found == NULL) ? NULL :
+				found->Text()->GetMultiByteString());
+			strMessage += szBuffer;
+		}
+
+		const char* what() const override {
+			return strMessage.c_str();
+		};
+	};
+
 	/**
 	 * A generic exception that can close file handles if needed.
 	 */
