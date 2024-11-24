@@ -387,6 +387,7 @@ LRESULT BolotaView::OpenFieldManager(FieldManagerDialog::DialogType type) {
 	Field *field = GetSelectedField(&hti, true);
 	if (field == NULL)
 		return 1;
+	bool bFirstTopic = field == m_doc->FirstTopic();
 
 	// Should we get a brand new field?
 	Field *fldNew;
@@ -419,6 +420,10 @@ LRESULT BolotaView::OpenFieldManager(FieldManagerDialog::DialogType type) {
 		SetFocus(m_hWnd);
 		return IDCANCEL;
 	}
+
+	// Ensure that we update the first topic if it was replaced.
+	if (bFirstTopic && (m_doc->FirstTopic() != field))
+		m_doc->SetFirstTopic(field);
 
 	// Update the document viewer.
 	switch (dlgManager.Type()) {

@@ -88,6 +88,7 @@ namespace Bolota {
 
 		// Topic management.
 		Field* FirstTopic() const;
+		void SetFirstTopic(Field *topic);
 		void AppendTopic(Field *field);
 		void AppendTopic(Field *prev, Field *field);
 		void PrependTopic(Field *next, Field *field);

@@ -7,6 +7,9 @@
  */
 
 #include "FieldManagerDialog.h"
+
+#include <windowsx.h>
+
 #include "Bolota/DateField.h"
 
 // Spacing between controls.
@@ -263,14 +266,14 @@ void FieldManagerDialog::SetupFieldTypeCombo() {
 
 	// Add field types to the combobox.
 	for (i = 0; i < Bolota::fieldTypesList.size(); ++i) {
-		SendMessage(cmbType, CB_ADDSTRING, 0,
-			(LPARAM)Bolota::fieldTypesList[i]->name->GetNativeString());
+		ComboBox_AddString(cmbType,
+			Bolota::fieldTypesList[i]->name->GetNativeString());
 	}
 
 	// Select our field type.
 	for (i = 0; i < Bolota::fieldTypesList.size(); ++i) {
 		if (AssociatedField()->Type() == Bolota::fieldTypesList[i]->code) {
-			SendMessage(cmbType, CB_SETCURSEL, i, 0);
+			ComboBox_SetCurSel(cmbType, i);
 			OnTypeChange(i);
 			break;
 		}
@@ -490,8 +493,7 @@ INT_PTR CALLBACK FieldManagerDialog::DlgProc(HWND hDlg, UINT wMsg,
 			switch (LOWORD(wParam)) {
 			case IDC_FM_CMBTYPE:
 				if (HIWORD(wParam) == CBN_SELCHANGE) {
-					return OnTypeChange(SendMessage((HWND)lParam, CB_GETCURSEL,
-						0, 0));
+					return OnTypeChange(ComboBox_GetCurSel((HWND)lParam));
 				}
 				break;
 			case IDC_FM_BTNALTOK:

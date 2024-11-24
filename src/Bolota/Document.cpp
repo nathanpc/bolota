@@ -98,6 +98,15 @@ Field* Document::FirstTopic() const {
 }
 
 /**
+ * Sets the first topic of the topics linked list.
+ *
+ * @param topic New first topic of the topic linked list.
+ */
+void Document::SetFirstTopic(Field *topic) {
+	m_topics = topic;
+}
+
+/**
  * Appends a new topic after a field in the topics liked list.
  *
  * @param prev  Previous topic field to be modified.
@@ -111,7 +120,7 @@ void Document::AppendTopic(Field *prev, Field *field) {
 				"the linked list as the root element");
 		}
 		
-		m_topics = field;
+		SetFirstTopic(field);
 		return;
 	}
 
@@ -130,7 +139,7 @@ void Document::AppendTopic(Field *prev, Field *field) {
 void Document::PrependTopic(Field *next, Field *field) {
 	// Are we prepending to the first element of the linked list?
 	if (m_topics == next)
-		m_topics = field;
+		SetFirstTopic(field);
 
 	// Shuffle things around.
 	field->SetParent(next->Parent(), true);
@@ -150,7 +159,7 @@ void Document::PrependTopic(Field *next, Field *field) {
 void Document::AppendTopic(Field *field) {
 	// Check if this is the first topic to be added to the document.
 	if (m_topics == NULL) {
-		m_topics = field;
+		SetFirstTopic(field);
 		return;
 	}
 
@@ -169,7 +178,7 @@ void Document::AppendTopic(Field *field) {
 void Document::DeleteTopic(Field *field) {
 	// Ensure we pass along the first topic of the linked list.
 	if (m_topics == field)
-		m_topics = field->Next();
+		SetFirstTopic(field->Next());
 	
 	// Rearrange parent's first child if needed.
 	if (field->IsFirstChild())
@@ -207,7 +216,7 @@ void Document::PopTopic(Field *field) {
 		field->Previous()->SetNext(field->Next(), false);
 	} else if (field == FirstTopic()) {
 		// Is the first topic of the document.
-		m_topics = field->Next();
+		SetFirstTopic(field->Next());
 		if (m_topics != NULL) {
 			m_topics->SetPrevious(NULL, true);
 			m_topics->SetParent(NULL, true);
@@ -237,7 +246,7 @@ void Document::MoveTopicToTop(Field *field) {
 	// Detach topic and replace the topmost one.
 	PopTopic(field);
 	field->SetNext(first, false);
-	m_topics = field;
+	SetFirstTopic(field);
 }
 
 /**
