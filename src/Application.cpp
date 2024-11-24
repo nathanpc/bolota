@@ -7,6 +7,7 @@
 
 #include "Application.h"
 
+#include <windowsx.h>
 #include <ShellAPI.h>
 #ifdef DEBUG
 	#include <crtdbg.h>
@@ -226,6 +227,8 @@ LRESULT CALLBACK MainWindowProc(HWND hWnd, UINT wMsg, WPARAM wParam,
 			return WndMainCreate(hWnd, wMsg, wParam, lParam);
 		case WM_COMMAND:
 			return WndMainCommand(hWnd, wMsg, wParam, lParam);
+		case WM_CONTEXTMENU:
+			return WndMainContextMenu(hWnd, wMsg, wParam, lParam);
 		case WM_NOTIFY:
 			return WndMainNotify(hWnd, wMsg, wParam, lParam);
 		case WM_SIZE:
@@ -286,12 +289,39 @@ LRESULT WndMainCommand(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
 }
 
 /**
+ * Process the WM_CONTEXTMENU message for the window.
+ *
+ * @param hWnd   Window handler.
+ * @param wMsg   Message type.
+ * @param wParam Handle of the window that was right-clicked. Can be a child
+  *              window of the window receiving the message.
+ * @param lParam LOWORD specifies the X position of the cursor in screen
+ *               coordinates, HIWORD specifies the Y position.
+ *
+ * @return 0 if everything worked.
+ */
+LRESULT WndMainContextMenu(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
+	// Break the parameters down.
+	HWND hwndParam = (HWND)wParam;
+	int xPos = GET_X_LPARAM(lParam);
+	int yPos = GET_Y_LPARAM(lParam); 
+	
+	// Let our main window wrapper deal with the message.
+	if (wndMain->OnContextMenu(hwndParam, xPos, yPos))
+		return 0;
+
+	return DefWindowProc(hWnd, wMsg, wParam, lParam);
+}
+
+/**
  * Process the WM_NOTIFY message for the window.
  *
  * @param hWnd   Window handler.
  * @param wMsg   Message type.
- * @param wParam Message parameter.
- * @param lParam Message parameter.
+ * @param wParam Identifier of the common control sending the message. Not
+ *               always unique. hwndFrom or idFrom of the NMHDR should be used.
+ * @param lParam Pointer to an NMHDR structure containing the notification code
+ *               and additional information.
  *
  * @return 0 if everything worked.
  */
@@ -329,8 +359,8 @@ LRESULT WndMainSize(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
  *
  * @param hWnd   Window handler.
  * @param wMsg   Message type.
- * @param wParam Message parameter.
- * @param lParam Message parameter.
+ * @param wParam This parameter is not used.
+ * @param lParam This parameter is not used.
  *
  * @return 0 if everything worked.
  */
@@ -349,8 +379,8 @@ LRESULT WndMainClose(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
  *
  * @param hWnd   Window handler.
  * @param wMsg   Message type.
- * @param wParam Message parameter.
- * @param lParam Message parameter.
+ * @param wParam This parameter is not used.
+ * @param lParam This parameter is not used.
  *
  * @return 0 if everything worked.
  */

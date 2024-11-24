@@ -158,10 +158,30 @@ LRESULT MainWindow::OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent) {
 		default:
 			MsgBoxInfo(this->hWnd, _T("Unknown Command ID"),
 				_T("WM_COMMAND for MainWindow with unknown ID"));
-			return 0;
 		}
 	} catch (std::exception& exc) {
 		MsgBoxException(this->hWnd, exc, _T("Operation failed with an ")
 			_T("exception"));
 	}
+
+	return 0;
+}
+
+/**
+ * Handles WM_CONTEXTMENU messages such as right-clicking or the keyboard menu
+ * key being pressed.
+ *
+ * @param hWnd Handle of the window that was right-clicked.
+ * @param xPos X position of the right-click in screen coordinates.
+ * @param yPos Y position of the right-click in screen coordinates.
+ *
+ * @return TRUE if we handled the event. FALSE to let the default procedure take
+ *         care of things for us.
+ */
+bool MainWindow::OnContextMenu(HWND hWnd, int xPos, int yPos) {
+	// Check if the document viewer got the right-click.
+	if (hWnd == m_wndBolota->WindowHandle())
+		return m_wndBolota->ShowContextMenu(xPos, yPos);
+
+	return false;
 }

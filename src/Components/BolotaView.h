@@ -52,6 +52,7 @@ public:
 	LRESULT ReloadView();
 	LRESULT ReloadView(Bolota::Field *fldSelected);
 	LRESULT Resize(RECT rc) const;
+	bool ShowContextMenu(int xPos, int yPos);
 
 	// Getters and setters.
 	Bolota::Field* GetFieldFromTreeItem(HTREEITEM hti) const;

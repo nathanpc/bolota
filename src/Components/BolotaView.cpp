@@ -9,9 +9,9 @@
 
 #include "../stdafx.h"
 #include "../PropertiesDialog.h"
-#ifdef DEBUG
-	#include <string>
-#endif // DEBUG
+
+// Zero-based index of the position of the Field menu in the parent's menu bar.
+#define PARENT_MENU_FIELD_IDX 1
 
 using namespace Bolota;
 
@@ -798,6 +798,39 @@ LRESULT BolotaView::Resize(RECT rc) const {
 	SetWindowPos(m_hWnd, NULL, rc.left, rc.top, rc.right, rc.bottom,
 		SWP_NOZORDER);
 	return 0;
+}
+
+/**
+ * Handles the Tree-View being right clicked.
+ *
+ * @param xPos X position of the right-click in screen coordinates.
+ * @param yPos Y position of the right-click in screen coordinates.
+ *
+ * @return TRUE if the right click hit an item. FALSE otherwise.
+ */
+bool BolotaView::ShowContextMenu(int xPos, int yPos) {
+	TVHITTESTINFO tvhti = {0};
+	RECT rc;
+
+	// Convert screen coordinates to client coordinates and populate hit test.
+	GetWindowRect(m_hWnd, &rc);
+	tvhti.pt.x = xPos - rc.left;
+	tvhti.pt.y = yPos - rc.top;
+
+	// Check if any items were hit by the right click.
+	HTREEITEM hti = TreeView_HitTest(m_hWnd, &tvhti);
+	if (hti == NULL)
+		return false;
+
+	// Select the right clicked item just to be sure.
+	TreeView_SelectItem(m_hWnd, hti);
+
+	// Get the menu we want to use as our context menu and show it.
+	HMENU hm = GetSubMenu(GetMenu(m_hwndParent), PARENT_MENU_FIELD_IDX);
+	TrackPopupMenu(hm, TPM_LEFTALIGN | TPM_TOPALIGN | TPM_RIGHTBUTTON,
+		xPos, yPos, 0, m_hwndParent, NULL);
+
+	return true;
 }
 
 /*
