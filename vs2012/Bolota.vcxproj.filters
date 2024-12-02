@@ -23,6 +23,9 @@
     <Filter Include="Exceptions">
       <UniqueIdentifier>{420f3a40-4f33-4a28-aebc-0886415c5dfb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Field Icons">
+      <UniqueIdentifier>{2665faae-576c-41f7-bd99-cdf81c497121}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Utilities\DialogWindow.h">
@@ -138,6 +141,99 @@
   <ItemGroup>
     <Image Include="..\icons\bolota-icon.ico">
       <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Battery.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Box.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Calendar.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Camera.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Check.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Clipboard.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Clock.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\CPU.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Find.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Folder.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Gear.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Help.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\History.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Laptop.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Light.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Love.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Men.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Money.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Movie.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Plus.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Redo.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Remove.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Signpost.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Sound.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Star.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Stop.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Tags.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Trash.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Undo.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Woman.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Wrench.ico">
+      <Filter>Resource Files\Field Icons</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

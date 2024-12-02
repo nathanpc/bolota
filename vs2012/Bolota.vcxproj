@@ -132,6 +132,37 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\icons\bolota-icon.ico" />
+    <Image Include="..\icons\fields\Battery.ico" />
+    <Image Include="..\icons\fields\Box.ico" />
+    <Image Include="..\icons\fields\Calendar.ico" />
+    <Image Include="..\icons\fields\Camera.ico" />
+    <Image Include="..\icons\fields\Check.ico" />
+    <Image Include="..\icons\fields\Clipboard.ico" />
+    <Image Include="..\icons\fields\Clock.ico" />
+    <Image Include="..\icons\fields\CPU.ico" />
+    <Image Include="..\icons\fields\Find.ico" />
+    <Image Include="..\icons\fields\Folder.ico" />
+    <Image Include="..\icons\fields\Gear.ico" />
+    <Image Include="..\icons\fields\Help.ico" />
+    <Image Include="..\icons\fields\History.ico" />
+    <Image Include="..\icons\fields\Laptop.ico" />
+    <Image Include="..\icons\fields\Light.ico" />
+    <Image Include="..\icons\fields\Love.ico" />
+    <Image Include="..\icons\fields\Men.ico" />
+    <Image Include="..\icons\fields\Money.ico" />
+    <Image Include="..\icons\fields\Movie.ico" />
+    <Image Include="..\icons\fields\Plus.ico" />
+    <Image Include="..\icons\fields\Redo.ico" />
+    <Image Include="..\icons\fields\Remove.ico" />
+    <Image Include="..\icons\fields\Signpost.ico" />
+    <Image Include="..\icons\fields\Sound.ico" />
+    <Image Include="..\icons\fields\Star.ico" />
+    <Image Include="..\icons\fields\Stop.ico" />
+    <Image Include="..\icons\fields\Tags.ico" />
+    <Image Include="..\icons\fields\Trash.ico" />
+    <Image Include="..\icons\fields\Undo.ico" />
+    <Image Include="..\icons\fields\Woman.ico" />
+    <Image Include="..\icons\fields\Wrench.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

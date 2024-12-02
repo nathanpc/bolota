@@ -35,6 +35,43 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 IDI_BOLOTA              ICON                    "../icons/bolota-icon.ico"
 IDI_SMALL               ICON                    "../icons/bolota-icon.ico"
 
+// Blank icon.
+IDI_BLANK               ICON                    "../icons/blank.ico"
+
+// Field icons.
+IDI_FI_BATTERY          ICON                    "../icons/fields/Battery.ico"
+IDI_FI_BOX              ICON                    "../icons/fields/Box.ico"
+IDI_FI_CALENDAR         ICON                    "../icons/fields/Calendar.ico"
+IDI_FI_CAMERA           ICON                    "../icons/fields/Camera.ico"
+IDI_FI_CHECK            ICON                    "../icons/fields/Check.ico"
+IDI_FI_CLIPBOARD        ICON                    "../icons/fields/Clipboard.ico"
+IDI_FI_CLOCK            ICON                    "../icons/fields/Clock.ico"
+IDI_FI_CPU              ICON                    "../icons/fields/CPU.ico"
+IDI_FI_FIND             ICON                    "../icons/fields/Find.ico"
+IDI_FI_FOLDER           ICON                    "../icons/fields/Folder.ico"
+IDI_FI_GEAR             ICON                    "../icons/fields/Gear.ico"
+IDI_FI_HELP             ICON                    "../icons/fields/Help.ico"
+IDI_FI_HISTORY          ICON                    "../icons/fields/History.ico"
+IDI_FI_LAPTOP           ICON                    "../icons/fields/Laptop.ico"
+IDI_FI_LIGHT            ICON                    "../icons/fields/Light.ico"
+IDI_FI_LOVE             ICON                    "../icons/fields/Love.ico"
+IDI_FI_MEN              ICON                    "../icons/fields/Men.ico"
+IDI_FI_MONEY            ICON                    "../icons/fields/Money.ico"
+IDI_FI_MOVIE            ICON                    "../icons/fields/Movie.ico"
+IDI_FI_PLUS             ICON                    "../icons/fields/Plus.ico"
+IDI_FI_REDO             ICON                    "../icons/fields/Redo.ico"
+IDI_FI_REMOVE           ICON                    "../icons/fields/Remove.ico"
+IDI_FI_SIGNPOST         ICON                    "../icons/fields/Signpost.ico"
+IDI_FI_SOUND            ICON                    "../icons/fields/Sound.ico"
+IDI_FI_STAR             ICON                    "../icons/fields/Star.ico"
+IDI_FI_STOP             ICON                    "../icons/fields/Stop.ico"
+IDI_FI_TAGS             ICON                    "../icons/fields/Tags.ico"
+IDI_FI_TRASH            ICON                    "../icons/fields/Trash.ico"
+IDI_FI_UNDO             ICON                    "../icons/fields/Undo.ico"
+IDI_FI_WOMAN            ICON                    "../icons/fields/Woman.ico"
+IDI_FI_WRENCH           ICON                    "../icons/fields/Wrench.ico"
+
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Menu
