@@ -10,7 +10,7 @@
 #include "../stdafx.h"
 
 // Constant definitions.
-#define FIL_NUM_ICONS (31 + 1)
+#define FIL_NUM_ICONS (31 + 2)
 #define FIL_BIT_DEPTH ILC_COLORDDB
 
 /**
@@ -25,6 +25,8 @@ FieldImageList::FieldImageList(HINSTANCE hInst) :
 
 	// Add internal icons.
 	AddBlank();
+	m_usIndexOffset++;
+	m_usIndexBullet = AddIcon(_T("Bullet"), IDI_FI_BULLET1);
 	m_usIndexOffset++;
 
 	// Official field icons.
@@ -59,6 +61,15 @@ FieldImageList::FieldImageList(HINSTANCE hInst) :
 	AddIcon(_T("Undo"), IDI_FI_UNDO);
 	AddIcon(_T("Woman"), IDI_FI_WOMAN);
 	AddIcon(_T("Wrench"), IDI_FI_WRENCH);
+}
+
+/**
+ * Gets the default bullet field icon index.
+ *
+ * @return Default bullet icon index.
+ */
+UINT8 FieldImageList::Bullet() const {
+	return m_usIndexBullet;
 }
 
 /**

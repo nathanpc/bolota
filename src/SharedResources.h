@@ -52,6 +52,7 @@
 #define IDI_BLANK                       3000
 
 // Field icons.
+#define IDI_FI_BULLET1                  2999
 #define IDI_FI_BATTERY                  3001
 #define IDI_FI_BOX                      3002
 #define IDI_FI_CALENDAR                 3003

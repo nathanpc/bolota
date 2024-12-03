@@ -172,13 +172,14 @@ HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
 
 	// Build up the tree item object from the topic.
 	TVITEM tvi;
-	tvi.mask = TVIF_TEXT | TVIF_PARAM;
+	tvi.mask = TVIF_TEXT | TVIF_IMAGE | TVIF_SELECTEDIMAGE | TVIF_PARAM;
+	tvi.iImage = m_imlFieldIcons->Bullet();
+	tvi.iSelectedImage = m_imlFieldIcons->Bullet();
 	tvi.pszText = szText;
 	tvi.lParam = reinterpret_cast<LPARAM>(field);
 
 	// Handle fields with icons.
 	if (field->Type() == BOLOTA_TYPE_DATE) {
-		tvi.mask |= TVIF_IMAGE | TVIF_SELECTEDIMAGE;
 		tvi.iImage = m_imlFieldIcons->Calendar();
 		tvi.iSelectedImage = m_imlFieldIcons->Calendar();
 	}

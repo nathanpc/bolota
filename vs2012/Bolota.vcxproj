@@ -138,6 +138,7 @@
     <Image Include="..\icons\bolota-icon.ico" />
     <Image Include="..\icons\fields\Battery.ico" />
     <Image Include="..\icons\fields\Box.ico" />
+    <Image Include="..\icons\fields\Bullet1.ico" />
     <Image Include="..\icons\fields\Calendar.ico" />
     <Image Include="..\icons\fields\Camera.ico" />
     <Image Include="..\icons\fields\Check.ico" />

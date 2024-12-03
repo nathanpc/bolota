@@ -247,6 +247,9 @@
     <Image Include="..\icons\fields\Wrench.ico">
       <Filter>Resource Files\Field Icons</Filter>
     </Image>
+    <Image Include="..\icons\fields\Bullet1.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="manifest.xml">

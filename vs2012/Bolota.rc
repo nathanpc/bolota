@@ -39,6 +39,7 @@ IDI_SMALL               ICON                    "../icons/bolota-icon.ico"
 IDI_BLANK               ICON                    "../icons/blank.ico"
 
 // Field icons.
+IDI_FI_BULLET1          ICON                    "../icons/fields/Bullet1.ico"
 IDI_FI_BATTERY          ICON                    "../icons/fields/Battery.ico"
 IDI_FI_BOX              ICON                    "../icons/fields/Box.ico"
 IDI_FI_CALENDAR         ICON                    "../icons/fields/Calendar.ico"
