@@ -85,6 +85,9 @@
     <ClInclude Include="..\src\Bolota\DateField.h">
       <Filter>Bolota</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Utilities\ImageList.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Utilities\DialogWindow.cpp">
@@ -130,6 +133,9 @@
       <Filter>Bolota</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Utilities\WindowUtilities.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Utilities\ImageList.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
   </ItemGroup>
