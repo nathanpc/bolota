@@ -122,11 +122,13 @@ void BolotaView::OpenExampleDocument() {
 	// Populate example document.
 	doc->AppendTopic(new TextField(_T("First top element")));
 	TextField *tmpField = new TextField(_T("Second top element"));
+	DateField *fldDate = DateField::Now();
+	fldDate->SetText(_T("An example of a date time field."));
 	tmpField->SetChild(new TextField(
 		_T("A sub-element of the second element")))
 		->SetNext(new TextField(
 		_T("Yet another sub-element of the second element")))
-		->SetNext(DateField::Now());
+		->SetNext(fldDate);
 	doc->AppendTopic(tmpField);
 	tmpField = static_cast<TextField*>(
 		tmpField->SetNext(new TextField(_T("Element 1")))
@@ -164,10 +166,14 @@ HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
 									  HTREEITEM htiInsertAfter, Field *field,
 									  bool bRecurse, bool bNext,
 									  Field *fldSelected) {
+	// Get display string.
+	bool bRetain = false;
+	LPTSTR szText = FieldDisplayText(field, &bRetain);
+
 	// Build up the tree item object from the topic.
 	TVITEM tvi;
 	tvi.mask = TVIF_TEXT | TVIF_PARAM;
-	tvi.pszText = const_cast<LPTSTR>(field->Text()->GetNativeString());
+	tvi.pszText = szText;
 	tvi.lParam = reinterpret_cast<LPARAM>(field);
 
 	// Handle fields with icons.
@@ -193,11 +199,16 @@ HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
 #ifdef DEBUG
 	// Print out details about the added field for debugging.
 	TCHAR szDebugMsg[256];
-	_snwprintf(szDebugMsg, 255, _T("(%u) %s\r\n"), field->Depth(),
-		field->Text()->GetNativeString());
+	_snwprintf(szDebugMsg, 255, _T("(%u) %s\r\n"), field->Depth(), szText);
 	szDebugMsg[255] = _T('\0');
 	OutputDebugString(szDebugMsg);
 #endif // DEBUG
+
+	// Release the display text if needed.
+	if (!bRetain) {
+		free(szText);
+		szText = NULL;
+	}
 
 	// Go through child and next fields inserting them into the Tree-View as well.
 	if (bRecurse && field->HasChild()) {
@@ -723,37 +734,6 @@ bool BolotaView::OpenFile() {
 }
 
 /**
- * Sets up an open/save file dialog structure.
- *
- * @param szFilename Pointer to store (and retrieve) the path to the file.
- * @param bSave      Is this a save file dialog?
- *
- * @return TRUE if the operation was successful. FALSE if the user canceled or
- *         an error occurred.
- */
-bool BolotaView::ShowFileDialog(LPTSTR szFilename, bool bSave) {
-	// Setup file dialog.
-	OPENFILENAME ofn;
-	ZeroMemory(&ofn, sizeof(OPENFILENAME));
-	ofn.lStructSize = sizeof(OPENFILENAME);
-	ofn.hwndOwner = m_hwndParent;
-	ofn.lpstrTitle = (bSave) ? _T("Save Document As...") : _T("Open Document");
-	ofn.Flags = OFN_EXPLORER | OFN_HIDEREADONLY;
-	ofn.Flags |= (bSave) ? OFN_PATHMUSTEXIST | OFN_OVERWRITEPROMPT :
-		OFN_FILEMUSTEXIST;
-	ofn.lpstrFilter = _T("Bolota Documents (*.bol)\0*.bol\0")
-		_T("All Files (*.*)\0*.*\0");
-	ofn.lpstrFile = szFilename;
-	ofn.nMaxFile = MAX_PATH;
-	ofn.lpstrDefExt = _T("bol");
-
-	// Open the common file dialog.
-	if (bSave)
-		return GetSaveFileName(&ofn) != 0;
-	return GetOpenFileName(&ofn) != 0;
-}
-
-/**
  * Opens the document properties editor dialog window and performs any updates
  * to the associated document.
  *
@@ -849,6 +829,85 @@ bool BolotaView::ShowContextMenu(int xPos, int yPos) {
 		xPos, yPos, 0, m_hwndParent, NULL);
 
 	return true;
+}
+
+/*
+ * +===========================================================================+
+ * |                                                                           |
+ * |                                 Helpers                                   |
+ * |                                                                           |
+ * +===========================================================================+
+ */
+
+/**
+ * Gets a properly formatted string for displaying the specified field.
+ *
+ * @warning This method allocates memory which may need to be freed by you if
+ *          bRetain is FALSE.
+ *
+ * @param field   Field to be displayed.
+ * @param bRetain Optional. Returns if we should NOT free the text after its
+ *                returned and we use it.
+ *
+ * @return Properly formatted string for displaying the contents of the field.
+ */
+LPTSTR BolotaView::FieldDisplayText(Field *field, bool *bRetain) {
+	LPTSTR szText = const_cast<LPTSTR>(field->Text()->GetNativeString());
+	size_t ulLength = 22 + 1 + _tcslen(szText);
+	if (bRetain)
+		*bRetain = false;
+
+	switch (field->Type()) {
+	case BOLOTA_TYPE_DATE: {
+		// Get timestamp.
+		DateField *fldDate = static_cast<DateField*>(field);
+		timestamp_t ts = fldDate->Timestamp();
+
+		// Build the display string.
+		szText = (LPTSTR)malloc(ulLength * sizeof(TCHAR));
+		szText[ulLength - 1] = _T('\0');
+		_sntprintf(szText, ulLength - 1, _T("(%04u-%02u-%02u %02u:%02u:%02u) ")
+			_T("%s"), ts.year, ts.month, ts.day, ts.hour, ts.minute, ts.second,
+			field->Text()->GetNativeString());
+		break;
+	}
+	default:
+		if (bRetain)
+			*bRetain = true;
+	}
+
+	return szText;
+}
+
+/**
+ * Sets up an open/save file dialog structure.
+ *
+ * @param szFilename Pointer to store (and retrieve) the path to the file.
+ * @param bSave      Is this a save file dialog?
+ *
+ * @return TRUE if the operation was successful. FALSE if the user canceled or
+ *         an error occurred.
+ */
+bool BolotaView::ShowFileDialog(LPTSTR szFilename, bool bSave) {
+	// Setup file dialog.
+	OPENFILENAME ofn;
+	ZeroMemory(&ofn, sizeof(OPENFILENAME));
+	ofn.lStructSize = sizeof(OPENFILENAME);
+	ofn.hwndOwner = m_hwndParent;
+	ofn.lpstrTitle = (bSave) ? _T("Save Document As...") : _T("Open Document");
+	ofn.Flags = OFN_EXPLORER | OFN_HIDEREADONLY;
+	ofn.Flags |= (bSave) ? OFN_PATHMUSTEXIST | OFN_OVERWRITEPROMPT :
+		OFN_FILEMUSTEXIST;
+	ofn.lpstrFilter = _T("Bolota Documents (*.bol)\0*.bol\0")
+		_T("All Files (*.*)\0*.*\0");
+	ofn.lpstrFile = szFilename;
+	ofn.nMaxFile = MAX_PATH;
+	ofn.lpstrDefExt = _T("bol");
+
+	// Open the common file dialog.
+	if (bSave)
+		return GetSaveFileName(&ofn) != 0;
+	return GetOpenFileName(&ofn) != 0;
 }
 
 /*

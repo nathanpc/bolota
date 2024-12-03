@@ -87,7 +87,8 @@ protected:
 		Bolota::Field *field);
 	void SelectTreeViewItem(HTREEITEM hti);
 
-	// Common dialogs.
+	// Helpers
+	LPTSTR FieldDisplayText(Bolota::Field *field, bool *bRetain);
 	bool ShowFileDialog(LPTSTR szFilename, bool bSave);
 };
 

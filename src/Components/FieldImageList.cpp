@@ -21,7 +21,13 @@
 FieldImageList::FieldImageList(HINSTANCE hInst) :
 	ImageList(hInst, GetSystemMetrics(SM_CXSMICON), ILC_MASK | FIL_BIT_DEPTH,
 	FIL_NUM_ICONS) {
+	m_usIndexOffset = 0;
+
+	// Add internal icons.
 	AddBlank();
+	m_usIndexOffset++;
+
+	// Official field icons.
 	AddIcon(_T("Battery"), IDI_FI_BATTERY);
 	AddIcon(_T("Box"), IDI_FI_BOX);
 	m_usIndexCalendar = AddIcon(_T("Calendar"), IDI_FI_CALENDAR);
@@ -62,4 +68,15 @@ FieldImageList::FieldImageList(HINSTANCE hInst) :
  */
 UINT8 FieldImageList::Calendar() const {
 	return m_usIndexCalendar;
+}
+
+/**
+ * Gets the icon index in the ImageList from a Bolota field icon index.
+ *
+ * @param usIndex Bolota field icon index.
+ *
+ * @return ImageList icon index.
+ */
+UINT8 FieldImageList::IndexFromFieldIndex(UINT8 usIndex) const {
+	return usIndex + m_usIndexOffset;
 }
