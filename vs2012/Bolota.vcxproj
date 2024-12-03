@@ -92,6 +92,7 @@
     <ClInclude Include="..\src\Bolota\Field.h" />
     <ClInclude Include="..\src\Bolota\UString.h" />
     <ClInclude Include="..\src\Components\BolotaView.h" />
+    <ClInclude Include="..\src\Components\FieldImageList.h" />
     <ClInclude Include="..\src\Exceptions\SystemException.h" />
     <ClInclude Include="..\src\FieldManagerDialog.h" />
     <ClInclude Include="..\src\MainWindow.h" />
@@ -113,6 +114,7 @@
     <ClCompile Include="..\src\Bolota\Field.cpp" />
     <ClCompile Include="..\src\Bolota\UString.cpp" />
     <ClCompile Include="..\src\Components\BolotaView.cpp" />
+    <ClCompile Include="..\src\Components\FieldImageList.cpp" />
     <ClCompile Include="..\src\Exceptions\SystemException.cpp" />
     <ClCompile Include="..\src\FieldManagerDialog.cpp" />
     <ClCompile Include="..\src\MainWindow.cpp" />

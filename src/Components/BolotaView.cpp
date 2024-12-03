@@ -36,6 +36,9 @@ BolotaView::BolotaView(HINSTANCE hInst, HWND hwndParent, RECT rc) {
 	m_hInst = hInst;
 	m_hwndParent = hwndParent;
 
+	// Initialize ImageLists.
+	m_imlFieldIcons = new FieldImageList(hInst);
+
 	// Create the window instance.
 	m_hWnd = CreateWindowEx(
 		0, WC_TREEVIEW, _T("BolotaView"),
@@ -43,6 +46,9 @@ BolotaView::BolotaView(HINSTANCE hInst, HWND hwndParent, RECT rc) {
 		rc.left, rc.top, rc.right, rc.bottom,
 		hwndParent, (HMENU)NULL, hInst, NULL);
 	ShowWindow(m_hWnd, SW_SHOW);
+
+	// Set the ImageList associated with the TreeView.
+	TreeView_SetImageList(m_hWnd, m_imlFieldIcons->Handle(), TVSIL_NORMAL);
 }
 
 /**
@@ -54,6 +60,11 @@ BolotaView::~BolotaView() {
 	// Destroy the window.
 	DestroyWindow(m_hWnd);
 	m_hWnd = NULL;
+
+	// Destroy ImageLists.
+	if (m_imlFieldIcons)
+		delete m_imlFieldIcons;
+	m_imlFieldIcons = NULL;
 
 	// Free the associated document object.
 	CloseDocument();
@@ -158,6 +169,13 @@ HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
 	tvi.mask = TVIF_TEXT | TVIF_PARAM;
 	tvi.pszText = const_cast<LPTSTR>(field->Text()->GetNativeString());
 	tvi.lParam = reinterpret_cast<LPARAM>(field);
+
+	// Handle fields with icons.
+	if (field->Type() == BOLOTA_TYPE_DATE) {
+		tvi.mask |= TVIF_IMAGE | TVIF_SELECTEDIMAGE;
+		tvi.iImage = m_imlFieldIcons->Calendar();
+		tvi.iSelectedImage = m_imlFieldIcons->Calendar();
+	}
 
 	// Create the Tree-View insertion object.
 	TVINSERTSTRUCT tvins;

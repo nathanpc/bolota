@@ -17,6 +17,7 @@
 
 #include "../Bolota/Document.h"
 #include "../FieldManagerDialog.h"
+#include "FieldImageList.h"
 
 /**
 * A TreeView component that displays and handles a Bolota document.
@@ -30,6 +31,9 @@ private:
 	HINSTANCE m_hInst;
 	HWND m_hWnd;
 	HWND m_hwndParent;
+
+	// Image lists.
+	FieldImageList *m_imlFieldIcons;
 
 public:
 	// Constructors and destructors.

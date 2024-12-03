@@ -88,6 +88,9 @@
     <ClInclude Include="..\src\Utilities\ImageList.h">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Components\FieldImageList.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Utilities\DialogWindow.cpp">
@@ -137,6 +140,9 @@
     </ClCompile>
     <ClCompile Include="..\src\Utilities\ImageList.cpp">
       <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Components\FieldImageList.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
