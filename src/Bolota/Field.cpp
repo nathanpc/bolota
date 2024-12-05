@@ -223,10 +223,14 @@ Field* Field::Read(HANDLE hFile, size_t *bytes, uint8_t *depth) {
 uint8_t Field::ReadField(HANDLE hFile, size_t *bytes) {
 	DWORD dwRead = 0;
 	uint8_t depth = 0;
+	uint16_t usFieldLength = 0;
 	uint16_t usTextLength = 0;
 
 	// Read important bits.
 	if (!::ReadFile(hFile, &depth, sizeof(uint8_t), &dwRead, NULL))
+		throw ReadError(hFile, *bytes, true);
+	*bytes += dwRead;
+	if (!::ReadFile(hFile, &usFieldLength, sizeof(uint16_t), &dwRead, NULL))
 		throw ReadError(hFile, *bytes, true);
 	*bytes += dwRead;
 	if (!::ReadFile(hFile, &usTextLength, sizeof(uint16_t), &dwRead, NULL))
@@ -271,13 +275,18 @@ size_t Field::Write(HANDLE hFile) const {
 	ulBytes += dwWritten;
 
 	// Length of data.
-	uint16_t usLength = TextLength();
-	::WriteFile(hFile, &usLength, sizeof(uint16_t), &dwWritten, NULL);
+	uint16_t usFieldLength = FieldLength();
+	::WriteFile(hFile, &usFieldLength, sizeof(uint16_t), &dwWritten, NULL);
+	ulBytes += dwWritten;
+
+	// Length of data.
+	uint16_t usTextLength = TextLength();
+	::WriteFile(hFile, &usTextLength, sizeof(uint16_t), &dwWritten, NULL);
 	ulBytes += dwWritten;
 
 	// Data of the field.
 	if (m_text) {
-		::WriteFile(hFile, m_text->GetMultiByteString(), TextLength(),
+		::WriteFile(hFile, m_text->GetMultiByteString(), usTextLength,
 			&dwWritten, NULL);
 		ulBytes += dwWritten;
 	}
@@ -398,7 +407,8 @@ void Field::SetTextOwner(wchar_t *wstr) {
  * @return Length of the entire field structure (including header) in bytes.
  */
 uint16_t Field::FieldLength() const {
-	return (sizeof(uint8_t) * 2) + sizeof(uint16_t) + TextLength();
+	return (sizeof(uint8_t) * 2) + sizeof(uint16_t) + (sizeof(uint16_t) +
+		TextLength());
 }
 
 /**

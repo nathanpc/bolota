@@ -40,12 +40,14 @@ typedef enum bolota_type_e {
  */
 typedef struct bolota_field_s {
 	/* Header */
-	bolota_type_t type;  /* Field type. (uint8) */
-	uint8_t depth;       /* Level of indentation of the topic in the note. */
-	uint16_t length;     /* Length of the data part of the field (does not
-                          * include header). */
+	bolota_type_t type;    /* Field type. (uint8) */
+	uint8_t depth;         /* Level of indentation of the topic in the note. */
+	uint16_t length;       /* Length of the entire field (including itself and
+                            * the header). */
 
-	/* Data */
+	/* Data Section */
+	uint16_t text_length;  /* Length of the data part of the field (does not
+                            * include header). */
 	union {
 		char *text;      /* Text associated with the field. (not NUL terminated */
 		uint8_t *data;   /* when saved to file) */
