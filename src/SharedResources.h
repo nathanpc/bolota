@@ -51,7 +51,7 @@
 #define IDI_BASE                        3000
 #define IDI_BLANK                       3000
 
-// Field icons.
+// Begin field icons.
 #define IDI_FI_BULLET1                  2999
 #define IDI_FI_BATTERY                  3001
 #define IDI_FI_BOX                      3002
@@ -84,5 +84,6 @@
 #define IDI_FI_UNDO                     3029
 #define IDI_FI_WOMAN                    3030
 #define IDI_FI_WRENCH                   3031
+// End of field icons.
 
 #endif // _BOLOTA_SHARED_RESOURCES_H

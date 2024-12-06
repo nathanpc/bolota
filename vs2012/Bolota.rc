@@ -38,8 +38,8 @@ IDI_SMALL               ICON                    "../icons/bolota-icon.ico"
 // Blank icon.
 IDI_BLANK               ICON                    "../icons/blank.ico"
 
-// Field icons.
-IDI_FI_BULLET1          ICON                    "../icons/fields/Bullet1.ico"
+// Begin field icons.
+IDI_FI_BULLET1          ICON                    "../icons/fields/_Bullet1.ico"
 IDI_FI_BATTERY          ICON                    "../icons/fields/Battery.ico"
 IDI_FI_BOX              ICON                    "../icons/fields/Box.ico"
 IDI_FI_CALENDAR         ICON                    "../icons/fields/Calendar.ico"
@@ -71,7 +71,7 @@ IDI_FI_TRASH            ICON                    "../icons/fields/Trash.ico"
 IDI_FI_UNDO             ICON                    "../icons/fields/Undo.ico"
 IDI_FI_WOMAN            ICON                    "../icons/fields/Woman.ico"
 IDI_FI_WRENCH           ICON                    "../icons/fields/Wrench.ico"
-
+// End of field icons.
 
 /////////////////////////////////////////////////////////////////////////////
 //
