@@ -81,6 +81,9 @@ namespace Bolota {
 		HANDLE m_hFile;
 		UString m_strPath;
 
+		// State
+		bool m_bDirty;
+
 	public:
 		// Constructors and destructors.
 		Document(TextField *title, TextField *subtitle, DateField *date);
@@ -119,6 +122,10 @@ namespace Bolota {
 		DateField* Date() const;
 		void SetDate(DateField *date);
 		void SetDate(const SYSTEMTIME *st);
+
+		// Dirtiness.
+		void SetDirty(bool dirty);
+		bool IsDirty() const;
 
 	protected:
 		// Construtor helpers.

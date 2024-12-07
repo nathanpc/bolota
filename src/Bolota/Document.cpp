@@ -77,6 +77,7 @@ void Document::Initialize(TextField *title, TextField *subtitle,
 	m_hFile = hFile;
 	if (szPath != NULL)
 		m_strPath = szPath;
+	m_bDirty = false;
 }
 
 /*
@@ -128,6 +129,9 @@ void Document::AppendTopic(Field *prev, Field *field) {
 	field->SetParent(prev->Parent(), true);
 	field->SetNext(prev->Next(), false);
 	prev->SetNext(field, false);
+
+	// Flag unsaved changes.
+	SetDirty(true);
 }
 
 /**
@@ -149,6 +153,9 @@ void Document::PrependTopic(Field *next, Field *field) {
 	// Set ourselves as the parent's child if we prepended to the first item.
 	if (!field->HasPrevious() && next->HasParent())
 		next->Parent()->SetChild(field, false);
+
+	// Flag unsaved changes.
+	SetDirty(true);
 }
 
 /**
@@ -168,6 +175,9 @@ void Document::AppendTopic(Field *field) {
 	while (last->HasNext())
 		last = last->Next();
 	AppendTopic(last, field);
+
+	// Flag unsaved changes.
+	SetDirty(true);
 }
 
 /**
@@ -193,6 +203,9 @@ void Document::DeleteTopic(Field *field) {
 
 	// Delete the field and all of its children.
 	field->Destroy(true, false);
+
+	// Flag unsaved changes.
+	SetDirty(true);
 }
 
 /**
@@ -230,6 +243,9 @@ void Document::PopTopic(Field *field) {
 	field->SetParent(NULL, true);
 	field->SetPrevious(NULL, true);
 	field->SetNext(NULL, true);
+
+	// Flag unsaved changes.
+	SetDirty(true);
 }
 
 /**
@@ -247,6 +263,9 @@ void Document::MoveTopicToTop(Field *field) {
 	PopTopic(field);
 	field->SetNext(first, false);
 	SetFirstTopic(field);
+
+	// Flag unsaved changes.
+	SetDirty(true);
 }
 
 /**
@@ -270,6 +289,9 @@ void Document::MoveTopicBelow(Field *below, Field *above) {
 		below->SetNext(above->Next(), false);
 		above->SetNext(below, false);
 	}
+
+	// Flag unsaved changes.
+	SetDirty(true);
 }
 
 /**
@@ -296,6 +318,9 @@ void Document::IndentTopic(Field *field) {
 		// Field will become the new first child of its previous field.
 		prev->SetChild(field, false);
 	}
+
+	// Flag unsaved changes.
+	SetDirty(true);
 }
 
 /**
@@ -314,6 +339,9 @@ void Document::DeindentTopic(Field *field) {
 	field->SetParent(parent->Parent(), true);
 	field->SetNext(parent->Next(), false);
 	field->SetPrevious(parent, false);
+
+	// Flag unsaved changes.
+	SetDirty(true);
 }
 
 /**
@@ -414,8 +442,9 @@ Document* Document::ReadFile(LPCTSTR szPath) {
 	self->ReadProperties(&ulLength);
 	self->ReadTopics(dwLengthTopics, &ulLength);
 
-	// Close the file handle.
+	// Close the file handle and mark as clean.
 	self->CloseFile();
+	self->SetDirty(false);
 
 	return self;
 }
@@ -481,8 +510,9 @@ size_t Document::WriteFile(LPCTSTR szPath, bool bAssociate) {
 	ulBytes += WriteTopics();
 	// TODO: ulBytes += WriteAttachments();
 
-	// Close the file handle.
+	// Close the file handle and mark as clean.
 	CloseFile();
+	SetDirty(false);
 
 	return ulBytes;
 }
@@ -685,6 +715,7 @@ void Document::SetTitle(TextField *title) {
 	if (this->m_title)
 		delete this->m_title;
 	this->m_title = title;
+	SetDirty(true);
 }
 
 /**
@@ -696,6 +727,7 @@ void Document::SetTitle(TextField *title) {
  */
 void Document::SetTitle(LPTSTR szTitle) {
 	this->m_title->SetTextOwner(szTitle);
+	SetDirty(true);
 }
 
 /**
@@ -718,6 +750,7 @@ void Document::SetSubTitle(TextField *subtitle) {
 	if (this->m_subtitle)
 		delete this->m_subtitle;
 	this->m_subtitle = subtitle;
+	SetDirty(true);
 }
 
 /**
@@ -729,6 +762,7 @@ void Document::SetSubTitle(TextField *subtitle) {
  */
 void Document::SetSubTitle(LPTSTR szSubTitle) {
 	this->m_subtitle->SetTextOwner(szSubTitle);
+	SetDirty(true);
 }
 
 /**
@@ -751,6 +785,7 @@ void Document::SetDate(DateField *date) {
 	if (this->m_date)
 		delete this->m_date;
 	this->m_date = date;
+	SetDirty(true);
 }
 
 /**
@@ -760,4 +795,23 @@ void Document::SetDate(DateField *date) {
  */
 void Document::SetDate(const SYSTEMTIME *st) {
 	this->m_date->SetTimestamp(st);
+	SetDirty(true);
+}
+
+/**
+ * Sets the dirtiness (unsaved changes) status of the document.
+ *
+ * @param dirty Does this document currently contain unsaved changes?
+ */
+void Document::SetDirty(bool dirty) {
+	this->m_bDirty = dirty;
+}
+
+/**
+ * Checks if a document contains unsaved changes.
+ *
+ * @return Does this document currently contain unsaved changes?
+ */
+bool Document::IsDirty() const {
+	return this->m_bDirty;
 }

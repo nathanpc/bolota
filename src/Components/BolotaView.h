@@ -59,6 +59,8 @@ public:
 	bool ShowContextMenu(int xPos, int yPos);
 
 	// Getters and setters.
+	void SetDirty(bool bDirty);
+	bool IsDirty() const;
 	Bolota::Field* GetFieldFromTreeItem(HTREEITEM hti) const;
 	Bolota::Field* GetSelectedField(bool bShowError) const;
 	Bolota::Field* GetSelectedField(HTREEITEM *htiSelected,

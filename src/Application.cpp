@@ -365,7 +365,11 @@ LRESULT WndMainSize(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
  * @return 0 if everything worked.
  */
 LRESULT WndMainClose(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
-	// Send window destruction message.
+	// Check if we can close.
+	if (!wndMain->OnClose())
+		return 0;
+
+	// Send main window destruction message.
 	delete wndMain;
 
 	// Call any destructors that might be needed.

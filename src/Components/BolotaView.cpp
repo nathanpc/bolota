@@ -89,8 +89,9 @@ void BolotaView::OpenDocument(Document *doc) {
 	CloseDocument();
 	m_doc = doc;
 
-	// Populate the view.
+	// Populate the view and flag saved changes
 	ReloadView(doc->FirstTopic());
+	SetDirty(false);
 }
 
 /**
@@ -293,6 +294,9 @@ void BolotaView::AppendField(HTREEITEM htiPrev, Bolota::Field *prev,
 	HTREEITEM hti = AddTreeViewItem(htiParent, htiPrev, field);
 	SelectTreeViewItem(hti);
 
+	// Flag unsaved changes.
+	SetDirty(true);
+
 	// Check the consistency of the tree.
 	CheckTreeConsistency(hti);
 }
@@ -319,6 +323,9 @@ void BolotaView::PrependField(HTREEITEM htiNext, Bolota::Field *next,
 	HTREEITEM hti = AddTreeViewItem(htiParent, htiPrev, field);
 	SelectTreeViewItem(hti);
 
+	// Flag unsaved changes.
+	SetDirty(true);
+
 	// Check the consistency of the tree.
 	CheckTreeConsistency(hti);
 }
@@ -343,6 +350,9 @@ void BolotaView::CreateChildField(HTREEITEM htiParent, Bolota::Field *parent,
 	parent->SetChild(field, false);
 	HTREEITEM hti = AddTreeViewItem(htiParent, TVI_FIRST, field);
 	SelectTreeViewItem(hti);
+
+	// Flag unsaved changes.
+	SetDirty(true);
 
 	// Check the consistency of the tree.
 	CheckTreeConsistency(hti);
@@ -447,6 +457,9 @@ LRESULT BolotaView::OpenFieldManager(FieldManagerDialog::DialogType type) {
 		return IDCANCEL;
 	}
 
+	// Flag unsaved changes.
+	SetDirty(true);
+
 	// Ensure that we update the first topic if it was replaced.
 	if (bFirstTopic && (m_doc->FirstTopic() != field))
 		m_doc->SetFirstTopic(field);
@@ -519,6 +532,9 @@ LRESULT BolotaView::AskDeleteField() {
 		SelectTreeViewItem(htiNext);
 		CheckTreeConsistency(htiNext);
 	}
+
+	// Flag unsaved changes.
+	SetDirty(true);
 
 	return 0;
 }
@@ -600,6 +616,9 @@ refresh:
 	// Check the consistency of the tree.
 	CheckTreeConsistency(hti);
 
+	// Flag unsaved changes.
+	SetDirty(true);
+
 	return 0;
 }
 
@@ -635,6 +654,9 @@ LRESULT BolotaView::IndentField() {
 	// Check the consistency of the tree.
 	CheckTreeConsistency(TreeView_GetSelection(m_hWnd));
 
+	// Flag unsaved changes.
+	SetDirty(true);
+
 	return 0;
 }
 
@@ -669,6 +691,9 @@ LRESULT BolotaView::DeindentField() {
 	// Check the consistency of the tree.
 	CheckTreeConsistency(TreeView_GetSelection(m_hWnd));
 
+	// Flag unsaved changes.
+	SetDirty(true);
+
 	return 0;
 }
 
@@ -677,7 +702,8 @@ LRESULT BolotaView::DeindentField() {
  *
  * @param bSaveAs Should we perform the default for a Save As operation?
  *
- * @return TRUE if everything worked, FALSE otherwise.
+ * @return TRUE if the file was saved. FALSE if an error occurred or the
+ *         operation was cancelled.
  */
 bool BolotaView::Save(bool bSaveAs) {
 	TCHAR szFilename[MAX_PATH];
@@ -689,19 +715,24 @@ bool BolotaView::Save(bool bSaveAs) {
 			_tcscpy(szFilename, m_doc->FilePath().GetNativeString());
 		} else {
 			m_doc->WriteFile();
+			SetDirty(false);
 			return true;
 		}
 	}
 
 	// Show the save file dialog and process the user selection.
 	if (!ShowFileDialog(szFilename, true))
-		return true;
+		return false;
 	try {
 		// Write the file and set the window title.
 		m_doc->WriteFile(szFilename, true);
 		SetWindowText(m_hwndParent, PathFindFileName(szFilename));
+
+		// Flag saved changes.
+		SetDirty(false);
 	} catch (std::exception& e) {
 		MsgBoxException(m_hwndParent, e, _T("Cannot save document"));
+		return false;
 	}
 
 	return true;
@@ -723,6 +754,9 @@ bool BolotaView::OpenFile() {
 		// Open the document and set the window title.
 		OpenDocument(Document::ReadFile(szFilename));
 		SetWindowText(m_hwndParent, PathFindFileName(szFilename));
+
+		// Flag saved changes.
+		SetDirty(false);
 	} catch (std::exception& e) {
 		MsgBoxException(m_hwndParent, e, _T("Cannot open document"));
 	}
@@ -740,6 +774,9 @@ LRESULT BolotaView::EditProperties() {
 	// Setup and open the properties editor dialog.
 	PropertiesDialog dlgEditor(this->m_hInst, this->m_hWnd, m_doc);
 	INT_PTR iRet = dlgEditor.ShowModal();
+
+	// Flag unsaved changes.
+	SetDirty(m_doc->IsDirty());
 
 	// Get the focus back on the component and return.
 	SetFocus(m_hWnd);
@@ -766,6 +803,9 @@ LRESULT BolotaView::ReloadView(Field *fldSelected) {
 	// Populate the Tree-View with topics.
 	AddTreeViewItem(TVI_ROOT, TVI_FIRST, m_doc->FirstTopic(), true, true,
 		fldSelected);
+
+	// Flag unsaved changes.
+	SetDirty(m_doc->IsDirty());
 
 	return 0;
 }
@@ -957,6 +997,53 @@ bool BolotaView::ShowFileDialog(LPTSTR szFilename, bool bSave) const {
  * |                                                                           |
  * +===========================================================================+
  */
+
+/**
+ * Sets the dirtiness (unsaved changes) status of the document and updates the
+ * interface accordingly.
+ *
+ * @param bDirty Does this document currently contain unsaved changes?
+ */
+void BolotaView::SetDirty(bool bDirty) {
+	// Set document as dirty.
+	if (bDirty != m_doc->IsDirty())
+		m_doc->SetDirty(bDirty);
+
+	// Check if we need to change the window's title.
+	TCHAR szFlag[2];
+	GetWindowText(m_hwndParent, szFlag, 2);
+	if (((szFlag[0] == '*') && bDirty) || ((szFlag[0] != '*') && !bDirty))
+		return;
+
+	// Update the main window title and add asterisk.
+	LPTSTR szTitle = GetWindowTextAlloc(m_hwndParent);
+	if (!bDirty) {
+		// No longer dirty.
+		SetWindowText(m_hwndParent, szTitle + 1);
+	} else {
+		// Dirty bastard!
+		LPTSTR szNewTitle = (LPTSTR)malloc((_tcslen(szTitle) + 2) *
+			sizeof(TCHAR));
+		szNewTitle[0] = _T('*');
+		_tcscpy(szNewTitle + 1, szTitle);
+		SetWindowText(m_hwndParent, szNewTitle);
+		free(szNewTitle);
+		szNewTitle = NULL;
+	}
+
+	// Free up our resources.
+	free(szTitle);
+	szTitle = NULL;
+}
+
+/**
+ * Checks if the document contains unsaved changes.
+ *
+ * @return Does this document currently contain unsaved changes?
+ */
+bool BolotaView::IsDirty() const {
+	return m_doc->IsDirty();
+}
 
 /**
  * Gets the associated field object from a Tree-View item.
