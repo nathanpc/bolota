@@ -350,6 +350,9 @@ void FieldManagerDialog::SetupFieldIconCombo() {
 	// Set the ComboBoxEx image list.
 	SendMessage(cbeFieldIcon, CBEM_SETIMAGELIST, 0,
 		(LPARAM)m_imlFieldIcons->Handle());
+
+	// Select the default item for starters.
+	ComboBox_SetCurSel(cbeFieldIcon, m_fiIndex - 1);
 }
 
 /**
