@@ -8,8 +8,9 @@ use Data::Dumper;
 use Cwd qw(abs_path);
 use File::Basename qw(dirname basename);
 
-# Field icons directory.
-use constant ICONS_DIR => dirname(dirname(abs_path($0))) . '/icons/fields';
+# Directories
+use constant PROJECT_ROOT => dirname(dirname(abs_path($0)));
+use constant ICONS_DIR => PROJECT_ROOT . '/icons/fields';
 
 # Replaces the section of the file responsible for holding the field icons.
 sub replace_section {
@@ -52,6 +53,8 @@ sub replace_section {
 	print $fh $_ for @$lines;
 	print $fh $_ for @after;
 	close($fh);
+	
+	print "ok\n";
 }
 
 # Updates the resources definitions.
@@ -59,6 +62,7 @@ sub update_resources {
 	my ($vsname, $bullets, $icons) = @_;
 
 	# Make section lines.
+	print "Updating $vsname resources files... ";
 	my @lines = ();
 	for my $icon (@$bullets) {
 		push @lines, sprintf('IDI_FI%-17s ICON                    ' .
@@ -70,7 +74,7 @@ sub update_resources {
 	}
 
 	# Replace the field icons section in the resources file.
-	my $fpath = dirname(dirname(abs_path($0))) . "/$vsname/Bolota.rc";
+	my $fpath = PROJECT_ROOT . "/$vsname/Bolota.rc";
 	replace_section($fpath, \@lines);
 }
 
@@ -79,6 +83,7 @@ sub update_shared_ids {
 	my ($base, $bullets, $icons) = @_;
 
 	# Make section lines.
+	print 'Updating shared resources header... ';
 	my $id = $base - 1;
 	my @lines = ();
 	for my $icon (@$bullets) {
@@ -92,7 +97,31 @@ sub update_shared_ids {
 	}
 
 	# Replace the field icons section in the resources file.
-	my $fpath = dirname(dirname(abs_path($0))) . "/src/SharedResources.h";
+	my $fpath = PROJECT_ROOT . "/src/SharedResources.h";
+	replace_section($fpath, \@lines);
+}
+
+# Updates the FieldImageList.cpp definitions.
+sub update_imagelist {
+	my ($icons) = @_;
+
+	# Make section lines.
+	print 'Updating FieldImageList... ';
+	my @lines = ();
+	for my $icon (@$icons) {
+		# Check if we need to add a prefix.
+		my $prefix = '';
+		if ($icon eq 'Calendar') {
+			$prefix = 'm_usIndexCalendar = ';
+		}
+		
+		# Build up the AddIcon definition.
+		push @lines, "\t$prefix" . sprintf('AddIcon(_T("%s"), IDI_FI_%s);',
+			$icon, uc($icon)) . "\r\n";
+	}
+
+	# Replace the field icons section in the resources file.
+	my $fpath = PROJECT_ROOT . "/src/Components/FieldImageList.cpp";
 	replace_section($fpath, \@lines);
 }
 
@@ -116,6 +145,7 @@ sub main {
 	# Update files.
 	update_resources('vs2012', \@bullets, \@icons);
 	update_shared_ids(3000, \@bullets, \@icons);
+	update_imagelist(\@icons);
 }
 
 # Execute the script.

@@ -29,7 +29,7 @@ FieldImageList::FieldImageList(HINSTANCE hInst) :
 	m_usIndexBullet = AddIcon(_T("Bullet"), IDI_FI_BULLET1);
 	m_usIndexOffset++;
 
-	// Official field icons.
+	// Begin field icons.
 	AddIcon(_T("Battery"), IDI_FI_BATTERY);
 	AddIcon(_T("Box"), IDI_FI_BOX);
 	m_usIndexCalendar = AddIcon(_T("Calendar"), IDI_FI_CALENDAR);
@@ -61,6 +61,7 @@ FieldImageList::FieldImageList(HINSTANCE hInst) :
 	AddIcon(_T("Undo"), IDI_FI_UNDO);
 	AddIcon(_T("Woman"), IDI_FI_WOMAN);
 	AddIcon(_T("Wrench"), IDI_FI_WRENCH);
+	// End of field icons.
 }
 
 /**
