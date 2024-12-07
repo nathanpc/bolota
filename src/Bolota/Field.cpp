@@ -156,7 +156,8 @@ void Field::Destroy(bool include_child, bool include_next) {
  */
 void Field::Copy(const Field *field, bool bReplace) {
 	// Basics
-	SetText(field->Text()->GetNativeString());
+	if (field->HasText())
+		SetText(field->Text()->GetNativeString());
 
 	// Linked list.
 	SetParent(field->Parent(), !(bReplace && field->IsFirstChild()));
