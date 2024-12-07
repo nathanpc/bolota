@@ -46,6 +46,7 @@ FieldManagerDialog::FieldManagerDialog(HINSTANCE& hInst, HWND& hwndParent,
 	m_field = field;
 	m_context = context;
 	m_fieldType = NULL;
+	GetSystemTime(&m_stTimestamp);
 	m_fiIndex = BOLOTA_ICON_BATTERY;
 }
 
@@ -85,6 +86,7 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 		rcEdit.left, rcEdit.top, 150, rcEdit.bottom - rcEdit.top,
 		hDlg, NULL, this->hInst, NULL);
 	DateTime_SetFormat(dtpTimestamp, _T("yyyy'-'MM'-'dd HH':'mm':'ss"));
+	DateTime_SetSystemtime(dtpTimestamp, GDT_VALID, (LPARAM)&m_stTimestamp);
 
 	// Create field icon ComboBoxEx.
 	cbeFieldIcon = CreateWindowEx(0, WC_COMBOBOXEX, NULL,
