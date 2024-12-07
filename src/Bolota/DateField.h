@@ -55,15 +55,45 @@ namespace Bolota {
 	public:
 		// Constructors
 		DateField() : Field(BOLOTA_TYPE_DATE) { InitializeDate(NULL); };
+		DateField(const char *mbstr) : Field(BOLOTA_TYPE_DATE, mbstr) {
+			InitializeDate(NULL);
+		};
+		DateField(const wchar_t *wstr) : Field(BOLOTA_TYPE_DATE, wstr) {
+			InitializeDate(NULL);
+		};
 		DateField(const timestamp_t *ts) : Field(BOLOTA_TYPE_DATE) {
+			InitializeDate(ts);
+		};
+		DateField(const timestamp_t *ts, const char *mbstr) :
+			Field(BOLOTA_TYPE_DATE, mbstr) {
+			InitializeDate(ts);
+		};
+		DateField(const timestamp_t *ts, const wchar_t *wstr) :
+			Field(BOLOTA_TYPE_DATE, wstr) {
 			InitializeDate(ts);
 		};
 		DateField(Field *parent) :
 			Field(parent, BOLOTA_TYPE_DATE) {
 			InitializeDate(NULL);
 		};
+		DateField(Field *parent, const char *mbstr) :
+			Field(parent, BOLOTA_TYPE_DATE, mbstr) {
+			InitializeDate(NULL);
+		};
+		DateField(Field *parent, const wchar_t *wstr) :
+			Field(parent, BOLOTA_TYPE_DATE, wstr) {
+			InitializeDate(NULL);
+		};
 		DateField(Field *parent, const timestamp_t *ts) :
 			Field(parent, BOLOTA_TYPE_DATE) {
+			InitializeDate(ts);
+		};
+		DateField(Field *parent, const timestamp_t *ts, const char *mbstr) :
+			Field(parent, BOLOTA_TYPE_DATE, mbstr) {
+			InitializeDate(ts);
+		};
+		DateField(Field *parent, const timestamp_t *ts, const wchar_t *wstr) :
+			Field(parent, BOLOTA_TYPE_DATE, wstr) {
 			InitializeDate(ts);
 		};
 		
