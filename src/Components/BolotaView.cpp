@@ -126,6 +126,8 @@ void BolotaView::OpenExampleDocument() {
 	fldDate->SetText(_T("An example of a date time field."));
 	tmpField->SetChild(new TextField(
 		_T("A sub-element of the second element")))
+		->SetNext(new IconField(BOLOTA_ICON_CPU,
+		_T("Bolota is the best way to take notes.")))
 		->SetNext(new TextField(
 		_T("Yet another sub-element of the second element")))
 		->SetNext(fldDate);
@@ -179,9 +181,17 @@ HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
 	tvi.lParam = reinterpret_cast<LPARAM>(field);
 
 	// Handle fields with icons.
-	if (field->Type() == BOLOTA_TYPE_DATE) {
+	switch (field->Type()) {
+	case BOLOTA_TYPE_ICON: {
+		field_icon_t fiIndex = static_cast<IconField*>(field)->IconIndex();
+		tvi.iImage = m_imlFieldIcons->IndexFromFieldIndex(fiIndex);
+		tvi.iSelectedImage = m_imlFieldIcons->IndexFromFieldIndex(fiIndex);
+		break;
+	}
+	case BOLOTA_TYPE_DATE:
 		tvi.iImage = m_imlFieldIcons->Calendar();
 		tvi.iSelectedImage = m_imlFieldIcons->Calendar();
+		break;
 	}
 
 	// Create the Tree-View insertion object.

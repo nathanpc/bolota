@@ -10,7 +10,7 @@
 #include "../stdafx.h"
 
 // Constant definitions.
-#define FIL_NUM_ICONS (31 + 2)
+#define FIL_NUM_ICONS (BOLOTA_FIELD_ICON_NUM + 2)
 #define FIL_BIT_DEPTH ILC_COLORDDB
 
 /**
@@ -89,6 +89,6 @@ UINT8 FieldImageList::Calendar() const {
  *
  * @return ImageList icon index.
  */
-UINT8 FieldImageList::IndexFromFieldIndex(UINT8 usIndex) const {
-	return usIndex + m_usIndexOffset;
+UINT8 FieldImageList::IndexFromFieldIndex(field_icon_t usIndex) const {
+	return usIndex + m_usIndexOffset - 1;
 }

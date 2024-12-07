@@ -13,6 +13,7 @@
 #endif // _MSC_VER > 1000
 
 #include "../Utilities/ImageList.h"
+#include "../Bolota/IconField.h"
 
 /**
  * Field icons ImageList.
@@ -31,7 +32,7 @@ public:
 	UINT8 Calendar() const;
 
 	// Getters
-	UINT8 IndexFromFieldIndex(UINT8 usIndex) const;
+	UINT8 IndexFromFieldIndex(field_icon_t usIndex) const;
 };
 
 #endif // _COMPONENTS_FIELDIMAGELIST_H

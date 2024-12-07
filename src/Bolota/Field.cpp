@@ -9,6 +9,7 @@
 
 #include "Exceptions.h"
 #include "DateField.h"
+#include "IconField.h"
 
 using namespace Bolota;
 
@@ -201,6 +202,9 @@ Field* Field::Read(HANDLE hFile, size_t *bytes, uint8_t *depth) {
 		break;
 	case BOLOTA_TYPE_DATE:
 		self = new DateField();
+		break;
+	case BOLOTA_TYPE_ICON:
+		self = new IconField();
 		break;
 	default:
 		throw UnknownFieldType(hFile, *bytes, true, type);

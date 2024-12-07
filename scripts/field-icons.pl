@@ -96,7 +96,7 @@ sub update_shared_ids {
 			"\r\n";
 	}
 
-	# Replace the field icons section in the resources file.
+	# Replace the field icons section in the shared resources file.
 	my $fpath = PROJECT_ROOT . "/src/SharedResources.h";
 	replace_section($fpath, \@lines);
 }
@@ -120,8 +120,71 @@ sub update_imagelist {
 			$icon, uc($icon)) . "\r\n";
 	}
 
-	# Replace the field icons section in the resources file.
+	# Replace the field icons section in the file.
 	my $fpath = PROJECT_ROOT . "/src/Components/FieldImageList.cpp";
+	replace_section($fpath, \@lines);
+}
+
+# Updates the IconField.h definitions.
+sub update_icon_field_enum {
+	my ($icons) = @_;
+	
+	# Get the size of the longest label.
+	my $len = 0;
+	for my $icon (@$icons) {
+		if (length($icon) > $len) {
+			$len = length($icon);
+		}
+	}
+
+	# Make section lines.
+	print 'Updating IconField.h enum... ';
+	my @lines = ();
+	my $index = 1;
+	push @lines, sprintf("\tBOLOTA_ICON_%-" . $len . "s = 0,\r\n", 'NONE');
+	for my $icon (@$icons) {
+		# Build up the enum item.
+		push @lines, "\t" . sprintf('BOLOTA_ICON_%-' . $len . 's = %d,',
+			uc($icon), $index++) . "\r\n";
+	}
+	
+	# Replace field icons count.
+	my $fpath = PROJECT_ROOT . "/src/Bolota/IconField.h";
+	rename($fpath, "$fpath.bak");
+	open(my $in, '<:encoding(UTF-8)', "$fpath.bak");
+	open(my $out, '>:encoding(UTF-8)', $fpath);
+	while (my $line = <$in>) {
+		if ($line =~ m/\#define\s+BOLOTA_FIELD_ICON_NUM/) {
+			print $out '#define BOLOTA_FIELD_ICON_NUM ' . scalar(@$icons) .
+				"\r\n";
+			next;
+		}
+		
+		print $out $line;
+	}
+	close($in);
+	close($out);
+	unlink("$fpath.bak");
+
+	# Replace the field icons section in the file.
+	replace_section($fpath, \@lines);
+}
+
+# Updates the IconField.cpp icons list.
+sub update_icon_field_list {
+	my ($icons) = @_;
+	
+	# Make section lines.
+	print 'Updating IconField.cpp icon list... ';
+	my @lines = ();
+	my @iconlist = @$icons;
+	for my $i (0..$#iconlist) {
+		push @lines, "\tBOLOTA_ICON_" . uc($iconlist[$i]) .
+			(($i == $#iconlist) ? '' : ',') . "\r\n";
+	}
+	
+	# Replace the field icons section in the file.
+	my $fpath = PROJECT_ROOT . "/src/Bolota/IconField.cpp";
 	replace_section($fpath, \@lines);
 }
 
@@ -146,6 +209,8 @@ sub main {
 	update_resources('vs2012', \@bullets, \@icons);
 	update_shared_ids(3000, \@bullets, \@icons);
 	update_imagelist(\@icons);
+	update_icon_field_enum(\@icons);
+	update_icon_field_list(\@icons);
 }
 
 # Execute the script.
