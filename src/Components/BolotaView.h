@@ -88,8 +88,10 @@ protected:
 	void SelectTreeViewItem(HTREEITEM hti);
 
 	// Helpers
-	LPTSTR FieldDisplayText(Bolota::Field *field, bool *bRetain);
-	bool ShowFileDialog(LPTSTR szFilename, bool bSave);
+	LPTSTR FieldDisplayText(Bolota::Field *field, bool *bRetain) const;
+	LPTSTR SetTreeViewItemField(LPTVITEM lptvi, Bolota::Field *field,
+		bool *bRetain) const;
+	bool ShowFileDialog(LPTSTR szFilename, bool bSave) const;
 };
 
 #endif // _BOLOTA_BOLOTAVIEW_H

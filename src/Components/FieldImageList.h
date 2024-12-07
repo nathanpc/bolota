@@ -32,6 +32,8 @@ public:
 	UINT8 Calendar() const;
 
 	// Getters
+	static UINT8 NumAvailableIcons() { return BOLOTA_FIELD_ICON_NUM; };
+	LPCTSTR LabelFromFieldIndex(field_icon_t usIndex) const;
 	UINT8 IndexFromFieldIndex(field_icon_t usIndex) const;
 };
 

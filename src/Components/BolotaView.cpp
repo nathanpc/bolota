@@ -168,31 +168,10 @@ HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
 									  HTREEITEM htiInsertAfter, Field *field,
 									  bool bRecurse, bool bNext,
 									  Field *fldSelected) {
-	// Get display string.
-	bool bRetain = false;
-	LPTSTR szText = FieldDisplayText(field, &bRetain);
-
 	// Build up the tree item object from the topic.
 	TVITEM tvi;
-	tvi.mask = TVIF_TEXT | TVIF_IMAGE | TVIF_SELECTEDIMAGE | TVIF_PARAM;
-	tvi.iImage = m_imlFieldIcons->Bullet();
-	tvi.iSelectedImage = m_imlFieldIcons->Bullet();
-	tvi.pszText = szText;
-	tvi.lParam = reinterpret_cast<LPARAM>(field);
-
-	// Handle fields with icons.
-	switch (field->Type()) {
-	case BOLOTA_TYPE_ICON: {
-		field_icon_t fiIndex = static_cast<IconField*>(field)->IconIndex();
-		tvi.iImage = m_imlFieldIcons->IndexFromFieldIndex(fiIndex);
-		tvi.iSelectedImage = m_imlFieldIcons->IndexFromFieldIndex(fiIndex);
-		break;
-	}
-	case BOLOTA_TYPE_DATE:
-		tvi.iImage = m_imlFieldIcons->Calendar();
-		tvi.iSelectedImage = m_imlFieldIcons->Calendar();
-		break;
-	}
+	bool bRetain = false;
+	LPTSTR szText = SetTreeViewItemField(&tvi, field, &bRetain);
 
 	// Create the Tree-View insertion object.
 	TVINSERTSTRUCT tvins;
@@ -275,13 +254,20 @@ void BolotaView::SelectTreeViewItem(HTREEITEM hti) {
  * @param field New field to be reloaded into the node.
  */
 void BolotaView::RefreshField(HTREEITEM hti, Field *field) {
-	// Refresh the node.
+	// Setup new node information.
 	TVITEM tvi;
-	tvi.mask = TVIF_TEXT | TVIF_PARAM;
+	bool bRetain = false;
+	LPTSTR szText = SetTreeViewItemField(&tvi, field, &bRetain);
 	tvi.hItem = hti;
-	tvi.pszText = const_cast<LPTSTR>(field->Text()->GetNativeString());
-	tvi.lParam = reinterpret_cast<LPARAM>(field);
+
+	// Update the node.
 	TreeView_SetItem(m_hWnd, &tvi);
+
+	// Release the display text if needed.
+	if (!bRetain) {
+		free(szText);
+		szText = NULL;
+	}
 
 	// Select the refreshed node and check the consistency of the tree.
 	SelectTreeViewItem(hti);
@@ -444,8 +430,8 @@ LRESULT BolotaView::OpenFieldManager(FieldManagerDialog::DialogType type) {
 	}
 
 	// Setup and open the manager dialog.
-	FieldManagerDialog dlgManager(this->m_hInst, this->m_hWnd, type,
-		(fldNew) ? &fldNew : &field, field);
+	FieldManagerDialog dlgManager(this->m_hInst, this->m_hWnd, m_imlFieldIcons,
+		type, (fldNew) ? &fldNew : &field, field);
 	INT_PTR iRet = dlgManager.ShowModal();
 
 	// Check if the dialog returned from a Cancel operation.
@@ -857,12 +843,12 @@ bool BolotaView::ShowContextMenu(int xPos, int yPos) {
  *          bRetain is FALSE.
  *
  * @param field   Field to be displayed.
- * @param bRetain Optional. Returns if we should NOT free the text after its
+ * @param bRetain Optional. Returns if we should NOT free the text after it's
  *                returned and we use it.
  *
  * @return Properly formatted string for displaying the contents of the field.
  */
-LPTSTR BolotaView::FieldDisplayText(Field *field, bool *bRetain) {
+LPTSTR BolotaView::FieldDisplayText(Field *field, bool *bRetain) const {
 	LPTSTR szText = const_cast<LPTSTR>(field->Text()->GetNativeString());
 	size_t ulLength = 22 + 1 + _tcslen(szText);
 	if (bRetain)
@@ -891,6 +877,49 @@ LPTSTR BolotaView::FieldDisplayText(Field *field, bool *bRetain) {
 }
 
 /**
+ * Sets up a Tree-View item to be associated with a field. This will change the
+ * entire Tree-View item to have the information associated with the field.
+ *
+ * @warning This method allocates memory which may need to be freed by you if
+ *          bRetain is FALSE.
+ *
+ * @param lptvi   Pointer to the TVITEM structure to change.
+ * @param field   Associated field.
+ * @param bRetain Returns if we should NOT free the text after it's returned and
+ *                we use it.
+ *
+ * @return Text used in the Tree-View item. Must be free'd by you if bRetain is
+ *         FALSE.
+ */
+LPTSTR BolotaView::SetTreeViewItemField(LPTVITEM lptvi, Field *field,
+										bool *bRetain) const {
+	// Get the proper display string.
+	LPTSTR szText = FieldDisplayText(field, bRetain);
+
+	lptvi->mask = TVIF_TEXT | TVIF_IMAGE | TVIF_SELECTEDIMAGE | TVIF_PARAM;
+	lptvi->iImage = m_imlFieldIcons->Bullet();
+	lptvi->iSelectedImage = m_imlFieldIcons->Bullet();
+	lptvi->pszText = szText;
+	lptvi->lParam = reinterpret_cast<LPARAM>(field);
+
+	// Handle fields with icons.
+	switch (field->Type()) {
+	case BOLOTA_TYPE_ICON: {
+		field_icon_t fiIndex = static_cast<IconField*>(field)->IconIndex();
+		lptvi->iImage = m_imlFieldIcons->IndexFromFieldIndex(fiIndex);
+		lptvi->iSelectedImage = m_imlFieldIcons->IndexFromFieldIndex(fiIndex);
+		break;
+	}
+	case BOLOTA_TYPE_DATE:
+		lptvi->iImage = m_imlFieldIcons->Calendar();
+		lptvi->iSelectedImage = m_imlFieldIcons->Calendar();
+		break;
+	}
+
+	return szText;
+}
+
+/**
  * Sets up an open/save file dialog structure.
  *
  * @param szFilename Pointer to store (and retrieve) the path to the file.
@@ -899,7 +928,7 @@ LPTSTR BolotaView::FieldDisplayText(Field *field, bool *bRetain) {
  * @return TRUE if the operation was successful. FALSE if the user canceled or
  *         an error occurred.
  */
-bool BolotaView::ShowFileDialog(LPTSTR szFilename, bool bSave) {
+bool BolotaView::ShowFileDialog(LPTSTR szFilename, bool bSave) const {
 	// Setup file dialog.
 	OPENFILENAME ofn;
 	ZeroMemory(&ofn, sizeof(OPENFILENAME));

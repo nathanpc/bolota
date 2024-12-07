@@ -84,6 +84,7 @@ namespace Bolota {
 
 		FieldTypeList() {
 			list.push_back(new FieldType(BOLOTA_TYPE_TEXT, _T("Text")));
+			list.push_back(new FieldType(BOLOTA_TYPE_ICON, _T("Icon with Text")));
 			list.push_back(new FieldType(BOLOTA_TYPE_DATE, _T("Date & Time")));
 		};
 

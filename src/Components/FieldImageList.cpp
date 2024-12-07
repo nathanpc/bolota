@@ -83,6 +83,17 @@ UINT8 FieldImageList::Calendar() const {
 }
 
 /**
+ * Gets the icon label in the ImageList from a Bolota field icon index.
+ *
+ * @param usIndex Bolota field icon index.
+ *
+ * @return ImageList icon label.
+ */
+LPCTSTR FieldImageList::LabelFromFieldIndex(field_icon_t usIndex) const {
+	return GetLabel(IndexFromFieldIndex(usIndex));
+}
+
+/**
  * Gets the icon index in the ImageList from a Bolota field icon index.
  *
  * @param usIndex Bolota field icon index.

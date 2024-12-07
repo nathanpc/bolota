@@ -10,6 +10,7 @@
 
 #include <windowsx.h>
 
+#include "Exceptions/SystemException.h"
 #include "Bolota/DateField.h"
 
 // Spacing between controls.
@@ -28,21 +29,24 @@ using namespace Bolota;
 /**
  * Initializes the dialog window object.
  *
- * @param hInst      Application's instance that this dialog belongs to.
- * @param hwndParent Parent window handle.
- * @param field      Field to be associated with this dialog.
- * @param context    Field providing context to the operation.
+ * @param hInst         Application's instance that this dialog belongs to.
+ * @param hwndParent    Parent window handle.
+ * @param imlFieldIcons Field icons ImageList manager.
+ * @param field         Field to be associated with this dialog.
+ * @param context       Field providing context to the operation.
  */
 FieldManagerDialog::FieldManagerDialog(HINSTANCE& hInst, HWND& hwndParent,
-									   DialogType type, Field **field,
-									   Field *context) :
+									   FieldImageList *imlFieldIcons, DialogType type,
+									   Field **field, Field *context) :
 	DialogWindow(hInst, hwndParent, IDD_FIELDMAN) {
 	SetType(type);
+	m_imlFieldIcons = imlFieldIcons;
 	
 	SetAlternativeSelected(false);
 	m_field = field;
 	m_context = context;
 	m_fieldType = NULL;
+	m_fiIndex = BOLOTA_ICON_BATTERY;
 }
 
 /*
@@ -82,14 +86,27 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 		hDlg, NULL, this->hInst, NULL);
 	DateTime_SetFormat(dtpTimestamp, _T("yyyy'-'MM'-'dd HH':'mm':'ss"));
 
+	// Create field icon ComboBoxEx.
+	cbeFieldIcon = CreateWindowEx(0, WC_COMBOBOXEX, NULL,
+		WS_CHILD | WS_TABSTOP | CBS_DROPDOWN,
+		rcEdit.left, rcEdit.top, 110, 150,
+		hDlg, NULL, this->hInst, NULL);
+	SetupFieldIconCombo();
+
 	// Set the content of the editor fields.
 	if (AssociatedField()->HasText())
 		SetWindowText(txtValue, AssociatedField()->Text()->GetNativeString());
 	if (AssociatedField()->Type() == BOLOTA_TYPE_DATE) {
+		// Set timestamp of Date Time Picker.
 		DateField *field = static_cast<DateField*>(AssociatedField());
 		DateTime_SetSystemtime(dtpTimestamp, GDT_VALID,
 			(LPARAM)&field->ToSystemTime());
 		m_stTimestamp = field->ToSystemTime();
+	} else if (AssociatedField()->Type() == BOLOTA_TYPE_ICON) {
+		// Set field icon in ComboBox.
+		IconField *field = static_cast<IconField*>(AssociatedField());
+		m_fiIndex = field->IconIndex();
+		ComboBox_SetCurSel(cbeFieldIcon, m_fiIndex - 1);
 	}
 
 	// Set up the type ComboBox and switch to the correct layout for the dialog.
@@ -129,6 +146,11 @@ INT_PTR FieldManagerDialog::OnTypeChange(int index) {
 	RECT rcDTP;
 	GetWindowRect(dtpTimestamp, &rcDTP);
 	RectScreenToClient(&rcDTP, hDlg);
+	
+	// Get icon combobox window position and dimensions.
+	RECT rcCBE;
+	GetWindowRect(cbeFieldIcon, &rcCBE);
+	RectScreenToClient(&rcCBE, hDlg);
 
 	// Handle each type change.
 	if (m_fieldType->code == BOLOTA_TYPE_TEXT) {
@@ -136,13 +158,22 @@ INT_PTR FieldManagerDialog::OnTypeChange(int index) {
 			rcEditorArea.right - rcEditorArea.left,
 			rcEditorArea.bottom - rcEditorArea.top, TRUE);
 		ShowWindow(dtpTimestamp, SW_HIDE);
+		ShowWindow(cbeFieldIcon, SW_HIDE);
 		ShowWindow(txtValue, SW_SHOW);
 	} else if (m_fieldType->code == BOLOTA_TYPE_DATE) {
 		MoveWindow(txtValue, rcDTP.right + CONTROL_SPACING, rcEditorArea.top,
 			rcEditorArea.right - (rcDTP.right + CONTROL_SPACING),
 			rcEditorArea.bottom - rcEditorArea.top, TRUE);
+		ShowWindow(cbeFieldIcon, SW_HIDE);
 		ShowWindow(txtValue, SW_SHOW);
 		ShowWindow(dtpTimestamp, SW_SHOW);
+	} else if (m_fieldType->code == BOLOTA_TYPE_ICON) {
+		MoveWindow(txtValue, rcCBE.right + CONTROL_SPACING, rcEditorArea.top,
+			rcEditorArea.right - (rcCBE.right + CONTROL_SPACING),
+			rcEditorArea.bottom - rcEditorArea.top, TRUE);
+		ShowWindow(dtpTimestamp, SW_HIDE);
+		ShowWindow(txtValue, SW_SHOW);
+		ShowWindow(cbeFieldIcon, SW_SHOW);
 	}
 
 	return TRUE;
@@ -165,6 +196,9 @@ bool FieldManagerDialog::OnOK() {
 		case BOLOTA_TYPE_DATE:
 			*m_field = new DateField();
 			break;
+		case BOLOTA_TYPE_ICON:
+			*m_field = new IconField();
+			break;
 		default:
 			MsgBoxError(hDlg, _T("Unknown field type"),
 				_T("This type of field conversion wasn't yet implemented."));
@@ -182,10 +216,14 @@ skipreplace:
 	switch (AssociatedField()->Type()) {
 	case BOLOTA_TYPE_TEXT:
 		break;
-	case BOLOTA_TYPE_DATE:
-	{
+	case BOLOTA_TYPE_DATE: {
 		DateField *field = static_cast<DateField*>(AssociatedField());
 		field->SetTimestamp(&m_stTimestamp);
+		break;
+	}
+	case BOLOTA_TYPE_ICON: {
+		IconField *field = static_cast<IconField*>(AssociatedField());
+		field->SetIconIndex(m_fiIndex);
 		break;
 	}
 	default:
@@ -259,10 +297,10 @@ bool FieldManagerDialog::OnCancel() {
  */
 
 /**
- * Sets up the field type combobox and selects the current field type.
+ * Sets up the field type ComboBox and selects the current field type.
  */
 void FieldManagerDialog::SetupFieldTypeCombo() {
-	uint8_t i = 0;
+	UINT8 i = 0;
 
 	// Add field types to the combobox.
 	for (i = 0; i < Bolota::fieldTypesList.size(); ++i) {
@@ -278,6 +316,38 @@ void FieldManagerDialog::SetupFieldTypeCombo() {
 			break;
 		}
 	}
+}
+
+/**
+ * Sets up the field icon ComboBoxEx.
+ */
+void FieldManagerDialog::SetupFieldIconCombo() {
+	// Add field icons to the ComboBox.
+	for (UINT8 i = 0; i < FieldImageList::NumAvailableIcons(); ++i) {
+		field_icon_t fi = IconField::IconList[i];
+		UINT8 usFieldIconIndex = m_imlFieldIcons->IndexFromFieldIndex(fi);
+
+		// Build up the item.
+		COMBOBOXEXITEM cbei = {0};
+		cbei.mask = CBEIF_TEXT | CBEIF_IMAGE | CBEIF_SELECTEDIMAGE |
+			CBEIF_LPARAM;
+		cbei.iItem = -1;
+		cbei.pszText = (LPTSTR)m_imlFieldIcons->LabelFromFieldIndex(fi);
+		cbei.iImage = usFieldIconIndex;
+		cbei.iSelectedImage = usFieldIconIndex;
+		cbei.lParam = fi;
+
+		// Add the item to the ComboBox.
+		int iRet = SendMessage(cbeFieldIcon, CBEM_INSERTITEM, 0, (LPARAM)&cbei);
+		if (iRet == -1) {
+			throw SystemException("Failed to insert item into field icons "
+				"ComboBoxEx");
+		}
+	}
+
+	// Set the ComboBoxEx image list.
+	SendMessage(cbeFieldIcon, CBEM_SETIMAGELIST, 0,
+		(LPARAM)m_imlFieldIcons->Handle());
 }
 
 /**
@@ -514,8 +584,16 @@ INT_PTR CALLBACK FieldManagerDialog::DlgProc(HWND hDlg, UINT wMsg,
 		case WM_NOTIFY:
 			switch (((LPNMHDR)lParam)->code) {
 			case DTN_DATETIMECHANGE:
+				// Date Time Picker value changed.
 				if (((LPNMDATETIMECHANGE)lParam)->dwFlags == GDT_VALID)
 					m_stTimestamp = ((LPNMDATETIMECHANGE)lParam)->st;
+				break;
+			case CBEN_ENDEDIT:
+				// ComboBoxEx selection changed.
+				if (((LPNMCBEENDEDIT)lParam)->iNewSelection != CB_ERR) {
+					m_fiIndex = (field_icon_t)(((LPNMCBEENDEDIT)
+						lParam)->iNewSelection + 1);
+				}
 				break;
 			}
 			break;

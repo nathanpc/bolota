@@ -15,6 +15,7 @@
 
 #include "stdafx.h"
 #include "Utilities/DialogWindow.h"
+#include "Components/FieldImageList.h"
 #include "Bolota/Field.h"
 
 /**
@@ -38,6 +39,8 @@ protected:
 	Bolota::FieldType *m_fieldType;
 	bool m_bAlternative;
 	SYSTEMTIME m_stTimestamp;
+	FieldImageList *m_imlFieldIcons;
+	field_icon_t m_fiIndex;
 	RECT rcEditorArea;
 
 	// Controls
@@ -45,6 +48,7 @@ protected:
 	HWND txtValue;
 	HWND cmbType;
 	HWND dtpTimestamp;
+	HWND cbeFieldIcon;
 	HWND btnOK;
 	HWND btnAltOK;
 	HWND btnCancel;
@@ -64,6 +68,7 @@ protected:
 
 	// Setups
 	void SetupFieldTypeCombo();
+	void SetupFieldIconCombo();
 	bool SetupEditControls();
 	bool SetupAppendControls();
 	bool SetupPrependControls();
@@ -79,7 +84,8 @@ protected:
 
 public:
 	// Constructors and destructors.
-	FieldManagerDialog(HINSTANCE& hInst, HWND& hwndParent, DialogType type,
+	FieldManagerDialog(HINSTANCE& hInst, HWND& hwndParent,
+		FieldImageList *imlFieldIcons, DialogType type,
 		Bolota::Field **field, Bolota::Field *context);
 
 	// Getters
