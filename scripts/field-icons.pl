@@ -59,22 +59,22 @@ sub replace_section {
 
 # Updates the resources definitions.
 sub update_resources {
-	my ($vsname, $bullets, $icons) = @_;
+	my ($bullets, $icons) = @_;
 
 	# Make section lines.
-	print "Updating $vsname resources files... ";
+	print "Updating icons resource snippet file... ";
 	my @lines = ();
 	for my $icon (@$bullets) {
-		push @lines, sprintf('IDI_FI%-17s ICON                    ' .
+		push @lines, sprintf('IDI_FI%-17s ICON  DISCARDABLE       ' .
 			'"../icons/fields/%s.ico"', uc($icon), $icon) . "\r\n";
 	}
 	for my $icon (@$icons) {
-		push @lines, sprintf('IDI_FI_%-16s ICON                    ' .
+		push @lines, sprintf('IDI_FI_%-16s ICON  DISCARDABLE       ' .
 			'"../icons/fields/%s.ico"', uc($icon), $icon) . "\r\n";
 	}
 
 	# Replace the field icons section in the resources file.
-	my $fpath = PROJECT_ROOT . "/$vsname/Bolota.rc";
+	my $fpath = PROJECT_ROOT . "/res/snippets/icons.rc";
 	replace_section($fpath, \@lines);
 }
 
@@ -206,7 +206,7 @@ sub main {
 	}
 	
 	# Update files.
-	update_resources('vs2012', \@bullets, \@icons);
+	update_resources(\@bullets, \@icons);
 	update_shared_ids(3000, \@bullets, \@icons);
 	update_imagelist(\@icons);
 	update_icon_field_enum(\@icons);

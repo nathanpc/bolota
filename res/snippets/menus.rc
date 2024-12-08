@@ -1,0 +1,40 @@
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDC_BOLOTA MENU DISCARDABLE
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New...",                     IDM_FILE_NEW
+        MENUITEM "&Open...",                    IDM_FILE_OPEN
+        MENUITEM "&Reload",                     IDM_FILE_RELOAD
+        MENUITEM SEPARATOR
+        MENUITEM "&Save",                       IDM_FILE_SAVE
+        MENUITEM "Save &As...",                 IDM_FILE_SAVEAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Properties...",              IDM_FILE_PROPERTIES
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       IDM_EXIT
+    END
+    POPUP "Fie&ld"
+    BEGIN
+        MENUITEM "Ed&it...",                    IDM_FIELD_EDIT
+        MENUITEM "&Delete...",                  IDM_FIELD_DELETE
+        MENUITEM SEPARATOR
+        MENUITEM "Prepend Fie&ld...",           IDM_FIELD_PREPEND
+        MENUITEM "A&ppend Field...",            IDM_FIELD_APPEND
+        MENUITEM "Cre&ate Child Field...",      IDM_FIELD_CREATECHILD
+        MENUITEM SEPARATOR
+        MENUITEM "Move &Up",                    IDM_FIELD_MOVEUP
+        MENUITEM "Move Dow&n",                  IDM_FIELD_MOVEDOWN
+        MENUITEM SEPARATOR
+        MENUITEM "Inden&t",                     IDM_FIELD_INDENT
+        MENUITEM "D&e-indent",                  IDM_FIELD_DEINDENT
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About...",                   IDM_ABOUT
+    END
+END

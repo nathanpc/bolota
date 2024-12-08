@@ -32,45 +32,45 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_BOLOTA              ICON                    "../icons/bolota-icon.ico"
-IDI_SMALL               ICON                    "../icons/bolota-icon.ico"
+IDI_BOLOTA              ICON  DISCARDABLE       "../icons/bolota-icon.ico"
+IDI_SMALL               ICON  DISCARDABLE       "../icons/bolota-icon.ico"
 
 // Blank icon.
-IDI_BLANK               ICON                    "../icons/blank.ico"
+IDI_BLANK               ICON  DISCARDABLE       "../icons/blank.ico"
 
 // Begin field icons.
-IDI_FI_BULLET1          ICON                    "../icons/fields/_Bullet1.ico"
-IDI_FI_BATTERY          ICON                    "../icons/fields/Battery.ico"
-IDI_FI_BOX              ICON                    "../icons/fields/Box.ico"
-IDI_FI_CALENDAR         ICON                    "../icons/fields/Calendar.ico"
-IDI_FI_CAMERA           ICON                    "../icons/fields/Camera.ico"
-IDI_FI_CHECK            ICON                    "../icons/fields/Check.ico"
-IDI_FI_CLIPBOARD        ICON                    "../icons/fields/Clipboard.ico"
-IDI_FI_CLOCK            ICON                    "../icons/fields/Clock.ico"
-IDI_FI_CPU              ICON                    "../icons/fields/CPU.ico"
-IDI_FI_FIND             ICON                    "../icons/fields/Find.ico"
-IDI_FI_FOLDER           ICON                    "../icons/fields/Folder.ico"
-IDI_FI_GEAR             ICON                    "../icons/fields/Gear.ico"
-IDI_FI_HELP             ICON                    "../icons/fields/Help.ico"
-IDI_FI_HISTORY          ICON                    "../icons/fields/History.ico"
-IDI_FI_LAPTOP           ICON                    "../icons/fields/Laptop.ico"
-IDI_FI_LIGHT            ICON                    "../icons/fields/Light.ico"
-IDI_FI_LOVE             ICON                    "../icons/fields/Love.ico"
-IDI_FI_MEN              ICON                    "../icons/fields/Men.ico"
-IDI_FI_MONEY            ICON                    "../icons/fields/Money.ico"
-IDI_FI_MOVIE            ICON                    "../icons/fields/Movie.ico"
-IDI_FI_PLUS             ICON                    "../icons/fields/Plus.ico"
-IDI_FI_REDO             ICON                    "../icons/fields/Redo.ico"
-IDI_FI_REMOVE           ICON                    "../icons/fields/Remove.ico"
-IDI_FI_SIGNPOST         ICON                    "../icons/fields/Signpost.ico"
-IDI_FI_SOUND            ICON                    "../icons/fields/Sound.ico"
-IDI_FI_STAR             ICON                    "../icons/fields/Star.ico"
-IDI_FI_STOP             ICON                    "../icons/fields/Stop.ico"
-IDI_FI_TAGS             ICON                    "../icons/fields/Tags.ico"
-IDI_FI_TRASH            ICON                    "../icons/fields/Trash.ico"
-IDI_FI_UNDO             ICON                    "../icons/fields/Undo.ico"
-IDI_FI_WOMAN            ICON                    "../icons/fields/Woman.ico"
-IDI_FI_WRENCH           ICON                    "../icons/fields/Wrench.ico"
+IDI_FI_BULLET1          ICON  DISCARDABLE       "../icons/fields/_Bullet1.ico"
+IDI_FI_BATTERY          ICON  DISCARDABLE       "../icons/fields/Battery.ico"
+IDI_FI_BOX              ICON  DISCARDABLE       "../icons/fields/Box.ico"
+IDI_FI_CALENDAR         ICON  DISCARDABLE       "../icons/fields/Calendar.ico"
+IDI_FI_CAMERA           ICON  DISCARDABLE       "../icons/fields/Camera.ico"
+IDI_FI_CHECK            ICON  DISCARDABLE       "../icons/fields/Check.ico"
+IDI_FI_CLIPBOARD        ICON  DISCARDABLE       "../icons/fields/Clipboard.ico"
+IDI_FI_CLOCK            ICON  DISCARDABLE       "../icons/fields/Clock.ico"
+IDI_FI_CPU              ICON  DISCARDABLE       "../icons/fields/CPU.ico"
+IDI_FI_FIND             ICON  DISCARDABLE       "../icons/fields/Find.ico"
+IDI_FI_FOLDER           ICON  DISCARDABLE       "../icons/fields/Folder.ico"
+IDI_FI_GEAR             ICON  DISCARDABLE       "../icons/fields/Gear.ico"
+IDI_FI_HELP             ICON  DISCARDABLE       "../icons/fields/Help.ico"
+IDI_FI_HISTORY          ICON  DISCARDABLE       "../icons/fields/History.ico"
+IDI_FI_LAPTOP           ICON  DISCARDABLE       "../icons/fields/Laptop.ico"
+IDI_FI_LIGHT            ICON  DISCARDABLE       "../icons/fields/Light.ico"
+IDI_FI_LOVE             ICON  DISCARDABLE       "../icons/fields/Love.ico"
+IDI_FI_MEN              ICON  DISCARDABLE       "../icons/fields/Men.ico"
+IDI_FI_MONEY            ICON  DISCARDABLE       "../icons/fields/Money.ico"
+IDI_FI_MOVIE            ICON  DISCARDABLE       "../icons/fields/Movie.ico"
+IDI_FI_PLUS             ICON  DISCARDABLE       "../icons/fields/Plus.ico"
+IDI_FI_REDO             ICON  DISCARDABLE       "../icons/fields/Redo.ico"
+IDI_FI_REMOVE           ICON  DISCARDABLE       "../icons/fields/Remove.ico"
+IDI_FI_SIGNPOST         ICON  DISCARDABLE       "../icons/fields/Signpost.ico"
+IDI_FI_SOUND            ICON  DISCARDABLE       "../icons/fields/Sound.ico"
+IDI_FI_STAR             ICON  DISCARDABLE       "../icons/fields/Star.ico"
+IDI_FI_STOP             ICON  DISCARDABLE       "../icons/fields/Stop.ico"
+IDI_FI_TAGS             ICON  DISCARDABLE       "../icons/fields/Tags.ico"
+IDI_FI_TRASH            ICON  DISCARDABLE       "../icons/fields/Trash.ico"
+IDI_FI_UNDO             ICON  DISCARDABLE       "../icons/fields/Undo.ico"
+IDI_FI_WOMAN            ICON  DISCARDABLE       "../icons/fields/Woman.ico"
+IDI_FI_WRENCH           ICON  DISCARDABLE       "../icons/fields/Wrench.ico"
 // End of field icons.
 
 /////////////////////////////////////////////////////////////////////////////
@@ -78,7 +78,7 @@ IDI_FI_WRENCH           ICON                    "../icons/fields/Wrench.ico"
 // Menu
 //
 
-IDC_BOLOTA MENU
+IDC_BOLOTA MENU DISCARDABLE
 BEGIN
     POPUP "&File"
     BEGIN
@@ -114,13 +114,12 @@ BEGIN
     END
 END
 
-
 /////////////////////////////////////////////////////////////////////////////
 //
 // Accelerator
 //
 
-IDC_BOLOTA ACCELERATORS
+IDC_BOLOTA ACCELERATORS MOVEABLE PURE
 BEGIN
     "?",            IDM_ABOUT,              ASCII,  ALT, NOINVERT
     VK_F1,          IDM_ABOUT,              VIRTKEY, NOINVERT
@@ -147,13 +146,12 @@ BEGIN
     VK_F2,          IDM_FILE_PROPERTIES,    VIRTKEY, NOINVERT
 END
 
-
 /////////////////////////////////////////////////////////////////////////////
 //
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62
+IDD_ABOUTBOX DIALOGEX DISCARDABLE 0, 0, 170, 62
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "About Bolota"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -164,7 +162,7 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,113,41,50,14,WS_GROUP
 END
 
-IDD_FIELDMAN DIALOGEX 0, 0, 300, 61
+IDD_FIELDMAN DIALOGEX DISCARDABLE 0, 0, 300, 61
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 EXSTYLE WS_EX_TOPMOST | WS_EX_TOOLWINDOW
 CAPTION "Field Manager"
@@ -178,7 +176,7 @@ BEGIN
     PUSHBUTTON      "Alt OK",IDC_FM_BTNALTOK,135,40,50,14
 END
 
-IDD_DOCPROPS DIALOGEX 0, 0, 250, 119
+IDD_DOCPROPS DIALOGEX DISCARDABLE 0, 0, 250, 119
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Document Properties"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
@@ -192,7 +190,6 @@ BEGIN
     LTEXT           "Creation Date:",IDC_STATIC,7,65,236,8
     CONTROL         "",IDC_DP_DTPTIMESTAMP,"SysDateTimePick32",DTS_RIGHTALIGN | DTS_APPCANPARSE | DTS_LONGDATEFORMAT | WS_TABSTOP,7,76,236,15
 END
-
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -227,7 +224,6 @@ BEGIN
     END
 END
 #endif    // APSTUDIO_INVOKED
-
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
