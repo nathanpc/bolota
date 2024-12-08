@@ -106,7 +106,7 @@ void UString::SetString(char *mbstr) {
 
 	// Set the UTF-8 string and cache its length.
 	m_mbstr = mbstr;
-	m_length = strlen(mbstr);
+	m_length = (mbstr) ? strlen(mbstr) : 0;
 }
 
 /**
@@ -128,7 +128,7 @@ void UString::SetString(wchar_t *wstr) {
 
 	// Set the UTF-8 string and cache its length.
 	m_wstr = wstr;
-	m_length = wcslen(wstr);
+	m_length = (wstr) ? wcslen(wstr) : 0;
 }
 
 /**
