@@ -138,6 +138,7 @@ BEGIN
     "K",            IDM_FIELD_MOVEUP,       VIRTKEY, NOINVERT
     VK_UP,          IDM_FIELD_MOVEUP,       VIRTKEY, SHIFT, NOINVERT
     "U",            IDM_FIELD_PREPEND,      VIRTKEY, NOINVERT
+    "N",            IDM_FILE_NEW,           VIRTKEY, CONTROL, NOINVERT
     "O",            IDM_FILE_OPEN,          VIRTKEY, CONTROL, NOINVERT
     "R",            IDM_FILE_RELOAD,        VIRTKEY, CONTROL, NOINVERT
     VK_F5,          IDM_FILE_RELOAD,        VIRTKEY, NOINVERT

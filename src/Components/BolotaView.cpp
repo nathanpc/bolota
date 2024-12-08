@@ -79,12 +79,35 @@ BolotaView::~BolotaView() {
  */
 
 /**
+ * Creates a brand new blank document for the user to start from a clean slate.
+ */
+void BolotaView::NewDocument() {
+	// Prevent the user from doing something stupid.
+	if (!Close())
+		return;
+
+	// Close the current document first and create a new one.
+	CloseDocument();
+	m_doc = new Document(new TextField(_T("")), new TextField(_T("")),
+		DateField::Now());
+
+	// Populate the view and show the properties dialog for initial changes.
+	ReloadView();
+	SetDirty(false);
+	EditProperties();
+}
+
+/**
  * Associates a document with the view and populates it.
  *
  * @param doc Document to be associated with the view. Will take ownership of
  *            it and control its allocation.
  */
 void BolotaView::OpenDocument(Document *doc) {
+	// Prevent the user from doing something stupid.
+	if (!Close())
+		return;
+
 	// Close the current document first and take ownership of the new one.
 	CloseDocument();
 	m_doc = doc;
@@ -100,6 +123,10 @@ void BolotaView::OpenDocument(Document *doc) {
 void BolotaView::CloseDocument() {
 	// Should we do anything?
 	if (m_doc == NULL)
+		return;
+
+	// Prevent the user from doing something stupid.
+	if (!Close())
 		return;
 
 	// Clear the Tree-View.
@@ -418,9 +445,18 @@ void BolotaView::CheckTreeConsistency(HTREEITEM hti) {
  * @return 0 if everything worked.
  */
 LRESULT BolotaView::OpenFieldManager(FieldManagerDialog::DialogType type) {
-	// Get the currently selected field in the Tree-View.
 	HTREEITEM hti = NULL;
-	Field *field = GetSelectedField(&hti, true);
+	Field *field = NULL;
+
+	// Handle the creation of the first field.
+	if (m_doc->IsEmpty()) {
+		m_doc->AppendTopic(new TextField(_T("")));
+		ReloadView(m_doc->FirstTopic());
+		type = FieldManagerDialog::DialogType::EditField;
+	}
+
+	// Get the currently selected field in the Tree-View.
+	field = GetSelectedField(&hti, true);
 	if (field == NULL)
 		return 1;
 	bool bFirstTopic = field == m_doc->FirstTopic();
@@ -771,6 +807,10 @@ bool BolotaView::OpenFile() {
  * @return TRUE if we should allow the document to be closed. FALSE otherwise.
  */
 bool BolotaView::Close() {
+	// Should we do anything?
+	if (m_doc == NULL)
+		return true;
+
 	// Check if we have unsaved changes and let the user decide what to do.
 	if (IsDirty()) {
 		int iAnswer = MsgBox(this->m_hwndParent, MB_YESNOCANCEL |
@@ -787,6 +827,9 @@ bool BolotaView::Close() {
 				return Close();
 		}
 	}
+
+	// Also make it clean just for good measure.
+	m_doc->SetDirty(false);
 
 	return true;
 }
@@ -1069,6 +1112,9 @@ void BolotaView::SetDirty(bool bDirty) {
  * @return Does this document currently contain unsaved changes?
  */
 bool BolotaView::IsDirty() const {
+	if (m_doc == NULL)
+		return false;
+
 	return m_doc->IsDirty();
 }
 

@@ -120,6 +120,9 @@ BOOL MainWindow::ResizeWindows(HWND hwndParent) {
 LRESULT MainWindow::OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent) {
 	try {
 		switch (wmId) {
+		case IDM_FILE_NEW:
+			m_wndBolota->NewDocument();
+			return 0;
 		case IDM_FILE_SAVE:
 			m_wndBolota->Save(false);
 			return 0;
