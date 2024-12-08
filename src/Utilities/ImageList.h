@@ -14,6 +14,7 @@
 
 #include <windows.h>
 #include <commctrl.h>
+#include <stdint.h>
 
 /**
  * Wraps and makes ImageLists more easy to deal with.
