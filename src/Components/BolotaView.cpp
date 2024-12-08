@@ -765,6 +765,33 @@ bool BolotaView::OpenFile() {
 }
 
 /**
+ * Handles a request to close the document, allowing us to prevent a close
+ * operation in the case of unsaved changes.
+ *
+ * @return TRUE if we should allow the document to be closed. FALSE otherwise.
+ */
+bool BolotaView::Close() {
+	// Check if we have unsaved changes and let the user decide what to do.
+	if (IsDirty()) {
+		int iAnswer = MsgBox(this->m_hwndParent, MB_YESNOCANCEL |
+			MB_ICONQUESTION, _T("Unsaved changes"),
+			_T("You have unsaved changes. Do you want to save them?"));
+
+		// Stop everything if the user selected Cancel.
+		if (iAnswer == IDCANCEL)
+			return false;
+
+		// Present a save dialog if the user selected Yes.
+		if (iAnswer == IDYES) {
+			if (!Save(false))
+				return Close();
+		}
+	}
+
+	return true;
+}
+
+/**
  * Opens the document properties editor dialog window and performs any updates
  * to the associated document.
  *

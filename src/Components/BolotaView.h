@@ -41,6 +41,7 @@ public:
 	virtual ~BolotaView();
 
 	// Document handling.
+	void NewDocument();
 	void OpenDocument(Bolota::Document *doc);
 	void CloseDocument();
 
@@ -52,6 +53,7 @@ public:
 	LRESULT DeindentField();
 	bool Save(bool bSaveAs);
 	bool OpenFile();
+	bool Close();
 	LRESULT EditProperties();
 	LRESULT ReloadView();
 	LRESULT ReloadView(Bolota::Field *fldSelected);

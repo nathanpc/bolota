@@ -193,22 +193,5 @@ bool MainWindow::OnContextMenu(HWND hWnd, int xPos, int yPos) {
  * @return TRUE if we should allow the window to close. FALSE otherwise.
  */
 bool MainWindow::OnClose() const {
-	// Check if we have unsaved changes and let the user decide what to do.
-	if (m_wndBolota->IsDirty()) {
-		int iAnswer = MsgBox(this->hWnd, MB_YESNOCANCEL | MB_ICONQUESTION,
-			_T("Unsaved changes"),
-			_T("You have unsaved changes. Do you want to save them?"));
-
-		// Stop everything if the user selected Cancel.
-		if (iAnswer == IDCANCEL)
-			return false;
-
-		// Present a save dialog if the user selected Yes.
-		if (iAnswer == IDYES) {
-			if (!m_wndBolota->Save(false))
-				return OnClose();
-		}
-	}
-
-	return true;
+	return m_wndBolota->Close();
 }
