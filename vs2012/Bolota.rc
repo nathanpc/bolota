@@ -91,7 +91,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Properties...",              IDM_FILE_PROPERTIES
         MENUITEM SEPARATOR
-        MENUITEM "E&xit",                       IDM_EXIT
+        MENUITEM "E&xit",                       IDM_FILE_EXIT
     END
     POPUP "Fie&ld"
     BEGIN
@@ -110,7 +110,7 @@ BEGIN
     END
     POPUP "&Help"
     BEGIN
-        MENUITEM "&About...",                   IDM_ABOUT
+        MENUITEM "&About...",                   IDM_HELP_ABOUT
     END
 END
 
@@ -121,8 +121,9 @@ END
 
 IDC_BOLOTA ACCELERATORS MOVEABLE PURE
 BEGIN
-    "?",            IDM_ABOUT,              ASCII,  ALT, NOINVERT
-    VK_F1,          IDM_ABOUT,              VIRTKEY, NOINVERT
+    "/",            IDM_HELP_ABOUT,         ASCII,  ALT, NOINVERT
+    "?",            IDM_HELP_ABOUT,         ASCII,  ALT, NOINVERT
+    VK_F1,          IDM_HELP_ABOUT,         VIRTKEY, NOINVERT
     "O",            IDM_FIELD_APPEND,       VIRTKEY, NOINVERT
     "P",            IDM_FIELD_CREATECHILD,  VIRTKEY, NOINVERT
     "H",            IDM_FIELD_DEINDENT,     VIRTKEY, NOINVERT
@@ -154,7 +155,7 @@ END
 IDD_ABOUTBOX DIALOGEX DISCARDABLE 0, 0, 170, 62
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "About Bolota"
-FONT 8, "MS Shell Dlg", 0, 0, 0x1
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     ICON            128,IDC_STATIC,14,14,21,20
     LTEXT           "Bolota, Version 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX

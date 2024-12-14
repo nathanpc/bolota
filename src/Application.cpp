@@ -277,10 +277,10 @@ LRESULT WndMainCommand(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
 		return wndMain->OnMenuCommand(wmId, wmEvent);
 
 	switch (wmId) {
-		case IDM_ABOUT:
+		case IDM_HELP_ABOUT:
 			AboutDialog(wndMain->hInst, hWnd).ShowModal();
 			return 0;
-		case IDM_EXIT:
+		case IDM_FILE_EXIT:
 			PostMessage(wndMain->hWnd, WM_CLOSE, (WPARAM)0, (LPARAM)0);
 			return 0;
 		default:
