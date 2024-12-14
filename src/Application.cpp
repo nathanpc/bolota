@@ -179,7 +179,7 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 		return NULL;
 	}
 
-#ifdef UNDERCE
+#ifdef UNDER_CE
 	// Set the window task switching icon.
 	HANDLE hIcon = LoadImage(hInst, MAKEINTRESOURCE(IDI_DESKTOP), IMAGE_ICON,
 		GetSystemMetrics(SM_CXICON), GetSystemMetrics(SM_CYICON), 0);
@@ -189,7 +189,7 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 	hIcon = LoadImage(hInst, MAKEINTRESOURCE(IDI_SMALL), IMAGE_ICON,
 		GetSystemMetrics(SM_CXSMICON), GetSystemMetrics(SM_CYSMICON), 0);
 	SendMessage(hWnd, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
-#endif
+#endif // UNDER_CE
 
 	// Show and update the window.
 	ShowWindow(hWnd, nCmdShow);

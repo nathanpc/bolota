@@ -95,6 +95,7 @@ protected:
 	LPTSTR FieldDisplayText(Bolota::Field *field, bool *bRetain) const;
 	LPTSTR SetTreeViewItemField(LPTVITEM lptvi, Bolota::Field *field,
 		bool *bRetain) const;
+	LPTSTR GetFilename(LPCTSTR szFilepath) const;
 	bool ShowFileDialog(LPTSTR szFilename, bool bSave) const;
 };
 

@@ -10,6 +10,10 @@
 #include "../stdafx.h"
 #include "../PropertiesDialog.h"
 
+#ifndef UNDER_CE
+	#include <shlwapi.h>
+#endif // !UNDER_CE
+
 // Zero-based index of the position of the Field menu in the parent's menu bar.
 #define PARENT_MENU_FIELD_IDX 1
 
@@ -762,7 +766,10 @@ bool BolotaView::Save(bool bSaveAs) {
 	try {
 		// Write the file and set the window title.
 		m_doc->WriteFile(szFilename, true);
-		SetWindowText(m_hwndParent, PathFindFileName(szFilename));
+		LPTSTR szBasename = GetFilename(szFilename);
+		SetWindowText(m_hwndParent, szBasename);
+		free(szBasename);
+		szBasename = NULL;
 
 		// Flag saved changes.
 		SetDirty(false);
@@ -1027,6 +1034,30 @@ LPTSTR BolotaView::SetTreeViewItemField(LPTVITEM lptvi, Field *field,
 	}
 
 	return szText;
+}
+
+
+/**
+ * Gets the basename of a filepath (aka just the file name).
+ *
+ * @warning This method allocates memory dynamically.
+ *
+ * @param szFilepath Full path to a file.
+ *
+ * @return Newly allocated string with just the filename in it.
+ */
+LPTSTR BolotaView::GetFilename(LPCTSTR szFilepath) const {
+	LPTSTR szFilename;
+
+#ifdef UNDER_CE
+	SHFILEINFO sfi = {0};
+	SHGetFileInfo(szFilepath, -1, &sfi, sizeof(SHFILEINFO), SHGFI_DISPLAYNAME);
+	szFilename = _tcsdup(sfi.szDisplayName);
+#else
+	szFilename = _tcsdup(PathFindFileName(szFilepath));
+#endif // UNDER_CE
+
+	return szFilename;
 }
 
 /**

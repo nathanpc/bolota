@@ -14,7 +14,7 @@
 #endif // _MSC_VER > 1000
 
 #include <windows.h>
-#include <exception>
+#include <stdexcept>
 
 // Generic message box.
 int MsgBox(HWND hwndParent, UINT uType, LPCTSTR szTitle, LPCTSTR szText);
