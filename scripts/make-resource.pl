@@ -13,6 +13,26 @@ use constant PROJECT_ROOT => dirname(dirname(abs_path($0)));
 use constant TEMPLATE_DIR => PROJECT_ROOT . '/res/templates';
 use constant SNIPPET_DIR  => PROJECT_ROOT . '/res/snippets';
 
+# Substitutes variables in a string.
+sub substitute_variables {
+	my ($vars, $str) = @_;
+	
+	# Check if we actually have a variable to replace.
+	while ($str =~ m/%(?<varname>[\w]+)%/) {
+		# Check if the variable is actually defined.
+		my $varname = $+{'varname'};
+		if (!exists($vars->{$varname})) {
+			print "ERROR: Variable \"$varname\" not found.\n";
+			return $str;
+		}
+		
+		# Substitute the variable.
+		$str =~ s/%\Q$varname\E%/$vars->{$varname}/g;
+	}
+	
+	return $str;
+}
+
 # Reads a snippet file and returns a line by line array of it.
 sub read_include {
 	my ($fname) = @_;
@@ -54,7 +74,7 @@ sub generate_rc {
 
 # Renders a template to its final destination.
 sub render_template {
-	my ($label, $tpname, $outfile) = @_;
+	my ($label, $tpname, $outfile, $vars) = @_;
 	
 	# Generate the rendered output lines.
 	print "Generating $label resource file:\n";
@@ -63,17 +83,28 @@ sub render_template {
 	# Write lines to the output file.
 	print '    Writing resource file... ';
 	open(my $fh, '>:encoding(UTF-8)', $outfile);
-	print $fh $_ for @lines;
+	print $fh substitute_variables($vars, $_) for @lines;
 	close($fh);
 	print "ok\n";
 }
 
 # Script's main entry point.
 sub main {
+	# Define variables.
+	my $vars = {
+		'font' => '"MS Shell Dlg", 400, 0, 0x1'
+	};
+
+	# Render desktop templates.
 	render_template('Visual Studio 2012', 'vs2012.rc', PROJECT_ROOT .
-		"/vs2012/Bolota.rc");
+		"/vs2012/Bolota.rc", $vars);
 	render_template('Visual C++ 6', 'vc6.rc', PROJECT_ROOT .
-		"/vc6/Bolota.rc");
+		"/vc6/Bolota.rc", $vars);
+		
+	# Windows CE templates.
+	$vars->{'font'} = '"System"';
+	render_template('eMbedded Visual C++ 3 (WinCE)', 'wince.rc', PROJECT_ROOT .
+		"/wince/Bolota.rc", $vars);
 }
 
 # Execute the script.
