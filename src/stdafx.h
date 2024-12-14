@@ -14,7 +14,6 @@
 // Windows Header Files
 #include <windows.h>
 #include <shellapi.h>
-#include <shlwapi.h>
 #include <commctrl.h>
 #include <commdlg.h>
 
@@ -27,7 +26,6 @@
 
 // C++ RunTime Header Files
 #include <stdexcept>
-#include <iostream>
 #include <string>
 
 // Create the equivalent of TCHAR for C++ strings.
@@ -57,6 +55,12 @@
 #if _MSC_VER <= 1200
 	#include <newcpp.h>
 #endif // _MSC_VER == 1200
+
+// Shims for Windows CE.
+#ifdef UNDER_CE
+	#include <stdint.h>
+	#include <wce_defs.h>
+#endif // UNDER_CE
 
 // Utilities
 #include "Utilities/MsgBoxes.h"

@@ -40,6 +40,11 @@
 #pragma once
 #endif
 
+// Shims for Windows CE.
+#ifdef UNDER_CE
+	#include <wce_defs.h>
+#endif // UNDER_CE
+
 #include <limits.h>
 #include "ssize_t.h"
 
@@ -61,6 +66,16 @@ extern "C++" {
 #ifdef __cplusplus
 }
 #endif
+
+
+// INT_PTR and UINT_PTR on Windows CE.
+#if defined(UNDER_CE) && !defined(INT_PTR)
+	typedef long INT_PTR, *PINT_PTR;
+#endif // defined(UNDER_CE) && !defined(INT_PTR)
+#if defined(UNDER_CE) && !defined(UINT_PTR)
+	typedef unsigned long UINT_PTR, *PUINT_PTR;
+#endif // defined(UNDER_CE) && !defined(UINT_PTR)
+
 
 // Define _W64 macros to mark types changing their size, like intptr_t.
 #ifndef _W64
