@@ -14,30 +14,28 @@
 #endif // _MSC_VER > 1000
 
 #include <windows.h>
-#include <stdexcept>
 #include <string>
 #if _MSC_VER <= 1200
 	#include <newcpp.h>
 #endif // _MSC_VER == 1200
 
+#include "SystemException.h"
 #include "Field.h"
-#include "../Exceptions/SystemException.h"
 
 namespace Bolota {
 	/**
 	 * Exception that's thrown whenever there's an inconsistency between related
 	 * fields.
 	 */
-	class ConsistencyException : public std::exception {
+	class ConsistencyException : public Error {
 	public:
 		Field *fieldReference;
 		Field *fieldExpected;
 		Field *fieldFound;
-		std::string strRelationship;
-		std::string strMessage;
+		tstring strRelationship;
 
 		ConsistencyException(Field *reference, Field *expected, Field *found,
-							 const char *relationship) {
+							 const TCHAR *relationship) {
 			// Set class properties.
 			fieldReference = reference;
 			fieldExpected = expected;
@@ -45,31 +43,29 @@ namespace Bolota {
 			strRelationship = relationship;
 
 			// Create a temporary buffer for building up a complex string.
-			char szBuffer[255];
-			szBuffer[254] = '\0';
+			TCHAR szBuffer[255];
+			szBuffer[254] = _T('\0');
 
 			// Build up our message string.
-			strMessage = "An inconsistency was found between fields ";
-			_snprintf(szBuffer, 254, "%p (reference), %p (expected), and %p "
-				"(found) in relation to their %s property." LINEND LINEND,
-				reference, expected, found, relationship);
+			tstring strMessage = _T("An inconsistency was found between ")
+				_T("fields ");
+			_sntprintf(szBuffer, 254, _T("%p (reference), %p (expected), and ")
+				_T("%p (found) in relation to their %s property.") LINENDT
+				LINENDT, reference, expected, found, relationship);
 			strMessage += szBuffer;
-			_snprintf(szBuffer, 254, "Reference (%p): %s" LINEND,
-				reference, reference->Text()->GetMultiByteString());
+			_sntprintf(szBuffer, 254, _T("Reference (%p): %s") LINENDT,
+				reference, reference->Text()->GetNativeString());
 			strMessage += szBuffer;
-			_snprintf(szBuffer, 254, "%s Expected (%p): %s" LINEND,
+			_sntprintf(szBuffer, 254, _T("%s Expected (%p): %s") LINENDT,
 				relationship, expected, (expected == NULL) ? NULL :
-				expected->Text()->GetMultiByteString());
+				expected->Text()->GetNativeString());
 			strMessage += szBuffer;
-			_snprintf(szBuffer, 254, "%s Found (%p): %s",
+			_sntprintf(szBuffer, 254, _T("%s Found (%p): %s"),
 				relationship, found, (found == NULL) ? NULL :
-				found->Text()->GetMultiByteString());
+				found->Text()->GetNativeString());
 			strMessage += szBuffer;
+			m_message->TakeOwnership(_tcsdup(strMessage.c_str()));
 		}
-
-		const char* what() const override {
-			return strMessage.c_str();
-		};
 	};
 
 	/**
@@ -96,12 +92,12 @@ namespace Bolota {
 		};
 
 	public:
-		FileHandleException(HANDLE hFile, bool bClose, const char *szMessage) :
+		FileHandleException(HANDLE hFile, bool bClose, const TCHAR *szMessage) :
 			SystemException(szMessage) {
 				Initialize(hFile, bClose);
 		};
 		FileHandleException(HANDLE hFile, bool bClose) :
-			SystemException("Unknown Bolota file handle exception") {
+			SystemException(_T("Unknown Bolota file handle exception")) {
 				Initialize(hFile, bClose);
 		};
 
@@ -121,8 +117,8 @@ namespace Bolota {
 	class InvalidMagic : public FileHandleException {
 	public:
 		InvalidMagic(HANDLE hFile) :
-			FileHandleException(hFile, true, "The file is not a valid Bolota "
-			"document") {};
+			FileHandleException(hFile, true, _T("The file is not a valid ")
+			_T("Bolota document")) {};
 	};
 
 	/**
@@ -131,39 +127,36 @@ namespace Bolota {
 	class InvalidVersion : public FileHandleException {
 	public:
 		InvalidVersion(HANDLE hFile) :
-			FileHandleException(hFile, true, "The document was saved with a "
-			"newer version of the application and may be incompatible with "
-			"this one") {};
+			FileHandleException(hFile, true, _T("The document was saved with ")
+			_T("a newer version of the application and may be incompatible ")
+			_T("with this one")) {};
 	};
 
 	/**
 	 * Thrown whenever there's an error while trying to read a document.
 	 */
 	class ReadError : public FileHandleException {
-	protected:
-		std::string m_strReadError;
-
 	public:
 		size_t ulPosition;
 
 		ReadError(HANDLE hFile, bool bClose) :
-			FileHandleException(hFile, bClose, "Failed to read file") {};
+			FileHandleException(hFile, bClose, _T("Failed to read file")) {};
 		ReadError(HANDLE hFile, size_t ulPosition, bool bClose) :
-			FileHandleException(hFile, bClose, "Failed to read file") {
+			FileHandleException(hFile, bClose, _T("Failed to read file")) {
 				Initialize(ulPosition);
 		};
 
 		virtual void Initialize(size_t ulPosition) {
 			// Get position index as string.
-			char szIndex[20];
-			_snprintf(szIndex, 19, "%lu", ulPosition);
-			szIndex[19] = '\0';
+			TCHAR szIndex[20];
+			_sntprintf(szIndex, 19, _T("%lu"), ulPosition);
+			szIndex[19] = _T('\0');
 
 			// Create the message.
 			this->ulPosition = ulPosition;
-			m_strReadError += "Failed to read file at position ";
-			m_strReadError += szIndex;
-			RefreshMessage(m_strReadError.c_str());
+			tstring strReadError = _T("Failed to read file at position ");
+			strReadError += szIndex;
+			RefreshMessage(strReadError.c_str());
 		};
 	};
 
@@ -186,17 +179,22 @@ namespace Bolota {
 			m_type = type;
 
 			// Get type number as string.
-			char szTypeNum[4];
-			_snprintf(szTypeNum, 3, "%u", type);
-			szTypeNum[3] = '\0';
+			TCHAR szTypeNum[4];
+			_sntprintf(szTypeNum, 3, _T("%u"), type);
+			szTypeNum[3] = _T('\0');
 
 			// Append more information to our message.
-			m_strReadError += ". Encountered an unknown field type ";
-			m_strReadError += szTypeNum;
-			m_strReadError += " '";
-			m_strReadError += static_cast<char>(m_type);
-			m_strReadError += "'";
-			RefreshMessage(m_strReadError.c_str());
+			tstring strReadError = Message()->GetNativeString();
+			strReadError += _T(". Encountered an unknown field type ");
+			strReadError += szTypeNum;
+			strReadError += _T(" '");
+#ifdef UNICODE
+			strReadError += (wchar_t)(L'\0' | m_type);
+#else
+			strReadError += static_cast<char>(m_type);
+#endif // UNICODE
+			strReadError += _T("'");
+			RefreshMessage(strReadError.c_str());
 		};
 	};
 }

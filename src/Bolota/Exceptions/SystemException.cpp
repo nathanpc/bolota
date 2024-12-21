@@ -12,7 +12,7 @@
  *
  * @param szMessage Optional. An error message to override the default one.
  */
-void SystemException::Initialize(const char *szMessage) {
+void SystemException::Initialize(const TCHAR *szMessage) {
 	// Get last error message.
 	LPTSTR szLastErrorMsg;
 	m_dwLastError = GetLastError();
@@ -25,30 +25,8 @@ void SystemException::Initialize(const char *szMessage) {
 	if (m_szLastErrorMessage)
 		free(m_szLastErrorMessage);
 
-#ifndef UNICODE
+	// Set the new error message and build up the full exception message.
 	m_szLastErrorMessage = szLastErrorMsg;
-#else
-	// Get required buffer size for the message conversion and allocate it.
-	int nLen = WideCharToMultiByte(CP_OEMCP, 0, szLastErrorMsg, -1, NULL, 0,
-		NULL, NULL);
-	if (nLen == 0)
-		goto failure;
-	m_szLastErrorMessage = (char *)malloc(nLen * sizeof(char));
-
-	// Perform the message conversion.
-	nLen = WideCharToMultiByte(CP_OEMCP, 0, szLastErrorMsg, -1,
-		m_szLastErrorMessage, nLen, NULL, NULL);
-	if (nLen == 0) {
-failure:
-		if (m_szLastErrorMessage)
-			free(m_szLastErrorMessage);
-		RefreshMessage("Something happened and while throwing an exception we "
-			"died trying to convert the Win32 message to MBCS");
-		return;
-	}
-#endif // !UNICODE
-
-	// Build up the full exception message.
 	RefreshMessage(szMessage);
 }
 
@@ -67,9 +45,10 @@ SystemException::~SystemException() {
  *
  * @param szMessage Optional. An error message to override the default one.
  */
-void SystemException::RefreshMessage(const char *szMessage) {
-	m_strMessage = (szMessage != NULL) ? szMessage : what();
-	m_strMessage += ": ";
+void SystemException::RefreshMessage(const TCHAR *szMessage) {
+	m_strMessage = (szMessage != NULL) ? szMessage :
+		m_message->GetNativeString();
+	m_strMessage += _T(": ");
 	m_strMessage += m_szLastErrorMessage;
 }
 
@@ -78,6 +57,6 @@ void SystemException::RefreshMessage(const char *szMessage) {
  *
  * @return Last error message from the system.
  */
-const char* SystemException::LastErrorMessage() const {
+const TCHAR* SystemException::LastErrorMessage() const {
 	return m_szLastErrorMessage;
 }

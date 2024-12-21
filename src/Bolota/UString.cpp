@@ -9,9 +9,13 @@
 #include "UString.h"
 
 #ifdef _WIN32
-#include <windows.h>
+	#include <windows.h>
 #endif // _WIN32
-#include <stdexcept>
+#ifdef UNDER_CE
+	#include <wce_string.h>
+#else
+	#include <stdexcept>
+#endif // UNDER_CE
 
 /**
  * Initializes an empty universal Unicode string.
@@ -181,7 +185,12 @@ wchar_t *UString::ToWideString(const char *mbstr) {
 failure:
 		if (wstr)
 			free(wstr);
+#ifndef UNDER_CE
 		throw std::exception("Failed to convert UTF-8 string to UTF-16");
+#else
+		MessageBox(NULL, _T("Failed to convert UTF-8 string to UTF-16"),
+			_T("Unicode conversion failed"), MB_OK | MB_ICONERROR);
+#endif // UNDER_CE
 	}
 #else
 	size_t len;
@@ -196,7 +205,12 @@ failure:
 	len = mbstowcs(wstr, mbstr, len);
 	if (len == (size_t)-1) {
 		free(wstr);
+#ifndef UNDER_CE
 		throw std::exception("Failed to convert UTF-8 string to UTF-16");
+#else
+		MessageBox(NULL, _T("Failed to convert UTF-8 string to UTF-16"),
+			_T("Unicode conversion failed"), MB_OK | MB_ICONERROR);
+#endif // UNDER_CE
 	}
 #endif // _WIN32
 
@@ -228,7 +242,12 @@ char *UString::ToMultiByteString(const wchar_t *wstr) {
 	nLen = WideCharToMultiByte(CP_OEMCP, 0, wstr, -1, mbstr, nLen, NULL, NULL);
 	if (nLen == 0) {
 failure:
+#ifndef UNDER_CE
 		throw std::exception("Failed to convert UTF-16 string to UTF-8");
+#else
+		MessageBox(NULL, _T("Failed to convert UTF-16 string to UTF-8"),
+			_T("Unicode conversion failed"), MB_OK | MB_ICONERROR);
+#endif // UNDER_CE
 	}
 
 	return mbstr;

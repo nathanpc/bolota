@@ -93,6 +93,7 @@ int MsgBoxLastError(HWND hwndParent) {
 	return nRet;
 }
 
+#ifndef UNDER_CE
 /**
  * C++ exception message box.
  *
@@ -142,4 +143,18 @@ failure:
 #endif // UNICODE
 
 	return nRet;
+}
+#endif // UNDER_CE
+
+/**
+ * Bolota error message box.
+ *
+ * @param hwndParent Parent window's handle or NULL if it doesn't have one.
+ * @param error      Bolota error to be displayed to the user.
+ * @param szTitle    Title of the message box dialog window.
+ *
+ * @return ID of the button that was clicked by the user.
+ */
+int MsgBoxBolotaError(HWND hwndParent, Bolota::Error& error, LPCTSTR szTitle) {
+	return MsgBoxError(hwndParent, szTitle, error.Message()->GetNativeString());
 }

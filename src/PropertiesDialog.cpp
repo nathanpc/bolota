@@ -28,7 +28,7 @@ PropertiesDialog::PropertiesDialog(HINSTANCE& hInst, HWND& hwndParent,
 								   Bolota::Document *doc) :
 	DialogWindow(hInst, hwndParent, IDD_DOCPROPS) {
 	m_doc = doc;
-	ZeroMemory(&m_st, sizeof(SYSTEMTIME));
+	memset(&m_st, 0, sizeof(SYSTEMTIME));
 }
 
 /*

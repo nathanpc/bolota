@@ -9,6 +9,7 @@
 
 #include "../stdafx.h"
 #include "../PropertiesDialog.h"
+#include "../Bolota/Exceptions/Error.h"
 
 #ifndef UNDER_CE
 	#include <shlwapi.h>
@@ -1158,15 +1159,19 @@ bool BolotaView::IsDirty() const {
  */
 Field* BolotaView::GetFieldFromTreeItem(HTREEITEM hti) const {
 	// Check if we have a valid item handle.
-	if (hti == NULL)
-		throw std::exception("Tree-View item for field retrieval is NULL");
+	if (hti == NULL) {
+		THROW_FATAL_R(Error(_T("Tree-View item for field retrieval is NULL")),
+			NULL);
+	}
 
 	// Get the selected item from the handle.
 	TVITEM tvi;
 	tvi.hItem = hti;
 	tvi.mask = TVIF_PARAM;
-	if (!TreeView_GetItem(m_hWnd, &tvi))
-		throw std::exception("Failed to get Tree-View item from handle");
+	if (!TreeView_GetItem(m_hWnd, &tvi)) {
+		THROW_FATAL_R(Error(_T("Failed to get Tree-View item from handle")),
+			NULL);
+	}
 
 	return reinterpret_cast<Field*>(tvi.lParam);
 }

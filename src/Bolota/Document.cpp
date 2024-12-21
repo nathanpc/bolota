@@ -7,7 +7,7 @@
 
 #include "Document.h"
 
-#include "Exceptions.h"
+#include "Exceptions/Exceptions.h"
 
 using namespace Bolota;
 
@@ -117,8 +117,8 @@ void Document::AppendTopic(Field *prev, Field *field) {
 	// Check if this is the first topic to be added to the document.
 	if (m_topics == NULL) {
 		if (prev != NULL) {
-			throw std::exception("Tried to append a topic from the middle of "
-				"the linked list as the root element");
+			THROW_FATAL(Error(_T("Tried to append a topic from the middle of ")
+				_T("the linked list as the root element")));
 		}
 		
 		SetFirstTopic(field);

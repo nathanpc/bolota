@@ -9,9 +9,9 @@
 
 #include <windowsx.h>
 #include <ShellAPI.h>
-#ifdef DEBUG
+#if defined(DEBUG) && !defined(UNDER_CE)
 	#include <crtdbg.h>
-#endif // DEBUG
+#endif // defined(DEBUG) && !defined(UNDER_CE)
 
 #include "AboutDialog.h"
 #include "MainWindow.h"
@@ -43,13 +43,13 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// Ensure we specify parameters not in use.
 	UNREFERENCED_PARAMETER(hPrevInstance);
 
-#ifdef DEBUG
+#if defined(DEBUG) && !defined(UNDER_CE)
 	// Initialize memory leak detection.
 	_CrtMemState snapBegin;
 	_CrtMemState snapEnd;
 	_CrtMemState snapDiff;
 	_CrtMemCheckpoint(&snapBegin);
-#endif // DEBUG
+#endif // defined(DEBUG) && !defined(UNDER_CE)
 
 	// Load the application class and title.
 	LoadString(hInstance, IDC_BOLOTA, szWindowClass, MAX_LOADSTRING);
@@ -89,7 +89,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// Terminate instance.
 	rc = TerminateInstance(hInstance, (int)msg.wParam);
 
-#ifdef DEBUG
+#if defined(DEBUG) && !defined(UNDER_CE)
 	// Detect memory leaks.
 	_CrtMemCheckpoint(&snapEnd);
 	if (_CrtMemDifference(&snapDiff, &snapBegin, &snapEnd)) {
@@ -103,7 +103,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	} else {
 		OutputDebugString(_T("No memory leaks detected. Congratulations!\r\n"));
 	}
-#endif // DEBUG
+#endif // defined(DEBUG) && !defined(UNDER_CE)
 
 	return rc;
 }

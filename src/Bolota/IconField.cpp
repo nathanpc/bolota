@@ -7,7 +7,7 @@
 
 #include "IconField.h"
 
-#include "Exceptions.h"
+#include "Exceptions/Exceptions.h"
 
 using namespace Bolota;
 

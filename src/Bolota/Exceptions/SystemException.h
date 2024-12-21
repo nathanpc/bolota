@@ -12,12 +12,10 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include <windows.h>
-#include <stdexcept>
+#include "../../stdafx.h"
 #include <string>
-#if _MSC_VER <= 1200
-	#include <newcpp.h>
-#endif // _MSC_VER == 1200
+
+#include "Error.h"
 
 
 /**
@@ -25,33 +23,34 @@
  *
  * @see GetLastError
  */
-class SystemException : public std::exception {
+class SystemException : public Bolota::Error {
 protected:
 	DWORD m_dwLastError;
-	std::string m_strMessage;
-	char *m_szLastErrorMessage;
+	tstring m_strMessage;
+	TCHAR *m_szLastErrorMessage;
 
-	void Initialize(const char *szMessage);
+	void Initialize(const TCHAR *szMessage);
 
 public:
-	SystemException(const char *szMessage) :
-		std::exception(szMessage) {
+	SystemException(const TCHAR *szMessage) :
+		Bolota::Error(szMessage) {
 			m_szLastErrorMessage = NULL;
 			Initialize(NULL);
 	};
 	SystemException() :
-		std::exception("A system error occurred") {
+		Bolota::Error(_T("A system error occurred")) {
 			m_szLastErrorMessage = NULL;
 			Initialize(NULL);
 	};
 	virtual ~SystemException();
 
-	const char* what() const override {
-		return m_strMessage.c_str();
+	void Throw() const override {
+		m_message->TakeOwnership(_tcsdup(m_strMessage.c_str()));
+		this->Error::Throw();
 	};
 
-	void RefreshMessage(const char *szMessage);
-	const char* LastErrorMessage() const;
+	void RefreshMessage(const TCHAR *szMessage);
+	const TCHAR* LastErrorMessage() const;
 };
 
 #endif // _BOLOTA_EXCEPTIONS_SYSTEMEXCEPTION_H

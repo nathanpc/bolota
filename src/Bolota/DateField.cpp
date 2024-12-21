@@ -7,7 +7,7 @@
 
 #include "DateField.h"
 
-#include "Exceptions.h"
+#include "Exceptions/Exceptions.h"
 
 using namespace Bolota;
 
@@ -44,7 +44,7 @@ void DateField::Copy(const DateField *field, bool bReplace) {
 void DateField::InitializeDate(const timestamp_t *ts) {
 	// Initialize the date to a known-good value automatically.
 	if (ts == NULL) {
-		ZeroMemory(&m_ts, sizeof(timestamp_t));
+		memset(&m_ts, 0, sizeof(timestamp_t));
 		return;
 	}
 
