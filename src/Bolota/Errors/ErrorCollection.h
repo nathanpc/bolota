@@ -1,41 +1,39 @@
 /**
- * Exceptions.h
- * A collection of exceptions related to the handling of Bolota documents and
+ * ErrorCollection.h
+ * A collection of error classes related to the handling of Bolota documents and
  * fields.
  *
  * @author Nathan Campos <nathan@innoveworkshop.com>
  */
 
-#ifndef _BOLOTA_EXCEPTIONS_H
-#define _BOLOTA_EXCEPTIONS_H
+#ifndef _BOLOTA_ERRORS_ERRORCOLLECTION_H
+#define _BOLOTA_ERRORS_ERRORCOLLECTION_H
 
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include <windows.h>
-#include <string>
-#if _MSC_VER <= 1200
-	#include <newcpp.h>
-#endif // _MSC_VER == 1200
+#ifdef _WIN32
+	#include <windows.h>
+#endif // _WIN32
 
-#include "SystemException.h"
-#include "Field.h"
+#include "SystemError.h"
+#include "../Field.h"
 
 namespace Bolota {
 	/**
-	 * Exception that's thrown whenever there's an inconsistency between related
+	 * Error that is thrown whenever there's an inconsistency between related
 	 * fields.
 	 */
-	class ConsistencyException : public Error {
+	class ConsistencyError : public Error {
 	public:
 		Field *fieldReference;
 		Field *fieldExpected;
 		Field *fieldFound;
 		tstring strRelationship;
 
-		ConsistencyException(Field *reference, Field *expected, Field *found,
-							 const TCHAR *relationship) {
+		ConsistencyError(Field *reference, Field *expected, Field *found,
+						 const TCHAR *relationship) : Error() {
 			// Set class properties.
 			fieldReference = reference;
 			fieldExpected = expected;
@@ -64,22 +62,23 @@ namespace Bolota {
 				relationship, found, (found == NULL) ? NULL :
 				found->Text()->GetNativeString());
 			strMessage += szBuffer;
-			m_message->TakeOwnership(_tcsdup(strMessage.c_str()));
+
+			// Substitute the error message string.
+			if (m_message)
+				free(m_message);
+			m_message = _tcsdup(strMessage.c_str());
 		}
 	};
 
 	/**
-	 * A generic exception that can close file handles if needed.
+	 * A generic error that can close file handles if needed.
 	 */
-	class FileHandleException : public SystemException {
+	class FileHandleError : public SystemError {
 	protected:
 		HANDLE hFile;
 		bool bHandleClosed;
 
 		void Initialize(HANDLE hFile, bool bClose) {
-			// Initialize the base class.
-			this->SystemException::Initialize(NULL);
-
 			// Set internal variables.
 			this->hFile = hFile;
 			bHandleClosed = false;
@@ -92,13 +91,13 @@ namespace Bolota {
 		};
 
 	public:
-		FileHandleException(HANDLE hFile, bool bClose, const TCHAR *szMessage) :
-			SystemException(szMessage) {
-				Initialize(hFile, bClose);
+		FileHandleError(HANDLE hFile, bool bClose, const TCHAR *szMessage) :
+			SystemError(szMessage) {
+			this->Initialize(hFile, bClose);
 		};
-		FileHandleException(HANDLE hFile, bool bClose) :
-			SystemException(_T("Unknown Bolota file handle exception")) {
-				Initialize(hFile, bClose);
+		FileHandleError(HANDLE hFile, bool bClose) :
+			SystemError(_T("Unknown Bolota file handle error")) {
+			this->Initialize(hFile, bClose);
 		};
 
 		void CloseHandle() {
@@ -114,39 +113,34 @@ namespace Bolota {
 	/**
 	 * Thrown whenever the magic code of a file isn't what's expected.
 	 */
-	class InvalidMagic : public FileHandleException {
+	class InvalidMagic : public FileHandleError {
 	public:
-		InvalidMagic(HANDLE hFile) :
-			FileHandleException(hFile, true, _T("The file is not a valid ")
-			_T("Bolota document")) {};
+		InvalidMagic(HANDLE hFile) : FileHandleError(hFile, true,
+			_T("The file is not a valid Bolota document")) {};
 	};
 
 	/**
 	 * Thrown whenever the version of a file is greater than we can support.
 	 */
-	class InvalidVersion : public FileHandleException {
+	class InvalidVersion : public FileHandleError {
 	public:
-		InvalidVersion(HANDLE hFile) :
-			FileHandleException(hFile, true, _T("The document was saved with ")
-			_T("a newer version of the application and may be incompatible ")
-			_T("with this one")) {};
+		InvalidVersion(HANDLE hFile) : FileHandleError(hFile, true,
+			_T("The document was saved with a newer version of the application ")
+			_T("and may be incompatible with this one")) {};
 	};
 
 	/**
 	 * Thrown whenever there's an error while trying to read a document.
 	 */
-	class ReadError : public FileHandleException {
+	class ReadError : public FileHandleError {
 	public:
 		size_t ulPosition;
 
 		ReadError(HANDLE hFile, bool bClose) :
-			FileHandleException(hFile, bClose, _T("Failed to read file")) {};
-		ReadError(HANDLE hFile, size_t ulPosition, bool bClose) :
-			FileHandleException(hFile, bClose, _T("Failed to read file")) {
-				Initialize(ulPosition);
-		};
+			FileHandleError(hFile, bClose, _T("Failed to read file")) {};
 
-		virtual void Initialize(size_t ulPosition) {
+		ReadError(HANDLE hFile, size_t ulPosition, bool bClose) :
+			FileHandleError(hFile, bClose, _T("Failed to read file")) {
 			// Get position index as string.
 			TCHAR szIndex[20];
 			_sntprintf(szIndex, 19, _T("%lu"), ulPosition);
@@ -170,11 +164,8 @@ namespace Bolota {
 
 	public:
 		UnknownFieldType(HANDLE hFile, size_t ulPosition, bool bClose,
-			bolota_type_t type) : ReadError(hFile, ulPosition, bClose) {
-				Initialize(type);
-		};
-
-		void Initialize(bolota_type_t type) {
+						 bolota_type_t type) :
+		ReadError(hFile, ulPosition, bClose) {
 			// Set the type variable.
 			m_type = type;
 
@@ -184,7 +175,7 @@ namespace Bolota {
 			szTypeNum[3] = _T('\0');
 
 			// Append more information to our message.
-			tstring strReadError = Message()->GetNativeString();
+			tstring strReadError(m_message);
 			strReadError += _T(". Encountered an unknown field type ");
 			strReadError += szTypeNum;
 			strReadError += _T(" '");
@@ -199,4 +190,4 @@ namespace Bolota {
 	};
 }
 
-#endif // _BOLOTA_EXCEPTIONS_H
+#endif // _BOLOTA_ERRORS_ERRORCOLLECTION_H

@@ -1,18 +1,38 @@
 /**
- * SystemException.cpp
- * An exception that is thrown in order to wrap a GetLastError() call.
+ * SystemError.cpp
+ * An error that is thrown in order to wrap a system error.
  *
  * @author Nathan Campos <nathan@innoveworkshop.com>
  */
 
-#include "SystemException.h"
+#include "SystemError.h"
+
+using namespace Bolota;
+
+/**
+ * Initializes the system error with a default message.
+ */
+SystemError::SystemError() : Error(_T("A system error occurred")) {
+	m_szLastErrorMessage = NULL;
+	Initialize(NULL);
+}
+
+/**
+ * Initializes the system error with a message.
+ *
+ * @param message Friendly message to go with the system error.
+ */
+SystemError::SystemError(const TCHAR *szMessage) : Error(szMessage) {
+	m_szLastErrorMessage = NULL;
+	Initialize(NULL);
+}
 
 /**
  * Gets the last error and populates the exception.
  *
  * @param szMessage Optional. An error message to override the default one.
  */
-void SystemException::Initialize(const TCHAR *szMessage) {
+void SystemError::Initialize(const TCHAR *szMessage) {
 	// Get last error message.
 	LPTSTR szLastErrorMsg;
 	m_dwLastError = GetLastError();
@@ -33,7 +53,7 @@ void SystemException::Initialize(const TCHAR *szMessage) {
 /**
  * Handles the proper deallocation of objects inside the exception.
  */
-SystemException::~SystemException() {
+SystemError::~SystemError() {
 	if (m_szLastErrorMessage) {
 		free(m_szLastErrorMessage);
 		m_szLastErrorMessage = NULL;
@@ -45,11 +65,15 @@ SystemException::~SystemException() {
  *
  * @param szMessage Optional. An error message to override the default one.
  */
-void SystemException::RefreshMessage(const TCHAR *szMessage) {
-	m_strMessage = (szMessage != NULL) ? szMessage :
-		m_message->GetNativeString();
-	m_strMessage += _T(": ");
-	m_strMessage += m_szLastErrorMessage;
+void SystemError::RefreshMessage(const TCHAR *szMessage) {
+	// Build up the string.
+	tstring strMessage = (szMessage != NULL) ? szMessage : m_message;
+	strMessage += _T(": ");
+	strMessage += m_szLastErrorMessage;
+
+	// Substitute the error message string.
+	free(m_message);
+	m_message = _tcsdup(strMessage.c_str());
 }
 
 /**
@@ -57,6 +81,6 @@ void SystemException::RefreshMessage(const TCHAR *szMessage) {
  *
  * @return Last error message from the system.
  */
-const TCHAR* SystemException::LastErrorMessage() const {
+const TCHAR* SystemError::LastErrorMessage() const {
 	return m_szLastErrorMessage;
 }

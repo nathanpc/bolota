@@ -20,11 +20,11 @@
     <Filter Include="Components">
       <UniqueIdentifier>{cee9864e-64ee-4d37-b9a8-ffe149338e4d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Exceptions">
-      <UniqueIdentifier>{420f3a40-4f33-4a28-aebc-0886415c5dfb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\Field Icons">
       <UniqueIdentifier>{2665faae-576c-41f7-bd99-cdf81c497121}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bolota\Errors">
+      <UniqueIdentifier>{420f3a40-4f33-4a28-aebc-0886415c5dfb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -45,9 +45,6 @@
     </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\targetver.h">
-      <Filter>Application</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Application.h">
       <Filter>Application</Filter>
@@ -73,12 +70,6 @@
     <ClInclude Include="..\src\FieldManagerDialog.h">
       <Filter>Windows and Dialogs</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Bolota\Exceptions.h">
-      <Filter>Bolota</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Exceptions\SystemException.h">
-      <Filter>Exceptions</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\PropertiesDialog.h">
       <Filter>Windows and Dialogs</Filter>
     </ClInclude>
@@ -93,6 +84,15 @@
     </ClInclude>
     <ClInclude Include="..\src\Bolota\IconField.h">
       <Filter>Bolota</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Bolota\Errors\Error.h">
+      <Filter>Bolota\Errors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Bolota\Errors\ErrorCollection.h">
+      <Filter>Bolota\Errors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Bolota\Errors\SystemError.h">
+      <Filter>Bolota\Errors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -129,9 +129,6 @@
     <ClCompile Include="..\src\FieldManagerDialog.cpp">
       <Filter>Windows and Dialogs</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Exceptions\SystemException.cpp">
-      <Filter>Exceptions</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\PropertiesDialog.cpp">
       <Filter>Windows and Dialogs</Filter>
     </ClCompile>
@@ -149,6 +146,12 @@
     </ClCompile>
     <ClCompile Include="..\src\Bolota\IconField.cpp">
       <Filter>Bolota</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Bolota\Errors\Error.cpp">
+      <Filter>Bolota\Errors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Bolota\Errors\SystemError.cpp">
+      <Filter>Bolota\Errors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -8,8 +8,8 @@
 
 #include "MsgBoxes.h"
 
-#include <tchar.h>
-#include <malloc.h>
+#include "../stdafx.h"
+#include "../Bolota/Errors/Error.h"
 
 /**
  * Generic message box.
@@ -93,68 +93,26 @@ int MsgBoxLastError(HWND hwndParent) {
 	return nRet;
 }
 
-#ifndef UNDER_CE
-/**
- * C++ exception message box.
- *
- * @param hwndParent Parent window's handle or NULL if it doesn't have one.
- * @param exc        C++ exception to be displayed to the user.
- * @param szTitle    Title of the message box dialog window.
- *
- * @return ID of the button that was clicked by the user.
- */
-int MsgBoxException(HWND hwndParent, const std::exception& exc,
-					LPCTSTR szTitle) {
-#ifdef UNICODE
-	TCHAR *szMessage = NULL;
-
-	// Get required buffer size and allocate some memory for it.
-	int nLen = MultiByteToWideChar(CP_OEMCP, 0, exc.what(), -1, NULL, 0);
-	if (nLen == 0)
-		goto failure;
-	szMessage = (TCHAR *)malloc(nLen * sizeof(TCHAR));
-	if (szMessage == NULL) {
-		throw std::exception("Failed to allocate memory for dialog exception "
-			"message string");
-	}
-
-	// Perform the conversion.
-	nLen = MultiByteToWideChar(CP_OEMCP, 0, exc.what(), -1, szMessage, nLen);
-	if (nLen == 0) {
-failure:
-		MsgBoxError(hwndParent, _T("String Conversion Failure"),
-			_T("Failed to convert UTF-8 string to UTF-16."));
-		if (szMessage)
-			free(szMessage);
-
-		throw std::exception("Failed to convert message exception to wide "
-			"string");
-	}
-#else
-	const char *szMessage = e.what();
-#endif // UNICODE
-
-	// Finally display the error message box!
-	int nRet = MsgBoxError(hwndParent, szTitle, szMessage);
-
-#ifdef UNICODE
-	// Free the temporary buffer.
-	free(szMessage);
-#endif // UNICODE
-
-	return nRet;
-}
-#endif // UNDER_CE
-
 /**
  * Bolota error message box.
  *
  * @param hwndParent Parent window's handle or NULL if it doesn't have one.
- * @param error      Bolota error to be displayed to the user.
  * @param szTitle    Title of the message box dialog window.
  *
  * @return ID of the button that was clicked by the user.
  */
-int MsgBoxBolotaError(HWND hwndParent, Bolota::Error& error, LPCTSTR szTitle) {
-	return MsgBoxError(hwndParent, szTitle, error.Message()->GetNativeString());
+int MsgBoxBolotaError(HWND hwndParent, LPCTSTR szTitle) {
+	// Build up error message.
+	tstring strMessage(Bolota::ErrorStack->Message());
+	Bolota::Error *err = Bolota::ErrorStack->Pop();
+	if (err != NULL)
+		strMessage += _T("\r\nError Stack:\r\n");
+	while (err != NULL) {
+		strMessage += err->Message();
+		strMessage += _T("\r\n");
+		err = err->Pop();
+	}
+
+	// Show the error message box.
+	return MsgBoxError(hwndParent, szTitle, strMessage.c_str());
 }
