@@ -7,7 +7,7 @@
 
 #include "Document.h"
 
-#include "Exceptions/Exceptions.h"
+#include "Errors/ErrorCollection.h"
 
 using namespace Bolota;
 
@@ -439,14 +439,20 @@ Document* Document::ReadFile(LPCTSTR szPath) {
 	Document *self = new Document();
 	self->m_hFile = hFile;
 	self->m_strPath = szPath;
-	self->ReadProperties(&ulLength);
-	self->ReadTopics(dwLengthTopics, &ulLength);
+	if (!self->ReadProperties(&ulLength))
+		goto error_handling;
+	if (!self->ReadTopics(dwLengthTopics, &ulLength))
+		goto error_handling;
 
 	// Close the file handle and mark as clean.
 	self->CloseFile();
 	self->SetDirty(false);
 
 	return self;
+
+error_handling:
+	delete self;
+	return BOLOTA_ERR_NULL;
 }
 
 /**
@@ -522,15 +528,25 @@ size_t Document::WriteFile(LPCTSTR szPath, bool bAssociate) {
  *
  * @param ulBytes Pointer to the counter storing the number of bytes read from
  *                the file so far.
+ *
+ * @return TRUE if the operation was successful, FALSE otherwise.
  */
-void Document::ReadProperties(size_t *ulBytes) {
+bool Document::ReadProperties(size_t *ulBytes) {
 	uint8_t ucDepth = 0;
 
 	// Read each property field in order.
 	m_title = static_cast<TextField*>(Field::Read(m_hFile, ulBytes, &ucDepth));
+	if (m_title == BOLOTA_ERR_NULL)
+		return false;
 	m_subtitle = static_cast<TextField*>(Field::Read(m_hFile, ulBytes,
 		&ucDepth));
+	if (m_subtitle == BOLOTA_ERR_NULL)
+		return false;
 	m_date = static_cast<DateField*>(Field::Read(m_hFile, ulBytes, &ucDepth));
+	if (m_date == BOLOTA_ERR_NULL)
+		return false;
+
+	return true;
 }
 
 /**
@@ -539,8 +555,10 @@ void Document::ReadProperties(size_t *ulBytes) {
  * @param dwLengthTopics Length of the topics scetion of the file.
  * @param ulBytes        Pointer to the counter storing the number of bytes read
  *                       from the file so far.
+ *
+ * @return TRUE if the operation was successful, FALSE otherwise.
  */
-void Document::ReadTopics(uint32_t dwLengthTopics, size_t *ulBytes) {
+bool Document::ReadTopics(uint32_t dwLengthTopics, size_t *ulBytes) {
 	size_t ulStartBytes = *ulBytes;
 	uint8_t ucLastDepth = 0;
 	uint8_t ucDepth = 0;
@@ -551,11 +569,18 @@ void Document::ReadTopics(uint32_t dwLengthTopics, size_t *ulBytes) {
 	while ((*ulBytes - ulStartBytes) < dwLengthTopics) {
 		// Read the field.
 		field = Field::Read(m_hFile, ulBytes, &ucDepth);
+		if (field == BOLOTA_ERR_NULL) {
+			ThrowError(EMSG("Failed to read document topics"));
+			return false;
+		}
 
 		if (ucDepth > ucLastDepth) {
 			// Child of the last field.
-			if ((ucDepth - ucLastDepth) > 1)
-				throw std::exception("Field depth forward jump greater than 1");
+			if ((ucDepth - ucLastDepth) > 1) {
+				ThrowError(EMSG("Field depth forward jump greater than 1"));
+				return false;
+			}
+
 			field->SetParent(fieldLast, false);
 		} else if (ucDepth < ucLastDepth) {
 			// Next topic of the parent field.
@@ -572,6 +597,8 @@ void Document::ReadTopics(uint32_t dwLengthTopics, size_t *ulBytes) {
 		ucLastDepth = ucDepth;
 		fieldLast = field;
 	}
+
+	return true;
 }
 
 /**

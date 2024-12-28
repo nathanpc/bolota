@@ -78,6 +78,10 @@ BOOL MainWindow::SetupControls(HWND hWnd) {
 
 	// Setup the document viewer.
 	m_wndBolota = new BolotaView(this->hInst, this->hWnd, rcClient);
+	if (Error::HasError()) {
+		MsgBoxBolotaError(hWnd, _T("Failed to initialize document viewer"));
+		return FALSE;
+	}
 	m_wndBolota->OpenExampleDocument();
 
 	return TRUE;
@@ -118,56 +122,68 @@ BOOL MainWindow::ResizeWindows(HWND hwndParent) {
  * @return 0 if everything worked.
  */
 LRESULT MainWindow::OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent) {
-	try {
-		switch (wmId) {
-		case IDM_FILE_NEW:
-			m_wndBolota->NewDocument();
-			return 0;
-		case IDM_FILE_SAVE:
-			m_wndBolota->Save(false);
-			return 0;
-		case IDM_FILE_SAVEAS:
-			m_wndBolota->Save(true);
-			return 0;
-		case IDM_FILE_OPEN:
-			m_wndBolota->OpenFile();
-			return 0;
-		case IDM_FILE_RELOAD:
-			return m_wndBolota->ReloadView();
-		case IDM_FILE_PROPERTIES:
-			return m_wndBolota->EditProperties();
-		case IDM_FIELD_EDIT:
-			return m_wndBolota->OpenFieldManager(
-				FieldManagerDialog::DialogType::EditField);
-		case IDM_FIELD_DELETE:
-			return m_wndBolota->AskDeleteField();
-		case IDM_FIELD_APPEND:
-			return m_wndBolota->OpenFieldManager(
-				FieldManagerDialog::DialogType::AppendField);
-		case IDM_FIELD_PREPEND:
-			return m_wndBolota->OpenFieldManager(
-				FieldManagerDialog::DialogType::PrependField);
-		case IDM_FIELD_CREATECHILD:
-			return m_wndBolota->OpenFieldManager(
-				FieldManagerDialog::DialogType::NewChildField);
-		case IDM_FIELD_MOVEUP:
-			return m_wndBolota->MoveField(true);
-		case IDM_FIELD_MOVEDOWN:
-			return m_wndBolota->MoveField(false);
-		case IDM_FIELD_INDENT:
-			return m_wndBolota->IndentField();
-		case IDM_FIELD_DEINDENT:
-			return m_wndBolota->DeindentField();
-		default:
-			MsgBoxInfo(this->hWnd, _T("Unknown Command ID"),
-				_T("WM_COMMAND for MainWindow with unknown ID"));
-		}
-	} catch (std::exception& exc) {
-		MsgBoxException(this->hWnd, exc, _T("Operation failed with an ")
-			_T("exception"));
+	LRESULT lr = 0;
+
+	switch (wmId) {
+	case IDM_FILE_NEW:
+		m_wndBolota->NewDocument();
+		break;
+	case IDM_FILE_SAVE:
+		m_wndBolota->Save(false);
+		break;
+	case IDM_FILE_SAVEAS:
+		m_wndBolota->Save(true);
+		break;
+	case IDM_FILE_OPEN:
+		m_wndBolota->OpenFile();
+		break;
+	case IDM_FILE_RELOAD:
+		lr = m_wndBolota->ReloadView();
+		break;
+	case IDM_FILE_PROPERTIES:
+		lr = m_wndBolota->EditProperties();
+		break;
+	case IDM_FIELD_EDIT:
+		lr = m_wndBolota->OpenFieldManager(
+			FieldManagerDialog::DialogType::EditField);
+		break;
+	case IDM_FIELD_DELETE:
+		lr = m_wndBolota->AskDeleteField();
+		break;
+	case IDM_FIELD_APPEND:
+		lr = m_wndBolota->OpenFieldManager(
+			FieldManagerDialog::DialogType::AppendField);
+		break;
+	case IDM_FIELD_PREPEND:
+		lr = m_wndBolota->OpenFieldManager(
+			FieldManagerDialog::DialogType::PrependField);
+		break;
+	case IDM_FIELD_CREATECHILD:
+		lr = m_wndBolota->OpenFieldManager(
+			FieldManagerDialog::DialogType::NewChildField);
+		break;
+	case IDM_FIELD_MOVEUP:
+		lr = m_wndBolota->MoveField(true);
+		break;
+	case IDM_FIELD_MOVEDOWN:
+		lr = m_wndBolota->MoveField(false);
+		break;
+	case IDM_FIELD_INDENT:
+		lr = m_wndBolota->IndentField();
+		break;
+	case IDM_FIELD_DEINDENT:
+		lr = m_wndBolota->DeindentField();
+		break;
+	default:
+		MsgBoxInfo(this->hWnd, _T("Unknown Command ID"),
+			_T("WM_COMMAND for MainWindow with unknown ID"));
 	}
 
-	return 0;
+	// Handle errors.
+	if (Error::HasError())
+		MsgBoxBolotaError(this->hWnd, _T("Operation failed"));
+
+	return lr;
 }
 
 /**

@@ -7,7 +7,7 @@
 
 #include "IconField.h"
 
-#include "Exceptions/Exceptions.h"
+#include "Errors/ErrorCollection.h"
 
 using namespace Bolota;
 
@@ -130,8 +130,10 @@ uint8_t IconField::ReadField(HANDLE hFile, size_t *bytes) {
 
 	// Read the icon index.
 	uint8_t index = 0;
-	if (!::ReadFile(hFile, &index, sizeof(uint8_t), &dwRead, NULL))
-		throw ReadError(hFile, *bytes, true);
+	if (!::ReadFile(hFile, &index, sizeof(uint8_t), &dwRead, NULL)) {
+		ThrowError(new ReadError(hFile, *bytes, true));
+		return BOLOTA_ERR_UINT8;
+	}
 	*bytes += dwRead;
 	SetIconIndex(index);
 

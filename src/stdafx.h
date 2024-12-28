@@ -62,6 +62,9 @@
 	#include <wce_defs.h>
 #endif // UNDER_CE
 
+// Error handling.
+#include "Bolota/Errors/Error.h"
+
 // Utilities
 #include "Utilities/MsgBoxes.h"
 #include "Utilities/WindowUtilities.h"

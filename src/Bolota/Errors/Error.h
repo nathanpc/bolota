@@ -20,12 +20,14 @@
 /**
  * Convinience macro for throwing errors.
  */
+#define ThrowError(err) Bolota::Error::Throw((err))
+
 #ifdef DEBUG
 	#define STRINGIZE(x) STRINGIZE_WRAPPER(x)
 	#define STRINGIZE_WRAPPER(x) #x
-	#define ThrowError(msg) Bolota::Error::Throw((msg) _T(" [") _T(__FILE__) _T(":") _T(STRINGIZE(__LINE__)) _T("]"))
+	#define EMSG(msg) _T(" [") _T(__FILE__) _T(":") _T(STRINGIZE(__LINE__)) _T("]") _T(msg)
 #else
-	#define ThrowError(msg) Bolota::Error::Throw((msg))
+	#define EMSG(msg) _T(msg)
 #endif // DEBUG
 
 /**

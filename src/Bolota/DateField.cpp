@@ -7,7 +7,7 @@
 
 #include "DateField.h"
 
-#include "Exceptions/Exceptions.h"
+#include "Errors/ErrorCollection.h"
 
 using namespace Bolota;
 
@@ -164,8 +164,10 @@ uint8_t DateField::ReadField(HANDLE hFile, size_t *bytes) {
 	uint8_t depth = Field::ReadField(hFile, bytes);
 
 	// Read the timestamp.
-	if (!::ReadFile(hFile, &this->m_ts, sizeof(timestamp_t), &dwRead, NULL))
-		throw ReadError(hFile, *bytes, true);
+	if (!::ReadFile(hFile, &this->m_ts, sizeof(timestamp_t), &dwRead, NULL)) {
+		ThrowError(new ReadError(hFile, *bytes, true));
+		return BOLOTA_ERR_UINT8;
+	}
 	*bytes += dwRead;
 
 	return depth;

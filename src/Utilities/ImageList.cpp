@@ -9,7 +9,7 @@
 
 #include <tchar.h>
 
-#include "../Bolota/Exceptions/SystemException.h"
+#include "../Bolota/Errors/SystemError.h"
 #include "../SharedResources.h"
 
 using namespace Bolota;
@@ -31,7 +31,7 @@ ImageList::ImageList(HINSTANCE hInst, UINT8 usSize, UINT8 usBitDepth,
 	m_usSize = usSize;
 	m_hIml = ImageList_Create(usSize, usSize, usBitDepth, usNumImages, 0);
 	if (m_hIml == NULL)
-		THROW_FATAL(SystemException(_T("Failed to create ImageList")));
+		ThrowError(new SystemError(EMSG("Failed to create ImageList")));
 	m_wResources = (WORD *)LocalAlloc(LMEM_FIXED, usNumImages * sizeof(WORD));
 	for (i = 0; i < usNumImages; ++i)
 		m_wResources[i] = 0;
@@ -81,8 +81,8 @@ ImageList::~ImageList() {
 UINT8 ImageList::AddIcon(LPCTSTR szLabel, WORD wResId) {
 	// Check if we have space to add another icon to the list.
 	if (m_usLength == m_usNumImages) {
-		Error(_T("Cannot add more icons to the ImageList as it's already ")
-			_T("full")).ThrowFatal();
+		ThrowError(EMSG("Cannot add more icons to the ImageList as it's ")
+			_T("already full"));
 		return BOLOTA_ERR_UINT8;
 	}
 
@@ -90,7 +90,7 @@ UINT8 ImageList::AddIcon(LPCTSTR szLabel, WORD wResId) {
 	HICON hIcon = LoadIcon(m_hInst, MAKEINTRESOURCE(wResId));
 	int idx = ImageList_AddIcon(m_hIml, hIcon);
 	if (idx == -1) {
-		SystemException(_T("Failed to add icon to ImageList")).ThrowFatal();
+		ThrowError(new SystemError(EMSG("Failed to add icon to ImageList")));
 		return BOLOTA_ERR_UINT8;
 	}
 	m_wResources[m_usLength] = wResId;
@@ -137,8 +137,7 @@ UINT8 ImageList::GetIndex(LPCTSTR szLabel) const {
 	}
 
 	// Looks like it's not one of our labels.
-	Error(_T("Cannot find the specified label in the ImageList")).
-		ThrowWarning();
+	ThrowError(EMSG("Cannot find the specified label in the ImageList"));
 	return BOLOTA_ERR_UINT8;
 }
 
@@ -159,8 +158,7 @@ UINT8 ImageList::GetIndex(WORD wResId) const {
 	}
 
 	// Looks like it's not one of our labels.
-	Error(_T("Cannot find the specified resource ID in the ImageList")).
-		ThrowWarning();
+	ThrowError(EMSG("Cannot find the specified resource ID in the ImageList"));
 	return BOLOTA_ERR_UINT8;
 }
 

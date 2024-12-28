@@ -144,8 +144,8 @@ namespace Bolota {
 		size_t WriteTopics(Field *field) const;
 
 		// Read sections from file.
-		void ReadProperties(size_t *ulBytes);
-		void ReadTopics(uint32_t dwLengthTopics, size_t *ulBytes);
+		bool ReadProperties(size_t *ulBytes);
+		bool ReadTopics(uint32_t dwLengthTopics, size_t *ulBytes);
 
 		// File operations.
 		void CloseFile();

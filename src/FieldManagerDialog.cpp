@@ -10,7 +10,7 @@
 
 #include <windowsx.h>
 
-#include "Bolota/Exceptions/SystemException.h"
+#include "Bolota/Errors/SystemError.h"
 #include "Bolota/DateField.h"
 
 // Spacing between controls.
@@ -94,6 +94,10 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 		rcEdit.left, rcEdit.top, 110, 150,
 		hDlg, NULL, this->hInst, NULL);
 	SetupFieldIconCombo();
+	if (Error::HasError()) {
+		MsgBoxBolotaError(hwndParent, _T("Failed to set up icon ComboBox"));
+		return false;
+	}
 
 	// Set the content of the editor fields.
 	if (AssociatedField()->HasText())
@@ -342,8 +346,9 @@ void FieldManagerDialog::SetupFieldIconCombo() {
 		// Add the item to the ComboBox.
 		int iRet = SendMessage(cbeFieldIcon, CBEM_INSERTITEM, 0, (LPARAM)&cbei);
 		if (iRet == -1) {
-			throw SystemException("Failed to insert item into field icons "
-				"ComboBoxEx");
+			ThrowError(new SystemError(EMSG("Failed to insert item into field ")
+				_T("icons ComboBoxEx")));
+			return;
 		}
 	}
 

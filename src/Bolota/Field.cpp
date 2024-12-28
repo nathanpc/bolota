@@ -7,7 +7,7 @@
 
 #include "Field.h"
 
-#include "Exceptions/Exceptions.h"
+#include "Errors/ErrorCollection.h"
 #include "DateField.h"
 #include "IconField.h"
 
@@ -191,8 +191,10 @@ Field* Field::Read(HANDLE hFile, size_t *bytes, uint8_t *depth) {
 	DWORD dwRead = 0;
 
 	// Get the type of the field to know which class to instantiate.
-	if (!::ReadFile(hFile, &ucType, sizeof(uint8_t), &dwRead, NULL))
-		throw ReadError(hFile, *bytes, true);
+	if (!::ReadFile(hFile, &ucType, sizeof(uint8_t), &dwRead, NULL)) {
+		ThrowError(new ReadError(hFile, *bytes, true));
+		return BOLOTA_ERR_NULL;
+	}
 	*bytes += dwRead;
 
 	// Instantiate the correct field object.
@@ -208,13 +210,20 @@ Field* Field::Read(HANDLE hFile, size_t *bytes, uint8_t *depth) {
 		self = new IconField();
 		break;
 	default:
-		throw UnknownFieldType(hFile, *bytes, true, type);
+		ThrowError(new UnknownFieldType(hFile, *bytes, true, type));
+		goto error_handling;
 	}
 
 	// Parse the field.
 	*depth = self->ReadField(hFile, bytes);
+	if (*depth == BOLOTA_ERR_UINT8)
+		goto error_handling;
 
 	return self;
+
+error_handling:
+	delete self;
+	return BOLOTA_ERR_NULL;
 }
 
 /**
@@ -232,24 +241,35 @@ uint8_t Field::ReadField(HANDLE hFile, size_t *bytes) {
 	uint16_t usTextLength = 0;
 
 	// Read important bits.
-	if (!::ReadFile(hFile, &depth, sizeof(uint8_t), &dwRead, NULL))
-		throw ReadError(hFile, *bytes, true);
+	if (!::ReadFile(hFile, &depth, sizeof(uint8_t), &dwRead, NULL)) {
+		ThrowError(new ReadError(hFile, *bytes, true));
+		return BOLOTA_ERR_UINT8;
+	}
 	*bytes += dwRead;
-	if (!::ReadFile(hFile, &usFieldLength, sizeof(uint16_t), &dwRead, NULL))
-		throw ReadError(hFile, *bytes, true);
+	if (!::ReadFile(hFile, &usFieldLength, sizeof(uint16_t), &dwRead, NULL)) {
+		ThrowError(new ReadError(hFile, *bytes, true));
+		return BOLOTA_ERR_UINT8;
+	}
 	*bytes += dwRead;
-	if (!::ReadFile(hFile, &usTextLength, sizeof(uint16_t), &dwRead, NULL))
-		throw ReadError(hFile, *bytes, true);
+	if (!::ReadFile(hFile, &usTextLength, sizeof(uint16_t), &dwRead, NULL)) {
+		ThrowError(new ReadError(hFile, *bytes, true));
+		return BOLOTA_ERR_UINT8;
+	}
 	*bytes += dwRead;
 
 	// Allocate and read the text from the text from the field.
 	char *szText = (char *)malloc((usTextLength + 1) * sizeof(char));
-	if (szText == NULL)
-		SystemException("Failed to allocate memory for field text");
+	if (szText == NULL) {
+		ThrowError(new SystemError(EMSG("Failed to allocate memory for field ")
+			_T("text")));
+		return BOLOTA_ERR_UINT8;
+	}
 	dwRead = 0;
 	if (usTextLength > 0) {
-		if (!::ReadFile(hFile, szText, usTextLength, &dwRead, NULL))
-			throw ReadError(hFile, *bytes, true);
+		if (!::ReadFile(hFile, szText, usTextLength, &dwRead, NULL)) {
+			ThrowError(new ReadError(hFile, *bytes, true));
+			return BOLOTA_ERR_UINT8;
+		}
 	}
 	*bytes += dwRead;
 	szText[usTextLength] = '\0';
@@ -660,9 +680,9 @@ bool Field::IsDocumentLast() const {
  * to it in the correct manner (next's previous points to us, previous's next
  * points to us, etc.)
  *
- * @throws ConsistencyException if an inconsistency is found.
+ * @return A ConsistencyError if an inconsistency is found, NULL otherwise.
  */
-void Field::CheckConsistency() {
+ConsistencyError* Field::CheckConsistency() {
 	// Check if the first child of a parent has a previous field.
 	if (HasParent() && (Parent()->Child() == this) && HasPrevious()) {
 		throw ConsistencyException(this, NULL, Previous(),
