@@ -29,6 +29,12 @@ PropertiesDialog::PropertiesDialog(HINSTANCE& hInst, HWND& hwndParent,
 	DialogWindow(hInst, hwndParent, IDD_DOCPROPS) {
 	m_doc = doc;
 	ZeroMemory(&m_st, sizeof(SYSTEMTIME));
+
+	txtTitle = NULL;
+	txtSubTitle = NULL;
+	dtpDate = NULL;
+	btnOK = NULL;
+	btnCancel = NULL;
 }
 
 /*
@@ -61,7 +67,8 @@ bool PropertiesDialog::OnInit(HWND hDlg) {
 	// Set the contents of the fields according to the document properties.
 	SetWindowText(txtTitle, m_doc->Title()->Text()->GetNativeString());
 	SetWindowText(txtSubTitle, m_doc->SubTitle()->Text()->GetNativeString());
-	DateTime_SetSystemtime(dtpDate, GDT_VALID, &m_doc->Date()->ToSystemTime());
+	SYSTEMTIME st = m_doc->Date()->ToSystemTime();
+	DateTime_SetSystemtime(dtpDate, GDT_VALID, &st);
 
 	// TODO: Change the Save button to Create if we are creating a new document.
 

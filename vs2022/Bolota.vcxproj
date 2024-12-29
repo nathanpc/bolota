@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{ea42f24e-a302-4822-b4e1-fa03bcf39f79}</ProjectGuid>
+    <RootNamespace>Bolota</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;DEBUG;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>comctl32.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>comctl32.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\AboutDialog.h" />
+    <ClInclude Include="..\src\Application.h" />
+    <ClInclude Include="..\src\Bolota\DateField.h" />
+    <ClInclude Include="..\src\Bolota\Document.h" />
+    <ClInclude Include="..\src\Bolota\Exceptions.h" />
+    <ClInclude Include="..\src\Bolota\Field.h" />
+    <ClInclude Include="..\src\Bolota\IconField.h" />
+    <ClInclude Include="..\src\Bolota\UString.h" />
+    <ClInclude Include="..\src\Components\BolotaView.h" />
+    <ClInclude Include="..\src\Components\FieldImageList.h" />
+    <ClInclude Include="..\src\Exceptions\SystemException.h" />
+    <ClInclude Include="..\src\FieldManagerDialog.h" />
+    <ClInclude Include="..\src\MainWindow.h" />
+    <ClInclude Include="..\src\PropertiesDialog.h" />
+    <ClInclude Include="..\src\SharedResources.h" />
+    <ClInclude Include="..\src\stdafx.h" />
+    <ClInclude Include="..\src\targetver.h" />
+    <ClInclude Include="..\src\Utilities\DialogWindow.h" />
+    <ClInclude Include="..\src\Utilities\ImageList.h" />
+    <ClInclude Include="..\src\Utilities\MsgBoxes.h" />
+    <ClInclude Include="..\src\Utilities\WindowUtilities.h" />
+    <ClInclude Include="Resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Bolota.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\icons\blank.ico" />
+    <Image Include="..\icons\bolota-icon.ico" />
+    <Image Include="..\icons\fields\Battery.ico" />
+    <Image Include="..\icons\fields\Box.ico" />
+    <Image Include="..\icons\fields\Calendar.ico" />
+    <Image Include="..\icons\fields\Camera.ico" />
+    <Image Include="..\icons\fields\Check.ico" />
+    <Image Include="..\icons\fields\Clipboard.ico" />
+    <Image Include="..\icons\fields\Clock.ico" />
+    <Image Include="..\icons\fields\CPU.ico" />
+    <Image Include="..\icons\fields\Find.ico" />
+    <Image Include="..\icons\fields\Folder.ico" />
+    <Image Include="..\icons\fields\Gear.ico" />
+    <Image Include="..\icons\fields\Help.ico" />
+    <Image Include="..\icons\fields\History.ico" />
+    <Image Include="..\icons\fields\Laptop.ico" />
+    <Image Include="..\icons\fields\Light.ico" />
+    <Image Include="..\icons\fields\Love.ico" />
+    <Image Include="..\icons\fields\Men.ico" />
+    <Image Include="..\icons\fields\Money.ico" />
+    <Image Include="..\icons\fields\Movie.ico" />
+    <Image Include="..\icons\fields\Plus.ico" />
+    <Image Include="..\icons\fields\Redo.ico" />
+    <Image Include="..\icons\fields\Remove.ico" />
+    <Image Include="..\icons\fields\Signpost.ico" />
+    <Image Include="..\icons\fields\Sound.ico" />
+    <Image Include="..\icons\fields\Star.ico" />
+    <Image Include="..\icons\fields\Stop.ico" />
+    <Image Include="..\icons\fields\Tags.ico" />
+    <Image Include="..\icons\fields\Trash.ico" />
+    <Image Include="..\icons\fields\Undo.ico" />
+    <Image Include="..\icons\fields\Woman.ico" />
+    <Image Include="..\icons\fields\Wrench.ico" />
+    <Image Include="..\icons\fields\_Bullet1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\icons\fields\LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\AboutDialog.cpp" />
+    <ClCompile Include="..\src\Application.cpp" />
+    <ClCompile Include="..\src\Bolota\DateField.cpp" />
+    <ClCompile Include="..\src\Bolota\Document.cpp" />
+    <ClCompile Include="..\src\Bolota\Field.cpp" />
+    <ClCompile Include="..\src\Bolota\IconField.cpp" />
+    <ClCompile Include="..\src\Bolota\UString.cpp" />
+    <ClCompile Include="..\src\Components\BolotaView.cpp" />
+    <ClCompile Include="..\src\Components\FieldImageList.cpp" />
+    <ClCompile Include="..\src\Exceptions\SystemException.cpp" />
+    <ClCompile Include="..\src\FieldManagerDialog.cpp" />
+    <ClCompile Include="..\src\MainWindow.cpp" />
+    <ClCompile Include="..\src\PropertiesDialog.cpp" />
+    <ClCompile Include="..\src\stdafx.cpp" />
+    <ClCompile Include="..\src\Utilities\DialogWindow.cpp" />
+    <ClCompile Include="..\src\Utilities\ImageList.cpp" />
+    <ClCompile Include="..\src\Utilities\MsgBoxes.cpp" />
+    <ClCompile Include="..\src\Utilities\WindowUtilities.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\vs2012\manifest.xml" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

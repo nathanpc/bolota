@@ -70,6 +70,8 @@ sub render_template {
 
 # Script's main entry point.
 sub main {
+	render_template('Visual Studio 2022', 'vs2012.rc', PROJECT_ROOT .
+		"/vs2022/Bolota.rc");
 	render_template('Visual Studio 2012', 'vs2012.rc', PROJECT_ROOT .
 		"/vs2012/Bolota.rc");
 	render_template('Visual C++ 6', 'vc6.rc', PROJECT_ROOT .

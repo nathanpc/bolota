@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Resource Files\Field Icons">
+      <UniqueIdentifier>{6f9fd8ec-6141-4b8f-bdab-b617580213e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{5c75eaf6-3a33-4d6a-b47d-b5436ebb709a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Windows and Dialogs">
+      <UniqueIdentifier>{d490365d-4d1c-4322-8bbb-21ba7f944909}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bolota">
+      <UniqueIdentifier>{c32da247-e7a4-42d7-bf6d-d939d797430c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{e5189325-0520-4baa-9ab0-72439529bd62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{8613b5b3-b7f4-4ed8-aa88-d054ae91166f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Exceptions">
+      <UniqueIdentifier>{d40a99d0-0947-4e08-a11a-496c31192efe}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Bolota.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\icons\bolota-icon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\icons\blank.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\icons\fields\_Bullet1.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Battery.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Box.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Calendar.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Camera.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Check.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Clipboard.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Clock.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\CPU.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Find.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Folder.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Gear.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Help.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\History.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Laptop.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Light.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Love.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Men.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Money.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Movie.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Plus.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Redo.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Remove.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Signpost.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Sound.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Star.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Stop.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Tags.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Trash.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Undo.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Woman.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\fields\Wrench.ico">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\icons\fields\LICENSE.txt">
+      <Filter>Resource Files\Field Icons</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Resource.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SharedResources.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Bolota\DateField.h">
+      <Filter>Bolota</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Bolota\Document.h">
+      <Filter>Bolota</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Bolota\Exceptions.h">
+      <Filter>Bolota</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Bolota\Field.h">
+      <Filter>Bolota</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Bolota\IconField.h">
+      <Filter>Bolota</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Bolota\UString.h">
+      <Filter>Bolota</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Utilities\DialogWindow.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Utilities\ImageList.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Utilities\MsgBoxes.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Utilities\WindowUtilities.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Exceptions\SystemException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Components\BolotaView.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Components\FieldImageList.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Application.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\stdafx.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\targetver.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\AboutDialog.h">
+      <Filter>Windows and Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\FieldManagerDialog.h">
+      <Filter>Windows and Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MainWindow.h">
+      <Filter>Windows and Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\PropertiesDialog.h">
+      <Filter>Windows and Dialogs</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\Bolota\DateField.cpp">
+      <Filter>Bolota</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Bolota\Document.cpp">
+      <Filter>Bolota</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Bolota\Field.cpp">
+      <Filter>Bolota</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Bolota\IconField.cpp">
+      <Filter>Bolota</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Bolota\UString.cpp">
+      <Filter>Bolota</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Utilities\DialogWindow.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Utilities\ImageList.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Utilities\MsgBoxes.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Utilities\WindowUtilities.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Exceptions\SystemException.cpp">
+      <Filter>Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Components\BolotaView.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Components\FieldImageList.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Application.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\stdafx.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\AboutDialog.cpp">
+      <Filter>Windows and Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\FieldManagerDialog.cpp">
+      <Filter>Windows and Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MainWindow.cpp">
+      <Filter>Windows and Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\PropertiesDialog.cpp">
+      <Filter>Windows and Dialogs</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\vs2012\manifest.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+  </ItemGroup>
+</Project>
