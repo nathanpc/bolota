@@ -32,7 +32,8 @@ void DateField::Copy(const DateField *field, bool bReplace) {
 	Field::Copy(field, bReplace);
 
 	// Copy specific properties.
-	SetTimestamp(&field->Timestamp());
+	timestamp_t ts = field->Timestamp();
+	SetTimestamp(&ts);
 }
 
 /**

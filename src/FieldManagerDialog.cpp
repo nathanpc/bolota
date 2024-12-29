@@ -105,8 +105,8 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 	if (AssociatedField()->Type() == BOLOTA_TYPE_DATE) {
 		// Set timestamp of Date Time Picker.
 		DateField *field = static_cast<DateField*>(AssociatedField());
-		DateTime_SetSystemtime(dtpTimestamp, GDT_VALID,
-			(LPARAM)&field->ToSystemTime());
+		SYSTEMTIME st = field->ToSystemTime();
+		DateTime_SetSystemtime(dtpTimestamp, GDT_VALID, (LPARAM)&st);
 		m_stTimestamp = field->ToSystemTime();
 	} else if (AssociatedField()->Type() == BOLOTA_TYPE_ICON) {
 		// Set field icon in ComboBox.

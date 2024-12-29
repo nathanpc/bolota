@@ -43,10 +43,11 @@
 #endif // UNICODE
 
 // Resource definitions.
-#if _MSC_VER == 1700
+#if _MSC_VER >= 1900
+	#include "../vs2022/Resource.h"
+#elif _MSC_VER == 1700
 	#include "../vs2012/Resource.h"
-#endif // _MSC_VER == 1700
-#if _MSC_VER == 1200
+#elif _MSC_VER == 1200
 	#include "../vc6/resource.h"
 #endif // _MSC_VER == 1200
 #include "SharedResources.h"

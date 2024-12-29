@@ -445,7 +445,7 @@ uint16_t Field::TextLength() const {
 	if (m_text == NULL)
 		return 0;
 
-	return m_text->Length() * sizeof(char);
+	return static_cast<uint16_t>(m_text->Length() * sizeof(char));
 }
 
 /*
