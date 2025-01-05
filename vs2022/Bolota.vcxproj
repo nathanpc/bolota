@@ -152,7 +152,6 @@
     <ClInclude Include="..\src\PropertiesDialog.h" />
     <ClInclude Include="..\src\SharedResources.h" />
     <ClInclude Include="..\src\stdafx.h" />
-    <ClInclude Include="..\src\targetver.h" />
     <ClInclude Include="..\src\Utilities\DialogWindow.h" />
     <ClInclude Include="..\src\Utilities\ImageList.h" />
     <ClInclude Include="..\src\Utilities\MsgBoxes.h" />

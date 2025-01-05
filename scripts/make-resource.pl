@@ -97,7 +97,7 @@ sub main {
 
 	# Render desktop templates.
 	render_template('Visual Studio 2022', 'vs2012.rc', PROJECT_ROOT .
-		"/vs2022/Bolota.rc");
+		"/vs2022/Bolota.rc", $vars);
 	render_template('Visual Studio 2012', 'vs2012.rc', PROJECT_ROOT .
 		"/vs2012/Bolota.rc", $vars);
 	render_template('Visual C++ 6', 'vc6.rc', PROJECT_ROOT .

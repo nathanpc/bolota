@@ -187,9 +187,6 @@
     <ClInclude Include="..\src\stdafx.h">
       <Filter>Application</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\targetver.h">
-      <Filter>Application</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\AboutDialog.h">
       <Filter>Windows and Dialogs</Filter>
     </ClInclude>
