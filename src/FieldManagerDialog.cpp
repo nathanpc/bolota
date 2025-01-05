@@ -344,8 +344,9 @@ void FieldManagerDialog::SetupFieldIconCombo() {
 		cbei.lParam = fi;
 
 		// Add the item to the ComboBox.
-		int iRet = SendMessage(cbeFieldIcon, CBEM_INSERTITEM, 0, (LPARAM)&cbei);
-		if (iRet == -1) {
+		LRESULT lr = SendMessage(cbeFieldIcon, CBEM_INSERTITEM, 0,
+			(LPARAM)&cbei);
+		if (lr == -1) {
 			ThrowError(new SystemError(EMSG("Failed to insert item into field ")
 				_T("icons ComboBoxEx")));
 			return;

@@ -97,11 +97,16 @@ namespace Bolota {
 			FileHandleError(hFile, bClose, _T("Failed to read file")) {
 			// Get position index as string.
 			TCHAR szIndex[20];
+#if _MSC_VER >= 1200
+			_sntprintf(szIndex, 19, _T("%zu"), ulPosition);
+#else
 			_sntprintf(szIndex, 19, _T("%lu"), ulPosition);
+#endif // _MSC_VER >= 1200
 			szIndex[19] = _T('\0');
 
 			// Create the message.
 			this->ulPosition = ulPosition;
+
 			tstring strReadError = _T("Failed to read file at position ");
 			strReadError += szIndex;
 			RefreshMessage(strReadError.c_str());
@@ -117,13 +122,18 @@ namespace Bolota {
 
 		WriteError(HANDLE hFile, bool bClose) :
 			FileHandleError(hFile, bClose, _T("Failed to write file")) {
+			this->ulPosition = -1L;
 		};
 
 		WriteError(HANDLE hFile, size_t ulPosition, bool bClose) :
 			FileHandleError(hFile, bClose, _T("Failed to write file")) {
 			// Get position index as string.
 			TCHAR szIndex[20];
+#if _MSC_VER >= 1200
+			_sntprintf(szIndex, 19, _T("%zu"), ulPosition);
+#else
 			_sntprintf(szIndex, 19, _T("%lu"), ulPosition);
+#endif // _MSC_VER >= 1200
 			szIndex[19] = _T('\0');
 
 			// Create the message.
