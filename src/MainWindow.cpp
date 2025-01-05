@@ -78,12 +78,12 @@ BOOL MainWindow::SetupControls(HWND hWnd) {
 
 	// Setup the document viewer.
 	m_wndBolota = new BolotaView(this->hInst, this->hWnd, rcClient);
-	if (Error::HasError()) {
+	if (BolotaHasError) {
 		MsgBoxBolotaError(hWnd, _T("Failed to initialize document viewer"));
 		return FALSE;
 	}
 	m_wndBolota->OpenExampleDocument();
-	if (Error::HasError()) {
+	if (BolotaHasError) {
 		MsgBoxBolotaError(hWnd, _T("Failed to open example document"));
 		return FALSE;
 	}
@@ -184,7 +184,7 @@ LRESULT MainWindow::OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent) {
 	}
 
 	// Handle errors.
-	if (Error::HasError())
+	if (BolotaHasError)
 		MsgBoxBolotaError(this->hWnd, _T("Operation failed"));
 
 	return lr;

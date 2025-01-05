@@ -94,7 +94,7 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 		rcEdit.left, rcEdit.top, 110, 150,
 		hDlg, NULL, this->hInst, NULL);
 	SetupFieldIconCombo();
-	if (Error::HasError()) {
+	if (BolotaHasError) {
 		MsgBoxBolotaError(hwndParent, _T("Failed to set up icon ComboBox"));
 		return false;
 	}

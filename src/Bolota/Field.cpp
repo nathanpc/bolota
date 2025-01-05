@@ -217,7 +217,7 @@ Field* Field::Read(HANDLE hFile, size_t *bytes, uint8_t *depth) {
 
 	// Parse the field.
 	*depth = self->ReadField(hFile, bytes);
-	if ((*depth == BOLOTA_ERR_UINT8) && Error::HasError())
+	if ((*depth == BOLOTA_ERR_UINT8) && BolotaHasError)
 		goto error_handling;
 
 	return self;

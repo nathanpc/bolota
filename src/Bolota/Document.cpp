@@ -273,7 +273,7 @@ void Document::MoveTopicToTop(Field *field) {
 
 	// Detach topic and replace the topmost one.
 	PopTopic(field);
-	if (Error::HasError())
+	if (BolotaHasError)
 		return;
 	field->SetNext(first, false);
 	SetFirstTopic(field);
@@ -291,7 +291,7 @@ void Document::MoveTopicToTop(Field *field) {
 void Document::MoveTopicBelow(Field *below, Field *above) {
 	// Detach the moving topic.
 	PopTopic(below);
-	if (Error::HasError())
+	if (BolotaHasError)
 		return;
 
 	// Shuffle things around to make space for us at our new home.
@@ -313,7 +313,7 @@ void Document::MoveTopicBelow(Field *below, Field *above) {
 /**
  * Indents a topic field relative to the one above it.
  * 
- * @attention Check for errors using Error::HasError() after using this method.
+ * @attention Check for errors using BolotaHasError after using this method.
  */
 void Document::IndentTopic(Field *field) {
 	// Nothing can be done about top fields.
@@ -325,7 +325,7 @@ void Document::IndentTopic(Field *field) {
 	// Shuffle things around in preparation for the move.
 	Field *prev = field->Previous();
 	PopTopic(field);
-	if (Error::HasError())
+	if (BolotaHasError)
 		return;
 
 	// Perform the actual move.
@@ -348,7 +348,7 @@ void Document::IndentTopic(Field *field) {
 /**
  * De-indents a topic field relative to its parent.
  * 
- * @attention Check for errors using Error::HasError() after using this method.
+ * @attention Check for errors using BolotaHasError after using this method.
  */
 void Document::DeindentTopic(Field *field) {
 	// Nothing can be done about orphan fields.
@@ -360,7 +360,7 @@ void Document::DeindentTopic(Field *field) {
 	// Shuffle things around in preparation for the move.
 	Field *parent = field->Parent();
 	PopTopic(field);
-	if (Error::HasError())
+	if (BolotaHasError)
 		return;
 
 	// Perform the actual move.
@@ -585,10 +585,10 @@ size_t Document::WriteFile(LPCTSTR szPath, bool bAssociate) {
 
 	// Write document sections.
 	ulBytes += WriteProperties();
-	if (Error::HasError())
+	if (BolotaHasError)
 		return BOLOTA_ERR_SIZET;
 	ulBytes += WriteTopics();
-	if (Error::HasError())
+	if (BolotaHasError)
 		return BOLOTA_ERR_SIZET;
 
 	// Close the file handle and mark as clean.
@@ -692,13 +692,13 @@ size_t Document::WriteProperties() const {
 
 	// Write the property fields.
 	ulBytes += m_title->Write(m_hFile);
-	if (Error::HasError())
+	if (BolotaHasError)
 		return BOLOTA_ERR_SIZET;
 	ulBytes += m_subtitle->Write(m_hFile);
-	if (Error::HasError())
+	if (BolotaHasError)
 		return BOLOTA_ERR_SIZET;
 	ulBytes += m_date->Write(m_hFile);
-	if (Error::HasError())
+	if (BolotaHasError)
 		return BOLOTA_ERR_SIZET;
 
 	return ulBytes;
@@ -718,11 +718,11 @@ size_t Document::WriteTopics(Field *field) const {
 	// Go through the fields recursively.
 	do {
 		ulBytes += field->Write(m_hFile);
-		if (Error::HasError())
+		if (BolotaHasError)
 			return BOLOTA_ERR_SIZET;
 		if (field->HasChild()) {
 			ulBytes += WriteTopics(field->Child());
-			if (Error::HasError())
+			if (BolotaHasError)
 				return BOLOTA_ERR_SIZET;
 		}
 		field = field->Next();

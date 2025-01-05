@@ -18,6 +18,11 @@
 #endif // _WIN32
 
 /**
+ * Convinience macro for testing for errors.
+ */
+#define BolotaHasError (Bolota::ErrorStack != NULL)
+
+/**
  * Convinience macro for throwing errors.
  */
 #define ThrowError(err) Bolota::Error::Throw((err))
@@ -60,7 +65,6 @@ namespace Bolota {
 		const TCHAR* Message();
 
 		// Stack operations.
-		static bool HasError();
 		Error* Pop();
 		static void Clear();
 	};

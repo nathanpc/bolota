@@ -7,10 +7,6 @@
 
 #include "Error.h"
 
-#ifndef NOEXCEPT
-	#include <stdexcept>
-#endif // !NOEXCEPT
-
 using namespace Bolota;
 
 /**
@@ -96,15 +92,6 @@ const TCHAR* Error::Message() {
 }
 
 /**
- * Check if any errors happened until now.
- *
- * @return TRUE if there were errors, FALSE otherwise.
- */
-bool Error::HasError() {
-	return ErrorStack != NULL;
-}
-
-/**
  * Destroys the current error object and gets its previous.
  *
  * @warning This will delete the reference to the current error object.
@@ -120,6 +107,6 @@ Error* Error::Pop() {
  * Clears the entire contents of the error stack.
  */
 void Error::Clear() {
-	while (HasError())
+	while (BolotaHasError)
 		ErrorStack->Pop();
 }

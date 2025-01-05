@@ -457,7 +457,7 @@ bool BolotaView::CheckTreeConsistency(HTREEITEM hti) {
 /**
  * Opens the appropriate field manager dialog window for the desired action.
  * 
- * @attention Check for errors with Error::HasError() after calling this method.
+ * @attention Check for errors with BolotaHasError after calling this method.
  *
  * @param type Type of action to be performed in the manager dialog.
  *
@@ -539,7 +539,7 @@ LRESULT BolotaView::OpenFieldManager(FieldManagerDialog::DialogType type) {
 	}
 
 	// Check if anything bad happened.
-	if (Error::HasError()) {
+	if (BolotaHasError) {
 		MsgBoxBolotaError(this->m_hwndParent, _T("Failed to perform field operation"));
 		return 1;
 	}
@@ -550,7 +550,7 @@ LRESULT BolotaView::OpenFieldManager(FieldManagerDialog::DialogType type) {
 /**
  * Handles the deletion of the currently selected field item.
  * 
- * @attention Check for errors with Error::HasError() after calling this method.
+ * @attention Check for errors with BolotaHasError after calling this method.
  *
  * @return 0 if everything worked.
  */
@@ -606,7 +606,7 @@ LRESULT BolotaView::AskDeleteField() {
 /**
  * Moves a field up or down the tree.
  * 
- * @attention Check for errors with Error::HasError() after calling this method.
+ * @attention Check for errors with BolotaHasError after calling this method.
  *
  * @param bUp Should we move the field upwards? Set to FALSE to move downwards.
  *
@@ -685,7 +685,7 @@ refresh:
 
 	// Check the consistency of the tree.
 	CheckTreeConsistency(hti);
-	if (Error::HasError())
+	if (BolotaHasError)
 		return 1;
 
 	// Flag unsaved changes.
@@ -697,7 +697,7 @@ refresh:
 /**
  * Indents a field relative to the one above it.
  * 
- * @attention Check for errors with Error::HasError() after calling this method.
+ * @attention Check for errors with BolotaHasError after calling this method.
  *
  * @return 0 if everything worked.
  */
@@ -714,7 +714,7 @@ LRESULT BolotaView::IndentField() {
 
 	// Indent the field internally.
 	m_doc->IndentTopic(field);
-	if (Error::HasError())
+	if (BolotaHasError)
 		return 1;
 	if (field->Parent() == field->Next()) {
 		ThrowError(EMSG("Infinite loop was created when indenting field"));
@@ -731,7 +731,7 @@ LRESULT BolotaView::IndentField() {
 
 	// Check the consistency of the tree.
 	CheckTreeConsistency(TreeView_GetSelection(m_hWnd));
-	if (Error::HasError())
+	if (BolotaHasError)
 		return 1;
 
 	// Flag unsaved changes.
@@ -743,7 +743,7 @@ LRESULT BolotaView::IndentField() {
 /**
  * De-indents a field relative to its parent.
  * 
- * @attention Check for errors with Error::HasError() after calling this method.
+ * @attention Check for errors with BolotaHasError after calling this method.
  *
  * @return 0 if everything worked.
  */
@@ -760,7 +760,7 @@ LRESULT BolotaView::DeindentField() {
 	
 	// Deindent the field internally.
 	m_doc->DeindentTopic(field);
-	if (Error::HasError())
+	if (BolotaHasError)
 		return 1;
 
 	// Get the right parent and previous items.
@@ -774,7 +774,7 @@ LRESULT BolotaView::DeindentField() {
 
 	// Check the consistency of the tree.
 	CheckTreeConsistency(TreeView_GetSelection(m_hWnd));
-	if (Error::HasError())
+	if (BolotaHasError)
 		return 1;
 
 	// Flag unsaved changes.
@@ -801,7 +801,7 @@ bool BolotaView::Save(bool bSaveAs) {
 			_tcscpy(szFilename, m_doc->FilePath().GetNativeString());
 		} else {
 			m_doc->WriteFile();
-			if (Error::HasError()) {
+			if (BolotaHasError) {
 				MsgBoxBolotaError(m_hwndParent, _T("Cannot save document"));
 				return false;
 			}
@@ -816,7 +816,7 @@ bool BolotaView::Save(bool bSaveAs) {
 
 	// Write the file.
 	m_doc->WriteFile(szFilename, true);
-	if (Error::HasError()) {
+	if (BolotaHasError) {
 		MsgBoxBolotaError(m_hwndParent, _T("Cannot save document"));
 		return false;
 	}
