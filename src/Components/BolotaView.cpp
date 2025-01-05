@@ -833,16 +833,18 @@ bool BolotaView::OpenFile() {
 	// Show the open file dialog and process the user selection.
 	if (!ShowFileDialog(szFilename, false))
 		return true;
-	try {
-		// Open the document and set the window title.
-		OpenDocument(Document::ReadFile(szFilename));
-		SetWindowText(m_hwndParent, PathFindFileName(szFilename));
 
-		// Flag saved changes.
-		SetDirty(false);
-	} catch (std::exception& e) {
-		MsgBoxException(m_hwndParent, e, _T("Cannot open document"));
+	// Open the document and set the window title.
+	Document* doc = Document::ReadFile(szFilename);
+	if (doc == BOLOTA_ERR_NULL) {
+		MsgBoxBolotaError(m_hwndParent, _T("Cannot open document"));
+		return false;
 	}
+	OpenDocument(doc);
+	SetWindowText(m_hwndParent, PathFindFileName(szFilename));
+
+	// Flag saved changes.
+	SetDirty(false);
 
 	return true;
 }

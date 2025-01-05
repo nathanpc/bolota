@@ -417,7 +417,8 @@ ConsistencyError* Document::CheckFieldConsistency(Field *ref, Field *parent,
  *
  * @param szPath Path to the file to be read and parsed into an object.
  *
- * @return The object representation of the read document.
+ * @return The object representation of the read document or BOLOTA_ERR_NULL if
+ *         an error occurred while trying to parse or read the file.
  */
 Document* Document::ReadFile(LPCTSTR szPath) {
 	size_t ulLength = 0;
@@ -426,36 +427,50 @@ Document* Document::ReadFile(LPCTSTR szPath) {
 	// Open a file handle for us to operate on.
 	HANDLE hFile = CreateFile(szPath, GENERIC_READ, FILE_SHARE_READ, NULL,
 		OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-	if (hFile == INVALID_HANDLE_VALUE)
-		throw SystemException("Could not open file for reading");
+	if (hFile == INVALID_HANDLE_VALUE) {
+		ThrowError(new SystemError(EMSG("Could not open file for reading")));
+		return BOLOTA_ERR_NULL;
+	}
 
 	// Read the file magic anc check if it's a Bolota document.
 	char szMagic[BOLOTA_DOC_MAGIC_LEN + 1];
-	if (!::ReadFile(hFile, szMagic, BOLOTA_DOC_MAGIC_LEN, &dwRead, NULL))
-		throw ReadError(hFile, ulLength, true);
+	if (!::ReadFile(hFile, szMagic, BOLOTA_DOC_MAGIC_LEN, &dwRead, NULL)) {
+		ThrowError(new ReadError(hFile, ulLength, true));
+		return BOLOTA_ERR_NULL;
+	}
 	ulLength += dwRead;
 	szMagic[BOLOTA_DOC_MAGIC_LEN] = '\0';
-	if (strcmp(szMagic, BOLOTA_DOC_MAGIC))
-		throw InvalidMagic(hFile);
+	if (strcmp(szMagic, BOLOTA_DOC_MAGIC)) {
+		ThrowError(new InvalidMagic(hFile));
+		return BOLOTA_ERR_NULL;
+	}
 
 	// Read and check if the version number is compatible.
 	uint8_t ucVersion = 0;
-	if (!::ReadFile(hFile, &ucVersion, sizeof(uint8_t), &dwRead, NULL))
-		throw ReadError(hFile, ulLength, true);
+	if (!::ReadFile(hFile, &ucVersion, sizeof(uint8_t), &dwRead, NULL)) {
+		ThrowError(new ReadError(hFile, ulLength, true));
+		return BOLOTA_ERR_NULL;
+	}
 	ulLength += dwRead;
-	if (ucVersion < BOLOTA_DOC_VER)
-		throw InvalidVersion(hFile);
+	if (ucVersion < BOLOTA_DOC_VER) {
+		ThrowError(new InvalidVersion(hFile));
+		return BOLOTA_ERR_NULL;
+	}
 
 	//  Read the length of the properties section.
 	uint32_t dwLengthProp = 0;
-	if (!::ReadFile(hFile, &dwLengthProp, sizeof(uint32_t), &dwRead, NULL))
-		throw ReadError(hFile, ulLength, true);
+	if (!::ReadFile(hFile, &dwLengthProp, sizeof(uint32_t), &dwRead, NULL)) {
+		ThrowError(new ReadError(hFile, ulLength, true));
+		return BOLOTA_ERR_NULL;
+	}
 	ulLength += dwRead;
 
 	// Read the length of the topics section.
 	uint32_t dwLengthTopics = 0;
-	if (!::ReadFile(hFile, &dwLengthTopics, sizeof(uint32_t), &dwRead, NULL))
-		throw ReadError(hFile, ulLength, true);
+	if (!::ReadFile(hFile, &dwLengthTopics, sizeof(uint32_t), &dwRead, NULL)) {
+		ThrowError(new ReadError(hFile, ulLength, true));
+		return BOLOTA_ERR_NULL;
+	}
 	ulLength += dwRead;
 
 	// Create the new document and start parsing.
@@ -593,7 +608,7 @@ bool Document::ReadTopics(uint32_t dwLengthTopics, size_t *ulBytes) {
 		// Read the field.
 		field = Field::Read(m_hFile, ulBytes, &ucDepth);
 		if (field == BOLOTA_ERR_NULL) {
-			ThrowError(EMSG("Failed to read document topics"));
+			ThrowError(EMSG("Failed to read document topic"));
 			return false;
 		}
 

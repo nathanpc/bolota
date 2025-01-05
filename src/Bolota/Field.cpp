@@ -216,7 +216,7 @@ Field* Field::Read(HANDLE hFile, size_t *bytes, uint8_t *depth) {
 
 	// Parse the field.
 	*depth = self->ReadField(hFile, bytes);
-	if (*depth == BOLOTA_ERR_UINT8)
+	if ((*depth == BOLOTA_ERR_UINT8) && Error::HasError())
 		goto error_handling;
 
 	return self;
@@ -232,7 +232,8 @@ error_handling:
  * @param hFile File handle to read the field from.
  * @param bytes Pointer to the counter storing the number of bytes read so far.
  *
- * @return Depth of the field found in the file.
+ * @return Depth of the field found in the file or BOLOTA_ERR_UINT8 if an error
+ *         happened.
  */
 uint8_t Field::ReadField(HANDLE hFile, size_t *bytes) {
 	DWORD dwRead = 0;
