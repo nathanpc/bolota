@@ -112,17 +112,20 @@ void Document::SetFirstTopic(Field *topic) {
  *
  * @param prev  Previous topic field to be modified.
  * @param field Topic field to be appended to the list.
+ * 
+ * @return FALSE if an error occurred, TRUE otherwise.
  */
-void Document::AppendTopic(Field *prev, Field *field) {
+bool Document::AppendTopic(Field *prev, Field *field) {
 	// Check if this is the first topic to be added to the document.
 	if (m_topics == NULL) {
 		if (prev != NULL) {
-			THROW_FATAL(Error(_T("Tried to append a topic from the middle of ")
-				_T("the linked list as the root element")));
+			ThrowError(EMSG("Tried to append a topic from the middle of the ")
+				_T("linked list as the root element"));
+			return false;
 		}
 		
 		SetFirstTopic(field);
-		return;
+		goto done;
 	}
 
 	// Shuffle things around.
@@ -130,8 +133,10 @@ void Document::AppendTopic(Field *prev, Field *field) {
 	field->SetNext(prev->Next(), false);
 	prev->SetNext(field, false);
 
+done:
 	// Flag unsaved changes.
 	SetDirty(true);
+	return true;
 }
 
 /**
@@ -162,22 +167,27 @@ void Document::PrependTopic(Field *next, Field *field) {
  * Appends a new topic to the end of the document's topic list.
  *
  * @param field Topic field to be appended to the document.
+ * 
+ * @return FALSE if an error occurred, TRUE otherwise.
  */
-void Document::AppendTopic(Field *field) {
+bool Document::AppendTopic(Field *field) {
 	// Check if this is the first topic to be added to the document.
-	if (m_topics == NULL) {
+	Field* last = m_topics;
+	if (last == NULL) {
 		SetFirstTopic(field);
-		return;
+		goto done;
 	}
 
 	// Find the last element and assign the next item to it.
-	Field *last = m_topics;
 	while (last->HasNext())
 		last = last->Next();
-	AppendTopic(last, field);
+	if (!AppendTopic(last, field))
+		return false;
 
+done:
 	// Flag unsaved changes.
 	SetDirty(true);
+	return true;
 }
 
 /**
@@ -363,22 +373,35 @@ bool Document::IsEmpty() const {
  * @param prev   Expected field previous.
  * @param next   Expected field next.
  *
- * @throws ConsistencyException if an inconsistency is found.
+ * @return ConsistencyException if an inconsistency is found, NULL otherwise.
  */
-void Document::CheckFieldConsistency(Field *ref, Field *parent, Field *child,
-									 Field *prev, Field *next) {
+ConsistencyError* Document::CheckFieldConsistency(Field *ref, Field *parent,
+												  Field* child, Field *prev,
+												  Field *next) {
 	// Check ourselves first.
-	ref->CheckConsistency();
+	ConsistencyError *ce = ref->CheckConsistency();
+	if (ce != NULL)
+		return ce;
 
 	// Check expected relationships.
-	if (ref->Parent() != parent)
-		throw ConsistencyException(ref, parent, ref->Parent(), "Parent");
-	if (ref->Child() != child)
-		throw ConsistencyException(ref, child, ref->Child(), "Child");
-	if (ref->Previous() != prev)
-		throw ConsistencyException(ref, prev, ref->Previous(), "Previous");
-	if (ref->Next() != next)
-		throw ConsistencyException(ref, next, ref->Next(), "Next");
+	if (ref->Parent() != parent) {
+		return static_cast<ConsistencyError*>(ThrowError(new ConsistencyError(
+			ref, parent, ref->Parent(), EMSG("Parent"))));
+	}
+	if (ref->Child() != child) {
+		return static_cast<ConsistencyError*>(ThrowError(new ConsistencyError(
+			ref, child, ref->Child(), EMSG("Child"))));
+	}
+	if (ref->Previous() != prev) {
+		return static_cast<ConsistencyError*>(ThrowError(new ConsistencyError(
+			ref, prev, ref->Previous(), EMSG("Previous"))));
+	}
+	if (ref->Next() != next) {
+		return static_cast<ConsistencyError*>(ThrowError(new ConsistencyError(
+			ref, next, ref->Next(), EMSG("Next"))));
+	}
+
+	return NULL;
 }
 
 /*
@@ -590,7 +613,8 @@ bool Document::ReadTopics(uint32_t dwLengthTopics, size_t *ulBytes) {
 			parent->SetNext(field, false);
 		} else {
 			// This is just the next field in line.
-			AppendTopic(fieldLast, field);
+			if (!AppendTopic(fieldLast, field))
+				return false;
 		}
 
 		// Set the last field for the next iteration.

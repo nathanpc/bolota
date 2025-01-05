@@ -23,8 +23,8 @@
     <Filter Include="Components">
       <UniqueIdentifier>{8613b5b3-b7f4-4ed8-aa88-d054ae91166f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Exceptions">
-      <UniqueIdentifier>{d40a99d0-0947-4e08-a11a-496c31192efe}</UniqueIdentifier>
+    <Filter Include="Bolota\Errors">
+      <UniqueIdentifier>{fd9fe2ee-5f30-4277-a8fc-362dd81ec5fb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -154,9 +154,6 @@
     <ClInclude Include="..\src\Bolota\Document.h">
       <Filter>Bolota</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Bolota\Exceptions.h">
-      <Filter>Bolota</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Bolota\Field.h">
       <Filter>Bolota</Filter>
     </ClInclude>
@@ -177,9 +174,6 @@
     </ClInclude>
     <ClInclude Include="..\src\Utilities\WindowUtilities.h">
       <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Exceptions\SystemException.h">
-      <Filter>Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Components\BolotaView.h">
       <Filter>Components</Filter>
@@ -207,6 +201,15 @@
     </ClInclude>
     <ClInclude Include="..\src\PropertiesDialog.h">
       <Filter>Windows and Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Bolota\Errors\Error.h">
+      <Filter>Bolota\Errors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Bolota\Errors\ErrorCollection.h">
+      <Filter>Bolota\Errors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Bolota\Errors\SystemError.h">
+      <Filter>Bolota\Errors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -237,9 +240,6 @@
     <ClCompile Include="..\src\Utilities\WindowUtilities.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Exceptions\SystemException.cpp">
-      <Filter>Exceptions</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Components\BolotaView.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -263,6 +263,12 @@
     </ClCompile>
     <ClCompile Include="..\src\PropertiesDialog.cpp">
       <Filter>Windows and Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Bolota\Errors\Error.cpp">
+      <Filter>Bolota\Errors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Bolota\Errors\SystemError.cpp">
+      <Filter>Bolota\Errors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

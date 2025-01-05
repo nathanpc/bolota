@@ -19,6 +19,7 @@
 #include <windows.h>
 
 #include "UString.h"
+#include "Errors/ErrorCollection.h"
 #include "Field.h"
 #include "DateField.h"
 
@@ -92,8 +93,8 @@ namespace Bolota {
 		// Topic management.
 		Field* FirstTopic() const;
 		void SetFirstTopic(Field *topic);
-		void AppendTopic(Field *field);
-		void AppendTopic(Field *prev, Field *field);
+		bool AppendTopic(Field *field);
+		bool AppendTopic(Field *prev, Field *field);
 		void PrependTopic(Field *next, Field *field);
 		void DeleteTopic(Field *field);
 		void PopTopic(Field *field);
@@ -102,8 +103,8 @@ namespace Bolota {
 		void IndentTopic(Field *field);
 		void DeindentTopic(Field *field);
 		bool IsEmpty() const;
-		void CheckFieldConsistency(Field *ref, Field *parent, Field *child,
-			Field *prev, Field *next);
+		ConsistencyError* CheckFieldConsistency(Field *ref, Field *parent,
+			Field *child, Field *prev, Field *next);
 
 		// File operations.
 		static Document* ReadFile(LPCTSTR szPath);

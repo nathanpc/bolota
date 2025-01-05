@@ -9,7 +9,7 @@
 
 #include "../stdafx.h"
 #include "../PropertiesDialog.h"
-#include "../Bolota/Exceptions/Error.h"
+#include "../Bolota/Errors/Error.h"
 
 #ifndef UNDER_CE
 	#include <shlwapi.h>
@@ -285,8 +285,10 @@ void BolotaView::SelectTreeViewItem(HTREEITEM hti) {
  *
  * @param hti   Tree-View node item to be updated.
  * @param field New field to be reloaded into the node.
+ *
+ * @return FALSE if an error was found, TRUE if everything is fine.
  */
-void BolotaView::RefreshField(HTREEITEM hti, Field *field) {
+bool BolotaView::RefreshField(HTREEITEM hti, Field *field) {
 	// Setup new node information.
 	TVITEM tvi;
 	bool bRetain = false;
@@ -304,7 +306,7 @@ void BolotaView::RefreshField(HTREEITEM hti, Field *field) {
 
 	// Select the refreshed node and check the consistency of the tree.
 	SelectTreeViewItem(hti);
-	CheckTreeConsistency(hti);
+	return CheckTreeConsistency(hti);
 }
 
 /**
@@ -313,11 +315,14 @@ void BolotaView::RefreshField(HTREEITEM hti, Field *field) {
  * @param htiPrev Tree-View node item to be before the new one.
  * @param prev    Field before the one to be inserted.
  * @param field   New field to be inserted.
+ *
+ * @return FALSE if an error was found, TRUE if everything is fine.
  */
-void BolotaView::AppendField(HTREEITEM htiPrev, Bolota::Field *prev,
+bool BolotaView::AppendField(HTREEITEM htiPrev, Bolota::Field *prev,
 							 Field *field) {
 	// Append the field in the document.
-	m_doc->AppendTopic(prev, field);
+	if (!m_doc->AppendTopic(prev, field))
+		return false;
 
 	// Append the field to the Tree-View and select the new node.
 	HTREEITEM htiParent = TreeView_GetParent(m_hWnd, htiPrev);
@@ -330,7 +335,7 @@ void BolotaView::AppendField(HTREEITEM htiPrev, Bolota::Field *prev,
 	SetDirty(true);
 
 	// Check the consistency of the tree.
-	CheckTreeConsistency(hti);
+	return CheckTreeConsistency(hti);
 }
 
 /**
@@ -339,9 +344,11 @@ void BolotaView::AppendField(HTREEITEM htiPrev, Bolota::Field *prev,
  * @param htiNext Tree-View node item to be after the new one.
  * @param next    Field after the one to be inserted.
  * @param field   New field to be inserted.
+ *
+ * @return FALSE if an error was found, TRUE if everything is fine.
  */
-void BolotaView::PrependField(HTREEITEM htiNext, Bolota::Field *next,
-							 Field *field) {
+bool BolotaView::PrependField(HTREEITEM htiNext, Bolota::Field *next,
+							  Field *field) {
 	// Append the field in the document.
 	m_doc->PrependTopic(next, field);
 
@@ -359,7 +366,7 @@ void BolotaView::PrependField(HTREEITEM htiNext, Bolota::Field *next,
 	SetDirty(true);
 
 	// Check the consistency of the tree.
-	CheckTreeConsistency(hti);
+	return CheckTreeConsistency(hti);
 }
 
 /**
@@ -368,9 +375,11 @@ void BolotaView::PrependField(HTREEITEM htiNext, Bolota::Field *next,
  * @param htiParent Tree-View node item to be the parent the new one.
  * @param parent    Parent field.
  * @param field     New field to be inserted.
+ *
+ * @return FALSE if an error was found, TRUE if everything is fine.
  */
-void BolotaView::CreateChildField(HTREEITEM htiParent, Bolota::Field *parent,
-							 Field *field) {
+bool BolotaView::CreateChildField(HTREEITEM htiParent, Bolota::Field *parent,
+								  Field *field) {
 	// Simply prepend to the first child if the parent already has one.
 	if (parent->HasChild()) {
 		PrependField(TreeView_GetChild(m_hWnd, htiParent), parent->Child(),
@@ -387,7 +396,7 @@ void BolotaView::CreateChildField(HTREEITEM htiParent, Bolota::Field *parent,
 	SetDirty(true);
 
 	// Check the consistency of the tree.
-	CheckTreeConsistency(hti);
+	return CheckTreeConsistency(hti);
 }
 
 /**
@@ -396,18 +405,21 @@ void BolotaView::CreateChildField(HTREEITEM htiParent, Bolota::Field *parent,
  *
  * @param hti Tree-View item to check for consistency.
  *
- * @throws ConsistencyException if an inconsistency is found.
+ * @return FALSE if an inconsistency is found, TRUE if everything is fine.
  */
-void BolotaView::CheckTreeConsistency(HTREEITEM hti) {
+bool BolotaView::CheckTreeConsistency(HTREEITEM hti) {
 	// Check if this is even valid.
-	if (hti == NULL)
-		throw std::exception("No Tree-View item passed for consistency check");
+	if (hti == NULL) {
+		ThrowError(EMSG("No Tree-View item passed for consistency check"));
+		return false;
+	}
 
 	// Get reference field.
 	Field *ref = GetFieldFromTreeItem(hti);
 	if (ref == NULL) {
-		throw std::exception("Reference field for consistency check not found "
-			"in Tree-View");
+		ThrowError(EMSG("Reference field for consistency check not found ")
+			_T("in Tree-View"));
+		return false;
 	}
 
 	// Get parent field.
@@ -431,7 +443,7 @@ void BolotaView::CheckTreeConsistency(HTREEITEM hti) {
 		GetFieldFromTreeItem(htiNext);
 
 	// Check our overall consistency.
-	m_doc->CheckFieldConsistency(ref, parent, child, prev, next);
+	return m_doc->CheckFieldConsistency(ref, parent, child, prev, next) == NULL;
 }
 
 /*
@@ -444,6 +456,8 @@ void BolotaView::CheckTreeConsistency(HTREEITEM hti) {
 
 /**
  * Opens the appropriate field manager dialog window for the desired action.
+ * 
+ * @attention Check for errors with Error::HasError() after calling this method.
  *
  * @param type Type of action to be performed in the manager dialog.
  *
@@ -524,11 +538,19 @@ LRESULT BolotaView::OpenFieldManager(FieldManagerDialog::DialogType type) {
 			_T("perform post-dialog operation on unknown operation type."));
 	}
 
+	// Check if anything bad happened.
+	if (Error::HasError()) {
+		MsgBoxBolotaError(this->m_hwndParent, _T("Failed to perform field operation"));
+		return 1;
+	}
+
 	return 0;
 }
 
 /**
  * Handles the deletion of the currently selected field item.
+ * 
+ * @attention Check for errors with Error::HasError() after calling this method.
  *
  * @return 0 if everything worked.
  */
@@ -572,6 +594,7 @@ LRESULT BolotaView::AskDeleteField() {
 	if (htiNext != NULL) {
 		SelectTreeViewItem(htiNext);
 		CheckTreeConsistency(htiNext);
+		return 1;
 	}
 
 	// Flag unsaved changes.
@@ -582,6 +605,8 @@ LRESULT BolotaView::AskDeleteField() {
 
 /**
  * Moves a field up or down the tree.
+ * 
+ * @attention Check for errors with Error::HasError() after calling this method.
  *
  * @param bUp Should we move the field upwards? Set to FALSE to move downwards.
  *
@@ -635,6 +660,10 @@ LRESULT BolotaView::MoveField(bool bUp) {
 
 	// Shuffle things around.
 	fldAbove = GetFieldFromTreeItem(htiAbove);
+	if (fldAbove == NULL) {
+		ThrowError(EMSG("Failed to get above field from Tree-View"));
+		return 1;
+	}
 	m_doc->MoveTopicBelow(field, fldAbove);
 
 refresh:
@@ -656,6 +685,8 @@ refresh:
 
 	// Check the consistency of the tree.
 	CheckTreeConsistency(hti);
+	if (Error::HasError())
+		return 1;
 
 	// Flag unsaved changes.
 	SetDirty(true);
@@ -665,6 +696,8 @@ refresh:
 
 /**
  * Indents a field relative to the one above it.
+ * 
+ * @attention Check for errors with Error::HasError() after calling this method.
  *
  * @return 0 if everything worked.
  */
@@ -694,6 +727,8 @@ LRESULT BolotaView::IndentField() {
 
 	// Check the consistency of the tree.
 	CheckTreeConsistency(TreeView_GetSelection(m_hWnd));
+	if (Error::HasError())
+		return 1;
 
 	// Flag unsaved changes.
 	SetDirty(true);
@@ -703,6 +738,8 @@ LRESULT BolotaView::IndentField() {
 
 /**
  * De-indents a field relative to its parent.
+ * 
+ * @attention Check for errors with Error::HasError() after calling this method.
  *
  * @return 0 if everything worked.
  */
@@ -731,6 +768,8 @@ LRESULT BolotaView::DeindentField() {
 
 	// Check the consistency of the tree.
 	CheckTreeConsistency(TreeView_GetSelection(m_hWnd));
+	if (Error::HasError())
+		return 1;
 
 	// Flag unsaved changes.
 	SetDirty(true);
@@ -1155,13 +1194,14 @@ bool BolotaView::IsDirty() const {
  *
  * @param hti Tree-View item handle.
  *
- * @return Field object associated with the Tree-View item.
+ * @return Field object associated with the Tree-View item or NULL if an error
+ *         happened.
  */
 Field* BolotaView::GetFieldFromTreeItem(HTREEITEM hti) const {
 	// Check if we have a valid item handle.
 	if (hti == NULL) {
-		THROW_FATAL_R(Error(_T("Tree-View item for field retrieval is NULL")),
-			NULL);
+		ThrowError(EMSG("Tree-View item for field retrieval is NULL"));
+		return NULL;
 	}
 
 	// Get the selected item from the handle.
@@ -1169,8 +1209,8 @@ Field* BolotaView::GetFieldFromTreeItem(HTREEITEM hti) const {
 	tvi.hItem = hti;
 	tvi.mask = TVIF_PARAM;
 	if (!TreeView_GetItem(m_hWnd, &tvi)) {
-		THROW_FATAL_R(Error(_T("Failed to get Tree-View item from handle")),
-			NULL);
+		ThrowError(EMSG("Failed to get Tree-View item from handle"));
+		return NULL;
 	}
 
 	return reinterpret_cast<Field*>(tvi.lParam);

@@ -685,31 +685,34 @@ bool Field::IsDocumentLast() const {
 ConsistencyError* Field::CheckConsistency() {
 	// Check if the first child of a parent has a previous field.
 	if (HasParent() && (Parent()->Child() == this) && HasPrevious()) {
-		throw ConsistencyException(this, NULL, Previous(),
-			"First Child Previous");
+		return static_cast<ConsistencyError*>(ThrowError(new ConsistencyError(
+			this, NULL, Previous(), EMSG("First Child Previous"))));
 	}
 
 	// Are we the child's parent?
 	if (HasChild() && (Child()->Parent() != this)) {
-		throw ConsistencyException(this, this, Child()->Parent(),
-			"Child Parent");
+		return static_cast<ConsistencyError*>(ThrowError(new ConsistencyError(
+			this, this, Child()->Parent(), EMSG("Child Parent"))));
 
 		// Is the child holding a previous?
 		if (Child()->HasPrevious()) {
-			throw ConsistencyException(this, NULL, Child()->Previous(),
-				"Child Previous");
+			return static_cast<ConsistencyError*>(ThrowError(
+				new ConsistencyError(this, NULL, Child()->Previous(),
+				EMSG("Child Previous"))));
 		}
 	}
 
 	// Are we the previous's next?
 	if (HasPrevious() && (Previous()->Next() != this)) {
-		throw ConsistencyException(this, this, Previous()->Next(),
-			"Previous Next");
+		return static_cast<ConsistencyError*>(ThrowError(new ConsistencyError(
+			this, this, Previous()->Next(), EMSG("Previous Next"))));
 	}
 
 	// Are we the next's previous?
 	if (HasNext() && (Next()->Previous() != this)) {
-		throw ConsistencyException(this, this, Next()->Previous(),
-			"Next Previous");
+		return static_cast<ConsistencyError*>(ThrowError(new ConsistencyError(
+			this, this, Next()->Previous(), EMSG("Next Previous"))));
 	}
+
+	return NULL;
 }

@@ -83,6 +83,10 @@ BOOL MainWindow::SetupControls(HWND hWnd) {
 		return FALSE;
 	}
 	m_wndBolota->OpenExampleDocument();
+	if (Error::HasError()) {
+		MsgBoxBolotaError(hWnd, _T("Failed to open example document"));
+		return FALSE;
+	}
 
 	return TRUE;
 }

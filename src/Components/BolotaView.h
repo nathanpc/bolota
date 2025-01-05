@@ -74,14 +74,14 @@ public:
 
 protected:
 	// Field updates.
-	void RefreshField(HTREEITEM hti, Bolota::Field *field);
-	void AppendField(HTREEITEM htiPrev, Bolota::Field *prev,
+	bool RefreshField(HTREEITEM hti, Bolota::Field *field);
+	bool AppendField(HTREEITEM htiPrev, Bolota::Field *prev,
 		Bolota::Field *field);
-	void PrependField(HTREEITEM htiNext, Bolota::Field *next,
+	bool PrependField(HTREEITEM htiNext, Bolota::Field *next,
 		Bolota::Field *field);
-	void CreateChildField(HTREEITEM htiParent, Bolota::Field *parent,
+	bool CreateChildField(HTREEITEM htiParent, Bolota::Field *parent,
 		Bolota::Field *field);
-	void CheckTreeConsistency(HTREEITEM hti);
+	bool CheckTreeConsistency(HTREEITEM hti);
 
 	// Tree-View item handling.
 	HTREEITEM AddTreeViewItem(HTREEITEM htiParent, HTREEITEM htiInsertAfter,
