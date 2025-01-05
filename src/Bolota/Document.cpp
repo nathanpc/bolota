@@ -8,6 +8,7 @@
 #include "Document.h"
 
 #include "Errors/ErrorCollection.h"
+#include "Errors/ConsistencyError.h"
 
 using namespace Bolota;
 
@@ -245,8 +246,9 @@ void Document::PopTopic(Field *field) {
 			m_topics->SetParent(NULL, true);
 		}
 	} else {
-		throw std::exception("Unknown/unhandled condition when trying to pop "
-			"topic from document");
+		ThrowError(EMSG("Unknown/unhandled condition when trying to pop topic ")
+			_T("from document"));
+		return;
 	}
 
 	// Blank out the moving object.
@@ -271,6 +273,8 @@ void Document::MoveTopicToTop(Field *field) {
 
 	// Detach topic and replace the topmost one.
 	PopTopic(field);
+	if (Error::HasError())
+		return;
 	field->SetNext(first, false);
 	SetFirstTopic(field);
 
@@ -287,6 +291,8 @@ void Document::MoveTopicToTop(Field *field) {
 void Document::MoveTopicBelow(Field *below, Field *above) {
 	// Detach the moving topic.
 	PopTopic(below);
+	if (Error::HasError())
+		return;
 
 	// Shuffle things around to make space for us at our new home.
 	if (above->HasChild()) {
@@ -306,15 +312,21 @@ void Document::MoveTopicBelow(Field *below, Field *above) {
 
 /**
  * Indents a topic field relative to the one above it.
+ * 
+ * @attention Check for errors using Error::HasError() after using this method.
  */
 void Document::IndentTopic(Field *field) {
 	// Nothing can be done about top fields.
-	if (!field->HasPrevious())
-		throw std::exception("Cannot indent topic without previous field");
+	if (!field->HasPrevious()) {
+		ThrowError(EMSG("Cannot indent topic without previous field"));
+		return;
+	}
 	
 	// Shuffle things around in preparation for the move.
 	Field *prev = field->Previous();
 	PopTopic(field);
+	if (Error::HasError())
+		return;
 
 	// Perform the actual move.
 	if (prev->HasChild()) {
@@ -335,15 +347,21 @@ void Document::IndentTopic(Field *field) {
 
 /**
  * De-indents a topic field relative to its parent.
+ * 
+ * @attention Check for errors using Error::HasError() after using this method.
  */
 void Document::DeindentTopic(Field *field) {
 	// Nothing can be done about orphan fields.
-	if (!field->HasParent())
-		throw std::exception("Cannot deindent topic without parent field");
+	if (!field->HasParent()) {
+		ThrowError(EMSG("Cannot deindent topic without parent field"));
+		return;
+	}
 	
 	// Shuffle things around in preparation for the move.
 	Field *parent = field->Parent();
 	PopTopic(field);
+	if (Error::HasError())
+		return;
 
 	// Perform the actual move.
 	field->SetParent(parent->Parent(), true);
@@ -375,30 +393,29 @@ bool Document::IsEmpty() const {
  *
  * @return ConsistencyException if an inconsistency is found, NULL otherwise.
  */
-ConsistencyError* Document::CheckFieldConsistency(Field *ref, Field *parent,
-												  Field* child, Field *prev,
-												  Field *next) {
+Error* Document::CheckFieldConsistency(Field *ref, Field *parent,Field* child,
+									   Field *prev, Field *next) {
 	// Check ourselves first.
-	ConsistencyError *ce = ref->CheckConsistency();
+	Error *ce = ref->CheckConsistency();
 	if (ce != NULL)
 		return ce;
 
 	// Check expected relationships.
 	if (ref->Parent() != parent) {
-		return static_cast<ConsistencyError*>(ThrowError(new ConsistencyError(
-			ref, parent, ref->Parent(), EMSG("Parent"))));
+		return ThrowError(new ConsistencyError(ref, parent, ref->Parent(),
+			EMSG("Parent")));
 	}
 	if (ref->Child() != child) {
-		return static_cast<ConsistencyError*>(ThrowError(new ConsistencyError(
-			ref, child, ref->Child(), EMSG("Child"))));
+		return ThrowError(new ConsistencyError(ref, child, ref->Child(),
+			EMSG("Child")));
 	}
 	if (ref->Previous() != prev) {
-		return static_cast<ConsistencyError*>(ThrowError(new ConsistencyError(
-			ref, prev, ref->Previous(), EMSG("Previous"))));
+		return ThrowError(new ConsistencyError(ref, prev, ref->Previous(),
+			EMSG("Previous")));
 	}
 	if (ref->Next() != next) {
-		return static_cast<ConsistencyError*>(ThrowError(new ConsistencyError(
-			ref, next, ref->Next(), EMSG("Next"))));
+		return ThrowError(new ConsistencyError( ref, next, ref->Next(),
+			EMSG("Next")));
 	}
 
 	return NULL;
@@ -642,6 +659,11 @@ bool Document::ReadTopics(uint32_t dwLengthTopics, size_t *ulBytes) {
 			field->SetParent(fieldLast, false);
 		} else if (ucDepth < ucLastDepth) {
 			// Next topic of the parent field.
+			if (fieldLast == NULL) {
+				ThrowError(EMSG("Last field is undefined when getting next of ")
+					_T("parent"));
+				return false;
+			}
 			Field *parent = fieldLast->Parent();
 			while (parent->Depth() != ucDepth)
 				parent = parent->Parent();

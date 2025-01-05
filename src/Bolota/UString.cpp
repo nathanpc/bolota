@@ -17,6 +17,8 @@
 	#include <stdexcept>
 #endif // UNDER_CE
 
+#include "Errors/Error.h"
+
 /**
  * Initializes an empty universal Unicode string.
  */
@@ -177,7 +179,7 @@ wchar_t *UString::ToWideString(const char *mbstr) {
 		goto failure;
 	wstr = (wchar_t *)malloc(nLen * sizeof(wchar_t));
 	if (wstr == NULL)
-		return NULL;
+		goto failure;
 
 	/* Perform the conversion. */
 	nLen = MultiByteToWideChar(CP_OEMCP, 0, mbstr, -1, wstr, nLen);
@@ -185,12 +187,9 @@ wchar_t *UString::ToWideString(const char *mbstr) {
 failure:
 		if (wstr)
 			free(wstr);
-#ifndef UNDER_CE
-		throw std::exception("Failed to convert UTF-8 string to UTF-16");
-#else
-		MessageBox(NULL, _T("Failed to convert UTF-8 string to UTF-16"),
-			_T("Unicode conversion failed"), MB_OK | MB_ICONERROR);
-#endif // UNDER_CE
+		wstr = NULL;
+		ThrowError(EMSG("Failed to convert UTF-8 string to UTF-16"));
+		return BOLOTA_ERR_NULL;
 	}
 #else
 	size_t len;
@@ -204,13 +203,11 @@ failure:
 	/* Perform the string conversion. */
 	len = mbstowcs(wstr, mbstr, len);
 	if (len == (size_t)-1) {
-		free(wstr);
-#ifndef UNDER_CE
-		throw std::exception("Failed to convert UTF-8 string to UTF-16");
-#else
-		MessageBox(NULL, _T("Failed to convert UTF-8 string to UTF-16"),
-			_T("Unicode conversion failed"), MB_OK | MB_ICONERROR);
-#endif // UNDER_CE
+		if (wstr)
+			free(wstr);
+		wstr = NULL;
+		ThrowError(EMSG("Failed to convert UTF-8 string to UTF-16"));
+		return BOLOTA_ERR_NULL;
 	}
 #endif // _WIN32
 
@@ -227,7 +224,7 @@ failure:
  * @return UTF-8 encoded multi-byte string.
  */
 char *UString::ToMultiByteString(const wchar_t *wstr) {
-	char *mbstr;
+	char *mbstr = NULL;
 	int nLen;
 
 	/* Get required buffer size and allocate some memory for it. */
@@ -236,18 +233,17 @@ char *UString::ToMultiByteString(const wchar_t *wstr) {
 		goto failure;
 	mbstr = (char *)malloc(nLen * sizeof(char));
 	if (mbstr == NULL)
-		return NULL;
+		goto failure;
 
 	/* Perform the conversion. */
 	nLen = WideCharToMultiByte(CP_OEMCP, 0, wstr, -1, mbstr, nLen, NULL, NULL);
 	if (nLen == 0) {
 failure:
-#ifndef UNDER_CE
-		throw std::exception("Failed to convert UTF-16 string to UTF-8");
-#else
-		MessageBox(NULL, _T("Failed to convert UTF-16 string to UTF-8"),
-			_T("Unicode conversion failed"), MB_OK | MB_ICONERROR);
-#endif // UNDER_CE
+		if (mbstr)
+			free(mbstr);
+		mbstr = NULL;
+		ThrowError(EMSG("Failed to convert UTF-16 string to UTF-8"));
+		return BOLOTA_ERR_NULL;
 	}
 
 	return mbstr;

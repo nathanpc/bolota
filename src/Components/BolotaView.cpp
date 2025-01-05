@@ -384,7 +384,7 @@ bool BolotaView::CreateChildField(HTREEITEM htiParent, Bolota::Field *parent,
 	if (parent->HasChild()) {
 		PrependField(TreeView_GetChild(m_hWnd, htiParent), parent->Child(),
 			field);
-		return;
+		return false;
 	}
 
 	// Set the child field in the document and update the Tree-View.
@@ -714,8 +714,12 @@ LRESULT BolotaView::IndentField() {
 
 	// Indent the field internally.
 	m_doc->IndentTopic(field);
-	if (field->Parent() == field->Next())
-		throw std::exception("Infinite loop was created when indenting field");
+	if (Error::HasError())
+		return 1;
+	if (field->Parent() == field->Next()) {
+		ThrowError(EMSG("Infinite loop was created when indenting field"));
+		return 1;
+	}
 
 	// Get the right parent and previous items.
 	HTREEITEM htiParent = TreeView_GetPrevSibling(m_hWnd, hti);
@@ -756,6 +760,8 @@ LRESULT BolotaView::DeindentField() {
 	
 	// Deindent the field internally.
 	m_doc->DeindentTopic(field);
+	if (Error::HasError())
+		return 1;
 
 	// Get the right parent and previous items.
 	HTREEITEM htiPrev = TreeView_GetParent(m_hWnd, hti);

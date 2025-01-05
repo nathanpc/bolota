@@ -103,8 +103,8 @@ namespace Bolota {
 		void IndentTopic(Field *field);
 		void DeindentTopic(Field *field);
 		bool IsEmpty() const;
-		ConsistencyError* CheckFieldConsistency(Field *ref, Field *parent,
-			Field *child, Field *prev, Field *next);
+		Error* CheckFieldConsistency(Field *ref, Field *parent, Field *child,
+			Field *prev, Field *next);
 
 		// File operations.
 		static Document* ReadFile(LPCTSTR szPath);

@@ -8,6 +8,7 @@
 #include "Field.h"
 
 #include "Errors/ErrorCollection.h"
+#include "Errors/ConsistencyError.h"
 #include "DateField.h"
 #include "IconField.h"
 
@@ -186,7 +187,7 @@ void Field::Copy(const Field *field, bool bReplace) {
  *         appropriate specific object type.
  */
 Field* Field::Read(HANDLE hFile, size_t *bytes, uint8_t *depth) {
-	Field *self;
+	Field *self = NULL;
 	uint8_t ucType;
 	DWORD dwRead = 0;
 
@@ -222,7 +223,9 @@ Field* Field::Read(HANDLE hFile, size_t *bytes, uint8_t *depth) {
 	return self;
 
 error_handling:
-	delete self;
+	if (self)
+		delete self;
+	self = NULL;
 	return BOLOTA_ERR_NULL;
 }
 
@@ -700,36 +703,35 @@ bool Field::IsDocumentLast() const {
  *
  * @return A ConsistencyError if an inconsistency is found, NULL otherwise.
  */
-ConsistencyError* Field::CheckConsistency() {
+Error* Field::CheckConsistency() {
 	// Check if the first child of a parent has a previous field.
 	if (HasParent() && (Parent()->Child() == this) && HasPrevious()) {
-		return static_cast<ConsistencyError*>(ThrowError(new ConsistencyError(
-			this, NULL, Previous(), EMSG("First Child Previous"))));
+		return ThrowError(new ConsistencyError(this, NULL, Previous(),
+			EMSG("First Child Previous")));
 	}
 
 	// Are we the child's parent?
 	if (HasChild() && (Child()->Parent() != this)) {
-		return static_cast<ConsistencyError*>(ThrowError(new ConsistencyError(
-			this, this, Child()->Parent(), EMSG("Child Parent"))));
+		return ThrowError(new ConsistencyError(this, this, Child()->Parent(),
+			EMSG("Child Parent")));
 
 		// Is the child holding a previous?
 		if (Child()->HasPrevious()) {
-			return static_cast<ConsistencyError*>(ThrowError(
-				new ConsistencyError(this, NULL, Child()->Previous(),
-				EMSG("Child Previous"))));
+			return ThrowError(new ConsistencyError(this, NULL,
+				Child()->Previous(), EMSG("Child Previous")));
 		}
 	}
 
 	// Are we the previous's next?
 	if (HasPrevious() && (Previous()->Next() != this)) {
-		return static_cast<ConsistencyError*>(ThrowError(new ConsistencyError(
-			this, this, Previous()->Next(), EMSG("Previous Next"))));
+		return ThrowError(new ConsistencyError(this, this, Previous()->Next(),
+			EMSG("Previous Next")));
 	}
 
 	// Are we the next's previous?
 	if (HasNext() && (Next()->Previous() != this)) {
-		return static_cast<ConsistencyError*>(ThrowError(new ConsistencyError(
-			this, this, Next()->Previous(), EMSG("Next Previous"))));
+		return ThrowError(new ConsistencyError(this, this, Next()->Previous(),
+			EMSG("Next Previous")));
 	}
 
 	return NULL;

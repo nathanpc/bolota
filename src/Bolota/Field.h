@@ -22,7 +22,7 @@
 #endif // _MSC_VER == 1200
 
 #include "UString.h"
-#include "Errors/ErrorCollection.h"
+#include "Errors/Error.h"
 
 extern "C" {
 #endif // __cplusplus
@@ -172,7 +172,7 @@ namespace Bolota {
 		Field* SetNext(Field *next, bool bPassive);
 		bool IsFirstChild() const;
 		bool IsDocumentLast() const;
-		ConsistencyError* CheckConsistency();
+		Error* CheckConsistency();
 
 	protected:
 		// Constructor helper.
