@@ -496,11 +496,16 @@ error_handling:
 /**
  * Writes the document to the currently associated file.
  *
- * @return Number of bytes written to the file.
+ * @return Number of bytes written to the file or BOLOTA_ERR_SIZET if an error
+ *         occurred during the process.
  */
 size_t Document::WriteFile() {
-	if (!HasFileAssociated())
-		throw std::exception("No file associated to write to");
+	// Check if we have a file associated.
+	if (!HasFileAssociated()) {
+		ThrowError(EMSG("No file associated to write to"));
+		return BOLOTA_ERR_SIZET;
+	}
+
 	return WriteFile(m_strPath.GetNativeString(), false);
 }
 
@@ -512,7 +517,8 @@ size_t Document::WriteFile() {
  * @param szPath     Path of the file to receive the contents of the object.
  * @param bAssociate Associate the file we are about to save with the document?
  *
- * @return Number of bytes written to the file.
+ * @return Number of bytes written to the file or BOLOTA_ERR_SIZET if an error
+ *         occurred during the process.
  */
 size_t Document::WriteFile(LPCTSTR szPath, bool bAssociate) {
 	size_t ulBytes = 0;
@@ -521,38 +527,52 @@ size_t Document::WriteFile(LPCTSTR szPath, bool bAssociate) {
 	// Open a file handle for us to operate on.
 	m_hFile = CreateFile(szPath, GENERIC_WRITE, FILE_SHARE_READ, NULL,
 		CREATE_ALWAYS, FILE_ATTRIBUTE_ARCHIVE, NULL);
-	if (m_hFile == INVALID_HANDLE_VALUE)
-		throw SystemException("Could not open file for writing");
+	if (m_hFile == INVALID_HANDLE_VALUE) {
+		ThrowError(new SystemError(EMSG("Could not open file for writing")));
+		return BOLOTA_ERR_SIZET;
+	}
 	if (bAssociate)
 		m_strPath = szPath;
 
 	// Write file header.
-	::WriteFile(m_hFile, BOLOTA_DOC_MAGIC, BOLOTA_DOC_MAGIC_LEN, &dwWritten,
-		NULL);
+	if (!::WriteFile(m_hFile, BOLOTA_DOC_MAGIC, BOLOTA_DOC_MAGIC_LEN,
+			&dwWritten, NULL)) {
+		ThrowError(new WriteError(m_hFile, ulBytes, true));
+		return BOLOTA_ERR_SIZET;
+	}
 	ulBytes += dwWritten;
 	uint8_t ucVersion = BOLOTA_DOC_VER;
-	::WriteFile(m_hFile, &ucVersion, sizeof(uint8_t), &dwWritten, NULL);
+	if (!::WriteFile(m_hFile, &ucVersion, sizeof(uint8_t), &dwWritten, NULL)) {
+		ThrowError(new WriteError(m_hFile, ulBytes, true));
+		return BOLOTA_ERR_SIZET;
+	}
 	ulBytes += dwWritten;
 
 	// Write properties section length.
 	uint32_t ulSectionLength = PropertiesLength();
-	::WriteFile(m_hFile, &ulSectionLength, sizeof(uint32_t), &dwWritten, NULL);
+	if (!::WriteFile(m_hFile, &ulSectionLength, sizeof(uint32_t), &dwWritten,
+			NULL)) {
+		ThrowError(new WriteError(m_hFile, ulBytes, true));
+		return BOLOTA_ERR_SIZET;
+	}
 	ulBytes += dwWritten;
 
 	// Write topics section length.
 	ulSectionLength = TopicsLength();
-	::WriteFile(m_hFile, &ulSectionLength, sizeof(uint32_t), &dwWritten, NULL);
+	if (!::WriteFile(m_hFile, &ulSectionLength, sizeof(uint32_t), &dwWritten,
+			NULL)) {
+		ThrowError(new WriteError(m_hFile, ulBytes, true));
+		return BOLOTA_ERR_SIZET;
+	}
 	ulBytes += dwWritten;
-
-	// TODO: Write attachments section length.
-	/*ulSectionLength = 0;
-	::WriteFile(m_hFile, &ulSectionLength, sizeof(uint32_t), &dwWritten, NULL);
-	ulBytes += dwWritten;*/
 
 	// Write document sections.
 	ulBytes += WriteProperties();
+	if (Error::HasError())
+		return BOLOTA_ERR_SIZET;
 	ulBytes += WriteTopics();
-	// TODO: ulBytes += WriteAttachments();
+	if (Error::HasError())
+		return BOLOTA_ERR_SIZET;
 
 	// Close the file handle and mark as clean.
 	CloseFile();
@@ -650,8 +670,14 @@ size_t Document::WriteProperties() const {
 
 	// Write the property fields.
 	ulBytes += m_title->Write(m_hFile);
+	if (Error::HasError())
+		return BOLOTA_ERR_SIZET;
 	ulBytes += m_subtitle->Write(m_hFile);
+	if (Error::HasError())
+		return BOLOTA_ERR_SIZET;
 	ulBytes += m_date->Write(m_hFile);
+	if (Error::HasError())
+		return BOLOTA_ERR_SIZET;
 
 	return ulBytes;
 }
@@ -670,8 +696,13 @@ size_t Document::WriteTopics(Field *field) const {
 	// Go through the fields recursively.
 	do {
 		ulBytes += field->Write(m_hFile);
-		if (field->HasChild())
+		if (Error::HasError())
+			return BOLOTA_ERR_SIZET;
+		if (field->HasChild()) {
 			ulBytes += WriteTopics(field->Child());
+			if (Error::HasError())
+				return BOLOTA_ERR_SIZET;
+		}
 		field = field->Next();
 	} while (field != NULL);
 

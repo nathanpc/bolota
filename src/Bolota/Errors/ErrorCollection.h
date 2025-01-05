@@ -155,6 +155,32 @@ namespace Bolota {
 	};
 
 	/**
+	 * Thrown whenever there's an error while trying to write a document file.
+	 */
+	class WriteError : public FileHandleError {
+	public:
+		size_t ulPosition;
+
+		WriteError(HANDLE hFile, bool bClose) :
+			FileHandleError(hFile, bClose, _T("Failed to write file")) {
+		};
+
+		WriteError(HANDLE hFile, size_t ulPosition, bool bClose) :
+			FileHandleError(hFile, bClose, _T("Failed to write file")) {
+			// Get position index as string.
+			TCHAR szIndex[20];
+			_sntprintf(szIndex, 19, _T("%lu"), ulPosition);
+			szIndex[19] = _T('\0');
+
+			// Create the message.
+			this->ulPosition = ulPosition;
+			tstring strReadError = _T("Failed to write file at position ");
+			strReadError += szIndex;
+			RefreshMessage(strReadError.c_str());
+		};
+	};
+
+	/**
 	 * Thrown whenever we encounter an unknown field type while trying to read a
 	 * document.
 	 */

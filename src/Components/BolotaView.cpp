@@ -795,6 +795,10 @@ bool BolotaView::Save(bool bSaveAs) {
 			_tcscpy(szFilename, m_doc->FilePath().GetNativeString());
 		} else {
 			m_doc->WriteFile();
+			if (Error::HasError()) {
+				MsgBoxBolotaError(m_hwndParent, _T("Cannot save document"));
+				return false;
+			}
 			SetDirty(false);
 			return true;
 		}
@@ -803,20 +807,22 @@ bool BolotaView::Save(bool bSaveAs) {
 	// Show the save file dialog and process the user selection.
 	if (!ShowFileDialog(szFilename, true))
 		return false;
-	try {
-		// Write the file and set the window title.
-		m_doc->WriteFile(szFilename, true);
-		LPTSTR szBasename = GetFilename(szFilename);
-		SetWindowText(m_hwndParent, szBasename);
-		free(szBasename);
-		szBasename = NULL;
 
-		// Flag saved changes.
-		SetDirty(false);
-	} catch (std::exception& e) {
-		MsgBoxException(m_hwndParent, e, _T("Cannot save document"));
+	// Write the file.
+	m_doc->WriteFile(szFilename, true);
+	if (Error::HasError()) {
+		MsgBoxBolotaError(m_hwndParent, _T("Cannot save document"));
 		return false;
 	}
+
+	// Set the window title.
+	LPTSTR szBasename = GetFilename(szFilename);
+	SetWindowText(m_hwndParent, szBasename);
+	free(szBasename);
+	szBasename = NULL;
+
+	// Flag saved changes.
+	SetDirty(false);
 
 	return true;
 }

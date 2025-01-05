@@ -284,7 +284,8 @@ uint8_t Field::ReadField(HANDLE hFile, size_t *bytes) {
  *
  * @param hFile File handle to write the field to.
  *
- * @return Number of bytes written to the file.
+ * @return Number of bytes written to the file or BOLOTA_ERR_SIZET if an error
+ *         occurred during the process.
  */
 size_t Field::Write(HANDLE hFile) const {
 	size_t ulBytes = 0;
@@ -292,28 +293,44 @@ size_t Field::Write(HANDLE hFile) const {
 
 	// Type of the field.
 	uint8_t iValue = m_type;
-	::WriteFile(hFile, &iValue, sizeof(uint8_t), &dwWritten, NULL);
+	if (!::WriteFile(hFile, &iValue, sizeof(uint8_t), &dwWritten, NULL)) {
+		ThrowError(new WriteError(hFile, ulBytes, true));
+		return BOLOTA_ERR_SIZET;
+	}
 	ulBytes += dwWritten;
 
 	// Depth of the field.
 	iValue = Depth();
-	::WriteFile(hFile, &iValue, sizeof(uint8_t), &dwWritten, NULL);
+	if (!::WriteFile(hFile, &iValue, sizeof(uint8_t), &dwWritten, NULL)) {
+		ThrowError(new WriteError(hFile, ulBytes, true));
+		return BOLOTA_ERR_SIZET;
+	}
 	ulBytes += dwWritten;
 
 	// Length of data.
 	uint16_t usFieldLength = FieldLength();
-	::WriteFile(hFile, &usFieldLength, sizeof(uint16_t), &dwWritten, NULL);
+	if (!::WriteFile(hFile, &usFieldLength, sizeof(uint16_t), &dwWritten,
+			NULL)) {
+		ThrowError(new WriteError(hFile, ulBytes, true));
+		return BOLOTA_ERR_SIZET;
+	}
 	ulBytes += dwWritten;
 
 	// Length of data.
 	uint16_t usTextLength = TextLength();
-	::WriteFile(hFile, &usTextLength, sizeof(uint16_t), &dwWritten, NULL);
+	if (!::WriteFile(hFile, &usTextLength, sizeof(uint16_t), &dwWritten, NULL)) {
+		ThrowError(new WriteError(hFile, ulBytes, true));
+		return BOLOTA_ERR_SIZET;
+	}
 	ulBytes += dwWritten;
 
 	// Data of the field.
 	if (m_text) {
-		::WriteFile(hFile, m_text->GetMultiByteString(), usTextLength,
-			&dwWritten, NULL);
+		if (!::WriteFile(hFile, m_text->GetMultiByteString(), usTextLength,
+				&dwWritten, NULL)) {
+			ThrowError(new WriteError(hFile, ulBytes, true));
+			return BOLOTA_ERR_SIZET;
+		}
 		ulBytes += dwWritten;
 	}
 

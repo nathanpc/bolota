@@ -35,6 +35,7 @@
  */
 #define BOLOTA_ERR_NULL  (NULL)
 #define BOLOTA_ERR_UINT8 ((UINT8)-1)
+#define BOLOTA_ERR_SIZET ((size_t)-1L)
 
 namespace Bolota {
 
