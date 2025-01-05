@@ -276,6 +276,38 @@ SOURCE=..\src\stdafx.h
 # Begin Group "Bolota"
 
 # PROP Default_Filter ""
+# Begin Group "Errors"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\src\Bolota\Errors\ConsistencyError.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\Bolota\Errors\ConsistencyError.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\Bolota\Errors\Error.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\Bolota\Errors\Error.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\Bolota\Errors\ErrorCollection.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\Bolota\Errors\SystemError.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\Bolota\Errors\SystemError.h
+# End Source File
+# End Group
 # Begin Source File
 
 SOURCE=..\src\Bolota\DateField.cpp
@@ -375,18 +407,6 @@ SOURCE=..\src\Components\FieldImageList.cpp
 # Begin Source File
 
 SOURCE=..\src\Components\FieldImageList.h
-# End Source File
-# End Group
-# Begin Group "Exceptions"
-
-# PROP Default_Filter ""
-# Begin Source File
-
-SOURCE=..\src\Exceptions\SystemException.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\Exceptions\SystemException.h
 # End Source File
 # End Group
 # Begin Group "Utilities"
