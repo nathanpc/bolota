@@ -2,16 +2,7 @@
 // Microsoft Visual C++ generated include file.
 // Used by BOLOTA.RC
 //
-#define IDR_MAINFRAME					128
-#define IDD_BOLOTA_DIALOG				102
-#define IDD_ABOUTBOX					103
-#define IDS_APP_TITLE					103
-#define IDS_HELLO						106
-#define IDI_BOLOTA	            		107
-#define IDI_SMALL						108
-#define IDC_BOLOTA	            		109
-#define IDC_MYICON						2
-#define IDC_STATIC	                    -1
+
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED

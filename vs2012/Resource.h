@@ -2,15 +2,7 @@
 // Microsoft Visual C++ generated include file.
 // Used by Bolota.rc
 //
-#define IDC_MYICON                      2
-#define IDD_BOLOTA_DIALOG               102
-#define IDS_APP_TITLE                   103
-#define IDD_ABOUTBOX                    103
-#define IDI_BOLOTA                      107
-#define IDI_SMALL                       108
-#define IDC_BOLOTA                      109
-#define IDR_MAINFRAME                   128
-#define IDC_STATIC                      -1
+
 
 // Next default values for new objects
 // 

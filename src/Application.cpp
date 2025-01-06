@@ -52,13 +52,9 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 #endif // defined(DEBUG) && !defined(UNDER_CE)
 
 	// Load the application class and title.
-#ifndef UNDER_CE
-	LoadString(hInstance, IDC_BOLOTA, szWindowClass, MAX_LOADSTRING);
+	LoadString(hInstance, IDS_APP_CLASS, szWindowClass, MAX_LOADSTRING);
 	LoadString(hInstance, IDS_APP_TITLE, szAppTitle, MAX_LOADSTRING);
-#else
-	_tcscpy(szWindowClass, _T("BOLOTA"));
-	_tcscpy(szAppTitle, _T("Bolota"));
-#endif // !UNDER_CE
+
 	// Initialize the application.
 	rc = RegisterApplication(hInstance);
 	if (rc == 0) {
@@ -78,7 +74,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	}
 
 	// Load accelerators.
-	hAccel = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_BOLOTA));
+	hAccel = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDR_ACCELERATORS));
 
 	// Application message loop.
 	while (GetMessage(&msg, NULL, 0, 0)) {
@@ -141,16 +137,16 @@ ATOM RegisterApplication(HINSTANCE hInstance) {
 	wcex.hIcon			= LoadIcon(hInstance, MAKEINTRESOURCE(IDI_BOLOTA));
 	wcex.hCursor		= LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground	= GetSysColorBrush(COLOR_WINDOW);
-	wcex.lpszMenuName	= (LPCTSTR)IDC_BOLOTA;
+	wcex.lpszMenuName	= MAKEINTRESOURCE(IDM_MAIN);
 	wcex.lpszClassName	= szWindowClass;
-	wcex.hIconSm		= LoadIcon(wcex.hInstance, (LPCTSTR)IDI_SMALL);
+	wcex.hIconSm		= LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
 	// Register the application's main window class.
 	return RegisterClassEx(&wcex);
 #else
 	// Setup the application's main window class.
 	WNDCLASS wc;
-	wc.style          = CS_VREDRAW | CS_HREDRAW;  // Window style.
+	wc.style         = CS_VREDRAW | CS_HREDRAW;   // Window style.
 	wc.lpfnWndProc   = MainWindowProc;            // Main window procedure.
 	wc.cbClsExtra    = 0;                         // Extra class data.
 	wc.cbWndExtra    = 0;                         // Extra window data.

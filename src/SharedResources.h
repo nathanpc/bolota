@@ -12,6 +12,16 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+// Application
+#define IDS_APP_CLASS                   101
+#define IDS_APP_TITLE                   102
+#define IDI_BOLOTA                      103
+#define IDI_SMALL                       104
+#define IDM_MAIN                        105
+#define IDR_ACCELERATORS                106
+#define IDD_ABOUTBOX                    107
+#define IDC_STATIC                      -1
+
 // Menus
 #define IDM_BASE                        2000
 #define IDM_FILE_NEW                    (IDM_BASE + 1)
