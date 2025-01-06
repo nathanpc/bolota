@@ -684,11 +684,13 @@ DEP_CPP_APPLI=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_APPLI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -707,11 +709,13 @@ DEP_CPP_APPLI=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_APPLI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -730,11 +734,13 @@ DEP_CPP_APPLI=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_APPLI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -753,11 +759,13 @@ DEP_CPP_APPLI=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_APPLI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -776,11 +784,13 @@ DEP_CPP_APPLI=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_APPLI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -799,11 +809,13 @@ DEP_CPP_APPLI=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_APPLI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -822,11 +834,13 @@ DEP_CPP_APPLI=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_APPLI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -845,11 +859,13 @@ DEP_CPP_APPLI=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_APPLI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -868,11 +884,13 @@ DEP_CPP_APPLI=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_APPLI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
@@ -891,11 +909,13 @@ DEP_CPP_APPLI=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_APPLI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
@@ -914,11 +934,13 @@ DEP_CPP_APPLI=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_APPLI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -931,7 +953,6 @@ DEP_CPP_APPLI=\
 	"..\src\Application.h"\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Exceptions\Error.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
@@ -946,6 +967,9 @@ DEP_CPP_APPLI=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
+	
+NODEP_CPP_APPLI=\
+	"..\src\Bolota\Exceptions\Error.h"\
 	
 
 !ENDIF 
@@ -964,9 +988,11 @@ SOURCE=..\src\stdafx.cpp
 DEP_CPP_STDAF=\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_STDAF=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -974,9 +1000,11 @@ DEP_CPP_STDAF=\
 DEP_CPP_STDAF=\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_STDAF=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -984,9 +1012,11 @@ DEP_CPP_STDAF=\
 DEP_CPP_STDAF=\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_STDAF=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -994,9 +1024,11 @@ DEP_CPP_STDAF=\
 DEP_CPP_STDAF=\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_STDAF=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -1004,9 +1036,11 @@ DEP_CPP_STDAF=\
 DEP_CPP_STDAF=\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_STDAF=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -1014,9 +1048,11 @@ DEP_CPP_STDAF=\
 DEP_CPP_STDAF=\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_STDAF=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -1024,9 +1060,11 @@ DEP_CPP_STDAF=\
 DEP_CPP_STDAF=\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_STDAF=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -1034,9 +1072,11 @@ DEP_CPP_STDAF=\
 DEP_CPP_STDAF=\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_STDAF=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -1044,9 +1084,11 @@ DEP_CPP_STDAF=\
 DEP_CPP_STDAF=\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_STDAF=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
@@ -1054,9 +1096,11 @@ DEP_CPP_STDAF=\
 DEP_CPP_STDAF=\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_STDAF=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
@@ -1064,9 +1108,11 @@ DEP_CPP_STDAF=\
 DEP_CPP_STDAF=\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_STDAF=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -1075,13 +1121,15 @@ DEP_CPP_STDAF=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Exceptions\Error.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
+	
+NODEP_CPP_STDAF=\
+	"..\src\Bolota\Exceptions\Error.h"\
 	
 
 !ENDIF 
@@ -1095,170 +1143,209 @@ SOURCE=..\src\stdafx.h
 # Begin Group "Bolota"
 
 # PROP Default_Filter ""
-# Begin Group "Exceptions"
+# Begin Group "Errors"
 
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\src\Bolota\Exceptions\Error.cpp
+SOURCE=..\src\Bolota\Errors\ConsistencyError.cpp
 
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
-!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
-
-!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
-
-!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
-
-!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
-
-!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
-
-!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
-
-!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
-
-!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
-
-!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
-
-!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
-
-!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
-
-!ENDIF 
-
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\Bolota\Exceptions\Error.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\Bolota\Exceptions\Exceptions.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\Bolota\Exceptions\SystemException.cpp
-
-!IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
-
-DEP_CPP_SYSTE=\
+DEP_CPP_CONSI=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
+	"..\src\Bolota\Errors\ConsistencyError.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
-DEP_CPP_SYSTE=\
+DEP_CPP_CONSI=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
+	"..\src\Bolota\Errors\ConsistencyError.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
-DEP_CPP_SYSTE=\
+DEP_CPP_CONSI=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
+	"..\src\Bolota\Errors\ConsistencyError.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
-DEP_CPP_SYSTE=\
+DEP_CPP_CONSI=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
+	"..\src\Bolota\Errors\ConsistencyError.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
-DEP_CPP_SYSTE=\
+DEP_CPP_CONSI=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
+	"..\src\Bolota\Errors\ConsistencyError.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
-DEP_CPP_SYSTE=\
+DEP_CPP_CONSI=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
+	"..\src\Bolota\Errors\ConsistencyError.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
-DEP_CPP_SYSTE=\
+DEP_CPP_CONSI=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
+	"..\src\Bolota\Errors\ConsistencyError.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
-DEP_CPP_SYSTE=\
+DEP_CPP_CONSI=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
+	"..\src\Bolota\Errors\ConsistencyError.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
-DEP_CPP_SYSTE=\
+DEP_CPP_CONSI=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
+	"..\src\Bolota\Errors\ConsistencyError.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
-DEP_CPP_SYSTE=\
+DEP_CPP_CONSI=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
+	"..\src\Bolota\Errors\ConsistencyError.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
-DEP_CPP_SYSTE=\
+DEP_CPP_CONSI=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
+	"..\src\Bolota\Errors\ConsistencyError.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
-DEP_CPP_SYSTE=\
+DEP_CPP_CONSI=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Exceptions\Error.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
+	"..\src\Bolota\Errors\ConsistencyError.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -1272,7 +1359,237 @@ DEP_CPP_SYSTE=\
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\Exceptions\SystemException.h
+SOURCE=..\src\Bolota\Errors\ConsistencyError.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\Bolota\Errors\Error.cpp
+
+!IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\Bolota\Errors\Error.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\Bolota\Errors\ErrorCollection.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\Bolota\Errors\SystemError.cpp
+
+!IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
+
+DEP_CPP_SYSTE=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
+
+DEP_CPP_SYSTE=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
+
+DEP_CPP_SYSTE=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
+
+DEP_CPP_SYSTE=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
+
+DEP_CPP_SYSTE=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
+
+DEP_CPP_SYSTE=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
+
+DEP_CPP_SYSTE=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
+
+DEP_CPP_SYSTE=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
+
+DEP_CPP_SYSTE=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
+
+DEP_CPP_SYSTE=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
+
+DEP_CPP_SYSTE=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
+
+DEP_CPP_SYSTE=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\Bolota\Errors\SystemError.h
 # End Source File
 # End Group
 # Begin Source File
@@ -1283,9 +1600,11 @@ SOURCE=..\src\Bolota\DateField.cpp
 
 DEP_CPP_DATEF=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DATEF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1293,9 +1612,11 @@ DEP_CPP_DATEF=\
 
 DEP_CPP_DATEF=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DATEF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1303,9 +1624,11 @@ DEP_CPP_DATEF=\
 
 DEP_CPP_DATEF=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DATEF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1313,9 +1636,11 @@ DEP_CPP_DATEF=\
 
 DEP_CPP_DATEF=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DATEF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1323,9 +1648,11 @@ DEP_CPP_DATEF=\
 
 DEP_CPP_DATEF=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DATEF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1333,9 +1660,11 @@ DEP_CPP_DATEF=\
 
 DEP_CPP_DATEF=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DATEF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1343,9 +1672,11 @@ DEP_CPP_DATEF=\
 
 DEP_CPP_DATEF=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DATEF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1353,9 +1684,11 @@ DEP_CPP_DATEF=\
 
 DEP_CPP_DATEF=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DATEF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1363,9 +1696,11 @@ DEP_CPP_DATEF=\
 
 DEP_CPP_DATEF=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DATEF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1373,9 +1708,11 @@ DEP_CPP_DATEF=\
 
 DEP_CPP_DATEF=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DATEF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1383,9 +1720,11 @@ DEP_CPP_DATEF=\
 
 DEP_CPP_DATEF=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DATEF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1396,9 +1735,6 @@ DEP_CPP_DATEF=\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions\Error.h"\
-	"..\src\Bolota\Exceptions\Exceptions.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\SharedResources.h"\
@@ -1406,6 +1742,11 @@ DEP_CPP_DATEF=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
+	
+NODEP_CPP_DATEF=\
+	"..\src\Bolota\Exceptions\Error.h"\
+	"..\src\Bolota\Exceptions\Exceptions.h"\
+	"..\src\Bolota\Exceptions\SystemException.h"\
 	
 
 !ENDIF 
@@ -1424,9 +1765,11 @@ SOURCE=..\src\Bolota\Document.cpp
 DEP_CPP_DOCUM=\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DOCUM=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1435,9 +1778,11 @@ DEP_CPP_DOCUM=\
 DEP_CPP_DOCUM=\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DOCUM=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1446,9 +1791,11 @@ DEP_CPP_DOCUM=\
 DEP_CPP_DOCUM=\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DOCUM=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1457,9 +1804,11 @@ DEP_CPP_DOCUM=\
 DEP_CPP_DOCUM=\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DOCUM=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1468,9 +1817,11 @@ DEP_CPP_DOCUM=\
 DEP_CPP_DOCUM=\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DOCUM=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1479,9 +1830,11 @@ DEP_CPP_DOCUM=\
 DEP_CPP_DOCUM=\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DOCUM=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1490,9 +1843,11 @@ DEP_CPP_DOCUM=\
 DEP_CPP_DOCUM=\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DOCUM=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1501,9 +1856,11 @@ DEP_CPP_DOCUM=\
 DEP_CPP_DOCUM=\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DOCUM=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1512,9 +1869,11 @@ DEP_CPP_DOCUM=\
 DEP_CPP_DOCUM=\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DOCUM=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1523,9 +1882,11 @@ DEP_CPP_DOCUM=\
 DEP_CPP_DOCUM=\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DOCUM=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1534,9 +1895,11 @@ DEP_CPP_DOCUM=\
 DEP_CPP_DOCUM=\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_DOCUM=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1548,9 +1911,6 @@ DEP_CPP_DOCUM=\
 	"..\shims\win32\stdint.h"\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Exceptions\Error.h"\
-	"..\src\Bolota\Exceptions\Exceptions.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\SharedResources.h"\
@@ -1558,6 +1918,11 @@ DEP_CPP_DOCUM=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
+	
+NODEP_CPP_DOCUM=\
+	"..\src\Bolota\Exceptions\Error.h"\
+	"..\src\Bolota\Exceptions\Exceptions.h"\
+	"..\src\Bolota\Exceptions\SystemException.h"\
 	
 
 !ENDIF 
@@ -1579,10 +1944,12 @@ SOURCE=..\src\Bolota\Field.cpp
 
 DEP_CPP_FIELD=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_FIELD=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1590,10 +1957,12 @@ DEP_CPP_FIELD=\
 
 DEP_CPP_FIELD=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_FIELD=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1601,10 +1970,12 @@ DEP_CPP_FIELD=\
 
 DEP_CPP_FIELD=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_FIELD=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1612,10 +1983,12 @@ DEP_CPP_FIELD=\
 
 DEP_CPP_FIELD=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_FIELD=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1623,10 +1996,12 @@ DEP_CPP_FIELD=\
 
 DEP_CPP_FIELD=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_FIELD=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1634,10 +2009,12 @@ DEP_CPP_FIELD=\
 
 DEP_CPP_FIELD=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_FIELD=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1645,10 +2022,12 @@ DEP_CPP_FIELD=\
 
 DEP_CPP_FIELD=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_FIELD=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1656,10 +2035,12 @@ DEP_CPP_FIELD=\
 
 DEP_CPP_FIELD=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_FIELD=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1667,10 +2048,12 @@ DEP_CPP_FIELD=\
 
 DEP_CPP_FIELD=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_FIELD=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1678,10 +2061,12 @@ DEP_CPP_FIELD=\
 
 DEP_CPP_FIELD=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_FIELD=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1689,10 +2074,12 @@ DEP_CPP_FIELD=\
 
 DEP_CPP_FIELD=\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_FIELD=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1703,9 +2090,6 @@ DEP_CPP_FIELD=\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions\Error.h"\
-	"..\src\Bolota\Exceptions\Exceptions.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
@@ -1714,6 +2098,11 @@ DEP_CPP_FIELD=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
+	
+NODEP_CPP_FIELD=\
+	"..\src\Bolota\Exceptions\Error.h"\
+	"..\src\Bolota\Exceptions\Exceptions.h"\
+	"..\src\Bolota\Exceptions\SystemException.h"\
 	
 
 !ENDIF 
@@ -1730,110 +2119,132 @@ SOURCE=..\src\Bolota\IconField.cpp
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_ICONF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_ICONF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_ICONF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_ICONF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_ICONF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_ICONF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_ICONF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_ICONF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_ICONF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_ICONF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
+	
+NODEP_CPP_ICONF=\
+	"..\src\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
@@ -1843,9 +2254,6 @@ DEP_CPP_ICONF=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Exceptions\Error.h"\
-	"..\src\Bolota\Exceptions\Exceptions.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
@@ -1854,6 +2262,11 @@ DEP_CPP_ICONF=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
+	
+NODEP_CPP_ICONF=\
+	"..\src\Bolota\Exceptions\Error.h"\
+	"..\src\Bolota\Exceptions\Exceptions.h"\
+	"..\src\Bolota\Exceptions\SystemException.h"\
 	
 
 !ENDIF 
@@ -1960,10 +2373,12 @@ DEP_CPP_ABOUT=\
 	"..\src\AboutDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ABOUT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -1972,10 +2387,12 @@ DEP_CPP_ABOUT=\
 	"..\src\AboutDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ABOUT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -1984,10 +2401,12 @@ DEP_CPP_ABOUT=\
 	"..\src\AboutDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ABOUT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -1996,10 +2415,12 @@ DEP_CPP_ABOUT=\
 	"..\src\AboutDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ABOUT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -2008,10 +2429,12 @@ DEP_CPP_ABOUT=\
 	"..\src\AboutDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ABOUT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -2020,10 +2443,12 @@ DEP_CPP_ABOUT=\
 	"..\src\AboutDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ABOUT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -2032,10 +2457,12 @@ DEP_CPP_ABOUT=\
 	"..\src\AboutDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ABOUT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -2044,10 +2471,12 @@ DEP_CPP_ABOUT=\
 	"..\src\AboutDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ABOUT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -2056,10 +2485,12 @@ DEP_CPP_ABOUT=\
 	"..\src\AboutDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ABOUT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
@@ -2068,10 +2499,12 @@ DEP_CPP_ABOUT=\
 	"..\src\AboutDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ABOUT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
@@ -2080,10 +2513,12 @@ DEP_CPP_ABOUT=\
 	"..\src\AboutDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ABOUT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -2093,7 +2528,6 @@ DEP_CPP_ABOUT=\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
 	"..\src\AboutDialog.h"\
-	"..\src\Bolota\Exceptions\Error.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -2101,6 +2535,9 @@ DEP_CPP_ABOUT=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
+	
+NODEP_CPP_ABOUT=\
+	"..\src\Bolota\Exceptions\Error.h"\
 	
 
 !ENDIF 
@@ -2122,15 +2559,17 @@ DEP_CPP_FIELDM=\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDM=\
+	"..\src\Exceptions\SystemException.h"\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -2141,15 +2580,17 @@ DEP_CPP_FIELDM=\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDM=\
+	"..\src\Exceptions\SystemException.h"\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -2160,15 +2601,17 @@ DEP_CPP_FIELDM=\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDM=\
+	"..\src\Exceptions\SystemException.h"\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -2179,15 +2622,17 @@ DEP_CPP_FIELDM=\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDM=\
+	"..\src\Exceptions\SystemException.h"\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -2198,15 +2643,17 @@ DEP_CPP_FIELDM=\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDM=\
+	"..\src\Exceptions\SystemException.h"\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -2217,15 +2664,17 @@ DEP_CPP_FIELDM=\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDM=\
+	"..\src\Exceptions\SystemException.h"\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -2236,15 +2685,17 @@ DEP_CPP_FIELDM=\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDM=\
+	"..\src\Exceptions\SystemException.h"\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -2255,15 +2706,17 @@ DEP_CPP_FIELDM=\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDM=\
+	"..\src\Exceptions\SystemException.h"\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -2274,15 +2727,17 @@ DEP_CPP_FIELDM=\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDM=\
+	"..\src\Exceptions\SystemException.h"\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
@@ -2293,15 +2748,17 @@ DEP_CPP_FIELDM=\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDM=\
+	"..\src\Exceptions\SystemException.h"\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
@@ -2312,15 +2769,17 @@ DEP_CPP_FIELDM=\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDM=\
+	"..\src\Exceptions\SystemException.h"\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -2330,8 +2789,6 @@ DEP_CPP_FIELDM=\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
 	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Exceptions\Error.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
@@ -2344,6 +2801,10 @@ DEP_CPP_FIELDM=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
+	
+NODEP_CPP_FIELDM=\
+	"..\src\Bolota\Exceptions\Error.h"\
+	"..\src\Bolota\Exceptions\SystemException.h"\
 	
 
 !ENDIF 
@@ -2371,11 +2832,13 @@ DEP_CPP_MAINW=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_MAINW=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -2392,11 +2855,13 @@ DEP_CPP_MAINW=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_MAINW=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -2413,11 +2878,13 @@ DEP_CPP_MAINW=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_MAINW=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -2434,11 +2901,13 @@ DEP_CPP_MAINW=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_MAINW=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -2455,11 +2924,13 @@ DEP_CPP_MAINW=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_MAINW=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -2476,11 +2947,13 @@ DEP_CPP_MAINW=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_MAINW=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -2497,11 +2970,13 @@ DEP_CPP_MAINW=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_MAINW=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -2518,11 +2993,13 @@ DEP_CPP_MAINW=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_MAINW=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -2539,11 +3016,13 @@ DEP_CPP_MAINW=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_MAINW=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
@@ -2560,11 +3039,13 @@ DEP_CPP_MAINW=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_MAINW=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
@@ -2581,11 +3062,13 @@ DEP_CPP_MAINW=\
 	"..\src\MainWindow.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_MAINW=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -2596,7 +3079,6 @@ DEP_CPP_MAINW=\
 	"..\shims\win32\stdint.h"\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Exceptions\Error.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
@@ -2611,6 +3093,9 @@ DEP_CPP_MAINW=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
+	
+NODEP_CPP_MAINW=\
+	"..\src\Bolota\Exceptions\Error.h"\
 	
 
 !ENDIF 
@@ -2634,10 +3119,12 @@ DEP_CPP_PROPE=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_PROPE=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -2650,10 +3137,12 @@ DEP_CPP_PROPE=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_PROPE=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -2666,10 +3155,12 @@ DEP_CPP_PROPE=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_PROPE=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -2682,10 +3173,12 @@ DEP_CPP_PROPE=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_PROPE=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -2698,10 +3191,12 @@ DEP_CPP_PROPE=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_PROPE=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -2714,10 +3209,12 @@ DEP_CPP_PROPE=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_PROPE=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -2730,10 +3227,12 @@ DEP_CPP_PROPE=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_PROPE=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -2746,10 +3245,12 @@ DEP_CPP_PROPE=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_PROPE=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -2762,10 +3263,12 @@ DEP_CPP_PROPE=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_PROPE=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
@@ -2778,10 +3281,12 @@ DEP_CPP_PROPE=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_PROPE=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
@@ -2794,10 +3299,12 @@ DEP_CPP_PROPE=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_PROPE=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -2808,7 +3315,6 @@ DEP_CPP_PROPE=\
 	"..\shims\win32\stdint.h"\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Exceptions\Error.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\PropertiesDialog.h"\
@@ -2818,6 +3324,9 @@ DEP_CPP_PROPE=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
+	
+NODEP_CPP_PROPE=\
+	"..\src\Bolota\Exceptions\Error.h"\
 	
 
 !ENDIF 
@@ -2849,11 +3358,13 @@ DEP_CPP_BOLOT=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_BOLOT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -2870,11 +3381,13 @@ DEP_CPP_BOLOT=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_BOLOT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -2891,11 +3404,13 @@ DEP_CPP_BOLOT=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_BOLOT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -2912,11 +3427,13 @@ DEP_CPP_BOLOT=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_BOLOT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -2933,11 +3450,13 @@ DEP_CPP_BOLOT=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_BOLOT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -2954,11 +3473,13 @@ DEP_CPP_BOLOT=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_BOLOT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -2975,11 +3496,13 @@ DEP_CPP_BOLOT=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_BOLOT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -2996,11 +3519,13 @@ DEP_CPP_BOLOT=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_BOLOT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -3017,11 +3542,13 @@ DEP_CPP_BOLOT=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_BOLOT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
@@ -3038,11 +3565,13 @@ DEP_CPP_BOLOT=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_BOLOT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
@@ -3059,11 +3588,13 @@ DEP_CPP_BOLOT=\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_BOLOT=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -3074,7 +3605,6 @@ DEP_CPP_BOLOT=\
 	"..\shims\win32\stdint.h"\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Exceptions\Error.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
@@ -3089,6 +3619,9 @@ DEP_CPP_BOLOT=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
+	
+NODEP_CPP_BOLOT=\
+	"..\src\Bolota\Exceptions\Error.h"\
 	
 
 !ENDIF 
@@ -3111,10 +3644,12 @@ DEP_CPP_FIELDI=\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -3126,10 +3661,12 @@ DEP_CPP_FIELDI=\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -3141,10 +3678,12 @@ DEP_CPP_FIELDI=\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -3156,10 +3695,12 @@ DEP_CPP_FIELDI=\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -3171,10 +3712,12 @@ DEP_CPP_FIELDI=\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -3186,10 +3729,12 @@ DEP_CPP_FIELDI=\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -3201,10 +3746,12 @@ DEP_CPP_FIELDI=\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -3216,10 +3763,12 @@ DEP_CPP_FIELDI=\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -3231,10 +3780,12 @@ DEP_CPP_FIELDI=\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
@@ -3246,10 +3797,12 @@ DEP_CPP_FIELDI=\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
@@ -3261,10 +3814,12 @@ DEP_CPP_FIELDI=\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
-	"..\src\targetver.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_FIELDI=\
+	"..\src\targetver.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -3273,7 +3828,6 @@ DEP_CPP_FIELDI=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Exceptions\Error.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
@@ -3284,6 +3838,9 @@ DEP_CPP_FIELDI=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
+	
+NODEP_CPP_FIELDI=\
+	"..\src\Bolota\Exceptions\Error.h"\
 	
 
 !ENDIF 
@@ -3384,11 +3941,13 @@ DEP_CPP_DIALO=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Exceptions\Error.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	".\STL\wce_defs.h"\
+	
+NODEP_CPP_DIALO=\
+	"..\src\Bolota\Exceptions\Error.h"\
 	
 
 !ENDIF 
@@ -3405,89 +3964,111 @@ SOURCE=..\src\Utilities\ImageList.cpp
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_IMAGE=\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\SharedResources.h"\
 	"..\src\Utilities\ImageList.h"\
+	
+NODEP_CPP_IMAGE=\
+	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_IMAGE=\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\SharedResources.h"\
 	"..\src\Utilities\ImageList.h"\
+	
+NODEP_CPP_IMAGE=\
+	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_IMAGE=\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\SharedResources.h"\
 	"..\src\Utilities\ImageList.h"\
+	
+NODEP_CPP_IMAGE=\
+	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_IMAGE=\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\SharedResources.h"\
 	"..\src\Utilities\ImageList.h"\
+	
+NODEP_CPP_IMAGE=\
+	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_IMAGE=\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\SharedResources.h"\
 	"..\src\Utilities\ImageList.h"\
+	
+NODEP_CPP_IMAGE=\
+	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_IMAGE=\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\SharedResources.h"\
 	"..\src\Utilities\ImageList.h"\
+	
+NODEP_CPP_IMAGE=\
+	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_IMAGE=\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\SharedResources.h"\
 	"..\src\Utilities\ImageList.h"\
+	
+NODEP_CPP_IMAGE=\
+	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_IMAGE=\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\SharedResources.h"\
 	"..\src\Utilities\ImageList.h"\
+	
+NODEP_CPP_IMAGE=\
+	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_IMAGE=\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\SharedResources.h"\
 	"..\src\Utilities\ImageList.h"\
+	
+NODEP_CPP_IMAGE=\
+	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_IMAGE=\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\SharedResources.h"\
 	"..\src\Utilities\ImageList.h"\
+	
+NODEP_CPP_IMAGE=\
+	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_IMAGE=\
-	"..\src\Exceptions\SystemException.h"\
 	"..\src\SharedResources.h"\
 	"..\src\Utilities\ImageList.h"\
+	
+NODEP_CPP_IMAGE=\
+	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -3496,8 +4077,6 @@ DEP_CPP_IMAGE=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Exceptions\Error.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -3505,6 +4084,10 @@ DEP_CPP_IMAGE=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
+	
+NODEP_CPP_IMAGE=\
+	"..\src\Bolota\Exceptions\Error.h"\
+	"..\src\Bolota\Exceptions\SystemException.h"\
 	
 
 !ENDIF 
@@ -3590,10 +4173,12 @@ DEP_CPP_MSGBO=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Exceptions\Error.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	".\STL\wce_defs.h"\
+	
+NODEP_CPP_MSGBO=\
+	"..\src\Bolota\Exceptions\Error.h"\
 	
 
 !ENDIF 

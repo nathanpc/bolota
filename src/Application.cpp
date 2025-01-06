@@ -115,17 +115,26 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
  *
  * @return TRUE if the class was registered.
  */
-ATOM RegisterApplication(HINSTANCE hInstance) {
-	WNDCLASSEX wcex;
+ATOM RegisterApplication(HINSTANCE hInstance) {	
+#ifdef SHELL_AYGSHELL
+	// Only allow one instance of the application under Pocket PC.
+	HWND hWnd = FindWindow(szWindowClass, NULL);
+	if (hWnd) {
+		SetForegroundWindow((HWND)(((DWORD)hWnd) | 0x01));
+		return 1;
+	}
+#endif // SHELL_AYGSHELL
 
+#ifndef UNDER_CE
 	// Setup the application's main window class.
-	wcex.cbSize = sizeof(WNDCLASSEX); 
+	WNDCLASSEX wcex;
+	wcex.cbSize         = sizeof(WNDCLASSEX); 
 	wcex.style			= CS_HREDRAW | CS_VREDRAW;
 	wcex.lpfnWndProc	= (WNDPROC)MainWindowProc;
 	wcex.cbClsExtra		= 0;
 	wcex.cbWndExtra		= 0;
 	wcex.hInstance		= hInstance;
-	wcex.hIcon			= LoadIcon(hInstance, (LPCTSTR)IDI_BOLOTA);
+	wcex.hIcon			= LoadIcon(hInstance, MAKEINTRESOURCE(IDI_BOLOTA));
 	wcex.hCursor		= LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground	= GetSysColorBrush(COLOR_WINDOW);
 	wcex.lpszMenuName	= (LPCTSTR)IDC_BOLOTA;
@@ -134,6 +143,29 @@ ATOM RegisterApplication(HINSTANCE hInstance) {
 
 	// Register the application's main window class.
 	return RegisterClassEx(&wcex);
+#else
+	// Setup the application's main window class.
+	WNDCLASS wc;
+	wc.style          = CS_VREDRAW | CS_HREDRAW;  // Window style.
+	wc.lpfnWndProc   = MainWindowProc;            // Main window procedure.
+	wc.cbClsExtra    = 0;                         // Extra class data.
+	wc.cbWndExtra    = 0;                         // Extra window data.
+	wc.hInstance     = hInstance;                 // Owner handle.
+	wc.hIcon         = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_BOLOTA));
+	wc.hCursor       = NULL;                      // Default cursor. (Always NULL)
+	wc.hbrBackground = GetSysColorBrush(COLOR_STATIC);
+	wc.lpszMenuName  = NULL;                      // Menu name. (Always NULL)
+	wc.lpszClassName = szWindowClass;             // Window class name.
+
+	// Register the application's main window class.
+	if (!RegisterClass(&wc)) {
+        MessageBox(NULL, L"Window Registration Failed!", L"Error",
+			MB_ICONEXCLAMATION | MB_OK);
+        return 1;
+    }
+
+	return 0;
+#endif // !UNDER_CE
 }
 
 /**
@@ -149,6 +181,7 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 	HWND hWnd;
 
 	// Initialize main window object.
+#ifndef UNDER_CE
 	int numArgs = 0;
 	LPTSTR *lpArgs = CommandLineToArgvW(lpCmdLine, &numArgs);
 	LPCTSTR szAddress = NULL;
@@ -158,8 +191,12 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 	LocalFree(lpArgs);
 	lpArgs = NULL;
 	szAddress = NULL;
+#else
+	wndMain = new MainWindow(hInstance, NULL);
+#endif // !UNDER_CE
 
 	// Create the main window.
+#ifndef UNDER_CE
 	hWnd = CreateWindow(szWindowClass,			// Window class.
 						szAppTitle,				// Window title.
 						WS_OVERLAPPEDWINDOW,	// Style flags.
@@ -171,6 +208,11 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 						NULL,					// Menu class. (Always NULL)
 						hInstance,				// Application instance.
 						NULL);					// Pointer to create parameters.
+#else
+	hWnd = CreateWindow(szWindowClass, szAppTitle, WS_VISIBLE, CW_USEDEFAULT,
+		CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, NULL, NULL, hInstance,
+		NULL);
+#endif // !UNDER_CE
 
 	// Check if the window creation worked.
 	if (!IsWindow(hWnd)) {
@@ -181,12 +223,13 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 
 #ifdef UNDER_CE
 	// Set the window task switching icon.
-	HANDLE hIcon = LoadImage(hInst, MAKEINTRESOURCE(IDI_DESKTOP), IMAGE_ICON,
-		GetSystemMetrics(SM_CXICON), GetSystemMetrics(SM_CYICON), 0);
+	HANDLE hIcon = LoadImage(hInstance, MAKEINTRESOURCE(IDI_BOLOTA),
+		IMAGE_ICON, GetSystemMetrics(SM_CXICON), GetSystemMetrics(SM_CYICON),
+		0);
 	SendMessage(hWnd, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
 
 	// Set window taskbar icon.
-	hIcon = LoadImage(hInst, MAKEINTRESOURCE(IDI_SMALL), IMAGE_ICON,
+	hIcon = LoadImage(hInstance, MAKEINTRESOURCE(IDI_SMALL), IMAGE_ICON,
 		GetSystemMetrics(SM_CXSMICON), GetSystemMetrics(SM_CYSMICON), 0);
 	SendMessage(hWnd, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
 #endif // UNDER_CE
@@ -227,8 +270,10 @@ LRESULT CALLBACK MainWindowProc(HWND hWnd, UINT wMsg, WPARAM wParam,
 			return WndMainCreate(hWnd, wMsg, wParam, lParam);
 		case WM_COMMAND:
 			return WndMainCommand(hWnd, wMsg, wParam, lParam);
+#ifndef UNDER_CE
 		case WM_CONTEXTMENU:
 			return WndMainContextMenu(hWnd, wMsg, wParam, lParam);
+#endif // !UNDER_CE
 		case WM_NOTIFY:
 			return WndMainNotify(hWnd, wMsg, wParam, lParam);
 		case WM_SIZE:
@@ -303,8 +348,13 @@ LRESULT WndMainCommand(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
 LRESULT WndMainContextMenu(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
 	// Break the parameters down.
 	HWND hwndParam = (HWND)wParam;
+#ifndef UNDER_CE
 	int xPos = GET_X_LPARAM(lParam);
-	int yPos = GET_Y_LPARAM(lParam); 
+	int yPos = GET_Y_LPARAM(lParam);
+#else
+	int xPos = LOWORD(lParam);
+	int yPos = HIWORD(lParam);
+#endif // !UNDER_CE
 	
 	// Let our main window wrapper deal with the message.
 	if (wndMain->OnContextMenu(hwndParam, xPos, yPos))

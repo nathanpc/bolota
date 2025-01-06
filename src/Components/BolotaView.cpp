@@ -853,7 +853,13 @@ bool BolotaView::OpenFile() {
 		return false;
 	}
 	OpenDocument(doc);
+#ifndef UNDER_CE
 	SetWindowText(m_hwndParent, PathFindFileName(szFilename));
+#else
+	SHFILEINFO sfi = {0};
+	SHGetFileInfo(szFilename, -1, &sfi, sizeof(SHFILEINFO), SHGFI_DISPLAYNAME);
+	SetWindowText(m_hwndParent, sfi.szDisplayName);
+#endif // !UNDER_CE
 
 	// Flag saved changes.
 	SetDirty(false);
@@ -992,9 +998,14 @@ bool BolotaView::ShowContextMenu(int xPos, int yPos) {
 	TreeView_SelectItem(m_hWnd, hti);
 
 	// Get the menu we want to use as our context menu and show it.
+#ifndef UNDER_CE
 	HMENU hm = GetSubMenu(GetMenu(m_hwndParent), PARENT_MENU_FIELD_IDX);
 	TrackPopupMenu(hm, TPM_LEFTALIGN | TPM_TOPALIGN | TPM_RIGHTBUTTON,
 		xPos, yPos, 0, m_hwndParent, NULL);
+#else
+	MsgBoxWarning(m_hwndParent, _T("Not yet implemented"),
+		_T("Context menus are not yet implemented under Windows CE."));
+#endif // !UNDER_CE
 
 	return true;
 }
@@ -1125,8 +1136,7 @@ LPTSTR BolotaView::GetFilename(LPCTSTR szFilepath) const {
  */
 bool BolotaView::ShowFileDialog(LPTSTR szFilename, bool bSave) const {
 	// Setup file dialog.
-	OPENFILENAME ofn;
-	ZeroMemory(&ofn, sizeof(OPENFILENAME));
+	OPENFILENAME ofn = {0};
 	ofn.lStructSize = sizeof(OPENFILENAME);
 	ofn.hwndOwner = m_hwndParent;
 	ofn.lpstrTitle = (bSave) ? _T("Save Document As...") : _T("Open Document");
