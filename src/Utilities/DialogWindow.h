@@ -29,7 +29,7 @@ protected:
 
 	void RegisterHandle(HWND hDlg);
 
-	void Close(INT_PTR nResult, bool bSelfDispose);
+	virtual void Close(INT_PTR nResult, bool bSelfDispose);
 
 	INT_PTR CALLBACK DefaultDlgProc(HWND hDlg, UINT wMsg, WPARAM wParam,
 									LPARAM lParam);
