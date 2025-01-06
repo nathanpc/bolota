@@ -1,0 +1,10 @@
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+   IDC_BOLOTA          "BOLOTA"
+   IDS_APP_TITLE       "Bolota"
+END

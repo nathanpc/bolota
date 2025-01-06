@@ -33,6 +33,8 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 /// .inc dialogs.rc
 
+/// .inc version.rc
+
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -72,16 +74,8 @@ END
 
 1                       RT_MANIFEST             "../vs2012/manifest.xml"
 
-/////////////////////////////////////////////////////////////////////////////
-//
-// String Table
-//
 
-STRINGTABLE
-BEGIN
-    IDS_APP_TITLE           "Bolota"
-    IDC_BOLOTA              "BOLOTA"
-END
+/// .inc strings.rc
 
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
