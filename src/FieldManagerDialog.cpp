@@ -89,10 +89,17 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 	DateTime_SetSystemtime(dtpTimestamp, GDT_VALID, (LPARAM)&m_stTimestamp);
 
 	// Create field icon ComboBox.
+#ifndef UNDER_CE
 	cmbFieldIcon = CreateWindow(WC_COMBOBOX, _T(""), WS_CHILD | WS_TABSTOP |
 		WS_VSCROLL | CBS_DROPDOWNLIST | CBS_HASSTRINGS | CBS_OWNERDRAWFIXED,
 		rcEdit.left, rcEdit.top, 105, rcEdit.bottom - rcEdit.top, hDlg,
 		(HMENU)IDC_FM_CMBFIELDICON, this->hInst, NULL);
+#else
+	cmbFieldIcon = CreateWindow(_T("COMBOBOX"), NULL, WS_CHILD | WS_TABSTOP |
+		WS_VSCROLL | CBS_DROPDOWNLIST | CBS_HASSTRINGS,
+		rcEdit.left, rcEdit.top, 105, rcEdit.bottom - rcEdit.top, hDlg,
+		(HMENU)IDC_FM_CMBFIELDICON, this->hInst, NULL);
+#endif // !UNDER_CE
 	SetupFieldIconCombo();
 	if (BolotaHasError) {
 		MsgBoxBolotaError(hwndParent, _T("Failed to set up icon ComboBox"));
@@ -387,9 +394,11 @@ void FieldManagerDialog::SetupFieldTypeCombo() {
  * Sets up the field icon ComboBox.
  */
 void FieldManagerDialog::SetupFieldIconCombo() {
+#ifndef UNDER_CE
 	// Set a nicer font for the control.
 	SendMessage(cmbFieldIcon, WM_SETFONT,
 		(WPARAM)GetStockObject(DEFAULT_GUI_FONT), TRUE);
+#endif // !UNDER_CE
 
 	// Add field icons to the ComboBox.
 	for (UINT8 i = 0; i < FieldImageList::NumAvailableIcons(); ++i) {

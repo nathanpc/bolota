@@ -52,9 +52,13 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 #endif // defined(DEBUG) && !defined(UNDER_CE)
 
 	// Load the application class and title.
+#ifndef UNDER_CE
 	LoadString(hInstance, IDC_BOLOTA, szWindowClass, MAX_LOADSTRING);
 	LoadString(hInstance, IDS_APP_TITLE, szAppTitle, MAX_LOADSTRING);
-
+#else
+	_tcscpy(szWindowClass, _T("BOLOTA"));
+	_tcscpy(szAppTitle, _T("Bolota"));
+#endif // !UNDER_CE
 	// Initialize the application.
 	rc = RegisterApplication(hInstance);
 	if (rc == 0) {
@@ -121,7 +125,7 @@ ATOM RegisterApplication(HINSTANCE hInstance) {
 	HWND hWnd = FindWindow(szWindowClass, NULL);
 	if (hWnd) {
 		SetForegroundWindow((HWND)(((DWORD)hWnd) | 0x01));
-		return 1;
+		return FALSE;
 	}
 #endif // SHELL_AYGSHELL
 
@@ -161,10 +165,10 @@ ATOM RegisterApplication(HINSTANCE hInstance) {
 	if (!RegisterClass(&wc)) {
         MessageBox(NULL, L"Window Registration Failed!", L"Error",
 			MB_ICONEXCLAMATION | MB_OK);
-        return 1;
+        return FALSE;
     }
 
-	return 0;
+	return TRUE;
 #endif // !UNDER_CE
 }
 
@@ -179,6 +183,11 @@ ATOM RegisterApplication(HINSTANCE hInstance) {
  */
 HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 	HWND hWnd;
+
+#ifdef SHELL_AYGSHELL
+	// Initialize PocketPC controls.
+	SHInitExtraControls();
+#endif
 
 	// Initialize main window object.
 #ifndef UNDER_CE

@@ -74,7 +74,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 commctrl.lib coredll.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /MACHINE:MIPS
-# ADD LINK32 commctrl.lib coredll.lib comctl32.lib shlwapi.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /MACHINE:MIPS
+# ADD LINK32 commctrl.lib coredll.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /MACHINE:MIPS
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
@@ -108,7 +108,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 commctrl.lib coredll.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /debug /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /MACHINE:MIPS
-# ADD LINK32 commctrl.lib coredll.lib comctl32.lib shlwapi.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /debug /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /MACHINE:MIPS
+# ADD LINK32 commctrl.lib coredll.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /debug /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /MACHINE:MIPS
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
@@ -142,7 +142,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 commctrl.lib coredll.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /MACHINE:SH4
-# ADD LINK32 commctrl.lib coredll.lib comctl32.lib shlwapi.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /MACHINE:SH4
+# ADD LINK32 commctrl.lib coredll.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /MACHINE:SH4
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
@@ -176,7 +176,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 commctrl.lib coredll.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /debug /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /MACHINE:SH4
-# ADD LINK32 commctrl.lib coredll.lib comctl32.lib shlwapi.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /debug /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /MACHINE:SH4
+# ADD LINK32 commctrl.lib coredll.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /debug /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /MACHINE:SH4
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
@@ -210,7 +210,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 commctrl.lib coredll.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /MACHINE:SH3
-# ADD LINK32 commctrl.lib coredll.lib comctl32.lib shlwapi.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /MACHINE:SH3
+# ADD LINK32 commctrl.lib coredll.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /MACHINE:SH3
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
@@ -244,7 +244,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 commctrl.lib coredll.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /debug /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /MACHINE:SH3
-# ADD LINK32 commctrl.lib coredll.lib comctl32.lib shlwapi.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /debug /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /MACHINE:SH3
+# ADD LINK32 commctrl.lib coredll.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /debug /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /MACHINE:SH3
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
@@ -278,7 +278,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 commctrl.lib coredll.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
-# ADD LINK32 commctrl.lib coredll.lib comctl32.lib shlwapi.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
+# ADD LINK32 commctrl.lib coredll.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
@@ -312,7 +312,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 commctrl.lib coredll.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /debug /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
-# ADD LINK32 commctrl.lib coredll.lib comctl32.lib shlwapi.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /debug /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
+# ADD LINK32 commctrl.lib coredll.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /debug /nodefaultlib:"$(CENoDefaultLib)" /subsystem:$(CESubsystem) /align:"4096" /MACHINE:ARM
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
@@ -346,7 +346,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 commctrl.lib coredll.lib $(CEx86Corelibc) /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /nodefaultlib:"OLDNAMES.lib" /nodefaultlib:$(CENoDefaultLib) /subsystem:$(CESubsystem) /MACHINE:IX86
-# ADD LINK32 $(CEx86Corelibc) commctrl.lib coredll.lib comctl32.lib shlwapi.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /nodefaultlib:"OLDNAMES.lib" /nodefaultlib:$(CENoDefaultLib) /subsystem:$(CESubsystem) /MACHINE:IX86
+# ADD LINK32 $(CEx86Corelibc) commctrl.lib coredll.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /nodefaultlib:"OLDNAMES.lib" /nodefaultlib:$(CENoDefaultLib) /subsystem:$(CESubsystem) /MACHINE:IX86
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
@@ -380,7 +380,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 commctrl.lib coredll.lib $(CEx86Corelibc) /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /debug /nodefaultlib:"OLDNAMES.lib" /nodefaultlib:$(CENoDefaultLib) /subsystem:$(CESubsystem) /MACHINE:IX86
-# ADD LINK32 $(CEx86Corelibc) commctrl.lib coredll.lib comctl32.lib shlwapi.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /debug /nodefaultlib:"OLDNAMES.lib" /nodefaultlib:$(CENoDefaultLib) /subsystem:$(CESubsystem) /MACHINE:IX86
+# ADD LINK32 $(CEx86Corelibc) commctrl.lib coredll.lib /nologo /base:"0x00010000" /stack:0x10000,0x1000 /entry:"WinMainCRTStartup" /debug /nodefaultlib:"OLDNAMES.lib" /nodefaultlib:$(CENoDefaultLib) /subsystem:$(CESubsystem) /MACHINE:IX86
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
@@ -414,7 +414,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 commctrl.lib coredll.lib $(CEx86Corelibc) /nologo /stack:0x10000,0x1000 /subsystem:windows /nodefaultlib:"OLDNAMES.lib" /nodefaultlib:$(CENoDefaultLib) /windowsce:emulation /MACHINE:IX86
-# ADD LINK32 $(CEx86Corelibc) commctrl.lib coredll.lib comctl32.lib shlwapi.lib /nologo /stack:0x10000,0x1000 /subsystem:windows /nodefaultlib:"OLDNAMES.lib" /nodefaultlib:$(CENoDefaultLib) /windowsce:emulation /MACHINE:IX86
+# ADD LINK32 $(CEx86Corelibc) commctrl.lib coredll.lib /nologo /stack:0x10000,0x1000 /subsystem:windows /nodefaultlib:"OLDNAMES.lib" /nodefaultlib:$(CENoDefaultLib) /windowsce:emulation /MACHINE:IX86
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
@@ -448,7 +448,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 commctrl.lib coredll.lib $(CEx86Corelibc) /nologo /stack:0x10000,0x1000 /subsystem:windows /debug /nodefaultlib:"OLDNAMES.lib" /nodefaultlib:$(CENoDefaultLib) /windowsce:emulation /MACHINE:IX86
-# ADD LINK32 $(CEx86Corelibc) commctrl.lib coredll.lib comctl32.lib shlwapi.lib /nologo /stack:0x10000,0x1000 /subsystem:windows /debug /nodefaultlib:"OLDNAMES.lib" /nodefaultlib:$(CENoDefaultLib) /windowsce:emulation /MACHINE:IX86
+# ADD LINK32 $(CEx86Corelibc) commctrl.lib coredll.lib /nologo /stack:0x10000,0x1000 /subsystem:windows /debug /nodefaultlib:"OLDNAMES.lib" /nodefaultlib:$(CENoDefaultLib) /windowsce:emulation /MACHINE:IX86
 
 !ENDIF 
 
@@ -953,6 +953,9 @@ DEP_CPP_APPLI=\
 	"..\src\Application.h"\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\ErrorCollection.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
@@ -967,9 +970,6 @@ DEP_CPP_APPLI=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
-	
-NODEP_CPP_APPLI=\
-	"..\src\Bolota\Exceptions\Error.h"\
 	
 
 !ENDIF 
@@ -1121,15 +1121,12 @@ DEP_CPP_STDAF=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\UString.h"\
+	"..\src\Bolota\Errors\Error.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
-	
-NODEP_CPP_STDAF=\
-	"..\src\Bolota\Exceptions\Error.h"\
 	
 
 !ENDIF 
@@ -1735,6 +1732,9 @@ DEP_CPP_DATEF=\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
 	"..\src\Bolota\DateField.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\ErrorCollection.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\SharedResources.h"\
@@ -1742,11 +1742,6 @@ DEP_CPP_DATEF=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
-	
-NODEP_CPP_DATEF=\
-	"..\src\Bolota\Exceptions\Error.h"\
-	"..\src\Bolota\Exceptions\Exceptions.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
 	
 
 !ENDIF 
@@ -1911,6 +1906,10 @@ DEP_CPP_DOCUM=\
 	"..\shims\win32\stdint.h"\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
+	"..\src\Bolota\Errors\ConsistencyError.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\ErrorCollection.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\SharedResources.h"\
@@ -1918,11 +1917,6 @@ DEP_CPP_DOCUM=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
-	
-NODEP_CPP_DOCUM=\
-	"..\src\Bolota\Exceptions\Error.h"\
-	"..\src\Bolota\Exceptions\Exceptions.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
 	
 
 !ENDIF 
@@ -2090,6 +2084,10 @@ DEP_CPP_FIELD=\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
 	"..\src\Bolota\DateField.h"\
+	"..\src\Bolota\Errors\ConsistencyError.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\ErrorCollection.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
@@ -2098,11 +2096,6 @@ DEP_CPP_FIELD=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
-	
-NODEP_CPP_FIELD=\
-	"..\src\Bolota\Exceptions\Error.h"\
-	"..\src\Bolota\Exceptions\Exceptions.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
 	
 
 !ENDIF 
@@ -2254,6 +2247,9 @@ DEP_CPP_ICONF=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\ErrorCollection.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
@@ -2262,11 +2258,6 @@ DEP_CPP_ICONF=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
-	
-NODEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions\Error.h"\
-	"..\src\Bolota\Exceptions\Exceptions.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
 	
 
 !ENDIF 
@@ -2349,6 +2340,8 @@ DEP_CPP_USTRI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_USTRI=\
+	"..\shims\wince\wce_string.h"\
+	"..\src\Bolota\Errors\Error.h"\
 	"..\src\Bolota\UString.h"\
 	
 
@@ -2528,16 +2521,13 @@ DEP_CPP_ABOUT=\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
 	"..\src\AboutDialog.h"\
-	"..\src\Bolota\UString.h"\
+	"..\src\Bolota\Errors\Error.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
-	
-NODEP_CPP_ABOUT=\
-	"..\src\Bolota\Exceptions\Error.h"\
 	
 
 !ENDIF 
@@ -2789,6 +2779,8 @@ DEP_CPP_FIELDM=\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
 	"..\src\Bolota\DateField.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
@@ -2801,10 +2793,6 @@ DEP_CPP_FIELDM=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
-	
-NODEP_CPP_FIELDM=\
-	"..\src\Bolota\Exceptions\Error.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
 	
 
 !ENDIF 
@@ -3079,6 +3067,9 @@ DEP_CPP_MAINW=\
 	"..\shims\win32\stdint.h"\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\ErrorCollection.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
@@ -3093,9 +3084,6 @@ DEP_CPP_MAINW=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
-	
-NODEP_CPP_MAINW=\
-	"..\src\Bolota\Exceptions\Error.h"\
 	
 
 !ENDIF 
@@ -3315,6 +3303,9 @@ DEP_CPP_PROPE=\
 	"..\shims\win32\stdint.h"\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\ErrorCollection.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\PropertiesDialog.h"\
@@ -3324,9 +3315,6 @@ DEP_CPP_PROPE=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
-	
-NODEP_CPP_PROPE=\
-	"..\src\Bolota\Exceptions\Error.h"\
 	
 
 !ENDIF 
@@ -3605,6 +3593,9 @@ DEP_CPP_BOLOT=\
 	"..\shims\win32\stdint.h"\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\ErrorCollection.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
@@ -3619,9 +3610,6 @@ DEP_CPP_BOLOT=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
-	
-NODEP_CPP_BOLOT=\
-	"..\src\Bolota\Exceptions\Error.h"\
 	
 
 !ENDIF 
@@ -3828,6 +3816,7 @@ DEP_CPP_FIELDI=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
 	"..\src\Bolota\Field.h"\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
@@ -3838,9 +3827,6 @@ DEP_CPP_FIELDI=\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
-	
-NODEP_CPP_FIELDI=\
-	"..\src\Bolota\Exceptions\Error.h"\
 	
 
 !ENDIF 
@@ -3938,16 +3924,11 @@ DEP_CPP_DIALO=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_DIALO=\
-	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\UString.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	".\STL\wce_defs.h"\
-	
-NODEP_CPP_DIALO=\
-	"..\src\Bolota\Exceptions\Error.h"\
 	
 
 !ENDIF 
@@ -4077,17 +4058,14 @@ DEP_CPP_IMAGE=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\UString.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
-	
-NODEP_CPP_IMAGE=\
-	"..\src\Bolota\Exceptions\Error.h"\
-	"..\src\Bolota\Exceptions\SystemException.h"\
 	
 
 !ENDIF 
@@ -4173,12 +4151,12 @@ DEP_CPP_MSGBO=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\UString.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
 	".\STL\wce_defs.h"\
-	
-NODEP_CPP_MSGBO=\
-	"..\src\Bolota\Exceptions\Error.h"\
 	
 
 !ENDIF 
