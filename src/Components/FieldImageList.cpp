@@ -12,6 +12,7 @@
 // Constant definitions.
 #define FIL_NUM_ICONS (BOLOTA_FIELD_ICON_NUM + 2)
 #define FIL_BIT_DEPTH ILC_COLORDDB
+#define FIL_ICON_SIZE GetSystemMetrics(SM_CXSMICON)
 
 /**
  * Creates and populates the Field icon ImageList.
@@ -19,8 +20,7 @@
  * @param hInst Application's instance handle.
  */
 FieldImageList::FieldImageList(HINSTANCE hInst) :
-	ImageList(hInst, GetSystemMetrics(SM_CXSMICON), ILC_MASK | FIL_BIT_DEPTH,
-	FIL_NUM_ICONS) {
+	ImageList(hInst, FIL_ICON_SIZE, ILC_MASK | FIL_BIT_DEPTH, FIL_NUM_ICONS) {
 	m_usIndexOffset = 0;
 
 	// Add internal icons.

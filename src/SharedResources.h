@@ -20,7 +20,9 @@
 #define IDM_MAIN                        105
 #define IDR_ACCELERATORS                106
 #define IDD_ABOUTBOX                    107
+#ifndef UNDER_CE
 #define IDC_STATIC                      -1
+#endif // !UNDER_CE
 
 // Menus
 #define IDM_BASE                        2000

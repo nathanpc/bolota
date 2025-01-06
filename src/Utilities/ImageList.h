@@ -29,6 +29,9 @@ protected:
 	WORD *m_wResources;
 	LPTSTR *m_szLabels;
 	UINT8 m_usLength;
+#ifdef UNDER_CE
+	HICON *m_ahIcons;
+#endif // UNDER_CE
 
 public:
 	// Constructors and destructors.

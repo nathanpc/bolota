@@ -42,6 +42,11 @@ ImageList::ImageList(HINSTANCE hInst, UINT8 usSize, UINT8 usBitDepth,
 	m_szLabels = (LPTSTR *)LocalAlloc(LMEM_FIXED, usNumImages * sizeof(LPTSTR));
 	for (i = 0; i < usNumImages; ++i)
 		m_szLabels[i] = NULL;
+
+#ifdef UNDER_CE
+	// Initialize HICON list.
+	m_ahIcons = (HICON *)LocalAlloc(LMEM_FIXED, usNumImages * sizeof(HICON));
+#endif // UNDER_CE
 }
 
 /**
@@ -66,8 +71,21 @@ ImageList::~ImageList() {
 		}
 		LocalFree(m_szLabels);
 		m_szLabels = NULL;
-		m_usLength = 0;
 	}
+
+#ifdef UNDER_CE
+	// Clean up the HICON list.
+	if (m_ahIcons) {
+		for (UINT8 i = 0; i < m_usLength; ++i) {
+			if (m_ahIcons[i] != NULL)
+				DestroyIcon(m_ahIcons[i]);
+		}
+		LocalFree(m_ahIcons);
+		m_ahIcons = NULL;
+	}
+#endif // UNDER_CE
+
+	m_usLength = 0;
 }
 
 /**
@@ -87,7 +105,13 @@ UINT8 ImageList::AddIcon(LPCTSTR szLabel, WORD wResId) {
 	}
 
 	// Add the icon to the ImageList.
+#ifndef UNDER_CE
 	HICON hIcon = LoadIcon(m_hInst, MAKEINTRESOURCE(wResId));
+#else
+	HICON hIcon = (HICON)LoadImage(m_hInst, MAKEINTRESOURCE(wResId), IMAGE_ICON,
+		m_usSize, m_usSize, 0);
+	m_ahIcons[m_usLength] = hIcon;
+#endif // !UNDER_CE
 	int idx = ImageList_AddIcon(m_hIml, hIcon);
 	if (idx == -1) {
 		ThrowError(new SystemError(EMSG("Failed to add icon to ImageList")));
