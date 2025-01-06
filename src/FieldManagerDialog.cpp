@@ -74,11 +74,23 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 	btnAltOK = GetDlgItem(hDlg, IDC_FM_BTNALTOK);
 	btnOK = GetDlgItem(hDlg, IDOK);
 	btnCancel = GetDlgItem(hDlg, IDCANCEL);
+
+	// Get client area.
+	RECT rcClient;
+	GetClientRect(this->hwndParent, &rcClient);
 	
 	// Get editor window position and dimensions.
 	GetWindowRect(txtValue, &rcEditorArea);
 	RectScreenToClient(&rcEditorArea, hDlg);
 	RECT rcEdit = rcEditorArea;
+
+	// Ensure field type ComboBox has enough space to expand its list.
+	RECT rcType;
+	GetWindowRect(cmbType, &rcType);
+	RectScreenToClient(&rcType, hDlg);
+	SetWindowPos(cmbType, NULL, rcType.left, rcType.top,
+		rcType.right - rcType.left, rcClient.bottom - rcType.top,
+		SWP_NOZORDER);
 
 	// Create timestamp Date Time Picker.
 	dtpTimestamp = CreateWindowEx(0, DATETIMEPICK_CLASS, _T("DateTime"),
@@ -92,12 +104,12 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 #ifndef UNDER_CE
 	cmbFieldIcon = CreateWindow(WC_COMBOBOX, _T(""), WS_CHILD | WS_TABSTOP |
 		WS_VSCROLL | CBS_DROPDOWNLIST | CBS_HASSTRINGS | CBS_OWNERDRAWFIXED,
-		rcEdit.left, rcEdit.top, 105, rcEdit.bottom - rcEdit.top, hDlg,
+		rcEdit.left, rcEdit.top, 105, rcClient.bottom - rcEdit.top, hDlg,
 		(HMENU)IDC_FM_CMBFIELDICON, this->hInst, NULL);
 #else
 	cmbFieldIcon = CreateWindow(_T("COMBOBOX"), NULL, WS_CHILD | WS_TABSTOP |
 		WS_VSCROLL | CBS_DROPDOWNLIST | CBS_HASSTRINGS,
-		rcEdit.left, rcEdit.top, 105, rcEdit.bottom - rcEdit.top, hDlg,
+		rcEdit.left, rcEdit.top, 105, rcClient.bottom - rcEdit.top, hDlg,
 		(HMENU)IDC_FM_CMBFIELDICON, this->hInst, NULL);
 #endif // !UNDER_CE
 	SetupFieldIconCombo();
