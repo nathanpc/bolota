@@ -44,6 +44,7 @@
 
 // Controls (Main Window)
 #define IDC_BASE                        2100
+#define IDC_CMDBAR                      (IDC_BASE + 2)
 
 // Field Manager Dialog
 #define IDD_FIELDMAN                    2150

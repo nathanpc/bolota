@@ -9,6 +9,8 @@
 
 #include <commctrl.h>
 
+#include "AboutDialog.h"
+
 using namespace Bolota;
 
 /*
@@ -41,6 +43,12 @@ MainWindow::~MainWindow() {
 	// Destroy the document viewer.
 	delete m_wndBolota;
 	m_wndBolota = NULL;
+
+	// Destroy window controls.
+#ifdef UNDER_CE
+	CommandBar_Destroy(m_hwndCB);
+	m_hwndCB = NULL;
+#endif // UNDER_CE
 
 	// Destroy the main window.
 	DestroyWindow(this->hWnd);
@@ -77,8 +85,77 @@ BOOL MainWindow::SetupControls(HWND hWnd) {
 	RECT rcClient;
 	GetClientRect(this->hWnd, &rcClient);
 
+#ifdef SHELL_AYGSHELL
+	SHMENUBARINFO mbi = {0};
+	SIPINFO si = {0};
+	int cx, cy;
+
+	// Initialize the shell to activate the info structure.
+	memset(&sai, 0, sizeof(sai));
+	sai.cbSize = sizeof(sai);
+
+	// Setup the menu bar.
+	mbi.cbSize     = sizeof(SHMENUBARINFO);
+	mbi.hwndParent = hWnd;               // Parent window.
+	mbi.nToolBarId = IDR_MENUBAR;        // ID of the toolbar resource.
+	mbi.hInstRes   = hInst;              // Instance handle of our application.
+	mbi.nBmpId     = 0;                  // Bitmap resource ID.
+	mbi.cBmpImages = 0;                  // Number of images in the bitmap.
+	mbi.hwndMB     = 0;                  // Returned handle of the menu bar.
+	
+	// Create the menu bar.
+	if (!SHCreateMenuBar(&mbi)) {
+		MessageBox(hWnd, L"Couldn't create the menu bar.", L"UI Error",
+			MB_OK | MB_ICONERROR);
+		DestroyWindow(hWnd);
+	}
+
+	// Save the menu bar handle.
+	hwndMenuBar = mbi.hwndMB;
+
+	// Query the SIP state and size our window appropriately.
+	si.cbSize = sizeof(si);
+	SHSipInfo(SPI_GETSIPINFO, 0, (PVOID)&si, 0);
+	cx = si.rcVisibleDesktop.right - si.rcVisibleDesktop.left;
+	cy = si.rcVisibleDesktop.bottom - si.rcVisibleDesktop.top;
+
+	// Correct the window height based on the menu bar height.
+	if (!(si.fdwFlags & SIPF_ON) || ((si.fdwFlags & SIPF_ON) &&
+			(si.fdwFlags & SIPF_DOCKED))) {
+		RECT rcMenuBar;
+		GetWindowRect(hwndMenuBar, &rcMenuBar);
+
+		cy -= (rcMenuBar.bottom - rcMenuBar.top);
+	}
+
+	// Resize our window appropriately.
+	SetWindowPos(hWnd, NULL, 0, 0, cx, cy, SWP_NOMOVE | SWP_NOZORDER);
+#else
+	// Create CommandBar.
+	m_hwndCB = CommandBar_Create(hInst, hWnd, IDC_CMDBAR);
+
+	// Add the Standard and View bitmaps to the toolbar.
+	CommandBar_AddBitmap(m_hwndCB, HINST_COMMCTRL, IDB_STD_SMALL_COLOR,
+		STD_PRINT + 1, 16, 16);
+	CommandBar_AddBitmap(m_hwndCB, HINST_COMMCTRL, IDB_VIEW_SMALL_COLOR,
+		VIEW_NEWFOLDER + 1, 16, 16);
+
+	// Insert menu bar, toolbar buttons, and the exit button.
+	CommandBar_InsertMenubar(m_hwndCB, hInst, IDM_MAIN, 0);
+	//CommandBar_AddButtons(m_hwndCB, sizeof(tbButtons) / sizeof(TBBUTTON),
+	//	tbButtons);
+	CommandBar_AddAdornments(m_hwndCB, 0, 0);
+#endif
+
+	// Calculate size for document viewer control.
+	RECT rcViewer = rcClient;
+#ifdef UNDER_CE
+	rcViewer.top += CommandBar_Height(m_hwndCB);
+	rcViewer.bottom -= rcViewer.top;
+#endif // UNDER_CE
+
 	// Setup the document viewer.
-	m_wndBolota = new BolotaView(this->hInst, this->hWnd, rcClient);
+	m_wndBolota = new BolotaView(this->hInst, this->hWnd, rcViewer);
 	if (BolotaHasError) {
 		MsgBoxBolotaError(hWnd, _T("Failed to initialize document viewer"));
 		return FALSE;
@@ -103,6 +180,10 @@ BOOL MainWindow::ResizeWindows(HWND hwndParent) {
 	// Get the client area of the parent window.
 	RECT rcParent;
 	GetClientRect(hwndParent, &rcParent);
+#ifdef UNDER_CE
+	rcParent.top += CommandBar_Height(m_hwndCB);
+	rcParent.bottom -= rcParent.top;
+#endif // UNDER_CE
 
 	// Resize document viewer.
 	m_wndBolota->Resize(rcParent);
@@ -148,6 +229,9 @@ LRESULT MainWindow::OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent) {
 	case IDM_FILE_PROPERTIES:
 		lr = m_wndBolota->EditProperties();
 		break;
+	case IDM_FILE_EXIT:
+		PostMessage(this->hWnd, WM_CLOSE, (WPARAM)0, (LPARAM)0);
+		break;
 	case IDM_FIELD_EDIT:
 		lr = m_wndBolota->OpenFieldManager(
 			FieldManagerDialog::DialogType::EditField);
@@ -178,6 +262,9 @@ LRESULT MainWindow::OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent) {
 		break;
 	case IDM_FIELD_DEINDENT:
 		lr = m_wndBolota->DeindentField();
+		break;
+	case IDM_HELP_ABOUT:
+		AboutDialog(this->hInst, hWnd).ShowModal();
 		break;
 	default:
 		MsgBoxInfo(this->hWnd, _T("Unknown Command ID"),

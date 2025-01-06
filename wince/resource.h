@@ -2,12 +2,7 @@
 // Microsoft eMbedded Visual C++ generated include file.
 // Used by BOLOTA.RC
 //
-#define IDS_APP_TITLE					1
-#define IDS_HELLO						2
-#define IDC_BOLOTA				3
-#define IDI_BOLOTA				101
-#define IDM_MENU						102
-#define IDD_ABOUTBOX					103
+
 
 // Next default values for new objects
 // 

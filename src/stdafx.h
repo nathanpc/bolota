@@ -25,7 +25,6 @@
 #include <tchar.h>
 
 // C++ RunTime Header Files
-#include <stdexcept>
 #include <string>
 
 // Create the equivalent of TCHAR for C++ strings.
@@ -41,6 +40,13 @@
 #else
 	#define tcout std::cout
 #endif // UNICODE
+
+#if defined(WIN32_PLATFORM_PSPC) || defined(WIN32_PLATFORM_WFSP)
+	// Pocket PC shell stuff.
+	#define SHELL_AYGSHELL
+	#include <aygshell.h>
+	#pragma comment(lib, "aygshell")
+#endif // defined(WIN32_PLATFORM_PSPC) || defined(WIN32_PLATFORM_WFSP)
 
 // Resource definitions.
 #if _MSC_VER >= 1900

@@ -13,7 +13,6 @@
 	#include <crtdbg.h>
 #endif // defined(DEBUG) && !defined(UNDER_CE)
 
-#include "AboutDialog.h"
 #include "MainWindow.h"
 
 // Common definitions.
@@ -326,16 +325,7 @@ LRESULT WndMainCommand(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
 	if ((wmId > IDM_BASE) && (wmId < IDC_BASE))
 		return wndMain->OnMenuCommand(wmId, wmEvent);
 
-	switch (wmId) {
-		case IDM_HELP_ABOUT:
-			AboutDialog(wndMain->hInst, hWnd).ShowModal();
-			return 0;
-		case IDM_FILE_EXIT:
-			PostMessage(wndMain->hWnd, WM_CLOSE, (WPARAM)0, (LPARAM)0);
-			return 0;
-		default:
-			return DefWindowProc(hWnd, wMsg, wParam, lParam);
-	}
+	return DefWindowProc(hWnd, wMsg, wParam, lParam);
 }
 
 /**

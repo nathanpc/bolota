@@ -19,6 +19,9 @@ class MainWindow {
 private:
 	// UI components.
 	BolotaView *m_wndBolota;
+#ifdef UNDER_CE
+	HWND m_hwndCB;
+#endif // UNDER_CE
 
 public:
 	// Global handles.
