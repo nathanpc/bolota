@@ -66,12 +66,8 @@ BOOL MainWindow::SetupControls(HWND hWnd) {
 	// Ensure that the common controls DLL is loaded and initialized. 
 	INITCOMMONCONTROLSEX icex;
 	icex.dwSize = sizeof(INITCOMMONCONTROLSEX);
-#ifndef UNDER_CE
-	icex.dwICC  = ICC_WIN95_CLASSES | ICC_COOL_CLASSES | ICC_USEREX_CLASSES;
-#else
 	icex.dwICC  = ICC_WIN95_CLASSES | ICC_COOL_CLASSES | ICC_DATE_CLASSES |
 		ICC_LISTVIEW_CLASSES | ICC_TREEVIEW_CLASSES;
-#endif // !UNDER_CE
 	InitCommonControlsEx(&icex);
 
 	// Ensure we have a copy of the window handle.

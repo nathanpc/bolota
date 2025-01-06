@@ -46,6 +46,7 @@ public:
 	UINT8 GetIndex(WORD wResId) const;
 	LPCTSTR GetLabel(UINT8 usIndex) const;
 	WORD GetResourceID(UINT8 usIndex) const;
+	UINT8 IconSize() const;
 };
 
 #endif // _UTILITIES_IMAGELIST_H

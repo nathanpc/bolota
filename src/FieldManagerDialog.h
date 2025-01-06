@@ -48,7 +48,7 @@ protected:
 	HWND txtValue;
 	HWND cmbType;
 	HWND dtpTimestamp;
-	HWND cbeFieldIcon;
+	HWND cmbFieldIcon;
 	HWND btnOK;
 	HWND btnAltOK;
 	HWND btnCancel;
@@ -62,6 +62,7 @@ protected:
 	// Events
 	bool OnInit(HWND hDlg);
 	INT_PTR OnTypeChange(int index);
+	INT_PTR OnFieldIconComboDrawItem(LPDRAWITEMSTRUCT lpdis);
 	bool OnOK();
 	bool OnAlternativeOK();
 	bool OnCancel();

@@ -84,15 +84,15 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 	dtpTimestamp = CreateWindowEx(0, DATETIMEPICK_CLASS, _T("DateTime"),
 		WS_CHILD | WS_TABSTOP | DTS_RIGHTALIGN | DTS_APPCANPARSE,
 		rcEdit.left, rcEdit.top, 150, rcEdit.bottom - rcEdit.top,
-		hDlg, NULL, this->hInst, NULL);
+		hDlg, (HMENU)IDC_FM_DTPTIMESTAMP, this->hInst, NULL);
 	DateTime_SetFormat(dtpTimestamp, _T("yyyy'-'MM'-'dd HH':'mm':'ss"));
 	DateTime_SetSystemtime(dtpTimestamp, GDT_VALID, (LPARAM)&m_stTimestamp);
 
-	// Create field icon ComboBoxEx.
-	cbeFieldIcon = CreateWindowEx(0, WC_COMBOBOXEX, NULL,
-		WS_CHILD | WS_TABSTOP | CBS_DROPDOWN,
-		rcEdit.left, rcEdit.top, 110, 150,
-		hDlg, NULL, this->hInst, NULL);
+	// Create field icon ComboBox.
+	cmbFieldIcon = CreateWindow(WC_COMBOBOX, _T(""), WS_CHILD | WS_TABSTOP |
+		WS_VSCROLL | CBS_DROPDOWNLIST | CBS_HASSTRINGS | CBS_OWNERDRAWFIXED,
+		rcEdit.left, rcEdit.top, 105, rcEdit.bottom - rcEdit.top, hDlg,
+		(HMENU)IDC_FM_CMBFIELDICON, this->hInst, NULL);
 	SetupFieldIconCombo();
 	if (BolotaHasError) {
 		MsgBoxBolotaError(hwndParent, _T("Failed to set up icon ComboBox"));
@@ -112,7 +112,7 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 		// Set field icon in ComboBox.
 		IconField *field = static_cast<IconField*>(AssociatedField());
 		m_fiIndex = field->IconIndex();
-		ComboBox_SetCurSel(cbeFieldIcon, m_fiIndex - 1);
+		ComboBox_SetCurSel(cmbFieldIcon, m_fiIndex - 1);
 	}
 
 	// Set up the type ComboBox and switch to the correct layout for the dialog.
@@ -154,9 +154,9 @@ INT_PTR FieldManagerDialog::OnTypeChange(int index) {
 	RectScreenToClient(&rcDTP, hDlg);
 	
 	// Get icon combobox window position and dimensions.
-	RECT rcCBE;
-	GetWindowRect(cbeFieldIcon, &rcCBE);
-	RectScreenToClient(&rcCBE, hDlg);
+	RECT rcCMB;
+	GetWindowRect(cmbFieldIcon, &rcCMB);
+	RectScreenToClient(&rcCMB, hDlg);
 
 	// Handle each type change.
 	if (m_fieldType->code == BOLOTA_TYPE_TEXT) {
@@ -164,23 +164,82 @@ INT_PTR FieldManagerDialog::OnTypeChange(int index) {
 			rcEditorArea.right - rcEditorArea.left,
 			rcEditorArea.bottom - rcEditorArea.top, TRUE);
 		ShowWindow(dtpTimestamp, SW_HIDE);
-		ShowWindow(cbeFieldIcon, SW_HIDE);
+		ShowWindow(cmbFieldIcon, SW_HIDE);
 		ShowWindow(txtValue, SW_SHOW);
 	} else if (m_fieldType->code == BOLOTA_TYPE_DATE) {
 		MoveWindow(txtValue, rcDTP.right + CONTROL_SPACING, rcEditorArea.top,
 			rcEditorArea.right - (rcDTP.right + CONTROL_SPACING),
 			rcEditorArea.bottom - rcEditorArea.top, TRUE);
-		ShowWindow(cbeFieldIcon, SW_HIDE);
+		ShowWindow(cmbFieldIcon, SW_HIDE);
 		ShowWindow(txtValue, SW_SHOW);
 		ShowWindow(dtpTimestamp, SW_SHOW);
 	} else if (m_fieldType->code == BOLOTA_TYPE_ICON) {
-		MoveWindow(txtValue, rcCBE.right + CONTROL_SPACING, rcEditorArea.top,
-			rcEditorArea.right - (rcCBE.right + CONTROL_SPACING),
+		MoveWindow(txtValue, rcCMB.right + CONTROL_SPACING, rcEditorArea.top,
+			rcEditorArea.right - (rcCMB.right + CONTROL_SPACING),
 			rcEditorArea.bottom - rcEditorArea.top, TRUE);
 		ShowWindow(dtpTimestamp, SW_HIDE);
 		ShowWindow(txtValue, SW_SHOW);
-		ShowWindow(cbeFieldIcon, SW_SHOW);
+		ShowWindow(cmbFieldIcon, SW_SHOW);
 	}
+
+	return TRUE;
+}
+
+/**
+ * Handles the owner-drawn WM_DRAWITEM message of the field icon ComboBox.
+ * 
+ * @param lpdis Structure containing everything necessary for drawing special
+ *              things.
+ *
+ * @return TRUE if the event was handled.
+ */
+INT_PTR FieldManagerDialog::OnFieldIconComboDrawItem(LPDRAWITEMSTRUCT lpdis) {
+	// Ignore empty items.
+	if (lpdis->itemID == -1)
+		return FALSE;
+
+	// Get default colors for the item (selected or unselected).
+	COLORREF clrForeground = SetTextColor(lpdis->hDC, GetSysColor(
+		(lpdis->itemState & ODS_SELECTED) ? COLOR_HIGHLIGHTTEXT :
+		COLOR_WINDOWTEXT));
+	COLORREF clrBackground = SetBkColor(lpdis->hDC, GetSysColor(
+		(lpdis->itemState & ODS_SELECTED) ? COLOR_HIGHLIGHT :
+		COLOR_WINDOW));
+
+	// Calculate the vertical and horizontal position.
+	TEXTMETRIC tm;
+	GetTextMetrics(lpdis->hDC, &tm);
+	int y = (lpdis->rcItem.bottom + lpdis->rcItem.top -
+		tm.tmHeight) / 2;
+	int x = LOWORD(GetDialogBaseUnits()) / 4;
+
+	// Get label text to be displayed.
+	int iTextLen = ComboBox_GetLBTextLen(lpdis->hwndItem,
+		lpdis->itemID);
+	LPTSTR szLabel = (LPTSTR)malloc((iTextLen + 1) * sizeof(TCHAR));
+	ComboBox_GetLBText(lpdis->hwndItem, lpdis->itemID, szLabel);
+
+	// Draw the text label and free up its buffer.
+	ExtTextOut(lpdis->hDC, m_imlFieldIcons->IconSize() + 2 * x, y, ETO_CLIPPED |
+		ETO_OPAQUE, &lpdis->rcItem, szLabel, (UINT)iTextLen, NULL);
+	free(szLabel);
+	szLabel = NULL;
+
+	// Restore the previous colors.
+	SetTextColor(lpdis->hDC, clrForeground);
+	SetBkColor(lpdis->hDC, clrBackground);
+
+	// Draw the icon image.
+	UINT8 usFieldIconIndex = m_imlFieldIcons->IndexFromFieldIndex(
+		(field_icon_t)lpdis->itemData);
+	if (!ImageList_Draw(m_imlFieldIcons->Handle(), usFieldIconIndex, lpdis->hDC,
+			x, lpdis->rcItem.top + 1, ILD_TRANSPARENT)) {
+		return FALSE;
+	}
+
+	// If the item has the focus, draw the focus rectangle.
+	if (lpdis->itemState & ODS_FOCUS)
+		DrawFocusRect(lpdis->hDC, &lpdis->rcItem);
 
 	return TRUE;
 }
@@ -325,40 +384,38 @@ void FieldManagerDialog::SetupFieldTypeCombo() {
 }
 
 /**
- * Sets up the field icon ComboBoxEx.
+ * Sets up the field icon ComboBox.
  */
 void FieldManagerDialog::SetupFieldIconCombo() {
+	// Set a nicer font for the control.
+	SendMessage(cmbFieldIcon, WM_SETFONT,
+		(WPARAM)GetStockObject(DEFAULT_GUI_FONT), TRUE);
+
 	// Add field icons to the ComboBox.
 	for (UINT8 i = 0; i < FieldImageList::NumAvailableIcons(); ++i) {
 		field_icon_t fi = IconField::IconList[i];
-		UINT8 usFieldIconIndex = m_imlFieldIcons->IndexFromFieldIndex(fi);
 
-		// Build up the item.
-		COMBOBOXEXITEM cbei = {0};
-		cbei.mask = CBEIF_TEXT | CBEIF_IMAGE | CBEIF_SELECTEDIMAGE |
-			CBEIF_LPARAM;
-		cbei.iItem = -1;
-		cbei.pszText = (LPTSTR)m_imlFieldIcons->LabelFromFieldIndex(fi);
-		cbei.iImage = usFieldIconIndex;
-		cbei.iSelectedImage = usFieldIconIndex;
-		cbei.lParam = fi;
+		// Add string to ComboBox.
+		DWORD dwIndex = ComboBox_AddString(cmbFieldIcon,
+			m_imlFieldIcons->LabelFromFieldIndex(fi));
+		if (dwIndex == CB_ERR) {
+			ThrowError(new SystemError(EMSG("Failed to insert string into ")
+				_T("field icons ComboBox")));
+			return;
+		}
 
-		// Add the item to the ComboBox.
-		LRESULT lr = SendMessage(cbeFieldIcon, CBEM_INSERTITEM, 0,
-			(LPARAM)&cbei);
-		if (lr == -1) {
-			ThrowError(new SystemError(EMSG("Failed to insert item into field ")
-				_T("icons ComboBoxEx")));
+		// Set item data to the last added item in the ComboBox.
+		DWORD dwIndexData = ComboBox_SetItemData(cmbFieldIcon, dwIndex,
+			(LPARAM)fi);
+		if (dwIndexData == CB_ERR) {
+			ThrowError(new SystemError(EMSG("Failed to set item data in field ")
+				_T("icons ComboBox")));
 			return;
 		}
 	}
 
-	// Set the ComboBoxEx image list.
-	SendMessage(cbeFieldIcon, CBEM_SETIMAGELIST, 0,
-		(LPARAM)m_imlFieldIcons->Handle());
-
 	// Select the default item for starters.
-	ComboBox_SetCurSel(cbeFieldIcon, m_fiIndex - 1);
+	ComboBox_SetCurSel(cmbFieldIcon, m_fiIndex - 1);
 }
 
 /**
@@ -577,6 +634,12 @@ INT_PTR CALLBACK FieldManagerDialog::DlgProc(HWND hDlg, UINT wMsg,
 					return OnTypeChange(ComboBox_GetCurSel((HWND)lParam));
 				}
 				break;
+			case IDC_FM_CMBFIELDICON:
+				if (HIWORD(wParam) == CBN_SELCHANGE) {
+					m_fiIndex = (field_icon_t)ComboBox_GetItemData((HWND)lParam,
+						ComboBox_GetCurSel((HWND)lParam));
+				}
+				break;
 			case IDC_FM_BTNALTOK:
 				if (OnAlternativeOK()) {
 					Close(IDC_FM_BTNALTOK);
@@ -599,13 +662,19 @@ INT_PTR CALLBACK FieldManagerDialog::DlgProc(HWND hDlg, UINT wMsg,
 				if (((LPNMDATETIMECHANGE)lParam)->dwFlags == GDT_VALID)
 					m_stTimestamp = ((LPNMDATETIMECHANGE)lParam)->st;
 				break;
-			case CBEN_ENDEDIT:
-				// ComboBoxEx selection changed.
-				if (((LPNMCBEENDEDIT)lParam)->iNewSelection != CB_ERR) {
-					m_fiIndex = (field_icon_t)(((LPNMCBEENDEDIT)
-						lParam)->iNewSelection + 1);
-				}
-				break;
+			}
+			break;
+		case WM_MEASUREITEM:
+			if (LOWORD(wParam) == IDC_FM_CMBFIELDICON) {
+				// Set the height of the items in the field icon ComboBox.
+				LPMEASUREITEMSTRUCT lpmis = (LPMEASUREITEMSTRUCT)lParam;
+				if (lpmis->itemHeight < (UINT)(m_imlFieldIcons->IconSize() + 2))
+					lpmis->itemHeight = m_imlFieldIcons->IconSize() + 2;
+			}
+			break;
+		case WM_DRAWITEM:
+			if (LOWORD(wParam) == IDC_FM_CMBFIELDICON) {
+				return OnFieldIconComboDrawItem((LPDRAWITEMSTRUCT)lParam);
 			}
 			break;
 	}

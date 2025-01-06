@@ -40,8 +40,9 @@
 #define IDC_FM_LBLCONTEXT               (IDD_FIELDMAN + 1)
 #define IDC_FM_EDTCONTENT               (IDD_FIELDMAN + 2)
 #define IDC_FM_CMBTYPE                  (IDD_FIELDMAN + 3)
-#define IDC_FM_DTPTIMESTAMP             (IDD_FIELDMAN + 4)
-#define IDC_FM_BTNALTOK                 (IDD_FIELDMAN + 5)
+#define IDC_FM_CMBFIELDICON             (IDD_FIELDMAN + 4)
+#define IDC_FM_DTPTIMESTAMP             (IDD_FIELDMAN + 5)
+#define IDC_FM_BTNALTOK                 (IDD_FIELDMAN + 6)
 
 // Document Properties Dialog
 #define IDD_DOCPROPS                    2200

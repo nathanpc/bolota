@@ -187,3 +187,12 @@ LPCTSTR ImageList::GetLabel(UINT8 usIndex) const {
 WORD ImageList::GetResourceID(UINT8 usIndex) const {
 	return m_wResources[usIndex];
 }
+
+/**
+ * Gets the size (CX and CY) of the image in this ImageList.
+ * 
+ * @return Size of the images in pixels.
+ */
+UINT8 ImageList::IconSize() const {
+	return m_usSize;
+}
