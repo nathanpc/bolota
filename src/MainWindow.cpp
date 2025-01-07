@@ -34,6 +34,7 @@ MainWindow::MainWindow(HINSTANCE hInstance, LPCTSTR szURI) {
 	// Initialize default values.
 	this->hWnd = NULL;
 	m_wndBolota = NULL;
+	m_cmdBar = NULL;
 }
 
 /**
@@ -44,10 +45,11 @@ MainWindow::~MainWindow() {
 	delete m_wndBolota;
 	m_wndBolota = NULL;
 
-	// Destroy window controls.
 #ifdef UNDER_CE
-	CommandBar_Destroy(m_hwndCB);
-	m_hwndCB = NULL;
+	// Dispose of the CommandBar.
+	if (m_cmdBar)
+		delete m_cmdBar;
+	m_cmdBar = NULL;
 #endif // UNDER_CE
 
 	// Destroy the main window.
@@ -131,26 +133,14 @@ BOOL MainWindow::SetupControls(HWND hWnd) {
 	// Resize our window appropriately.
 	SetWindowPos(hWnd, NULL, 0, 0, cx, cy, SWP_NOMOVE | SWP_NOZORDER);
 #elif UNDER_CE
-	// Create CommandBar.
-	m_hwndCB = CommandBar_Create(hInst, hWnd, IDC_CMDBAR);
-
-	// Add the Standard and View bitmaps to the toolbar.
-	CommandBar_AddBitmap(m_hwndCB, HINST_COMMCTRL, IDB_STD_SMALL_COLOR,
-		STD_PRINT + 1, 16, 16);
-	CommandBar_AddBitmap(m_hwndCB, HINST_COMMCTRL, IDB_VIEW_SMALL_COLOR,
-		VIEW_NEWFOLDER + 1, 16, 16);
-
-	// Insert menu bar, toolbar buttons, and the exit button.
-	CommandBar_InsertMenubar(m_hwndCB, hInst, IDM_MAIN, 0);
-	//CommandBar_AddButtons(m_hwndCB, sizeof(tbButtons) / sizeof(TBBUTTON),
-	//	tbButtons);
-	CommandBar_AddAdornments(m_hwndCB, 0, 0);
+	// Create the CommandBar of the application.
+	m_cmdBar = new CommandBar(this->hInst, this->hWnd);
 #endif
 
 	// Calculate size for document viewer control.
 	RECT rcViewer = rcClient;
 #ifdef UNDER_CE
-	rcViewer.top += CommandBar_Height(m_hwndCB);
+	rcViewer.top += m_cmdBar->Height();
 	rcViewer.bottom -= rcViewer.top;
 #endif // UNDER_CE
 
@@ -181,7 +171,7 @@ BOOL MainWindow::ResizeWindows(HWND hwndParent) {
 	RECT rcParent;
 	GetClientRect(hwndParent, &rcParent);
 #ifdef UNDER_CE
-	rcParent.top += CommandBar_Height(m_hwndCB);
+	rcParent.top += m_cmdBar->Height();
 	rcParent.bottom -= rcParent.top;
 #endif // UNDER_CE
 

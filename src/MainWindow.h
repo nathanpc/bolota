@@ -14,13 +14,16 @@
 
 #include "stdafx.h"
 #include "Components/BolotaView.h"
+#ifdef UNDER_CE
+	#include "Components/CECommandBar.h"
+#endif // UNDER_CE
 
 class MainWindow {
 private:
 	// UI components.
 	BolotaView *m_wndBolota;
 #ifdef UNDER_CE
-	HWND m_hwndCB;
+	CommandBar *m_cmdBar;
 #endif // UNDER_CE
 
 public:

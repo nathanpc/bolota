@@ -949,7 +949,6 @@ DEP_CPP_APPLI=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\AboutDialog.h"\
 	"..\src\Application.h"\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
@@ -3065,6 +3064,7 @@ DEP_CPP_MAINW=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
+	"..\src\AboutDialog.h"\
 	"..\src\Bolota\DateField.h"\
 	"..\src\Bolota\Document.h"\
 	"..\src\Bolota\Errors\Error.h"\
@@ -3618,6 +3618,197 @@ DEP_CPP_BOLOT=\
 # Begin Source File
 
 SOURCE=..\src\Components\BolotaView.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\Components\CECommandBar.cpp
+
+!IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
+
+DEP_CPP_CECOM=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Components\CECommandBar.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
+
+DEP_CPP_CECOM=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Components\CECommandBar.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
+
+DEP_CPP_CECOM=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Components\CECommandBar.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
+
+DEP_CPP_CECOM=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Components\CECommandBar.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
+
+DEP_CPP_CECOM=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Components\CECommandBar.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
+
+DEP_CPP_CECOM=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Components\CECommandBar.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
+
+DEP_CPP_CECOM=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Components\CECommandBar.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
+
+DEP_CPP_CECOM=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Components\CECommandBar.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
+
+DEP_CPP_CECOM=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Components\CECommandBar.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
+
+DEP_CPP_CECOM=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Components\CECommandBar.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
+
+DEP_CPP_CECOM=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Components\CECommandBar.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
+
+DEP_CPP_CECOM=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Components\CECommandBar.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\Components\CECommandBar.h
 # End Source File
 # Begin Source File
 
