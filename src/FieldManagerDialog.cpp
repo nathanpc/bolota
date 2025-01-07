@@ -38,7 +38,7 @@ using namespace Bolota;
 FieldManagerDialog::FieldManagerDialog(HINSTANCE& hInst, HWND& hwndParent,
 									   FieldImageList *imlFieldIcons, DialogType type,
 									   Field **field, Field *context) :
-	DialogWindow(hInst, hwndParent, IDD_FIELDMAN) {
+	DialogWindow(hInst, hwndParent, IDD_FIELDMAN, false) {
 	SetType(type);
 	m_imlFieldIcons = imlFieldIcons;
 	
@@ -78,6 +78,9 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 	btnAltOK = GetDlgItem(hDlg, IDC_FM_BTNALTOK);
 	btnOK = GetDlgItem(hDlg, IDOK);
 	btnCancel = GetDlgItem(hDlg, IDCANCEL);
+
+	// Ensure we are centered.
+	CenterInParent();
 
 	// Get client area.
 	RECT rcClient;

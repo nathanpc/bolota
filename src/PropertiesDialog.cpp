@@ -26,7 +26,7 @@ using namespace Bolota;
  */
 PropertiesDialog::PropertiesDialog(HINSTANCE& hInst, HWND& hwndParent,
 								   Bolota::Document *doc) :
-	DialogWindow(hInst, hwndParent, IDD_DOCPROPS) {
+	DialogWindow(hInst, hwndParent, IDD_DOCPROPS, true) {
 	m_doc = doc;
 	memset(&m_st, 0, sizeof(SYSTEMTIME));
 
@@ -69,8 +69,6 @@ bool PropertiesDialog::OnInit(HWND hDlg) {
 	SetWindowText(txtSubTitle, m_doc->SubTitle()->Text()->GetNativeString());
 	SYSTEMTIME st = m_doc->Date()->ToSystemTime();
 	DateTime_SetSystemtime(dtpDate, GDT_VALID, &st);
-
-	// TODO: Change the Save button to Create if we are creating a new document.
 
 	return false;
 }

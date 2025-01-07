@@ -26,6 +26,7 @@ protected:
 	WORD wResID;
 	bool bIsModal;
 	bool bIsDisposable;
+	bool bAutoCenter;
 
 	void RegisterHandle(HWND hDlg);
 
@@ -37,10 +38,11 @@ protected:
 									 LPARAM lParam);
 
 public:
-	DialogWindow(HINSTANCE& hInst, HWND& hwndParent, WORD wResID);
+	DialogWindow(HINSTANCE& hInst, HWND& hwndParent, WORD wResID, bool bCenter);
 	virtual ~DialogWindow();
 
 	void EnableSelfDisposal();
+	void CenterInParent();
 
 	virtual bool Show();
 	virtual INT_PTR ShowModal();

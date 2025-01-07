@@ -18,14 +18,17 @@
  * @param hInst      Application's instance that this dialog belongs to.
  * @param hwndParent Parent window handle.
  * @param wResID     Dialog resource ID.
+ * @param bCenter    Center the dialog in its parent?
  */
-DialogWindow::DialogWindow(HINSTANCE& hInst, HWND& hwndParent, WORD wResID) :
+DialogWindow::DialogWindow(HINSTANCE& hInst, HWND& hwndParent, WORD wResID,
+						   bool bCenter) :
 	hInst(hInst),
 	hwndParent(hwndParent) {
 	this->wResID = wResID;
 	this->hDlg = NULL;
 	this->bIsModal = false;
 	this->bIsDisposable = false;
+	this->bAutoCenter = bCenter;
 }
 
 /**
@@ -124,6 +127,36 @@ void DialogWindow::EnableSelfDisposal() {
 }
 
 /**
+ * Moves the dialog window to center it relative to its parent window.
+ */
+void DialogWindow::CenterInParent() {
+	// Stupidity check.
+	if (this->hDlg == NULL) {
+		MsgBoxError(this->hwndParent, _T("Can't center dialog"),
+			_T("Dialog handle is still NULL and thus centering does not work"));
+		return;
+	}
+
+	// Get window rectangles.
+	RECT rcParent, rcDlg, rc;
+	GetWindowRect(this->hwndParent, &rcParent);
+	GetWindowRect(this->hDlg, &rcDlg);
+	CopyRect(&rc, &rcParent);
+
+	// Offset the owner and dialog box rectangles so that right and bottom
+	// values represent the width and height, and then offset the owner again
+	// to discard space taken up by the dialog box.
+	OffsetRect(&rcDlg, -rcDlg.left, -rcDlg.top);
+	OffsetRect(&rc, -rc.left, -rc.top);
+	OffsetRect(&rc, -rcDlg.right, -rcDlg.bottom);
+
+	// The new position is the sum of half the remaining space and the owner's
+	// original position.
+	SetWindowPos(this->hDlg, HWND_TOP, rcParent.left + (rc.right / 2),
+		rcParent.top + (rc.bottom / 2), 0, 0, SWP_NOSIZE);
+}
+
+/**
  * Registers the dialog's window handle internally to the class.
  *
  * @warning This function MUST always be called when a WM_INITDIALOG message is
@@ -170,6 +203,9 @@ INT_PTR CALLBACK DialogWindow::DefaultDlgProc(HWND hDlg, UINT wMsg,
 	// Handle messages.
 	switch (wMsg) {
 		case WM_INITDIALOG:
+			// Ensure we are centered if that's needed.
+			if (this->bAutoCenter)
+				CenterInParent();
 			break;
 		case WM_COMMAND:
 			if ((LOWORD(wParam) == IDOK) || (LOWORD(wParam) == IDCANCEL)) {

@@ -14,5 +14,5 @@
  * @param hwndParent Parent window handle.
  */
 AboutDialog::AboutDialog(HINSTANCE& hInst, HWND& hwndParent) :
-	DialogWindow(hInst, hwndParent, IDD_ABOUTBOX) {
+	DialogWindow(hInst, hwndParent, IDD_ABOUTBOX, true) {
 }
