@@ -127,7 +127,7 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 	lblIcon = CreateWindow(_T("STATIC"), NULL, WS_CHILD | SS_CENTERIMAGE |
 		SS_BITMAP, rcIcon.left, rcIcon.top, rcIcon.right, rcIcon.bottom, hDlg,
 		(HMENU)IDC_FM_LBLICON, this->hInst, NULL);
-
+	OnFieldIconComboDrawItem(NULL);
 #endif // !UNDER_CE
 	SetupFieldIconCombo();
 	if (BolotaHasError) {
