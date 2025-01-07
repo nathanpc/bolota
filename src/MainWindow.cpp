@@ -130,7 +130,7 @@ BOOL MainWindow::SetupControls(HWND hWnd) {
 
 	// Resize our window appropriately.
 	SetWindowPos(hWnd, NULL, 0, 0, cx, cy, SWP_NOMOVE | SWP_NOZORDER);
-#else
+#elif UNDER_CE
 	// Create CommandBar.
 	m_hwndCB = CommandBar_Create(hInst, hWnd, IDC_CMDBAR);
 

@@ -42,6 +42,9 @@ protected:
 	FieldImageList *m_imlFieldIcons;
 	field_icon_t m_fiIndex;
 	RECT rcEditorArea;
+#ifdef UNDER_CE
+	HBITMAP m_hbIconPreview;
+#endif // UNDER_CE
 
 	// Controls
 	HWND lblContext;
@@ -52,6 +55,9 @@ protected:
 	HWND btnOK;
 	HWND btnAltOK;
 	HWND btnCancel;
+#ifdef UNDER_CE
+	HWND lblIcon;
+#endif // UNDER_CE
 
 	// Actions
 	void SetTitle(LPCTSTR szTitle);
@@ -61,6 +67,7 @@ protected:
 
 	// Events
 	bool OnInit(HWND hDlg);
+	void Close(INT_PTR nResult, bool bSelfDispose) override;
 	INT_PTR OnTypeChange(int index);
 	INT_PTR OnFieldIconComboDrawItem(LPDRAWITEMSTRUCT lpdis);
 	bool OnOK();

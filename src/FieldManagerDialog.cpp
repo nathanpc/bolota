@@ -48,6 +48,10 @@ FieldManagerDialog::FieldManagerDialog(HINSTANCE& hInst, HWND& hwndParent,
 	m_fieldType = NULL;
 	GetSystemTime(&m_stTimestamp);
 	m_fiIndex = BOLOTA_ICON_BATTERY;
+
+#ifdef UNDER_CE
+	m_hbIconPreview = NULL;
+#endif // UNDER_CE
 }
 
 /*
@@ -107,10 +111,23 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 		rcEdit.left, rcEdit.top, 105, rcClient.bottom - rcEdit.top, hDlg,
 		(HMENU)IDC_FM_CMBFIELDICON, this->hInst, NULL);
 #else
+	RECT rcComboIcon = rcEdit;
+	rcComboIcon.right = 105 - (CONTROL_SPACING * 2) - 16;
+	rcComboIcon.bottom = rcClient.bottom - rcEdit.top;
 	cmbFieldIcon = CreateWindow(_T("COMBOBOX"), NULL, WS_CHILD | WS_TABSTOP |
-		WS_VSCROLL | CBS_DROPDOWNLIST | CBS_HASSTRINGS,
-		rcEdit.left, rcEdit.top, 105, rcClient.bottom - rcEdit.top, hDlg,
+		WS_VSCROLL | CBS_DROPDOWNLIST | CBS_HASSTRINGS, rcComboIcon.left,
+		rcComboIcon.top, rcComboIcon.right, rcComboIcon.bottom, hDlg,
 		(HMENU)IDC_FM_CMBFIELDICON, this->hInst, NULL);
+
+	// Create field icon preview static control.
+	RECT rcIcon = rcComboIcon;
+	rcIcon.right = 16;
+	rcIcon.bottom = rcEdit.bottom - rcEdit.top;
+	rcIcon.left = rcComboIcon.left + rcComboIcon.right + CONTROL_SPACING;
+	lblIcon = CreateWindow(_T("STATIC"), NULL, WS_CHILD | SS_CENTERIMAGE |
+		SS_BITMAP, rcIcon.left, rcIcon.top, rcIcon.right, rcIcon.bottom, hDlg,
+		(HMENU)IDC_FM_LBLICON, this->hInst, NULL);
+
 #endif // !UNDER_CE
 	SetupFieldIconCombo();
 	if (BolotaHasError) {
@@ -132,6 +149,9 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 		IconField *field = static_cast<IconField*>(AssociatedField());
 		m_fiIndex = field->IconIndex();
 		ComboBox_SetCurSel(cmbFieldIcon, m_fiIndex - 1);
+#ifdef UNDER_CE
+		OnFieldIconComboDrawItem(NULL);
+#endif // UNDER_CE
 	}
 
 	// Set up the type ComboBox and switch to the correct layout for the dialog.
@@ -150,11 +170,31 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 	default:
 		MsgBoxError(hDlg, _T("Unknown dialog type"), _T("Couldn't setup ")
 			_T("the Field Manager dialog box for the requested type."));
-		Close(IDCANCEL);
+		DialogWindow::Close(IDCANCEL);
 		return true;
 	}
 
 	return false;
+}
+
+/**
+ * Closes the dialog window.
+ *
+ * @remark Calls the parent's Close method.
+ *
+ * @param nResult      Return value of the dialog.
+ * @param bSelfDispose Are we allowed to self dispose if asked to?
+ */
+void FieldManagerDialog::Close(INT_PTR nResult, bool bSelfDispose) {
+#ifdef UNDER_CE
+	// Dispose of the preview icon and control.
+	if (m_hbIconPreview)
+		DeleteObject(m_hbIconPreview);
+	m_hbIconPreview = NULL;
+#endif // UNDER_CE
+
+	// Continue closing.
+	DialogWindow::Close(nResult, bSelfDispose);
 }
 
 /**
@@ -185,6 +225,9 @@ INT_PTR FieldManagerDialog::OnTypeChange(int index) {
 		ShowWindow(dtpTimestamp, SW_HIDE);
 		ShowWindow(cmbFieldIcon, SW_HIDE);
 		ShowWindow(txtValue, SW_SHOW);
+#ifdef UNDER_CE
+		ShowWindow(lblIcon, SW_HIDE);
+#endif // UNDER_CE
 	} else if (m_fieldType->code == BOLOTA_TYPE_DATE) {
 		MoveWindow(txtValue, rcDTP.right + CONTROL_SPACING, rcEditorArea.top,
 			rcEditorArea.right - (rcDTP.right + CONTROL_SPACING),
@@ -192,13 +235,26 @@ INT_PTR FieldManagerDialog::OnTypeChange(int index) {
 		ShowWindow(cmbFieldIcon, SW_HIDE);
 		ShowWindow(txtValue, SW_SHOW);
 		ShowWindow(dtpTimestamp, SW_SHOW);
+#ifdef UNDER_CE
+		ShowWindow(lblIcon, SW_HIDE);
+#endif // UNDER_CE
 	} else if (m_fieldType->code == BOLOTA_TYPE_ICON) {
-		MoveWindow(txtValue, rcCMB.right + CONTROL_SPACING, rcEditorArea.top,
-			rcEditorArea.right - (rcCMB.right + CONTROL_SPACING),
-			rcEditorArea.bottom - rcEditorArea.top, TRUE);
+		LONG lLeft = rcCMB.right + CONTROL_SPACING;
+#ifdef UNDER_CE
+		RECT rcIcon;
+		GetWindowRect(lblIcon, &rcIcon);
+		RectScreenToClient(&rcIcon, hDlg);
+		lLeft = rcIcon.right + CONTROL_SPACING;
+#endif // UNDER_CE
+
+		MoveWindow(txtValue, lLeft, rcEditorArea.top, rcEditorArea.right -
+			lLeft, rcEditorArea.bottom - rcEditorArea.top, TRUE);
 		ShowWindow(dtpTimestamp, SW_HIDE);
 		ShowWindow(txtValue, SW_SHOW);
 		ShowWindow(cmbFieldIcon, SW_SHOW);
+#ifdef UNDER_CE
+		ShowWindow(lblIcon, SW_SHOW);
+#endif // UNDER_CE
 	}
 
 	return TRUE;
@@ -213,6 +269,13 @@ INT_PTR FieldManagerDialog::OnTypeChange(int index) {
  * @return TRUE if the event was handled.
  */
 INT_PTR FieldManagerDialog::OnFieldIconComboDrawItem(LPDRAWITEMSTRUCT lpdis) {
+#ifndef UNDER_CE
+	// Stupidity check.
+	if (lpdis == NULL) {
+		ThrowError(EMSG("OnFieldIconComboDrawItem lpdis is NULL"));
+		return FALSE;
+	}
+
 	// Ignore empty items.
 	if (lpdis->itemID == -1)
 		return FALSE;
@@ -261,6 +324,37 @@ INT_PTR FieldManagerDialog::OnFieldIconComboDrawItem(LPDRAWITEMSTRUCT lpdis) {
 		DrawFocusRect(lpdis->hDC, &lpdis->rcItem);
 
 	return TRUE;
+#else
+	// Set the field icon preview.
+	if (m_hbIconPreview)
+		DeleteObject(m_hbIconPreview);
+
+	// Get some device contexts for the operation.
+	HDC hdcScreen = GetWindowDC(NULL);
+	HDC hdcDest = CreateCompatibleDC(hdcScreen);
+
+	// Get some objects together.
+	RECT rc = {0};
+	rc.bottom = m_imlFieldIcons->IconSize();
+	rc.right = m_imlFieldIcons->IconSize();
+	m_hbIconPreview = CreateCompatibleBitmap(hdcScreen, rc.right, rc.bottom);
+	HGDIOBJ hgdiOld = SelectObject(hdcDest, m_hbIconPreview);
+
+	// Set the background and draw the icon from the ImageList.
+	FillRect(hdcDest, &rc, GetSysColorBrush(COLOR_MENU));
+	ImageList_Draw(m_imlFieldIcons->Handle(),
+		m_imlFieldIcons->IndexFromFieldIndex(m_fiIndex),
+		hdcDest, 0, 0, ILD_TRANSPARENT);
+
+	// Clean up.
+	ReleaseDC(NULL, (HDC)hgdiOld);
+	DeleteDC(hdcDest);
+
+	// Set the bitmap onto the control.
+	SendMessage(lblIcon, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)m_hbIconPreview);
+
+	return TRUE;
+#endif // !UNDER_CE
 }
 
 /**
@@ -659,11 +753,16 @@ INT_PTR CALLBACK FieldManagerDialog::DlgProc(HWND hDlg, UINT wMsg,
 				if (HIWORD(wParam) == CBN_SELCHANGE) {
 					m_fiIndex = (field_icon_t)ComboBox_GetItemData((HWND)lParam,
 						ComboBox_GetCurSel((HWND)lParam));
+
+#ifdef UNDER_CE
+					// Set the field icon preview.
+					OnFieldIconComboDrawItem(NULL);
+#endif // UNDER_CE
 				}
 				break;
 			case IDC_FM_BTNALTOK:
 				if (OnAlternativeOK()) {
-					Close(IDC_FM_BTNALTOK);
+					DialogWindow::Close(IDC_FM_BTNALTOK);
 					return TRUE;
 				}
 			case IDOK:
