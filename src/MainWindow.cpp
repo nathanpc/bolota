@@ -34,7 +34,9 @@ MainWindow::MainWindow(HINSTANCE hInstance, LPCTSTR szURI) {
 	// Initialize default values.
 	this->hWnd = NULL;
 	m_wndBolota = NULL;
+#ifdef UNDER_CE
 	m_cmdBar = NULL;
+#endif // UNDER_CE
 }
 
 /**
