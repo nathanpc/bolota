@@ -225,6 +225,14 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 		return NULL;
 	}
 
+#ifdef SHELL_AYGSHELL
+	// Take menu bar height into account.
+	RECT rcMB;
+	GetWindowRect(hWnd, &rcMB);
+	rcMB.bottom -= 26;
+	MoveWindow(hWnd, rcMB.left, rcMB.top, rcMB.right, rcMB.bottom, FALSE);
+#endif // SHELL_AYGSHELL
+
 #ifdef UNDER_CE
 	// Set the window task switching icon.
 	HANDLE hIcon = LoadImage(hInstance, MAKEINTRESOURCE(IDI_BOLOTA),
@@ -282,6 +290,16 @@ LRESULT CALLBACK MainWindowProc(HWND hWnd, UINT wMsg, WPARAM wParam,
 			return WndMainNotify(hWnd, wMsg, wParam, lParam);
 		case WM_SIZE:
 			return WndMainSize(hWnd, wMsg, wParam, lParam);
+#ifdef SHELL_AYGSHELL
+		case WM_ACTIVATE:
+			SHHandleWMActivate(hWnd, wParam, lParam,
+				&wndMain->CommandBar()->SHActivateInfo(), 0);
+			break;
+		case WM_SETTINGCHANGE:
+			SHHandleWMSettingChange(hWnd, wParam, lParam,
+				&wndMain->CommandBar()->SHActivateInfo());
+			break;
+#endif // SHELL_AYGSHELL
 		case WM_CLOSE:
 			return WndMainClose(hWnd, wMsg, wParam, lParam);
 		case WM_DESTROY:

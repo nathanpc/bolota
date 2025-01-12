@@ -107,6 +107,8 @@ sub main {
 	$vars->{'font'} = '"System"';
 	render_template('eMbedded Visual C++ 3 (WinCE)', 'wince.rc', PROJECT_ROOT .
 		"/wince/Bolota.rc", $vars);
+	render_template('eMbedded Visual C++ 3 (PocketPC)', 'wince.rc', PROJECT_ROOT .
+		"/pocketpc/Bolota.rc", $vars);
 }
 
 # Execute the script.

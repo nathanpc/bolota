@@ -11,11 +11,11 @@
 #ifdef _WIN32
 	#include <windows.h>
 #endif // _WIN32
-#ifdef UNDER_CE
+#if defined(UNDER_CE) && !defined(WIN32_PLATFORM_PSPC) && !defined(WIN32_PLATFORM_WFSP)
 	#include <wce_string.h>
 #else
 	#include <stdexcept>
-#endif // UNDER_CE
+#endif // UNDER_CE && !WIN32_PLATFORM_PSPC && !WIN32_PLATFORM_WFSP
 
 #include "Errors/Error.h"
 

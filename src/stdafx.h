@@ -45,7 +45,7 @@
 	// Pocket PC shell stuff.
 	#define SHELL_AYGSHELL
 	#include <aygshell.h>
-	#pragma comment(lib, "aygshell")
+	#include <sipapi.h>
 #endif // defined(WIN32_PLATFORM_PSPC) || defined(WIN32_PLATFORM_WFSP)
 
 // Resource definitions.

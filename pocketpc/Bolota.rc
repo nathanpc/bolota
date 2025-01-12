@@ -1,0 +1,324 @@
+//Microsoft eMbedded Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "newres.h"
+#include "../src/SharedResources.h"
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_BOLOTA              ICON  DISCARDABLE       "..\\icons\\bolota-icon.ico"
+IDI_SMALL               ICON  DISCARDABLE       "..\\icons\\bolota-icon.ico"
+
+// Blank icon.
+IDI_BLANK               ICON  DISCARDABLE       "..\\icons\\blank.ico"
+
+// Begin field icons.
+IDI_FI_BULLET1          ICON  DISCARDABLE       "..\\icons\\fields\\_Bullet1.ico"
+IDI_FI_BATTERY          ICON  DISCARDABLE       "..\\icons\\fields\\Battery.ico"
+IDI_FI_BOX              ICON  DISCARDABLE       "..\\icons\\fields\\Box.ico"
+IDI_FI_CALENDAR         ICON  DISCARDABLE       "..\\icons\\fields\\Calendar.ico"
+IDI_FI_CAMERA           ICON  DISCARDABLE       "..\\icons\\fields\\Camera.ico"
+IDI_FI_CHECK            ICON  DISCARDABLE       "..\\icons\\fields\\Check.ico"
+IDI_FI_CLIPBOARD        ICON  DISCARDABLE       "..\\icons\\fields\\Clipboard.ico"
+IDI_FI_CLOCK            ICON  DISCARDABLE       "..\\icons\\fields\\Clock.ico"
+IDI_FI_CPU              ICON  DISCARDABLE       "..\\icons\\fields\\CPU.ico"
+IDI_FI_FIND             ICON  DISCARDABLE       "..\\icons\\fields\\Find.ico"
+IDI_FI_FOLDER           ICON  DISCARDABLE       "..\\icons\\fields\\Folder.ico"
+IDI_FI_GEAR             ICON  DISCARDABLE       "..\\icons\\fields\\Gear.ico"
+IDI_FI_HELP             ICON  DISCARDABLE       "..\\icons\\fields\\Help.ico"
+IDI_FI_HISTORY          ICON  DISCARDABLE       "..\\icons\\fields\\History.ico"
+IDI_FI_LAPTOP           ICON  DISCARDABLE       "..\\icons\\fields\\Laptop.ico"
+IDI_FI_LIGHT            ICON  DISCARDABLE       "..\\icons\\fields\\Light.ico"
+IDI_FI_LOVE             ICON  DISCARDABLE       "..\\icons\\fields\\Love.ico"
+IDI_FI_MEN              ICON  DISCARDABLE       "..\\icons\\fields\\Men.ico"
+IDI_FI_MONEY            ICON  DISCARDABLE       "..\\icons\\fields\\Money.ico"
+IDI_FI_MOVIE            ICON  DISCARDABLE       "..\\icons\\fields\\Movie.ico"
+IDI_FI_PLUS             ICON  DISCARDABLE       "..\\icons\\fields\\Plus.ico"
+IDI_FI_REDO             ICON  DISCARDABLE       "..\\icons\\fields\\Redo.ico"
+IDI_FI_REMOVE           ICON  DISCARDABLE       "..\\icons\\fields\\Remove.ico"
+IDI_FI_SIGNPOST         ICON  DISCARDABLE       "..\\icons\\fields\\Signpost.ico"
+IDI_FI_SOUND            ICON  DISCARDABLE       "..\\icons\\fields\\Sound.ico"
+IDI_FI_STAR             ICON  DISCARDABLE       "..\\icons\\fields\\Star.ico"
+IDI_FI_STOP             ICON  DISCARDABLE       "..\\icons\\fields\\Stop.ico"
+IDI_FI_TAGS             ICON  DISCARDABLE       "..\\icons\\fields\\Tags.ico"
+IDI_FI_TRASH            ICON  DISCARDABLE       "..\\icons\\fields\\Trash.ico"
+IDI_FI_UNDO             ICON  DISCARDABLE       "..\\icons\\fields\\Undo.ico"
+IDI_FI_WOMAN            ICON  DISCARDABLE       "..\\icons\\fields\\Woman.ico"
+IDI_FI_WRENCH           ICON  DISCARDABLE       "..\\icons\\fields\\Wrench.ico"
+// End of field icons.
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+	"#include ""newres.h""\r\n"
+    "#include ""../src/SharedResources.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDM_MAIN MENU DISCARDABLE
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New...",                     IDM_FILE_NEW
+        MENUITEM "&Open...",                    IDM_FILE_OPEN
+        MENUITEM "&Reload",                     IDM_FILE_RELOAD
+        MENUITEM SEPARATOR
+        MENUITEM "&Save",                       IDM_FILE_SAVE
+        MENUITEM "Save &As...",                 IDM_FILE_SAVEAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Properties...",              IDM_FILE_PROPERTIES
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       IDM_FILE_EXIT
+    END
+    POPUP "Fie&ld"
+    BEGIN
+        MENUITEM "Ed&it...",                    IDM_FIELD_EDIT
+        MENUITEM "&Delete...",                  IDM_FIELD_DELETE
+        MENUITEM SEPARATOR
+        MENUITEM "Prepend Fie&ld...",           IDM_FIELD_PREPEND
+        MENUITEM "A&ppend Field...",            IDM_FIELD_APPEND
+        MENUITEM "Cre&ate Child Field...",      IDM_FIELD_CREATECHILD
+        MENUITEM SEPARATOR
+        MENUITEM "Move &Up",                    IDM_FIELD_MOVEUP
+        MENUITEM "Move Dow&n",                  IDM_FIELD_MOVEDOWN
+        MENUITEM SEPARATOR
+        MENUITEM "Inden&t",                     IDM_FIELD_INDENT
+        MENUITEM "D&e-indent",                  IDM_FIELD_DEINDENT
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About...",                   IDM_HELP_ABOUT
+    END
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX DISCARDABLE 0, 0, 170, 62
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About Bolota"
+FONT 8, "System"
+BEGIN
+    ICON            128,IDC_STATIC,14,14,21,20
+    LTEXT           "Bolota, Version 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2024",IDC_STATIC,42,26,114,8
+    DEFPUSHBUTTON   "OK",IDOK,113,41,50,14,WS_GROUP
+END
+
+IDD_FIELDMAN DIALOGEX DISCARDABLE 0, 0, 300, 61
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+EXSTYLE WS_EX_TOPMOST | WS_EX_TOOLWINDOW
+CAPTION "Field Manager"
+FONT 8, "System"
+BEGIN
+    EDITTEXT        IDC_FM_EDTCONTENT,7,19,286,14,WS_TABSTOP | ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,189,40,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,243,40,50,14
+    LTEXT           "Static",IDC_FM_LBLCONTEXT,7,7,286,8
+    COMBOBOX        IDC_FM_CMBTYPE,7,41,80,30,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Alt OK",IDC_FM_BTNALTOK,135,40,50,14
+END
+
+IDD_DOCPROPS DIALOGEX DISCARDABLE 0, 0, 250, 119
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Document Properties"
+FONT 8, "System"
+BEGIN
+    DEFPUSHBUTTON   "Save",IDOK,139,98,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,193,98,50,14
+    LTEXT           "Title:",IDC_STATIC,7,7,236,8
+    EDITTEXT        IDC_DP_EDTTITLE,7,18,236,14,ES_AUTOHSCROLL
+    LTEXT           "Subtitle:",IDC_STATIC,7,36,236,8
+    EDITTEXT        IDC_DP_EDTSUBTITLE,7,47,236,14,ES_AUTOHSCROLL
+    LTEXT           "Creation Date:",IDC_STATIC,7,65,236,8
+    CONTROL         "",IDC_DP_DTPTIMESTAMP,"SysDateTimePick32",DTS_RIGHTALIGN | DTS_APPCANPARSE | DTS_LONGDATEFORMAT | WS_TABSTOP,7,76,236,15
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 163
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 55
+    END
+
+    IDD_FIELDMAN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 293
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 54
+    END
+
+    IDD_DOCPROPS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 243
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 112
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ACCELERATORS ACCELERATORS DISCARDABLE
+BEGIN
+    "/",            IDM_HELP_ABOUT,         ASCII,  ALT, NOINVERT
+    "?",            IDM_HELP_ABOUT,         ASCII,  ALT, NOINVERT
+    VK_F1,          IDM_HELP_ABOUT,         VIRTKEY, NOINVERT
+    "O",            IDM_FIELD_APPEND,       VIRTKEY, NOINVERT
+    "P",            IDM_FIELD_CREATECHILD,  VIRTKEY, NOINVERT
+    "H",            IDM_FIELD_DEINDENT,     VIRTKEY, NOINVERT
+    VK_TAB,         IDM_FIELD_DEINDENT,     VIRTKEY, SHIFT, NOINVERT
+    "D",            IDM_FIELD_DELETE,       VIRTKEY, NOINVERT
+    VK_DELETE,      IDM_FIELD_DELETE,       VIRTKEY, NOINVERT
+    "I",            IDM_FIELD_EDIT,         VIRTKEY, NOINVERT
+    "L",            IDM_FIELD_INDENT,       VIRTKEY, NOINVERT
+    VK_TAB,         IDM_FIELD_INDENT,       VIRTKEY, NOINVERT
+    "J",            IDM_FIELD_MOVEDOWN,     VIRTKEY, NOINVERT
+    VK_DOWN,        IDM_FIELD_MOVEDOWN,     VIRTKEY, SHIFT, NOINVERT
+    "K",            IDM_FIELD_MOVEUP,       VIRTKEY, NOINVERT
+    VK_UP,          IDM_FIELD_MOVEUP,       VIRTKEY, SHIFT, NOINVERT
+    "U",            IDM_FIELD_PREPEND,      VIRTKEY, NOINVERT
+    "N",            IDM_FILE_NEW,           VIRTKEY, CONTROL, NOINVERT
+    "O",            IDM_FILE_OPEN,          VIRTKEY, CONTROL, NOINVERT
+    "R",            IDM_FILE_RELOAD,        VIRTKEY, CONTROL, NOINVERT
+    VK_F5,          IDM_FILE_RELOAD,        VIRTKEY, NOINVERT
+    "S",            IDM_FILE_SAVE,          VIRTKEY, CONTROL, NOINVERT
+    "S",            IDM_FILE_SAVEAS,        VIRTKEY, SHIFT, CONTROL, NOINVERT
+    VK_F2,          IDM_FILE_PROPERTIES,    VIRTKEY, NOINVERT
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "Innove Workshop\0"
+            VALUE "FileDescription", "Bolota\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "Bolota\0"
+            VALUE "LegalCopyright", "Copyright © 2025\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "Bolota.exe\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "Bolota\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_TBCLASSIC           BITMAP  DISCARDABLE     "..\\icons\\toolbars\\classic\\classic.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+   IDS_APP_CLASS       "BOLOTA"
+   IDS_APP_TITLE       "Bolota"
+END
+
+#endif
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED

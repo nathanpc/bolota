@@ -69,12 +69,10 @@ extern "C++" {
 
 
 // INT_PTR and UINT_PTR on Windows CE.
-#if defined(UNDER_CE) && !defined(INT_PTR)
+#if defined(UNDER_CE) && !defined(WIN32_PLATFORM_PSPC) && !defined(WIN32_PLATFORM_WFSP)
 	typedef long INT_PTR, *PINT_PTR;
-#endif // defined(UNDER_CE) && !defined(INT_PTR)
-#if defined(UNDER_CE) && !defined(UINT_PTR)
 	typedef unsigned long UINT_PTR, *PUINT_PTR;
-#endif // defined(UNDER_CE) && !defined(UINT_PTR)
+#endif // UNDER_CE && !WIN32_PLATFORM_PSPC && !WIN32_PLATFORM_WFSP
 
 
 // Define _W64 macros to mark types changing their size, like intptr_t.

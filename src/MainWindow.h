@@ -43,6 +43,10 @@ public:
 	LRESULT OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent);
 	bool OnContextMenu(HWND hWnd, int xPos, int yPos);
 	bool OnClose() const;
+
+#ifdef UNDER_CE
+	WinCE::CommandBar* CommandBar() const;
+#endif // UNDER_CE
 };
 
 #endif // _BOLOTA_MAINWINDOW_H

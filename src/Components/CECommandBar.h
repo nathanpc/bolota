@@ -25,6 +25,10 @@ namespace WinCE {
 		HWND hwndParent;
 		HWND hWnd;
 
+#ifdef SHELL_AYGSHELL
+		SHACTIVATEINFO m_sai;
+#endif // SHELL_AYGSHELL
+
 	public:
 		// Constructors and destructors.
 		CommandBar(HINSTANCE hInst, HWND hwndParent);
@@ -33,6 +37,9 @@ namespace WinCE {
 		// Helpers
 		LONG Height() const;
 		HWND Handle() const;
+#ifdef SHELL_AYGSHELL
+		SHACTIVATEINFO SHActivateInfo() const;
+#endif // SHELL_AYGSHELL
 	};
 
 }

@@ -89,62 +89,19 @@ BOOL MainWindow::SetupControls(HWND hWnd) {
 	RECT rcClient;
 	GetClientRect(this->hWnd, &rcClient);
 
-#ifdef SHELL_AYGSHELL
-	SHMENUBARINFO mbi = {0};
-	SIPINFO si = {0};
-	int cx, cy;
-
-	// Initialize the shell to activate the info structure.
-	memset(&sai, 0, sizeof(sai));
-	sai.cbSize = sizeof(sai);
-
-	// Setup the menu bar.
-	mbi.cbSize     = sizeof(SHMENUBARINFO);
-	mbi.hwndParent = hWnd;               // Parent window.
-	mbi.nToolBarId = IDR_MENUBAR;        // ID of the toolbar resource.
-	mbi.hInstRes   = hInst;              // Instance handle of our application.
-	mbi.nBmpId     = 0;                  // Bitmap resource ID.
-	mbi.cBmpImages = 0;                  // Number of images in the bitmap.
-	mbi.hwndMB     = 0;                  // Returned handle of the menu bar.
-	
-	// Create the menu bar.
-	if (!SHCreateMenuBar(&mbi)) {
-		MessageBox(hWnd, L"Couldn't create the menu bar.", L"UI Error",
-			MB_OK | MB_ICONERROR);
-		DestroyWindow(hWnd);
-	}
-
-	// Save the menu bar handle.
-	hwndMenuBar = mbi.hwndMB;
-
-	// Query the SIP state and size our window appropriately.
-	si.cbSize = sizeof(si);
-	SHSipInfo(SPI_GETSIPINFO, 0, (PVOID)&si, 0);
-	cx = si.rcVisibleDesktop.right - si.rcVisibleDesktop.left;
-	cy = si.rcVisibleDesktop.bottom - si.rcVisibleDesktop.top;
-
-	// Correct the window height based on the menu bar height.
-	if (!(si.fdwFlags & SIPF_ON) || ((si.fdwFlags & SIPF_ON) &&
-			(si.fdwFlags & SIPF_DOCKED))) {
-		RECT rcMenuBar;
-		GetWindowRect(hwndMenuBar, &rcMenuBar);
-
-		cy -= (rcMenuBar.bottom - rcMenuBar.top);
-	}
-
-	// Resize our window appropriately.
-	SetWindowPos(hWnd, NULL, 0, 0, cx, cy, SWP_NOMOVE | SWP_NOZORDER);
-#elif UNDER_CE
+#ifdef UNDER_CE
 	// Create the CommandBar of the application.
 	m_cmdBar = new WinCE::CommandBar(this->hInst, this->hWnd);
-#endif
+#endif // UNDER_CE
 
 	// Calculate size for document viewer control.
 	RECT rcViewer = rcClient;
-#ifdef UNDER_CE
+#ifdef SHELL_AYGSHELL
+	rcViewer.bottom -= m_cmdBar->Height();
+#elif UNDER_CE
 	rcViewer.top += m_cmdBar->Height();
 	rcViewer.bottom -= rcViewer.top;
-#endif // UNDER_CE
+#endif // SHELL_AYGSHELL
 
 	// Setup the document viewer.
 	m_wndBolota = new BolotaView(this->hInst, this->hWnd, rcViewer);
@@ -298,3 +255,14 @@ bool MainWindow::OnContextMenu(HWND hWnd, int xPos, int yPos) {
 bool MainWindow::OnClose() const {
 	return m_wndBolota->Close();
 }
+
+#ifdef UNDER_CE
+/**
+ * Gets the CommandBar object.
+ *
+ * @return CommandBar object.
+ */
+WinCE::CommandBar* MainWindow::CommandBar() const {
+	return this->m_cmdBar;
+}
+#endif // UNDER_CE

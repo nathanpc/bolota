@@ -51,6 +51,7 @@ CommandBar::CommandBar(HINSTANCE hInst, HWND hwndParent) {
 	this->hInst = hInst;
 	this->hwndParent = hwndParent;
 
+#ifndef SHELL_AYGSHELL
 	// Create CommandBar.
 	this->hWnd = CommandBar_Create(hInst, hwndParent, IDC_CMDBAR);
 
@@ -64,6 +65,30 @@ CommandBar::CommandBar(HINSTANCE hInst, HWND hwndParent) {
 	CommandBar_AddButtons(this->hWnd, sizeof(tbButtons) / sizeof(TBBUTTON),
 		tbButtons);
 	CommandBar_AddAdornments(this->hWnd, 0, 0);
+#else
+	SHMENUBARINFO mbi = {0};
+
+	// Initialize the shell to activate the info structure.
+	memset(&m_sai, 0, sizeof(SHACTIVATEINFO));
+	m_sai.cbSize = sizeof(SHACTIVATEINFO);
+
+	// Setup the menu bar.
+	mbi.cbSize     = sizeof(SHMENUBARINFO);
+	mbi.hwndParent = hWnd;               // Parent window.
+	mbi.nToolBarId = IDM_MAIN;           // ID of the toolbar resource.
+	mbi.hInstRes   = hInst;              // Instance handle of our application.
+	mbi.nBmpId     = 0;                  // Bitmap resource ID.
+	mbi.cBmpImages = 0;                  // Number of images in the bitmap.
+	
+	// Create the menu bar.
+	if (!SHCreateMenuBar(&mbi)) {
+		MsgBoxError(hWnd, _T("UI Error"), _T("Couldn't create the menu bar."));
+		DestroyWindow(hWnd);
+	}
+
+	// Save the menu bar handle.
+	this->hWnd = mbi.hwndMB;
+#endif // !SHELL_AYGSHELL
 }
 
 /**
@@ -82,7 +107,29 @@ CommandBar::~CommandBar() {
  * @return Bar's height.
  */
 LONG CommandBar::Height() const {
+#ifndef SHELL_AYGSHELL
 	return CommandBar_Height(this->hWnd);
+#else
+	SIPINFO si = {0};
+	int cx, cy;
+
+	// Query the SIP state and size our window appropriately.
+	si.cbSize = sizeof(si);
+	SHSipInfo(SPI_GETSIPINFO, 0, (PVOID)&si, 0);
+	cx = si.rcVisibleDesktop.right - si.rcVisibleDesktop.left;
+	cy = si.rcVisibleDesktop.bottom - si.rcVisibleDesktop.top;
+
+	// Correct the window height based on the menu bar height.
+	if (!(si.fdwFlags & SIPF_ON) || ((si.fdwFlags & SIPF_ON) &&
+			(si.fdwFlags & SIPF_DOCKED))) {
+		RECT rcMenuBar;
+		GetWindowRect(this->hWnd, &rcMenuBar);
+
+		cy -= (rcMenuBar.bottom - rcMenuBar.top);
+	}
+
+	return cy;
+#endif // SHELL_AYGSHELL
 }
 
 /**
@@ -93,3 +140,14 @@ LONG CommandBar::Height() const {
 HWND CommandBar::Handle() const {
 	return this->hWnd;
 }
+
+#ifdef SHELL_AYGSHELL
+/**
+ * Gets the shell activate information about the Pocket PC user interface.
+ *
+ * @return Our internal SHACTIVATEINFO instance.
+ */
+SHACTIVATEINFO CommandBar::SHActivateInfo() const {
+	return this->m_sai;
+}
+#endif // SHELL_AYGSHELL
