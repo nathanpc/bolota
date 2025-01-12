@@ -163,19 +163,26 @@ bool FieldManagerDialog::OnInit(HWND hDlg) {
 	// Decide which setup to use.
 	switch (m_type) {
 	case EditField:
-		return SetupEditControls();
+		SetupEditControls();
+		break;
 	case AppendField:
-		return SetupAppendControls();
+		SetupAppendControls();
+		break;
 	case PrependField:
-		return SetupPrependControls();
+		SetupPrependControls();
+		break;
 	case NewChildField:
-		return SetupCreateChildControls();
+		SetupCreateChildControls();
+		break;
 	default:
 		MsgBoxError(hDlg, _T("Unknown dialog type"), _T("Couldn't setup ")
 			_T("the Field Manager dialog box for the requested type."));
 		DialogWindow::Close(IDCANCEL);
-		return true;
+		break;
 	}
+
+	// Force focus to be on the editor control.
+	SendMessage(hDlg, WM_NEXTDLGCTL, (WPARAM)txtValue, TRUE);
 
 	return false;
 }
