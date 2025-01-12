@@ -607,6 +607,10 @@ SOURCE=..\icons\fields\Wrench.ico
 # End Group
 # Begin Source File
 
+SOURCE=..\icons\fields\bitmap1.bmp
+# End Source File
+# Begin Source File
+
 SOURCE=..\icons\blank.ico
 # End Source File
 # Begin Source File
@@ -647,6 +651,10 @@ SOURCE=.\Bolota.rc
 
 !ENDIF 
 
+# End Source File
+# Begin Source File
+
+SOURCE=..\icons\toolbars\classic\classic.bmp
 # End Source File
 # Begin Source File
 
@@ -959,6 +967,7 @@ DEP_CPP_APPLI=\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
+	"..\src\Components\CECommandBar.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\MainWindow.h"\
@@ -3074,6 +3083,7 @@ DEP_CPP_MAINW=\
 	"..\src\Bolota\IconField.h"\
 	"..\src\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
+	"..\src\Components\CECommandBar.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\MainWindow.h"\

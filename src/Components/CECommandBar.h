@@ -14,23 +14,27 @@
 
 #include "../stdafx.h"
 
-/**
- * Handles the CommandBar used in some Windows CE devices.
- */
-class CommandBar {
-protected:
-	HINSTANCE hInst;
-	HWND hwndParent;
-	HWND hWnd;
+namespace WinCE {
 
-public:
-	// Constructors and destructors.
-	CommandBar(HINSTANCE hInst, HWND hwndParent);
-	virtual ~CommandBar();
+	/**
+	 * Handles the CommandBar used in some Windows CE devices.
+	 */
+	class CommandBar {
+	protected:
+		HINSTANCE hInst;
+		HWND hwndParent;
+		HWND hWnd;
 
-	// Helpers
-	LONG Height() const;
-	HWND Handle() const;
-};
+	public:
+		// Constructors and destructors.
+		CommandBar(HINSTANCE hInst, HWND hwndParent);
+		virtual ~CommandBar();
+
+		// Helpers
+		LONG Height() const;
+		HWND Handle() const;
+	};
+
+}
 
 #endif // _COMPONENTS_CECOMMANDBAR_H

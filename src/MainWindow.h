@@ -23,7 +23,7 @@ private:
 	// UI components.
 	BolotaView *m_wndBolota;
 #ifdef UNDER_CE
-	CommandBar *m_cmdBar;
+	WinCE::CommandBar *m_cmdBar;
 #endif // UNDER_CE
 
 public:

@@ -57,6 +57,13 @@ END
 
 /// .inc version.rc
 
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_TBCLASSIC           BITMAP  DISCARDABLE     "..\\icons\\toolbars\\classic\\classic.bmp"
+
 /// .inc strings.rc
 
 #endif

@@ -134,7 +134,7 @@ BOOL MainWindow::SetupControls(HWND hWnd) {
 	SetWindowPos(hWnd, NULL, 0, 0, cx, cy, SWP_NOMOVE | SWP_NOZORDER);
 #elif UNDER_CE
 	// Create the CommandBar of the application.
-	m_cmdBar = new CommandBar(this->hInst, this->hWnd);
+	m_cmdBar = new WinCE::CommandBar(this->hInst, this->hWnd);
 #endif
 
 	// Calculate size for document viewer control.
