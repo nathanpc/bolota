@@ -94,6 +94,9 @@
     <ClInclude Include="..\src\Bolota\Errors\SystemError.h">
       <Filter>Bolota\Errors</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Bolota\Errors\ConsistencyError.h">
+      <Filter>Bolota\Errors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Utilities\DialogWindow.cpp">
@@ -151,6 +154,9 @@
       <Filter>Bolota\Errors</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Bolota\Errors\SystemError.cpp">
+      <Filter>Bolota\Errors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Bolota\Errors\ConsistencyError.cpp">
       <Filter>Bolota\Errors</Filter>
     </ClCompile>
   </ItemGroup>

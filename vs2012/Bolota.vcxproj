@@ -56,7 +56,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>comctl32.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Manifest>
       <InputResourceManifests>
@@ -88,6 +88,7 @@
     <ClInclude Include="..\src\Application.h" />
     <ClInclude Include="..\src\Bolota\DateField.h" />
     <ClInclude Include="..\src\Bolota\Document.h" />
+    <ClInclude Include="..\src\Bolota\Errors\ConsistencyError.h" />
     <ClInclude Include="..\src\Bolota\Errors\Error.h" />
     <ClInclude Include="..\src\Bolota\Errors\ErrorCollection.h" />
     <ClInclude Include="..\src\Bolota\Errors\SystemError.h" />
@@ -112,6 +113,7 @@
     <ClCompile Include="..\src\Application.cpp" />
     <ClCompile Include="..\src\Bolota\DateField.cpp" />
     <ClCompile Include="..\src\Bolota\Document.cpp" />
+    <ClCompile Include="..\src\Bolota\Errors\ConsistencyError.cpp" />
     <ClCompile Include="..\src\Bolota\Errors\Error.cpp" />
     <ClCompile Include="..\src\Bolota\Errors\SystemError.cpp" />
     <ClCompile Include="..\src\Bolota\Field.cpp" />
