@@ -17,6 +17,7 @@
 	#include <stdexcept>
 #endif // UNDER_CE && !WIN32_PLATFORM_PSPC && !WIN32_PLATFORM_WFSP
 
+#include "../../shims/cvtutf/ConvertUTF.h"
 #include "Errors/Error.h"
 
 /**
