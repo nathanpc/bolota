@@ -8,9 +8,9 @@
 #include "Toolbar.h"
 
 // Some local constants.
-#define TBR_BIT_DEPTH     ILC_COLORDDB
+#define TBR_BIT_DEPTH     ILC_COLORDDB | ILC_MASK
 #define TBR_ICON_SIZE     GetSystemMetrics(SM_CXSMICON)
-#define TBR_IMAGELIST_LEN 5
+#define TBR_IMAGELIST_LEN 14
 
 /**
  * Creates and prepares the application's toolbar.
@@ -64,6 +64,12 @@ void Toolbar::CreateImageList() {
 	// Create the ImageList.
 	m_imlToolbar = new ImageList(this->hInst, TBR_ICON_SIZE, TBR_BIT_DEPTH,
 		TBR_IMAGELIST_LEN);
+
+	// Add classic bitmaps.
+	if (m_imlToolbar->AddBitmap(IDB_TBCLASSIC, TBR_IMAGELIST_LEN,
+			CLR_DEFAULT) == BOLOTA_ERR_UINT8) {
+		MsgBoxBolotaError(hwndParent, _T("Failed to load toolbar bitmaps"));
+	}
 }
 
 /**
@@ -95,15 +101,17 @@ HWND Toolbar::CreateFileToolbar(LPSIZE lpSize) {
 		(LPARAM)m_imlToolbar->Handle());
 
 	// Set up Toolbar buttons.
-	const int numButtons = 5;
-	int ibl = SendMessage(m_hwndTbrFile, TB_ADDSTRING, (WPARAM)hInst,
+	UINT8 b = 0;
+	const int numButtons = 6;
+	LRESULT ibl = SendMessage(m_hwndTbrFile, TB_ADDSTRING, (WPARAM)hInst,
 		(LPARAM)IDS_TBFILELABELS);
 	TBBUTTON tbButtons[numButtons] = {
-		{ 0, IDM_FILE_NEW, TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ },
-		{ 1, IDM_FILE_OPEN, TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ },
-		{ 2, IDM_FILE_SAVE, TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ },
-		{ 3, IDM_FILE_RELOAD, TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ },
-		{ 4, IDM_FILE_PROPERTIES, TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ }
+		{ b++, IDM_FILE_NEW,        TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ },
+		{ b++, IDM_FILE_OPEN,       TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ },
+		{ b++, IDM_FILE_SAVE,       TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ },
+		{ 0,   0,                   TBSTATE_ENABLED, BTNS_SEP,     {0}, NULL, 0 },
+		{ b++, IDM_FILE_RELOAD,     TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ },
+		{ b++, IDM_FILE_PROPERTIES, TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ }
 	};
 
 	// Add buttons.
@@ -121,6 +129,71 @@ HWND Toolbar::CreateFileToolbar(LPSIZE lpSize) {
 		SendMessage(m_hwndTbrFile, TB_GETMAXSIZE, 0, (LPARAM)lpSize);
 
 	return m_hwndTbrFile;
+}
+
+/**
+ * Creates and populates the topics toolbar with controls.
+ *
+ * @param lpSize Optional. Size of the Toolbar with all of its controls.
+ *
+ * @return Window handle for the Toolbar control.
+ */
+HWND Toolbar::CreateTopicsToolbar(LPSIZE lpSize) {
+	// Create the Toolbar.
+	const DWORD buttonStyles = BTNS_AUTOSIZE;
+	m_hwndTbrTopics = CreateWindowEx(0, TOOLBARCLASSNAME, NULL,
+		WS_CHILD | TBSTYLE_FLAT | TBSTYLE_TOOLTIPS | TBSTYLE_LIST |
+		TBSTYLE_TRANSPARENT | WS_CLIPCHILDREN | WS_CLIPSIBLINGS |
+		CCS_NODIVIDER | CCS_NORESIZE | WS_VISIBLE, 0, 0, 0, 0, this->hwndParent,
+		(HMENU)IDC_TBRTOPICS, this->hInst, NULL);
+	if (m_hwndTbrTopics == NULL) {
+		MsgBoxError(NULL, _T("Error creating topics toolbar"),
+			_T("An error occurred while trying to CreateWindowEx for the ")
+			_T("topics toolbar."));
+		return NULL;
+	}
+	SendMessage(m_hwndTbrTopics, TB_SETEXTENDEDSTYLE, (WPARAM)NULL,
+		(LPARAM)TBSTYLE_EX_MIXEDBUTTONS);
+
+	// Associate the ImageList to the toolbar.
+	SendMessage(m_hwndTbrTopics, TB_SETIMAGELIST, (WPARAM)0,
+		(LPARAM)m_imlToolbar->Handle());
+
+	// Set up Toolbar buttons.
+	UINT8 b = 5;
+	const int numButtons = 12;
+	LRESULT ibl = SendMessage(m_hwndTbrTopics, TB_ADDSTRING, (WPARAM)hInst,
+		(LPARAM)IDS_TBFILELABELS);
+	TBBUTTON tbButtons[numButtons] = {
+		{ b++, IDM_FIELD_EDIT,        TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ },
+		{ b++, IDM_FIELD_DELETE,      TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ },
+		{ 0,   0,                     TBSTATE_ENABLED, BTNS_SEP,     {0}, NULL, 0 },
+		{ b++, IDM_FIELD_PREPEND,     TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ },
+		{ b++, IDM_FIELD_APPEND,      TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ },
+		{ b++, IDM_FIELD_CREATECHILD, TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ },
+		{ 0,   0,                     TBSTATE_ENABLED, BTNS_SEP,     {0}, NULL, 0 },
+		{ b++, IDM_FIELD_MOVEUP,      TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ },
+		{ b++, IDM_FIELD_MOVEDOWN,    TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ },
+		{ 0,   0,                     TBSTATE_ENABLED, BTNS_SEP,     {0}, NULL, 0 },
+		{ b++, IDM_FIELD_INDENT,      TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ },
+		{ b++, IDM_FIELD_DEINDENT,    TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ },
+	};
+
+	// Add buttons.
+	SendMessage(m_hwndTbrTopics, TB_BUTTONSTRUCTSIZE, (WPARAM)sizeof(TBBUTTON),
+		(LPARAM)0);
+	SendMessage(m_hwndTbrTopics, TB_ADDBUTTONS, (WPARAM)numButtons,
+		(LPARAM)&tbButtons);
+
+	// Resize the Toolbar, and then show it.
+	SendMessage(m_hwndTbrTopics, TB_AUTOSIZE, 0, 0);
+	ShowWindow(m_hwndTbrTopics, TRUE);
+
+	// Get the final size of the Toolbar if requested.
+	if (lpSize != NULL)
+		SendMessage(m_hwndTbrTopics, TB_GETMAXSIZE, 0, (LPARAM)lpSize);
+
+	return m_hwndTbrTopics;
 }
 
 /**
@@ -145,6 +218,14 @@ HWND Toolbar::CreateRebar() {
 	if (CreateFileToolbar(&sizeToolbar) == NULL)
 		return NULL;
 	InsertToolbar(m_hwndTbrFile, sizeToolbar);
+
+	// Create topics toolbar, get its size, and append it to the Rebar.
+	if (CreateTopicsToolbar(&sizeToolbar) == NULL)
+		return NULL;
+	InsertToolbar(m_hwndTbrTopics, sizeToolbar);
+
+	// Maximize the topics toolbar.
+	SendMessage(m_hwndRebar, RB_MAXIMIZEBAND, (WPARAM)1, (LPARAM)0);
 
 	return m_hwndRebar;
 }

@@ -32,6 +32,7 @@ protected:
 	void CreateImageList();
 	HWND CreateRebar();
 	HWND CreateFileToolbar(LPSIZE lpSize);
+	HWND CreateTopicsToolbar(LPSIZE lpSize);
 
 	// Helpers
 	void InsertToolbar(HWND hwndToolbar, SIZE size);
