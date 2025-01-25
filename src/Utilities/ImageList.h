@@ -41,6 +41,7 @@ public:
 
 	// List manipulation.
 	UINT8 AddIcon(LPCTSTR szLabel, WORD wResId);
+	UINT8 AddBitmap(WORD wResId, UINT8 usNum, COLORREF crMask);
 	UINT8 AddBlank();
 
 	// Getters

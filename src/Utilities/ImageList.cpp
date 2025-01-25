@@ -127,6 +127,54 @@ UINT8 ImageList::AddIcon(LPCTSTR szLabel, WORD wResId) {
 }
 
 /**
+ * Adds a bitmap resource with multiple images to the ImageList.
+ * 
+ * @warning ImageList must be initialized with ILC_MASK flag in order for
+ *          transparency to work.
+ *
+ * @param wResId Icon's resource ID.
+ * @param usNum  Number of icons in the bitmap.
+ * @param crMask Color mask of the background for transparency.
+ * 
+ * @return Index of the first image in the bitmap on the ImageList.
+ */
+UINT8 ImageList::AddBitmap(WORD wResId, UINT8 usNum, COLORREF crMask) {
+	// Check if we have space to add more icons icon to the list.
+	if ((m_usLength + usNum) > m_usNumImages) {
+		ThrowError(EMSG("ImageList does not have space for bitmap"));
+		return BOLOTA_ERR_UINT8;
+	}
+
+	// Load the bitmap resource.
+	HBITMAP hbm = (HBITMAP)LoadImage(m_hInst, MAKEINTRESOURCE(wResId),
+		IMAGE_BITMAP, 0, 0, LR_DEFAULTSIZE);
+	if (hbm == NULL) {
+		ThrowError(new SystemError(EMSG("Failed to load bitmap")));
+		return BOLOTA_ERR_UINT8;
+	}
+
+	// Add the bitmap.
+	int idx = ImageList_AddMasked(m_hIml, hbm, crMask);
+	if (idx == -1) {
+		ThrowError(new SystemError(EMSG("Failed to add bitmap to ImageList")));
+		return BOLOTA_ERR_UINT8;
+	}
+
+	// Destroy the temporary bitmap handle.
+	DeleteObject(hbm);
+	hbm = NULL;
+
+	// Pad the internal structures.
+	for (UINT8 i = 0; i < usNum; ++i) {
+		m_wResources[m_usLength] = 0;
+		m_szLabels[m_usLength] = NULL;
+		m_usLength++;
+	}
+
+	return static_cast<UINT8>(idx);
+}
+
+/**
  * Adds a blank icon to the ImageList.
  *
  * @return Index of the blank icon in the ImageList.
