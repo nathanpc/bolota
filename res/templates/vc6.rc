@@ -24,6 +24,8 @@ LANGUAGE 9, 1
 
 /// .inc icons.rc
 
+/// .inc bitmaps.rc
+
 /// .inc menus.rc
 
 /// .inc accelerators.rc

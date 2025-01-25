@@ -27,6 +27,8 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 /// .inc icons.rc
 
+/// .inc bitmaps.rc
+
 /// .inc menus.rc
 
 /// .inc accelerators.rc

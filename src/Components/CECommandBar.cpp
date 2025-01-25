@@ -9,35 +9,34 @@
 
 using namespace WinCE;
 
-// Number of bitmaps in the standard and view ImageLists.
-#define STD_BMPS_LEN  (STD_PRINT + 1)
-#define BOFS          (STD_BMPS_LEN)
+// Number of bitmaps in the toolbar's ImageList.
+#define TBL_BMPS_LEN 14
 
 /**
  * Toolbar buttons in the CommandBar.
  */
 const TBBUTTON tbButtons[] = {
-//    BitmapIndex     Command                 State            Style       UserData String
-	{ 0,              0,                      0,               TBSTYLE_SEP,       0,   0 },
-	{ STD_FILENEW,    IDM_FILE_NEW,           TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
-	{ STD_FILEOPEN,   IDM_FILE_OPEN,          TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
-	{ STD_FILESAVE,   IDM_FILE_SAVE,          TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
-	{ 0,              0,                      0,               TBSTYLE_SEP,       0,   0 },
-	{ BOFS + 0,       IDM_FILE_RELOAD,        TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
-	{ STD_PROPERTIES, IDM_FILE_PROPERTIES,    TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
-	{ 0,              0,                      0,               TBSTYLE_SEP,       0,   0 },
-	{ BOFS + 1,       IDM_FIELD_EDIT,         TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
-	{ BOFS + 2,       IDM_FIELD_DELETE,       TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
-	{ 0,              0,                      0,               TBSTYLE_SEP,       0,   0 },
-	{ BOFS + 3,       IDM_FIELD_PREPEND,      TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
-	{ BOFS + 4,       IDM_FIELD_APPEND,       TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
-	{ BOFS + 5,       IDM_FIELD_CREATECHILD,  TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
-	{ 0,              0,                      0,               TBSTYLE_SEP,       0,   0 },
-	{ BOFS + 6,       IDM_FIELD_MOVEUP,       TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
-	{ BOFS + 7,       IDM_FIELD_MOVEDOWN,     TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
-	{ 0,              0,                      0,               TBSTYLE_SEP,       0,   0 },
-	{ BOFS + 8,       IDM_FIELD_INDENT,       TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
-	{ BOFS + 9,       IDM_FIELD_DEINDENT,     TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 } 
+// BmpIdx  Command                 State            Style       UserData String
+	{ 0,   0,                      0,               TBSTYLE_SEP,       0,   0 },
+	{ 0,   IDM_FILE_NEW,           TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
+	{ 1,   IDM_FILE_OPEN,          TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
+	{ 2,   IDM_FILE_SAVE,          TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
+	{ 0,   0,                      0,               TBSTYLE_SEP,       0,   0 },
+	{ 3,   IDM_FILE_RELOAD,        TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
+	{ 4,   IDM_FILE_PROPERTIES,    TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
+	{ 0,   0,                      0,               TBSTYLE_SEP,       0,   0 },
+	{ 5,   IDM_FIELD_EDIT,         TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
+	{ 6,   IDM_FIELD_DELETE,       TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
+	{ 0,   0,                      0,               TBSTYLE_SEP,       0,   0 },
+	{ 7,   IDM_FIELD_PREPEND,      TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
+	{ 8,   IDM_FIELD_APPEND,       TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
+	{ 9,   IDM_FIELD_CREATECHILD,  TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
+	{ 0,   0,                      0,               TBSTYLE_SEP,       0,   0 },
+	{ 10,  IDM_FIELD_MOVEUP,       TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
+	{ 11,  IDM_FIELD_MOVEDOWN,     TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
+	{ 0,   0,                      0,               TBSTYLE_SEP,       0,   0 },
+	{ 12,  IDM_FIELD_INDENT,       TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 },
+	{ 13,  IDM_FIELD_DEINDENT,     TBSTATE_ENABLED, TBSTYLE_BUTTON,    0,   0 } 
 };
 
 /**
@@ -52,13 +51,10 @@ CommandBar::CommandBar(HINSTANCE hInst, HWND hwndParent) {
 	this->hwndParent = hwndParent;
 
 #ifndef SHELL_AYGSHELL
-	// Create CommandBar.
+	// Create CommandBar and add bitmaps to its ImageList.
 	this->hWnd = CommandBar_Create(hInst, hwndParent, IDC_CMDBAR);
-
-	// Add the Standard and View bitmaps to the toolbar just in case.
-	CommandBar_AddBitmap(this->hWnd, HINST_COMMCTRL, IDB_STD_SMALL_COLOR,
-		STD_BMPS_LEN, 16, 16);
-	CommandBar_AddBitmap(this->hWnd, this->hInst, IDB_TBCLASSIC, 10, 16, 16);
+	CommandBar_AddBitmap(this->hWnd, this->hInst, IDB_TBCLASSIC, TBL_BMPS_LEN,
+		16, 16);
 
 	// Insert menu bar, toolbar buttons, and the exit button.
 	CommandBar_InsertMenubar(this->hWnd, hInst, IDM_MAIN, 0);
