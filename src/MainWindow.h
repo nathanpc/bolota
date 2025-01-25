@@ -14,17 +14,21 @@
 
 #include "stdafx.h"
 #include "Components/BolotaView.h"
-#ifdef UNDER_CE
+#ifndef UNDER_CE
+	#include "Components/Toolbar.h"
+#else
 	#include "Components/CECommandBar.h"
-#endif // UNDER_CE
+#endif // !UNDER_CE
 
 class MainWindow {
 private:
 	// UI components.
 	BolotaView *m_wndBolota;
-#ifdef UNDER_CE
+#ifndef UNDER_CE
+	Toolbar *m_toolBar;
+#else
 	WinCE::CommandBar *m_cmdBar;
-#endif // UNDER_CE
+#endif // !UNDER_CE
 
 public:
 	// Global handles.

@@ -211,6 +211,9 @@
     <ClInclude Include="..\src\Bolota\Errors\ConsistencyError.h">
       <Filter>Bolota\Errors</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Components\Toolbar.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Bolota\DateField.cpp">
@@ -272,6 +275,9 @@
     </ClCompile>
     <ClCompile Include="..\src\Bolota\Errors\ConsistencyError.cpp">
       <Filter>Bolota\Errors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Components\Toolbar.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

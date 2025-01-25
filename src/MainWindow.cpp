@@ -47,12 +47,17 @@ MainWindow::~MainWindow() {
 	delete m_wndBolota;
 	m_wndBolota = NULL;
 
-#ifdef UNDER_CE
+#ifndef UNDER_CE
+	// Dispose of the toolbar.
+	if (m_toolBar)
+		delete m_toolBar;
+	m_toolBar = NULL;
+#else
 	// Dispose of the CommandBar.
 	if (m_cmdBar)
 		delete m_cmdBar;
 	m_cmdBar = NULL;
-#endif // UNDER_CE
+#endif // !UNDER_CE
 
 	// Destroy the main window.
 	DestroyWindow(this->hWnd);
@@ -89,10 +94,13 @@ BOOL MainWindow::SetupControls(HWND hWnd) {
 	RECT rcClient;
 	GetClientRect(this->hWnd, &rcClient);
 
-#ifdef UNDER_CE
+#ifndef UNDER_CE
+	// Create the application's toolbar.
+	m_toolBar = new Toolbar(this->hInst, this->hWnd);
+#else
 	// Create the CommandBar of the application.
 	m_cmdBar = new WinCE::CommandBar(this->hInst, this->hWnd);
-#endif // UNDER_CE
+#endif // !UNDER_CE
 
 	// Calculate size for document viewer control.
 	RECT rcViewer = rcClient;
@@ -127,15 +135,22 @@ BOOL MainWindow::SetupControls(HWND hWnd) {
  */
 BOOL MainWindow::ResizeWindows(HWND hwndParent) {
 	// Get the client area of the parent window.
-	RECT rcParent;
+	RECT rcParent, rcViewer;
 	GetClientRect(hwndParent, &rcParent);
-#ifdef UNDER_CE
-	rcParent.top += m_cmdBar->Height();
-	rcParent.bottom -= rcParent.top;
-#endif // UNDER_CE
+	rcViewer = rcParent;
+
+#ifndef UNDER_CE
+	// Resize the application's toolbar and offset the viewer by its height.
+	RECT rcToolbar = m_toolBar->Resize(rcParent);
+	rcViewer.top = rcToolbar.bottom;
+#else
+	// Offset by the CommandBar's height.
+	rcViewer.top += m_cmdBar->Height();
+#endif // !UNDER_CE
+	rcViewer.bottom -= rcViewer.top;
 
 	// Resize document viewer.
-	m_wndBolota->Resize(rcParent);
+	m_wndBolota->Resize(rcViewer);
 
 	return TRUE;
 }

@@ -24,6 +24,9 @@
 #define IDC_STATIC                      -1
 #endif // !UNDER_CE
 
+// Strings
+#define IDS_TBFILELABELS                201
+
 // Menus
 #define IDM_BASE                        2000
 #define IDM_FILE_NEW                    (IDM_BASE + 1)
@@ -47,7 +50,8 @@
 // Controls (Main Window)
 #define IDC_BASE                        2100
 #define IDC_CMDBAR                      (IDC_BASE + 2)
-#define IDB_TBCLASSIC                   2103
+#define IDC_TBRFILE                     (IDC_BASE + 3)
+#define IDC_TBRTOPICS                   (IDC_BASE + 4)
 
 // Field Manager Dialog
 #define IDD_FIELDMAN                    2150
@@ -68,6 +72,7 @@
 // Icons and Bitmaps.
 #define IDI_BASE                        3000
 #define IDI_BLANK                       3000
+#define IDB_TBCLASSIC                   3101
 
 // Begin field icons.
 #define IDI_FI_BULLET1                  2999

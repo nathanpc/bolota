@@ -306,6 +306,7 @@ STRINGTABLE DISCARDABLE
 BEGIN
    IDS_APP_CLASS       "BOLOTA"
    IDS_APP_TITLE       "Bolota"
+   IDS_TBFILELABELS     "~New~Open~Save~Refresh~Properties"
 END
 
 #endif
