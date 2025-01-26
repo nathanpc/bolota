@@ -26,6 +26,9 @@
     <Filter Include="Bolota\Errors">
       <UniqueIdentifier>{fd9fe2ee-5f30-4277-a8fc-362dd81ec5fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utilities\Unicode">
+      <UniqueIdentifier>{c15b9531-69af-49be-a633-9c16aba6de75}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Bolota.rc">
@@ -214,6 +217,12 @@
     <ClInclude Include="..\src\Components\Toolbar.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="..\shims\cvtutf\ConvertUTF.h">
+      <Filter>Utilities\Unicode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shims\cvtutf\Unicode.h">
+      <Filter>Utilities\Unicode</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Bolota\DateField.cpp">
@@ -278,6 +287,12 @@
     </ClCompile>
     <ClCompile Include="..\src\Components\Toolbar.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\shims\cvtutf\ConvertUTF.cpp">
+      <Filter>Utilities\Unicode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\shims\cvtutf\Unicode.cpp">
+      <Filter>Utilities\Unicode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
