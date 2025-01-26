@@ -279,6 +279,12 @@ uint8_t Field::ReadField(HANDLE hFile, size_t *bytes) {
 	szText[usTextLength] = '\0';
 	SetTextOwner(szText);
 
+#ifdef UNICODE
+	// We no longer need the UTF-8 string, so free it.
+	m_text->GetWideString();
+	m_text->FreeMultiByteString();
+#endif // UNICODE
+
 	return depth;
 }
 
@@ -339,7 +345,7 @@ size_t Field::Write(HANDLE hFile) const {
 
 #ifdef UNICODE
 	// We no longer need the UTF-8 string, so free it.
-	// TODO: Free the UTF-8 UString.
+	m_text->FreeMultiByteString();
 #endif // UNICODE
 
 	return ulBytes;

@@ -137,29 +137,6 @@ void UString::SetString(wchar_t *wstr) {
 }
 
 /**
- * Gets the internal multi-byte C string for interoperability with C libraries.
- *
- * @return Pointer to the internal C string. Pointer changes whenever the
- *         contents of the object change.
- */
-const char *UString::GetMultiByteString() {
-	// Check if we have a string to return.
-	if (m_mbstr == NULL) {
-		// Check if we have no string at all.
-		if (m_wstr == NULL)
-			return NULL;
-
-		// Perform a conversion to make the string available.
-		m_mbstr = ToMultiByteString(m_wstr);
-
-		// Ensure we base our length from this string.
-		m_length = strlen(m_mbstr);
-	}
-
-	return const_cast<const char *>(m_mbstr);
-}
-
-/**
  * Converts an UTF-8 multi-byte C string into an UTF-16 wide string.
  *
  * @warning This method allocates memory dynamically.
@@ -200,6 +177,29 @@ char *UString::ToMultiByteString(const wchar_t *wstr) {
 }
 
 /**
+ * Gets the internal multi-byte C string for interoperability with C libraries.
+ *
+ * @return Pointer to the internal C string. Pointer changes whenever the
+ *         contents of the object change.
+ */
+const char *UString::GetMultiByteString() {
+	// Check if we have a string to return.
+	if (m_mbstr == NULL) {
+		// Check if we have no string at all.
+		if (m_wstr == NULL)
+			return NULL;
+
+		// Perform a conversion to make the string available.
+		m_mbstr = ToMultiByteString(m_wstr);
+
+		// Ensure we base our length from this string.
+		m_length = strlen(m_mbstr);
+	}
+
+	return const_cast<const char*>(m_mbstr);
+}
+
+/**
  * Gets the internal wide string for interoperability with C libraries.
  *
  * @return Pointer to the internal wide string. Pointer changes whenever the
@@ -230,6 +230,61 @@ const TCHAR *UString::GetNativeString() {
 #else
 	return GetMultiByteString();
 #endif // UNICODE
+}
+
+/**
+ * Frees the internal multi-byte string if you deem it's no longer going to be
+ * used in the short term and freeing up memory is more important.
+ */
+void UString::FreeMultiByteString() {
+	// Is this even needed?
+	if (m_mbstr == NULL)
+		return;
+
+#ifdef DEBUG
+	// Ensure you're not doing something stupid.
+	if (m_wstr == NULL) {
+#ifdef _WIN32
+		MessageBox(NULL, EMSG("Trying to free a multi-byte string with no backup."),
+			_T("Bug Alert!"), MB_OK | MB_ICONERROR);
+#else
+		printf(EMSG("BUG ALERT: Trying to free a multi-byte string with no backup.")
+			"\n");
+#endif // _WIN32
+		return;
+	}
+#endif // DEBUG
+
+	// Free up the unused buffer.
+	free(m_mbstr);
+	m_mbstr = NULL;
+}
+
+/**
+ * Frees the internal wide character string if you deem it's no longer going to
+ * be used in the short term and freeing up memory is more important.
+ */
+void UString::FreeWideString() {
+	// Is this even needed?
+	if (m_wstr == NULL)
+		return;
+
+#ifdef DEBUG
+	// Ensure you're not doing something stupid.
+	if (m_mbstr == NULL) {
+#ifdef _WIN32
+		MessageBox(NULL, EMSG("Trying to free a wide string with no backup."),
+			_T("Bug Alert!"), MB_OK | MB_ICONERROR);
+#else
+		printf(EMSG("BUG ALERT: Trying to free a wide string with no backup.\n"));
+#endif // _WIN32
+		return;
+	}
+#endif // DEBUG
+
+	// Free up the unused buffer.
+	free(m_wstr);
+	m_wstr = NULL;
 }
 
 /**

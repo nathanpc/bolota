@@ -56,6 +56,14 @@ public:
 	const wchar_t *GetWideString();
 	const TCHAR *GetNativeString();
 
+	// Free up unused internal strings.
+	void FreeMultiByteString();
+	void FreeWideString();
+
+	// Encoding converters.
+	static wchar_t *ToWideString(const char* mbstr);
+	static char *ToMultiByteString(const wchar_t* wstr);
+
 	// Getters
 	size_t Length();
 	bool Empty() const;
@@ -71,10 +79,6 @@ protected:
 	// Setters for internal strings.
 	void SetString(char *mbstr);
 	void SetString(wchar_t *wstr);
-
-	// Encoding converters.
-	static wchar_t *ToWideString(const char *mbstr);
-	static char *ToMultiByteString(const wchar_t *wstr);
 };
 
 #endif // _INNOVE_USTRING_H
