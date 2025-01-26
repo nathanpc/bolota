@@ -18,7 +18,8 @@ namespace Unicode {
  * Margin used to allocate a buffer that can hold the conversion result, defined
  * as: Allocation Margin = Original Buffer + Margin.
  */
-#define UTF_ALLOC_MARGIN 1.5f
+#define UTF16_ALLOC_MARGIN 1.5f
+#define UTF8_ALLOC_MARGIN  3
 
 /**
  * Checks if the wchar_t is the same size as UTF-16 (2 bytes) and if char is the
@@ -53,6 +54,7 @@ bool MultiByteToWideChar(const char* mbstr, wchar_t** wstr) {
 	// Measure the input buffer and get the location of the NUL terminator.
 	size_t len = strlen(szInputStart);
 	szInputEnd = szInputStart + len;
+	len = (size_t)(len * UTF16_ALLOC_MARGIN);
 
 	// Allocate the new buffer and get its end target (NUL terminator).
 	szOutputStart = (wchar_t*)malloc((len + 1) * sizeof(wchar_t));
@@ -103,13 +105,13 @@ bool WideCharToMultiByte(const wchar_t* wstr, char** mbstr) {
 	// Measure the input buffer and get the location of the NUL terminator.
 	size_t len = wcslen(szInputStart);
 	szInputEnd = szInputStart + len;
-	size_t len2 = len * 2;
+	len = (size_t)(len * UTF8_ALLOC_MARGIN);
 
 	// Allocate the new buffer and get its end target (NUL terminator).
-	szOutputStart = (char*)malloc((len2 + 1) * sizeof(char));
+	szOutputStart = (char*)malloc((len + 1) * sizeof(char));
 	if (szOutputStart == NULL)
 		return false;
-	szOutputEnd = szOutputStart + len2;
+	szOutputEnd = szOutputStart + len;
 
 	// Perform the conversion.
 	const UTF16* szInput = (const UTF16*)szInputStart;
@@ -126,7 +128,7 @@ bool WideCharToMultiByte(const wchar_t* wstr, char** mbstr) {
 
 	// Trim output buffer size if needed.
 	size_t lenOutput = szOutput - (UTF8*)szOutputStart + 1;
-	if (lenOutput < len2)
+	if (lenOutput < len)
 		szOutputStart = (char*)realloc(szOutputStart, lenOutput * sizeof(char));
 
 	// Set the output pointer and return.
