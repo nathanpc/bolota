@@ -136,6 +136,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\shims\cvtutf\ConvertUTF.h" />
+    <ClInclude Include="..\shims\cvtutf\Unicode.h" />
     <ClInclude Include="..\src\AboutDialog.h" />
     <ClInclude Include="..\src\Application.h" />
     <ClInclude Include="..\src\Bolota\DateField.h" />
@@ -205,6 +206,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\shims\cvtutf\ConvertUTF.cpp" />
+    <ClCompile Include="..\shims\cvtutf\Unicode.cpp" />
     <ClCompile Include="..\src\AboutDialog.cpp" />
     <ClCompile Include="..\src\Application.cpp" />
     <ClCompile Include="..\src\Bolota\DateField.cpp" />
