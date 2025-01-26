@@ -13,6 +13,7 @@
 	#include <crtdbg.h>
 #endif // defined(DEBUG) && !defined(UNDER_CE)
 
+#include "../shims/cvtutf/Unicode.h"
 #include "MainWindow.h"
 
 // Common definitions.
@@ -49,6 +50,15 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	_CrtMemState snapDiff;
 	_CrtMemCheckpoint(&snapBegin);
 #endif // defined(DEBUG) && !defined(UNDER_CE)
+
+	// Check if we can perform proper Unicode conversions.
+	if (!Unicode::AssumptionsCheck()) {
+		MsgBoxError(NULL, _T("Unicode Conformance Issue"),
+			_T("Either the size of wchar_t is not 2 bytes long as required ")
+			_T("for UTF-16, or char is not 1 byte long, as per UTF-8. All ")
+			_T("Unicode conversions would fail."));
+		return 0;
+	}
 
 	// Load the application class and title.
 	LoadString(hInstance, IDS_APP_CLASS, szWindowClass, MAX_LOADSTRING);

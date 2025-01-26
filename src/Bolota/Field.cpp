@@ -337,6 +337,11 @@ size_t Field::Write(HANDLE hFile) const {
 		ulBytes += dwWritten;
 	}
 
+#ifdef UNICODE
+	// We no longer need the UTF-8 string, so free it.
+	// TODO: Free the UTF-8 UString.
+#endif // UNICODE
+
 	return ulBytes;
 }
 

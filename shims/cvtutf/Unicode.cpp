@@ -18,20 +18,20 @@ namespace Unicode {
  * Margin used to allocate a buffer that can hold the conversion result, defined
  * as: Allocation Margin = Original Buffer + Margin.
  */
-#define UTF_ALLOC_MARGIN 1.3f
-
+#define UTF_ALLOC_MARGIN 1.5f
 
 /**
- * Checks if the wchar_t is the same size as UTF-16 (2 bytes).
+ * Checks if the wchar_t is the same size as UTF-16 (2 bytes) and if char is the
+ * same as UTF-8 (1 byte).
  * 
  * @warning This check is REQUIRED to be done by your application once at
  *          startup. If it fails you have to abort since all other operations
- *          assume that wchar_t is 2 bytes long.
+ *          assume that wchar_t is 2 bytes long and char is 1 byte long.
  * 
- * @return TRUE if wchar_t is properly defined as 2 bytes long. FALSE otherwise.
+ * @return TRUE if wchar_t and char are properly defined. FALSE otherwise.
  */
-bool WideCharIsUTF16() {
-	return sizeof(wchar_t) == sizeof(UTF16);
+bool AssumptionsCheck() {
+	return (sizeof(wchar_t) == sizeof(UTF16)) && (sizeof(char) == sizeof(UTF8));
 }
 
 /**
@@ -81,6 +81,56 @@ bool MultiByteToWideChar(const char* mbstr, wchar_t** wstr) {
 
 	// Set the output pointer and return.
 	*wstr = szOutputStart;
+	return true;
+}
+
+/**
+ * Converts a wide-character string (UTF-16) to a multi-byte string (UTF-8).
+ *
+ * @warning This function allocates memory dynamically that must be free'd.
+ *
+ * @param wstr  UTF-16 string to be converted.
+ * @param mbstr Pointer to a newly allocated UTF-8 string.
+ *
+ * @return TRUE if the conversion was successful, FALSE otherwise.
+ */
+bool WideCharToMultiByte(const wchar_t* wstr, char** mbstr) {
+	const wchar_t* szInputStart = wstr;
+	const wchar_t* szInputEnd = NULL;
+	char* szOutputStart = NULL;
+	char* szOutputEnd = NULL;
+
+	// Measure the input buffer and get the location of the NUL terminator.
+	size_t len = wcslen(szInputStart);
+	szInputEnd = szInputStart + len;
+	size_t len2 = len * 2;
+
+	// Allocate the new buffer and get its end target (NUL terminator).
+	szOutputStart = (char*)malloc((len2 + 1) * sizeof(char));
+	if (szOutputStart == NULL)
+		return false;
+	szOutputEnd = szOutputStart + len2;
+
+	// Perform the conversion.
+	const UTF16* szInput = (const UTF16*)szInputStart;
+	UTF8* szOutput = (UTF8*)szOutputStart;
+	ConversionResult res = ConvertUTF16toUTF8(&szInput,
+		(const UTF16*)szInputEnd, &szOutput, (UTF8*)szOutputEnd,
+		lenientConversion);
+	if (res != conversionOK) {
+		free(szOutputStart);
+		*mbstr = NULL;
+		return false;
+	}
+	*szOutput = (UTF8)'\0';
+
+	// Trim output buffer size if needed.
+	size_t lenOutput = szOutput - (UTF8*)szOutputStart + 1;
+	if (lenOutput < len2)
+		szOutputStart = (char*)realloc(szOutputStart, lenOutput * sizeof(char));
+
+	// Set the output pointer and return.
+	*mbstr = szOutputStart;
 	return true;
 }
 

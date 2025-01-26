@@ -15,8 +15,12 @@
 #include <wchar.h>
 
 namespace Unicode {
-	bool WideCharIsUTF16();
+	// Runtime assumptions check.
+	bool AssumptionsCheck();
+
+	// Conversion functions.
 	bool MultiByteToWideChar(const char* mbstr, wchar_t** wstr);
+	bool WideCharToMultiByte(const wchar_t* wstr, char** mbstr);
 }
 
 #endif // _SHIMS_CVTUTF_WRAPPER_H

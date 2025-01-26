@@ -10,14 +10,12 @@
 
 #ifdef _WIN32
 	#include <windows.h>
+	#if defined(UNDER_CE) && !defined(WIN32_PLATFORM_PSPC) && !defined(WIN32_PLATFORM_WFSP)
+		#include <wce_string.h>
+	#endif // UNDER_CE && !WIN32_PLATFORM_PSPC && !WIN32_PLATFORM_WFSP
 #endif // _WIN32
-#if defined(UNDER_CE) && !defined(WIN32_PLATFORM_PSPC) && !defined(WIN32_PLATFORM_WFSP)
-	#include <wce_string.h>
-#else
-	#include <stdexcept>
-#endif // UNDER_CE && !WIN32_PLATFORM_PSPC && !WIN32_PLATFORM_WFSP
 
-#include "../../shims/cvtutf/ConvertUTF.h"
+#include "../../shims/cvtutf/Unicode.h"
 #include "Errors/Error.h"
 
 /**
@@ -153,6 +151,9 @@ const char *UString::GetMultiByteString() {
 
 		// Perform a conversion to make the string available.
 		m_mbstr = ToMultiByteString(m_wstr);
+
+		// Ensure we base our length from this string.
+		m_length = strlen(m_mbstr);
 	}
 
 	return const_cast<const char *>(m_mbstr);
@@ -168,49 +169,12 @@ const char *UString::GetMultiByteString() {
  * @return UTF-16 encoded wide string.
  */
 wchar_t *UString::ToWideString(const char *mbstr) {
-	wchar_t *wstr;
+	wchar_t *wstr = NULL;
 
-#ifdef _WIN32
-	int nLen;
-
-	/* Get required buffer size and allocate some memory for it. */
-	wstr = NULL;
-	nLen = MultiByteToWideChar(CP_OEMCP, 0, mbstr, -1, NULL, 0);
-	if (nLen == 0)
-		goto failure;
-	wstr = (wchar_t *)malloc(nLen * sizeof(wchar_t));
-	if (wstr == NULL)
-		goto failure;
-
-	/* Perform the conversion. */
-	nLen = MultiByteToWideChar(CP_OEMCP, 0, mbstr, -1, wstr, nLen);
-	if (nLen == 0) {
-failure:
-		if (wstr)
-			free(wstr);
-		wstr = NULL;
+	if (!Unicode::MultiByteToWideChar(mbstr, &wstr)) {
 		ThrowError(EMSG("Failed to convert UTF-8 string to UTF-16"));
 		return BOLOTA_ERR_NULL;
 	}
-#else
-	size_t len;
-
-	/* Allocate some memory for our converted string. */
-	len = mbstowcs(NULL, mbstr, 0) + 1;
-	wstr = (wchar_t *)malloc(len * sizeof(wchar_t));
-	if (wstr == NULL)
-		return NULL;
-
-	/* Perform the string conversion. */
-	len = mbstowcs(wstr, mbstr, len);
-	if (len == (size_t)-1) {
-		if (wstr)
-			free(wstr);
-		wstr = NULL;
-		ThrowError(EMSG("Failed to convert UTF-8 string to UTF-16"));
-		return BOLOTA_ERR_NULL;
-	}
-#endif // _WIN32
 
 	return wstr;
 }
@@ -226,23 +190,8 @@ failure:
  */
 char *UString::ToMultiByteString(const wchar_t *wstr) {
 	char *mbstr = NULL;
-	int nLen;
 
-	/* Get required buffer size and allocate some memory for it. */
-	nLen = WideCharToMultiByte(CP_OEMCP, 0, wstr, -1, NULL, 0, NULL, NULL);
-	if (nLen == 0)
-		goto failure;
-	mbstr = (char *)malloc(nLen * sizeof(char));
-	if (mbstr == NULL)
-		goto failure;
-
-	/* Perform the conversion. */
-	nLen = WideCharToMultiByte(CP_OEMCP, 0, wstr, -1, mbstr, nLen, NULL, NULL);
-	if (nLen == 0) {
-failure:
-		if (mbstr)
-			free(mbstr);
-		mbstr = NULL;
+	if (!Unicode::WideCharToMultiByte(wstr, &mbstr)) {
 		ThrowError(EMSG("Failed to convert UTF-16 string to UTF-8"));
 		return BOLOTA_ERR_NULL;
 	}
@@ -288,7 +237,11 @@ const TCHAR *UString::GetNativeString() {
  *
  * @return Length of the string.
  */
-size_t UString::Length() const {
+size_t UString::Length() {
+	// Ensure we have the UTF-8 string to get its length.
+	if (m_mbstr == NULL)
+		GetMultiByteString();
+
 	return m_length;
 }
 

@@ -57,7 +57,7 @@ public:
 	const TCHAR *GetNativeString();
 
 	// Getters
-	size_t Length() const;
+	size_t Length();
 	bool Empty() const;
 
 	// Operators
