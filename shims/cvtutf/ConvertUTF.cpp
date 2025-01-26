@@ -65,6 +65,8 @@
 
 #include <assert.h>
 
+namespace Unicode {
+
 static const int halfShift  = 10; /* used for shifting by 10 bits */
 
 static const UTF32 halfBase = 0x0010000UL;
@@ -721,3 +723,5 @@ ConversionResult ConvertUTF8toUTF32(const UTF8 **sourceStart,
     similarly unrolled loops.
 
    --------------------------------------------------------------------- */
+
+} // namespace Unicode

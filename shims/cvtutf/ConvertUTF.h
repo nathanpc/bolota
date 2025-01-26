@@ -105,8 +105,11 @@
 #ifndef LLVM_SUPPORT_CONVERTUTF_H
 #define LLVM_SUPPORT_CONVERTUTF_H
 
-#include <cstddef>
-#include <string>
+#if _MSC_VER > 1000
+#pragma once
+#endif // _MSC_VER > 1000
+
+namespace Unicode {
 
 /* ---------------------------------------------------------------------
     The following 4 definitions are compiler-specific.
@@ -190,5 +193,7 @@ bool isLegalUTF8String(const UTF8 **source, const UTF8 *sourceEnd);
 unsigned getUTF8SequenceSize(const UTF8 *source, const UTF8 *sourceEnd);
 
 unsigned getNumBytesForUTF8(UTF8 firstByte);
+
+} // namespace Unicode
 
 #endif
