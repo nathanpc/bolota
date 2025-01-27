@@ -20,7 +20,7 @@
 /**
  * Convinience macro for testing for errors.
  */
-#define BolotaHasError (Bolota::ErrorStack != NULL)
+#define BolotaHasError (Bolota::ErrorStack::Top() != NULL)
 
 /**
  * Convinience macro for throwing errors.
@@ -30,7 +30,7 @@
 #ifdef DEBUG
 	#define STRINGIZE(x) STRINGIZE_WRAPPER(x)
 	#define STRINGIZE_WRAPPER(x) #x
-	#define EMSG(msg) _T(" [") _T(__FILE__) _T(":") _T(STRINGIZE(__LINE__)) _T("]") _T(msg)
+	#define EMSG(msg) _T(msg) _T(" [") _T(__FILE__) _T(":") _T(STRINGIZE(__LINE__)) _T("]")
 #else
 	#define EMSG(msg) _T(msg)
 #endif // DEBUG
@@ -65,14 +65,35 @@ namespace Bolota {
 		const TCHAR* Message();
 
 		// Stack operations.
+		Error* Push(Error* error);
 		Error* Pop();
-		static void Clear();
 	};
 
 	/**
-	 * Global error stack definition.
+	 * Singleton error stack definition.
 	 */
-	static Error* ErrorStack = NULL;
+	class ErrorStack {
+	private:
+		Error* m_stack;
+		static ErrorStack* m_inst;
+		ErrorStack();
+
+		// Not implemented.
+		ErrorStack(ErrorStack const&);
+		void operator=(ErrorStack const&);
+
+	public:
+		virtual ~ErrorStack();
+
+		// Singleton instance.
+		static ErrorStack* Instance();
+		static Error* Top();
+
+		// Stack operations.
+		Error* Push(Error* error);
+		Error* Pop();
+		void Clear();
+	};
 
 }
 

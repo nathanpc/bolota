@@ -20,9 +20,10 @@
 #define MAX_LOADSTRING 100
 
 // Global variables.
-MainWindow *wndMain = NULL;
-TCHAR szWindowClass[MAX_LOADSTRING];
-TCHAR szAppTitle[MAX_LOADSTRING];
+static MainWindow *wndMain = NULL;
+static TCHAR szWindowClass[MAX_LOADSTRING];
+static TCHAR szAppTitle[MAX_LOADSTRING];
+static Bolota::ErrorStack* errorStack;
 
 /**
  * Application's main entry point.
@@ -256,6 +257,9 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 	SendMessage(hWnd, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
 #endif // UNDER_CE
 
+	// Initialize the error stack.
+	errorStack = Bolota::ErrorStack::Instance();
+
 	// Show and update the window.
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
@@ -272,6 +276,10 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
  * @return Previous return code.
  */
 int TerminateInstance(HINSTANCE hInstance, int nDefRC) {
+	// Clear the error stack.
+	if (errorStack)
+		delete errorStack;
+
 	return nDefRC;
 }
 

@@ -9,11 +9,14 @@
 
 using namespace Bolota;
 
+// Singleton error stack instance.
+ErrorStack* ErrorStack::m_inst = ErrorStack::Instance();
+
 /**
  * Constructs a blank error object.
  */
 Error::Error() {
-	m_prev = ErrorStack;
+	m_prev = ErrorStack::Top();
 	m_message = NULL;
 }
 
@@ -24,7 +27,7 @@ Error::Error() {
  * @param message Message to be displayed.
  */
 Error::Error(const TCHAR *message) {
-	m_prev = ErrorStack;
+	m_prev = ErrorStack::Top();
 	m_message = _tcsdup(message);
 }
 
@@ -47,10 +50,6 @@ Error::~Error() {
 	if (m_message)
 		free(m_message);
 	m_message = NULL;
-
-	// Ensure that the error stack has a valid pointer.
-	if (ErrorStack == this)
-		ErrorStack = m_prev;
 }
 
 /**
@@ -61,8 +60,7 @@ Error::~Error() {
  * @return The error that was thrown.
  */
 Error* Error::Throw(const TCHAR *message) {
-	ErrorStack = new Error(ErrorStack, message);
-	return ErrorStack;
+	return Throw(new Error(NULL, message));
 }
 
 /**
@@ -76,10 +74,7 @@ Error* Error::Throw(const TCHAR *message) {
  * @return The error that was thrown.
  */
 Error* Error::Throw(Error *error) {
-	error->m_prev = ErrorStack;
-	ErrorStack = error;
-
-	return ErrorStack;
+	return ErrorStack::Instance()->Push(error);
 }
 
 /**
@@ -92,21 +87,97 @@ const TCHAR* Error::Message() {
 }
 
 /**
+ * Sets the current error as the previous of the error passed as an argument.
+ * 
+ * @warning This will not change the error stack, possibly corrupting it.
+ * 
+ * @param error Next error in the stack.
+ * 
+ * @return The error that was passed as the argument.
+ */
+Error* Error::Push(Error* error) {
+	error->m_prev = this;
+	return error;
+}
+
+/**
  * Destroys the current error object and gets its previous.
+ * 
+ * @warning This will not change the error stack, possibly corrupting it.
+ *
+ * @return Previous error object if it exists or NULL.
+ */
+Error* Error::Pop() {
+	Error* prev = m_prev;
+	delete this;
+
+	return prev;
+}
+
+/**
+ * Initializes the error stack singleton object.
+ */
+ErrorStack::ErrorStack() {
+	m_stack = NULL;
+}
+
+/**
+ * Deallocates the internal error stack.
+ */
+ErrorStack::~ErrorStack() {
+	Clear();
+}
+
+/**
+ * Gets the global instance of the error stack singleton.
+ * 
+ * @return Global error stack object.
+ */
+ErrorStack* ErrorStack::Instance() {
+	if (m_inst == NULL)
+		m_inst = new ErrorStack();
+
+	return m_inst;
+}
+
+/**
+ * Gets the topmost item of the error stack.
+ * 
+ * @return Topmost item of the error stack.
+ */
+Error* ErrorStack::Top() {
+	return Instance()->m_stack;
+}
+
+/**
+ * Pushes an error to the top of the error stack.
+ *
+ * @param error New error to be the top of the error stack.
+ * 
+ * @return The new top of the stack.
+ */
+Error* ErrorStack::Push(Error* error) {
+	m_stack = m_stack->Push(error);
+	return m_stack;
+}
+
+/**
+ * Destroys the current error object at the top of the stack and gets its
+ * previous.
  *
  * @warning This will delete the reference to the current error object.
  *
  * @return Previous error object if it exists or NULL.
  */
-Error* Error::Pop() {
-	delete this;
-	return ErrorStack;
+Error* ErrorStack::Pop() {
+	m_stack = m_stack->Pop();
+	return m_stack;
 }
 
 /**
  * Clears the entire contents of the error stack.
  */
-void Error::Clear() {
-	while (BolotaHasError)
-		ErrorStack->Pop();
+void ErrorStack::Clear() {
+	while (m_stack != NULL)
+		Pop();
 }

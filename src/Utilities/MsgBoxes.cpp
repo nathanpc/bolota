@@ -102,21 +102,23 @@ int MsgBoxLastError(HWND hwndParent) {
  * @return ID of the button that was clicked by the user.
  */
 int MsgBoxBolotaError(HWND hwndParent, LPCTSTR szTitle) {
+#ifdef DEBUG
 	// Sanity check.
-	if (Bolota::ErrorStack == NULL) {
+	if (Bolota::ErrorStack::Top() == NULL) {
 		return MsgBoxError(hwndParent, szTitle,
 			_T("Bolota error MessageBox called with a NULL ErrorStack."));
 	}
+#endif // DEBUG
 
 	// Build up error message.
-	tstring strMessage(Bolota::ErrorStack->Message());
-	Bolota::Error *err = Bolota::ErrorStack->Pop();
+	tstring strMessage(Bolota::ErrorStack::Top()->Message());
+	Bolota::Error *err = Bolota::ErrorStack::Instance()->Pop();
 	if (err != NULL)
-		strMessage += _T("\r\nError Stack:\r\n");
+		strMessage += _T("\r\n\r\nError Stack:\r\n");
 	while (err != NULL) {
 		strMessage += err->Message();
 		strMessage += _T("\r\n");
-		err = err->Pop();
+		err = Bolota::ErrorStack::Instance()->Pop();
 	}
 
 	// Show the error message box.
