@@ -190,6 +190,9 @@ ATOM RegisterApplication(HINSTANCE hInstance) {
 HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 	HWND hWnd;
 
+	// Initialize the error stack.
+	errorStack = Bolota::ErrorStack::Instance();
+
 #ifdef SHELL_AYGSHELL
 	// Initialize PocketPC controls.
 	SHInitExtraControls();
@@ -233,6 +236,11 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 	if (!IsWindow(hWnd)) {
 		MsgBoxError(NULL, _T("Error Initializing Instance"),
 			_T("Window creation failed."));
+
+		// Ensure we deinitialize the error stack.
+		delete errorStack;
+		errorStack = NULL;
+
 		return NULL;
 	}
 
@@ -257,9 +265,6 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 	SendMessage(hWnd, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
 #endif // UNDER_CE
 
-	// Initialize the error stack.
-	errorStack = Bolota::ErrorStack::Instance();
-
 	// Show and update the window.
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
@@ -279,6 +284,7 @@ int TerminateInstance(HINSTANCE hInstance, int nDefRC) {
 	// Clear the error stack.
 	if (errorStack)
 		delete errorStack;
+	errorStack = NULL;
 
 	return nDefRC;
 }
