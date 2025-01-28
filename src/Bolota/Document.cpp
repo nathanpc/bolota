@@ -715,6 +715,10 @@ size_t Document::WriteProperties() const {
 size_t Document::WriteTopics(Field *field) const {
 	size_t ulBytes = 0;
 
+	// Do we even have anything to write?
+	if (field == NULL)
+		return 0;
+
 	// Go through the fields recursively.
 	do {
 		ulBytes += field->Write(m_hFile);
@@ -768,6 +772,10 @@ uint32_t Document::TopicsLength() const {
  */
 uint32_t Document::TopicsLength(Field *field) const {
 	uint32_t ulLength = 0;
+
+	// Ensure we actually have something to measure.
+	if (field == NULL)
+		return 0;
 
 	// Go through the fields recursively.
 	do {
