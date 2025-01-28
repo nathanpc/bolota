@@ -24,7 +24,7 @@ FieldImageList::FieldImageList(HINSTANCE hInst) :
 	m_usIndexOffset = 0;
 
 	// Add internal icons.
-	AddBlank();
+	m_usIndexBlank = AddBlank();
 	m_usIndexOffset++;
 	m_usIndexBullet = AddIcon(_T("Bullet"), IDI_FI_BULLET1);
 	m_usIndexOffset++;
@@ -62,6 +62,15 @@ FieldImageList::FieldImageList(HINSTANCE hInst) :
 	AddIcon(_T("Woman"), IDI_FI_WOMAN);
 	AddIcon(_T("Wrench"), IDI_FI_WRENCH);
 	// End of field icons.
+}
+
+/**
+ * Gets the blank icon index.
+ *
+ * @return Blank icon index.
+ */
+UINT8 FieldImageList::Blank() const {
+	return m_usIndexBlank;
 }
 
 /**

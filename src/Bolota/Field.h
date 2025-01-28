@@ -150,6 +150,23 @@ namespace Bolota {
 		};
 	};
 
+	/**
+	 * A Bolota field that is supposed to act as a visual spacer.
+	 */
+	class BlankField : public Field {
+	private:
+		// Hide away things that we cannot change.
+		void SetText(const char* mbstr);
+		void SetText(const wchar_t* wstr);
+		void SetTextOwner(char* mbstr);
+		void SetTextOwner(wchar_t* wstr);
+
+	public:
+		// Constructors
+		BlankField() : Field(BOLOTA_TYPE_BLANK) {};
+		BlankField(Field* parent) : Field(parent, BOLOTA_TYPE_BLANK) {};
+	};
+
 }
 
 #endif // __cplusplus

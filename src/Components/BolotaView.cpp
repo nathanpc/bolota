@@ -171,6 +171,7 @@ void BolotaView::OpenExampleDocument() {
 	tmpField->SetNext(new TextField(_T("Third top element")))
 		->SetChild(new TextField(_T("A sub-element of the third element")))
 		->SetChild(new TextField(_T("A sub-sub-element of the third element")));
+	doc->AppendTopic(new BlankField());
 	doc->AppendTopic(new TextField(_T("Fourth top element")));
 
 	// Open the example document.
@@ -228,7 +229,7 @@ HTREEITEM BolotaView::AddTreeViewItem(HTREEITEM htiParent,
 #endif // DEBUG
 
 	// Release the display text if needed.
-	if (!bRetain) {
+	if (!bRetain && (field->Type() != BOLOTA_TYPE_BLANK)) {
 		free(szText);
 		szText = NULL;
 	}
@@ -299,7 +300,7 @@ bool BolotaView::RefreshField(HTREEITEM hti, Field *field) {
 	TreeView_SetItem(m_hWnd, &tvi);
 
 	// Release the display text if needed.
-	if (!bRetain) {
+	if (!bRetain && (field->Type() != BOLOTA_TYPE_BLANK)) {
 		free(szText);
 		szText = NULL;
 	}
@@ -1122,7 +1123,8 @@ LPTSTR BolotaView::FieldDisplayText(Field *field, bool *bRetain) const {
 LPTSTR BolotaView::SetTreeViewItemField(LPTVITEM lptvi, Field *field,
 										bool *bRetain) const {
 	// Get the proper display string.
-	LPTSTR szText = FieldDisplayText(field, bRetain);
+	LPTSTR szText = (field->Type() == BOLOTA_TYPE_BLANK) ? (LPTSTR)_T("") :
+		FieldDisplayText(field, bRetain);
 
 	lptvi->mask = TVIF_TEXT | TVIF_IMAGE | TVIF_SELECTEDIMAGE | TVIF_PARAM;
 	lptvi->iImage = m_imlFieldIcons->Bullet();
@@ -1141,6 +1143,10 @@ LPTSTR BolotaView::SetTreeViewItemField(LPTVITEM lptvi, Field *field,
 	case BOLOTA_TYPE_DATE:
 		lptvi->iImage = m_imlFieldIcons->Calendar();
 		lptvi->iSelectedImage = m_imlFieldIcons->Calendar();
+		break;
+	case BOLOTA_TYPE_BLANK:
+		lptvi->iImage = m_imlFieldIcons->Blank();
+		lptvi->iSelectedImage = m_imlFieldIcons->Blank();
 		break;
 	}
 

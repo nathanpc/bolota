@@ -32,6 +32,12 @@
     <Filter Include="Resource Files\Toolbars">
       <UniqueIdentifier>{a975a048-a7bf-407f-9c06-f3d0d2142227}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Bolota\Fields">
+      <UniqueIdentifier>{b4e17b45-e3ec-49a4-94d9-4d6e6326eb83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bolota\Utilities">
+      <UniqueIdentifier>{35cef116-97fa-4d36-b1d6-13bdb072a518}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Bolota.rc">
@@ -157,21 +163,6 @@
     <ClInclude Include="..\src\SharedResources.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Bolota\DateField.h">
-      <Filter>Bolota</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Bolota\Document.h">
-      <Filter>Bolota</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Bolota\Field.h">
-      <Filter>Bolota</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Bolota\IconField.h">
-      <Filter>Bolota</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Bolota\UString.h">
-      <Filter>Bolota</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Utilities\DialogWindow.h">
       <Filter>Utilities</Filter>
     </ClInclude>
@@ -229,26 +220,26 @@
     <ClInclude Include="..\shims\cvtutf\Unicode.h">
       <Filter>Utilities\Unicode</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Bolota\DateField.h">
+      <Filter>Bolota\Fields</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Bolota\IconField.h">
+      <Filter>Bolota\Fields</Filter>
+    </ClInclude>
     <ClInclude Include="..\src\Bolota\FieldTypes.h">
+      <Filter>Bolota\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Bolota\UString.h">
+      <Filter>Bolota\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Bolota\Document.h">
+      <Filter>Bolota</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Bolota\Field.h">
       <Filter>Bolota</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\Bolota\DateField.cpp">
-      <Filter>Bolota</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Bolota\Document.cpp">
-      <Filter>Bolota</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Bolota\Field.cpp">
-      <Filter>Bolota</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Bolota\IconField.cpp">
-      <Filter>Bolota</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Bolota\UString.cpp">
-      <Filter>Bolota</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Utilities\DialogWindow.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
@@ -303,7 +294,22 @@
     <ClCompile Include="..\shims\cvtutf\Unicode.cpp">
       <Filter>Utilities\Unicode</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Bolota\DateField.cpp">
+      <Filter>Bolota\Fields</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Bolota\IconField.cpp">
+      <Filter>Bolota\Fields</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\Bolota\FieldTypes.cpp">
+      <Filter>Bolota\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Bolota\UString.cpp">
+      <Filter>Bolota\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Bolota\Document.cpp">
+      <Filter>Bolota</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Bolota\Field.cpp">
       <Filter>Bolota</Filter>
     </ClCompile>
   </ItemGroup>

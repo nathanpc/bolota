@@ -20,6 +20,7 @@
  */
 class FieldImageList : public ImageList {
 protected:
+	UINT8 m_usIndexBlank;
 	UINT8 m_usIndexBullet;
 	UINT8 m_usIndexCalendar;
 	UINT8 m_usIndexOffset;
@@ -28,6 +29,7 @@ public:
 	FieldImageList(HINSTANCE hInst);
 
 	// Common icons.
+	UINT8 Blank() const;
 	UINT8 Bullet() const;
 	UINT8 Calendar() const;
 

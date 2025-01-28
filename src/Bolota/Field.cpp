@@ -210,6 +210,9 @@ Field* Field::Read(HANDLE hFile, size_t *bytes, uint8_t *depth) {
 	case BOLOTA_TYPE_ICON:
 		self = new IconField();
 		break;
+	case BOLOTA_TYPE_BLANK:
+		self = new BlankField();
+		break;
 	default:
 		ThrowError(new UnknownFieldType(hFile, *bytes, true, type));
 		goto error_handling;
@@ -341,12 +344,12 @@ size_t Field::Write(HANDLE hFile) const {
 			return BOLOTA_ERR_SIZET;
 		}
 		ulBytes += dwWritten;
-	}
 
 #ifdef UNICODE
-	// We no longer need the UTF-8 string, so free it.
-	m_text->FreeMultiByteString();
+		// We no longer need the UTF-8 string, so free it.
+		m_text->FreeMultiByteString();
 #endif // UNICODE
+	}
 
 	return ulBytes;
 }

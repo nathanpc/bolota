@@ -17,6 +17,7 @@ FieldTypeList::FieldTypeList() {
 	m_list.push_back(new FieldType(BOLOTA_TYPE_TEXT, _T("Text")));
 	m_list.push_back(new FieldType(BOLOTA_TYPE_ICON, _T("Icon with Text")));
 	m_list.push_back(new FieldType(BOLOTA_TYPE_DATE, _T("Date & Time")));
+	m_list.push_back(new FieldType(BOLOTA_TYPE_BLANK, _T("Blank")));
 }
 
 /**

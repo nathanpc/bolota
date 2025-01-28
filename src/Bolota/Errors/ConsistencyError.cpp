@@ -39,15 +39,18 @@ ConsistencyError::ConsistencyError(Field* reference, Field* expected,
 		LINENDT, reference, expected, found, relationship);
 	strMessage += szBuffer;
 	_sntprintf(szBuffer, 254, _T("Reference (%p): %s") LINENDT,
-		reference, reference->Text()->GetNativeString());
+		reference, !reference->HasText() ? _T("NULL") :
+		reference->Text()->GetNativeString());
 	strMessage += szBuffer;
 	_sntprintf(szBuffer, 254, _T("%s Expected (%p): %s") LINENDT,
 		relationship, expected, (expected == NULL) ? NULL :
-		expected->Text()->GetNativeString());
+		(!expected->HasText() ? _T("NULL") :
+			expected->Text()->GetNativeString()));
 	strMessage += szBuffer;
 	_sntprintf(szBuffer, 254, _T("%s Found (%p): %s"),
 		relationship, found, (found == NULL) ? NULL :
-		found->Text()->GetNativeString());
+		(!found->HasText() ? _T("NULL") :
+			found->Text()->GetNativeString()));
 	strMessage += szBuffer;
 
 	// Substitute the error message string.

@@ -33,7 +33,8 @@ typedef enum bolota_type_e {
 	BOLOTA_TYPE_IGNORE =  0,
 	BOLOTA_TYPE_TEXT   = 'T',
 	BOLOTA_TYPE_DATE   = 'd',
-	BOLOTA_TYPE_ICON   = 'I'
+	BOLOTA_TYPE_ICON   = 'I',
+	BOLOTA_TYPE_BLANK  = '0'
 } bolota_type_t;
 
 #ifdef __cplusplus

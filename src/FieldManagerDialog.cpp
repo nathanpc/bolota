@@ -230,6 +230,7 @@ INT_PTR FieldManagerDialog::OnTypeChange(int index) {
 
 	// Handle each type change.
 	if (m_fieldType->code == BOLOTA_TYPE_TEXT) {
+		ShowWindow(lblContext, SW_SHOW);
 		MoveWindow(txtValue, rcEditorArea.left, rcEditorArea.top,
 			rcEditorArea.right - rcEditorArea.left,
 			rcEditorArea.bottom - rcEditorArea.top, TRUE);
@@ -240,6 +241,7 @@ INT_PTR FieldManagerDialog::OnTypeChange(int index) {
 		ShowWindow(lblIcon, SW_HIDE);
 #endif // UNDER_CE
 	} else if (m_fieldType->code == BOLOTA_TYPE_DATE) {
+		ShowWindow(lblContext, SW_SHOW);
 		MoveWindow(txtValue, rcDTP.right + CONTROL_SPACING, rcEditorArea.top,
 			rcEditorArea.right - (rcDTP.right + CONTROL_SPACING),
 			rcEditorArea.bottom - rcEditorArea.top, TRUE);
@@ -258,6 +260,7 @@ INT_PTR FieldManagerDialog::OnTypeChange(int index) {
 		lLeft = rcIcon.right + CONTROL_SPACING;
 #endif // UNDER_CE
 
+		ShowWindow(lblContext, SW_SHOW);
 		MoveWindow(txtValue, lLeft, rcEditorArea.top, rcEditorArea.right -
 			lLeft, rcEditorArea.bottom - rcEditorArea.top, TRUE);
 		ShowWindow(dtpTimestamp, SW_HIDE);
@@ -265,6 +268,14 @@ INT_PTR FieldManagerDialog::OnTypeChange(int index) {
 		ShowWindow(cmbFieldIcon, SW_SHOW);
 #ifdef UNDER_CE
 		ShowWindow(lblIcon, SW_SHOW);
+#endif // UNDER_CE
+	} else if (m_fieldType->code == BOLOTA_TYPE_BLANK) {
+		ShowWindow(lblContext, SW_HIDE);
+		ShowWindow(dtpTimestamp, SW_HIDE);
+		ShowWindow(cmbFieldIcon, SW_HIDE);
+		ShowWindow(txtValue, SW_HIDE);
+#ifdef UNDER_CE
+		ShowWindow(lblIcon, SW_HIDE);
 #endif // UNDER_CE
 	}
 
@@ -388,10 +399,13 @@ bool FieldManagerDialog::OnOK() {
 		case BOLOTA_TYPE_ICON:
 			*m_field = new IconField();
 			break;
+		case BOLOTA_TYPE_BLANK:
+			*m_field = new BlankField();
+			break;
 		default:
 			MsgBoxError(hDlg, _T("Unknown field type"),
 				_T("This type of field conversion wasn't yet implemented."));
-			goto skipreplace;
+			return false;
 		}
 		
 		// Replace the actual field.
@@ -399,11 +413,12 @@ bool FieldManagerDialog::OnOK() {
 		delete old;
 	}
 
-skipreplace:
 	// Set the field's values.
-	AssociatedField()->SetTextOwner(GetContentText());
+	if (AssociatedField()->Type() != BOLOTA_TYPE_BLANK)
+		AssociatedField()->SetTextOwner(GetContentText());
 	switch (AssociatedField()->Type()) {
 	case BOLOTA_TYPE_TEXT:
+	case BOLOTA_TYPE_BLANK:
 		break;
 	case BOLOTA_TYPE_DATE: {
 		DateField *field = static_cast<DateField*>(AssociatedField());
@@ -551,7 +566,8 @@ void FieldManagerDialog::SetupFieldIconCombo() {
  */
 bool FieldManagerDialog::SetupEditControls() {
 	SetTitle(_T("Edit Field"));
-	SetContextLabel(m_context->Text()->GetNativeString());
+	SetContextLabel(!m_context->HasText() ? _T("") :
+		m_context->Text()->GetNativeString());
 	SetButtons(NULL, _T("Save"), _T("Cancel"));
 	return true;
 }
