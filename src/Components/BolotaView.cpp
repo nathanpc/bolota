@@ -981,7 +981,6 @@ LRESULT BolotaView::ReloadView(Field *fldSelected) {
 
 	// Handle empty documents.
 	if (m_doc->IsEmpty())
-		// TODO: Show a nice label with a message about creating a new topic.
 		return 0;
 
 	// Populate the Tree-View with topics.
