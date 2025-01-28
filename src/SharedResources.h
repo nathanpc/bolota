@@ -19,14 +19,15 @@
 #define IDI_SMALL                       104
 #define IDM_MAIN                        105
 #define IDR_ACCELERATORS                106
-#define IDD_ABOUTBOX                    107
 #ifndef UNDER_CE
 #define IDC_STATIC                      -1
 #endif // !UNDER_CE
 
 // Strings
-#define IDS_TBFILELABELS                201
-#define IDS_TBTOPICSLABELS              202
+#define IDS_COPYRIGHT                   201
+#define IDS_AUTHORWEBSITE               202
+#define IDS_TBFILELABELS                203
+#define IDS_TBTOPICSLABELS              204
 
 // Menus
 #define IDM_BASE                        2000
@@ -70,6 +71,12 @@
 #define IDC_DP_EDTTITLE                 (IDD_DOCPROPS + 1)
 #define IDC_DP_EDTSUBTITLE              (IDD_DOCPROPS + 2)
 #define IDC_DP_DTPTIMESTAMP             (IDD_DOCPROPS + 3)
+
+// About Dialog
+#define IDD_ABOUTBOX                    2950
+#define IDC_AB_LBLAPPNAME               (IDD_ABOUTBOX + 1)
+#define IDC_AB_LBLCOPYRIGHT             (IDD_ABOUTBOX + 2)
+#define IDC_AB_BTNAUTHORWEB             (IDD_ABOUTBOX + 3)
 
 // Icons and Bitmaps.
 #define IDI_BASE                        3000

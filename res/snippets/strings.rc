@@ -7,6 +7,8 @@ STRINGTABLE DISCARDABLE
 BEGIN
    IDS_APP_CLASS       "BOLOTA"
    IDS_APP_TITLE       "Bolota"
+   IDS_COPYRIGHT       "Copyright © Innove Workshop 2024-2025"
+   IDS_AUTHORWEBSITE   "http://nathancampos.me/"
    IDS_TBFILELABELS    "/New/Open/Save/Refresh/Properties//"
    IDS_TBTOPICSLABELS  "/Edit Field/Delete Field/Prepend/Append/Create Child/Move Up/Move Down/Indent Field/Deindent Field//"
 END

@@ -16,13 +16,10 @@
 #include "../shims/cvtutf/Unicode.h"
 #include "MainWindow.h"
 
-// Common definitions.
-#define MAX_LOADSTRING 100
-
 // Global variables.
 static MainWindow *wndMain = NULL;
-static TCHAR szWindowClass[MAX_LOADSTRING];
-static TCHAR szAppTitle[MAX_LOADSTRING];
+static TCHAR szWindowClass[20];
+static TCHAR szAppTitle[20];
 
 /**
  * Application's main entry point.
@@ -66,8 +63,8 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	Bolota::FieldTypeList* listFieldTypes = Bolota::FieldTypeList::Instance();
 
 	// Load the application class and title.
-	LoadString(hInstance, IDS_APP_CLASS, szWindowClass, MAX_LOADSTRING);
-	LoadString(hInstance, IDS_APP_TITLE, szAppTitle, MAX_LOADSTRING);
+	LoadString(hInstance, IDS_APP_CLASS, szWindowClass, 20);
+	LoadString(hInstance, IDS_APP_TITLE, szAppTitle, 20);
 
 	// Initialize the application.
 	rc = RegisterApplication(hInstance);

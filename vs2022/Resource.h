@@ -2,6 +2,7 @@
 // Microsoft Visual C++ generated include file.
 // Used by Bolota.rc
 //
+#define IDOK2                           2
 
 // Next default values for new objects
 // 

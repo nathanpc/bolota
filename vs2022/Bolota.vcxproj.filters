@@ -29,6 +29,9 @@
     <Filter Include="Utilities\Unicode">
       <UniqueIdentifier>{c15b9531-69af-49be-a633-9c16aba6de75}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Toolbars">
+      <UniqueIdentifier>{a975a048-a7bf-407f-9c06-f3d0d2142227}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Bolota.rc">
@@ -137,6 +140,9 @@
     </Image>
     <Image Include="..\icons\fields\Wrench.ico">
       <Filter>Resource Files\Field Icons</Filter>
+    </Image>
+    <Image Include="..\icons\toolbars\classic\classic.bmp">
+      <Filter>Resource Files\Toolbars</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

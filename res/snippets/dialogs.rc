@@ -3,15 +3,18 @@
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOGEX DISCARDABLE 0, 0, 170, 62
+IDD_ABOUTBOX DIALOGEX DISCARDABLE 0, 0, 200, 115
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "About Bolota"
 FONT 8, %font%
 BEGIN
-    ICON            128,IDC_STATIC,14,14,21,20
-    LTEXT           "Bolota, Version 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX
-    LTEXT           "Copyright (C) 2024",IDC_STATIC,42,26,114,8
-    DEFPUSHBUTTON   "OK",IDOK,113,41,50,14,WS_GROUP
+    ICON            IDI_BOLOTA,IDC_STATIC,7,7,21,20
+    LTEXT           "Bolota vX.X",IDC_AB_LBLAPPNAME,35,7,158,8,SS_NOPREFIX
+    LTEXT           "Copyright © Innove Workshop 202X",IDC_AB_LBLCOPYRIGHT,35,16,158,8
+    DEFPUSHBUTTON   "OK",IDOK,143,94,50,14,WS_GROUP
+    LTEXT           "A note taking application for people that strictly use the outline method and want a tool that was designed for taking notes, in this style, as quickly, and as productive as possible.",IDC_STATIC,7,31,186,32
+    LTEXT           "Developed with love and out of passion and frustration by Nathan Campos.",IDC_STATIC,7,69,185,18
+    PUSHBUTTON      "Author's Website",IDC_AB_BTNAUTHORWEB,69,94,70,14,WS_GROUP
 END
 
 IDD_FIELDMAN DIALOGEX DISCARDABLE 0, 0, 300, 61
@@ -54,9 +57,9 @@ BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 163
+        RIGHTMARGIN, 193
         TOPMARGIN, 7
-        BOTTOMMARGIN, 55
+        BOTTOMMARGIN, 108
     END
 
     IDD_FIELDMAN, DIALOG
