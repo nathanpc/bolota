@@ -86,36 +86,36 @@ IDM_MAIN MENU DISCARDABLE
 BEGIN
     POPUP "&File"
     BEGIN
-        MENUITEM "&New...",                     IDM_FILE_NEW
-        MENUITEM "&Open...",                    IDM_FILE_OPEN
-        MENUITEM "&Reload",                     IDM_FILE_RELOAD
+        MENUITEM "&New...\tCtrl+N",                 IDM_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",                IDM_FILE_OPEN
+        MENUITEM "&Reload\tCtrl+R",                 IDM_FILE_RELOAD
         MENUITEM SEPARATOR
-        MENUITEM "&Save",                       IDM_FILE_SAVE
-        MENUITEM "Save &As...",                 IDM_FILE_SAVEAS
+        MENUITEM "&Save\tCtrl+S",                   IDM_FILE_SAVE
+        MENUITEM "Save &As...",                     IDM_FILE_SAVEAS
         MENUITEM SEPARATOR
-        MENUITEM "&Properties...",              IDM_FILE_PROPERTIES
+        MENUITEM "&Properties...\tF2",              IDM_FILE_PROPERTIES
         MENUITEM SEPARATOR
-        MENUITEM "E&xit",                       IDM_FILE_EXIT
+        MENUITEM "E&xit",                           IDM_FILE_EXIT
     END
     POPUP "Fie&ld"
     BEGIN
-        MENUITEM "Ed&it...",                    IDM_FIELD_EDIT
-        MENUITEM "&Delete...",                  IDM_FIELD_DELETE
+        MENUITEM "Ed&it...\tI",                     IDM_FIELD_EDIT
+        MENUITEM "&Delete...\tD",                   IDM_FIELD_DELETE
         MENUITEM SEPARATOR
-        MENUITEM "Prepend Fie&ld...",           IDM_FIELD_PREPEND
-        MENUITEM "A&ppend Field...",            IDM_FIELD_APPEND
-        MENUITEM "Cre&ate Child Field...",      IDM_FIELD_CREATECHILD
-        MENUITEM "Append to Pa&rent Field...",  IDM_FIELD_APPENDPARENT
+        MENUITEM "Prepend Fie&ld...\tU",            IDM_FIELD_PREPEND
+        MENUITEM "A&ppend Field...\tO",             IDM_FIELD_APPEND
+        MENUITEM "Cre&ate Child Field...\tP",       IDM_FIELD_CREATECHILD
+        MENUITEM "Append to Pa&rent Field...\tY",   IDM_FIELD_APPENDPARENT
         MENUITEM SEPARATOR
-        MENUITEM "Move &Up",                    IDM_FIELD_MOVEUP
-        MENUITEM "Move Dow&n",                  IDM_FIELD_MOVEDOWN
+        MENUITEM "Move &Up\tK",                     IDM_FIELD_MOVEUP
+        MENUITEM "Move Dow&n\tJ",                   IDM_FIELD_MOVEDOWN
         MENUITEM SEPARATOR
-        MENUITEM "Inden&t",                     IDM_FIELD_INDENT
-        MENUITEM "D&e-indent",                  IDM_FIELD_DEINDENT
+        MENUITEM "Inden&t\tL",                      IDM_FIELD_INDENT
+        MENUITEM "D&e-indent\tH",                   IDM_FIELD_DEINDENT
     END
     POPUP "&Help"
     BEGIN
-        MENUITEM "&About...",                   IDM_HELP_ABOUT
+        MENUITEM "&About...\tF1",                   IDM_HELP_ABOUT
     END
 END
 
