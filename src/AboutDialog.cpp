@@ -44,7 +44,7 @@ bool AboutDialog::OnInit(HWND hDlg) {
 	TCHAR szAppName[20];
 	LoadString(hInst, IDS_APP_TITLE, szAppName, 20);
 
-#ifndef UNDERCE
+#ifndef UNDER_CE
 	// Get version data.
 	VS_FIXEDFILEINFO* lpFileInfo;
 	UINT uLen;
@@ -79,15 +79,17 @@ bool AboutDialog::OnInit(HWND hDlg) {
 	// Populate application's name label.
 	TCHAR szBuffer[80];
 	SetWindowText(lblAppName, szAppName);
-#endif // UNDERCE
+#endif // !UNDER_CE
 
 	// Populate copyright label.
 	LoadString(hInst, IDS_COPYRIGHT, szBuffer, 80);
 	SetWindowText(lblCopyright, szBuffer);
 
+#ifndef UNDER_CE
 	// Clean up version data.
 	LocalFree(lpResourceCopy);
 	lpResourceCopy = NULL;
+#endif // !UNDER_CE
 
 	return false;
 }
@@ -98,7 +100,16 @@ bool AboutDialog::OnInit(HWND hDlg) {
 void AboutDialog::OnAuthorWebsite() {
 	TCHAR szWebsite[100];
 	LoadString(hInst, IDS_AUTHORWEBSITE, szWebsite, 100);
-	ShellExecute(hwndParent, _T("open"), szWebsite, NULL, NULL, SW_SHOWNORMAL);
+
+	// Open the website in the default web browser.
+	SHELLEXECUTEINFO sei = {0};
+	sei.cbSize = sizeof(SHELLEXECUTEINFO);
+	sei.fMask = 0;
+	sei.hwnd = hwndParent;
+	sei.lpVerb = _T("open");
+	sei.lpFile = szWebsite;
+	sei.nShow = SW_SHOWNORMAL;
+	ShellExecuteEx(&sei);
 }
 
 /*

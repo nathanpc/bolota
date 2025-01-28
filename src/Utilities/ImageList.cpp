@@ -147,7 +147,7 @@ UINT8 ImageList::AddBitmap(WORD wResId, UINT8 usNum, COLORREF crMask) {
 
 	// Load the bitmap resource.
 	HBITMAP hbm = (HBITMAP)LoadImage(m_hInst, MAKEINTRESOURCE(wResId),
-		IMAGE_BITMAP, 0, 0, LR_DEFAULTSIZE);
+		IMAGE_BITMAP, SM_CXICON, SM_CYICON, LR_DEFAULTCOLOR);
 	if (hbm == NULL) {
 		ThrowError(new SystemError(EMSG("Failed to load bitmap")));
 		return BOLOTA_ERR_UINT8;
