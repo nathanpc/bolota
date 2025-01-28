@@ -808,6 +808,16 @@ bool BolotaView::Save(bool bSaveAs) {
 			SetDirty(false);
 			return true;
 		}
+	} else {
+		// Create a friendlier default file name.
+		timestamp_t ts = m_doc->Date()->Timestamp();
+		if (!m_doc->Title()->Text()->Empty()) {
+			_stprintf(szFilename, _T("%04u-%02u-%02u_%s"), ts.year, ts.month,
+				ts.day, m_doc->Title()->Text()->GetNativeString());
+		} else {
+			_stprintf(szFilename, _T("%04u-%02u-%02u"), ts.year, ts.month,
+				ts.day);
+		}
 	}
 
 	// Show the save file dialog and process the user selection.
