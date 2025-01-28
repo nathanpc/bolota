@@ -26,6 +26,7 @@
 
 // Strings
 #define IDS_TBFILELABELS                201
+#define IDS_TBTOPICSLABELS              202
 
 // Menus
 #define IDM_BASE                        2000

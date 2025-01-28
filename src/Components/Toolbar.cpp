@@ -163,7 +163,7 @@ HWND Toolbar::CreateTopicsToolbar(LPSIZE lpSize) {
 	UINT8 b = 5;
 	const int numButtons = 12;
 	LRESULT ibl = SendMessage(m_hwndTbrTopics, TB_ADDSTRING, (WPARAM)hInst,
-		(LPARAM)IDS_TBFILELABELS);
+		(LPARAM)IDS_TBTOPICSLABELS);
 	TBBUTTON tbButtons[numButtons] = {
 		{ b++, IDM_FIELD_EDIT,        TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ },
 		{ b++, IDM_FIELD_DELETE,      TBSTATE_ENABLED, buttonStyles, {0}, NULL, ibl++ },
