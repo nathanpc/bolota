@@ -9,9 +9,6 @@
 
 using namespace Bolota;
 
-// Singleton error stack instance.
-ErrorStack* ErrorStack::m_inst = ErrorStack::Instance();
-
 /**
  * Constructs a blank error object.
  */
@@ -125,7 +122,32 @@ ErrorStack::ErrorStack() {
  * Deallocates the internal error stack.
  */
 ErrorStack::~ErrorStack() {
+	// Clear the stack and invalidate our instance.
 	Clear();
+	Instance(true);
+}
+
+/**
+ * Internal global singleton instance allocator and invalidator.
+ * 
+ * @param invalidate Should we invalidate our global instance?
+ * 
+ * @return Global singleton instance.
+ */
+ErrorStack* ErrorStack::Instance(bool invalidate) {
+	static ErrorStack* stack;
+
+	// Should we invalidate?
+	if (invalidate) {
+		stack = NULL;
+		return NULL;
+	}
+
+	// Allocate our global instance if needed.
+	if (stack == NULL)
+		stack = new ErrorStack();
+
+	return stack;
 }
 
 /**
@@ -134,10 +156,7 @@ ErrorStack::~ErrorStack() {
  * @return Global error stack object.
  */
 ErrorStack* ErrorStack::Instance() {
-	if (m_inst == NULL)
-		m_inst = new ErrorStack();
-
-	return m_inst;
+	return Instance(false);
 }
 
 /**

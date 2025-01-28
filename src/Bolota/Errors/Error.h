@@ -75,8 +75,8 @@ namespace Bolota {
 	class ErrorStack {
 	private:
 		Error* m_stack;
-		static ErrorStack* m_inst;
 		ErrorStack();
+		static ErrorStack* Instance(bool invalidate);
 
 		// Not implemented.
 		ErrorStack(ErrorStack const&);

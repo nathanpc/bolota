@@ -23,7 +23,6 @@
 static MainWindow *wndMain = NULL;
 static TCHAR szWindowClass[MAX_LOADSTRING];
 static TCHAR szAppTitle[MAX_LOADSTRING];
-static Bolota::ErrorStack* errorStack;
 
 /**
  * Application's main entry point.
@@ -39,6 +38,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 					  LPTSTR lpCmdLine, int nCmdShow) {
 	MSG msg;
 	HACCEL hAccel;
+	HWND hwndMain;
 	int rc;
 	
 	// Ensure we specify parameters not in use.
@@ -58,8 +58,12 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 			_T("Either the size of wchar_t is not 2 bytes long as required ")
 			_T("for UTF-16, or char is not 1 byte long, as per UTF-8. All ")
 			_T("Unicode conversions would fail."));
-		return 0;
+		return 1;
 	}
+
+	// Initialize application's singletons.
+	Bolota::ErrorStack* errorStack = Bolota::ErrorStack::Instance();
+	Bolota::FieldTypeList* listFieldTypes = Bolota::FieldTypeList::Instance();
 
 	// Load the application class and title.
 	LoadString(hInstance, IDS_APP_CLASS, szWindowClass, MAX_LOADSTRING);
@@ -71,16 +75,18 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		MsgBoxError(NULL, _T("Error Registering Class"),
 			_T("An error occurred while trying to register the application's ")
 			_T("window class."));
-		return 0;
+		rc = 1;
+		goto terminate;
 	}
 
 	// Initialize this single instance.
-	HWND hwndMain = InitializeInstance(hInstance, lpCmdLine, nCmdShow);
+	hwndMain = InitializeInstance(hInstance, lpCmdLine, nCmdShow);
 	if (hwndMain == 0) {
 		MsgBoxError(NULL, _T("Error Initializing Instance"),
 			_T("An error occurred while trying to initialize the ")
 			_T("application's instance."));
-		return 0x10;
+		rc = 0x10;
+		goto terminate;
 	}
 
 	// Load accelerators.
@@ -98,6 +104,13 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	// Terminate instance.
 	rc = TerminateInstance(hInstance, (int)msg.wParam);
+
+terminate:
+	// Clean up our singletons.
+	delete errorStack;
+	errorStack = NULL;
+	delete listFieldTypes;
+	listFieldTypes = NULL;
 
 #if defined(DEBUG) && !defined(UNDER_CE)
 	// Detect memory leaks.
@@ -190,9 +203,6 @@ ATOM RegisterApplication(HINSTANCE hInstance) {
 HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 	HWND hWnd;
 
-	// Initialize the error stack.
-	errorStack = Bolota::ErrorStack::Instance();
-
 #ifdef SHELL_AYGSHELL
 	// Initialize PocketPC controls.
 	SHInitExtraControls();
@@ -236,11 +246,6 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 	if (!IsWindow(hWnd)) {
 		MsgBoxError(NULL, _T("Error Initializing Instance"),
 			_T("Window creation failed."));
-
-		// Ensure we deinitialize the error stack.
-		delete errorStack;
-		errorStack = NULL;
-
 		return NULL;
 	}
 
@@ -281,11 +286,6 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
  * @return Previous return code.
  */
 int TerminateInstance(HINSTANCE hInstance, int nDefRC) {
-	// Clear the error stack.
-	if (errorStack)
-		delete errorStack;
-	errorStack = NULL;
-
 	return nDefRC;
 }
 

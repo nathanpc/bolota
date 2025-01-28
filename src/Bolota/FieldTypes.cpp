@@ -10,9 +10,6 @@
 
 using namespace Bolota;
 
-// Singleton field types list instance.
-FieldTypeList* FieldTypeList::m_inst = FieldTypeList::Instance();
-
 /**
  * Internal singleton constructor.
  */
@@ -27,9 +24,35 @@ FieldTypeList::FieldTypeList() {
  * instance is NULLed.
  */
 FieldTypeList::~FieldTypeList() {
+	// Clear the list
 	for (uint8_t i = 0; i < m_list.size(); ++i)
 		delete m_list[i];
-	m_inst = NULL;
+
+	// Invalidate our singleton instance.
+	Instance(true);
+}
+
+/**
+ * Internal global singleton instance allocator and invalidator.
+ *
+ * @param invalidate Should we invalidate our global instance?
+ *
+ * @return Global singleton instance.
+ */
+FieldTypeList* FieldTypeList::Instance(bool invalidate) {
+	static FieldTypeList* list;
+
+	// Should we invalidate?
+	if (invalidate) {
+		list = NULL;
+		return NULL;
+	}
+
+	// Allocate our global instance if needed.
+	if (list == NULL)
+		list = new FieldTypeList();
+
+	return list;
 }
 
 /**
@@ -38,10 +61,7 @@ FieldTypeList::~FieldTypeList() {
  * @return Global field type list object.
  */
 FieldTypeList* FieldTypeList::Instance() {
-	if (m_inst == NULL)
-		m_inst = new FieldTypeList();
-
-	return m_inst;
+	return Instance(false);
 }
 
 /**

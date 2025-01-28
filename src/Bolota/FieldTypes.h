@@ -64,8 +64,8 @@ namespace Bolota {
 	class FieldTypeList {
 	private:
 		std::vector<FieldType*> m_list;
-		static FieldTypeList* m_inst;
 		FieldTypeList();
+		static FieldTypeList* Instance(bool invalidate);
 
 		// Not implemented.
 		FieldTypeList(FieldTypeList const&);
