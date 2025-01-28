@@ -215,6 +215,9 @@ LRESULT MainWindow::OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent) {
 		lr = m_wndBolota->OpenFieldManager(
 			FieldManagerDialog::DialogType::NewChildField);
 		break;
+	case IDM_FIELD_APPENDPARENT:
+		lr = m_wndBolota->AppendToParent();
+		break;
 	case IDM_FIELD_MOVEUP:
 		lr = m_wndBolota->MoveField(true);
 		break;

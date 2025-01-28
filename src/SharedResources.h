@@ -46,7 +46,8 @@
 #define IDM_FIELD_MOVEDOWN              (IDM_BASE + 14)
 #define IDM_FIELD_INDENT                (IDM_BASE + 15)
 #define IDM_FIELD_DEINDENT              (IDM_BASE + 16)
-#define IDM_HELP_ABOUT					(IDM_BASE + 17)
+#define IDM_FIELD_APPENDPARENT          (IDM_BASE + 17)
+#define IDM_HELP_ABOUT					(IDM_BASE + 18)
 
 // Controls (Main Window)
 #define IDC_BASE                        2100

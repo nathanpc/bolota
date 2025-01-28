@@ -51,6 +51,7 @@ public:
 	LRESULT MoveField(bool bUp);
 	LRESULT IndentField();
 	LRESULT DeindentField();
+	LRESULT AppendToParent();
 	bool Save(bool bSaveAs);
 	bool OpenFile();
 	bool Close();

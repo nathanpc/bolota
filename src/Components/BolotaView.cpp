@@ -784,6 +784,43 @@ LRESULT BolotaView::DeindentField() {
 }
 
 /**
+ * Appends a field to the currently selected field's parent or simply appends a
+ * field if no parent exists.
+ *
+ * @attention Check for errors with BolotaHasError after calling this method.
+ *
+ * @return 0 if everything worked.
+ */
+LRESULT BolotaView::AppendToParent() {
+	HTREEITEM hti = NULL;
+	Field* field = NULL;
+
+	// Handle the first field.
+	if (m_doc->IsEmpty())
+		goto append;
+
+	// Get the currently selected field in the Tree-View.
+	field = GetSelectedField(&hti, true);
+	if (field == NULL)
+		return 1;
+
+	// Simply append if no parent is available.
+	if (!field->HasParent())
+		goto append;
+
+	// Select the parent Tree-View item.
+	hti = TreeView_GetParent(this->m_hWnd, hti);
+	if (hti == NULL) {
+		ThrowError(EMSG("Failed to get parent Tree-View item to append to"));
+		return 1;
+	}
+	SelectTreeViewItem(hti);
+
+append:
+	return OpenFieldManager(FieldManagerDialog::AppendField);
+}
+
+/**
  * Tries to save the current document to a file.
  *
  * @param bSaveAs Should we perform the default for a Save As operation?
