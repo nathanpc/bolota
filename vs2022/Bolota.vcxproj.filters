@@ -223,6 +223,9 @@
     <ClInclude Include="..\shims\cvtutf\Unicode.h">
       <Filter>Utilities\Unicode</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Bolota\FieldTypes.h">
+      <Filter>Bolota</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Bolota\DateField.cpp">
@@ -293,6 +296,9 @@
     </ClCompile>
     <ClCompile Include="..\shims\cvtutf\Unicode.cpp">
       <Filter>Utilities\Unicode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Bolota\FieldTypes.cpp">
+      <Filter>Bolota</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -146,6 +146,7 @@
     <ClInclude Include="..\src\Bolota\Errors\ErrorCollection.h" />
     <ClInclude Include="..\src\Bolota\Errors\SystemError.h" />
     <ClInclude Include="..\src\Bolota\Field.h" />
+    <ClInclude Include="..\src\Bolota\FieldTypes.h" />
     <ClInclude Include="..\src\Bolota\IconField.h" />
     <ClInclude Include="..\src\Bolota\UString.h" />
     <ClInclude Include="..\src\Components\BolotaView.h" />
@@ -215,6 +216,7 @@
     <ClCompile Include="..\src\Bolota\Errors\Error.cpp" />
     <ClCompile Include="..\src\Bolota\Errors\SystemError.cpp" />
     <ClCompile Include="..\src\Bolota\Field.cpp" />
+    <ClCompile Include="..\src\Bolota\FieldTypes.cpp" />
     <ClCompile Include="..\src\Bolota\IconField.cpp" />
     <ClCompile Include="..\src\Bolota\UString.cpp" />
     <ClCompile Include="..\src\Components\BolotaView.cpp" />

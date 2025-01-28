@@ -15,27 +15,16 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-#include <windows.h>
-#include <vector>
 #if _MSC_VER <= 1200
 	#include <newcpp.h>
 #endif // _MSC_VER == 1200
 
 #include "UString.h"
+#include "FieldTypes.h"
 #include "Errors/Error.h"
 
 extern "C" {
 #endif // __cplusplus
-
-/**
- * An 8-bit value that determines the type of a field.
- */
-typedef enum bolota_type_e {
-	BOLOTA_TYPE_IGNORE = 0,
-	BOLOTA_TYPE_TEXT = 'T',
-	BOLOTA_TYPE_DATE = 'd',
-	BOLOTA_TYPE_ICON = 'I'
-} bolota_type_t;
 
 /**
  * A line of a note in a document.
@@ -60,53 +49,6 @@ typedef struct bolota_field_s {
 }
 
 namespace Bolota {
-	/**
-	 * Detailed field type container.
-	 */
-	struct FieldType {
-		bolota_type_t code;
-		UString *name;
-
-		FieldType(bolota_type_t code, const TCHAR *name) {
-			this->code = code;
-			this->name = new UString(name);
-		};
-
-		virtual ~FieldType() {
-			delete name;
-		};
-	};
-
-	/**
-	 * Container for a list of detailed field types.
-	 */
-	struct FieldTypeList {
-		std::vector<FieldType*> list;
-
-		FieldTypeList() {
-			list.push_back(new FieldType(BOLOTA_TYPE_TEXT, _T("Text")));
-			list.push_back(new FieldType(BOLOTA_TYPE_ICON, _T("Icon with Text")));
-			list.push_back(new FieldType(BOLOTA_TYPE_DATE, _T("Date & Time")));
-		};
-
-		virtual ~FieldTypeList() {
-			for (uint8_t i = 0; i < list.size(); ++i)
-				delete list[i];
-		};
-
-		FieldType* operator[](uint8_t index) {
-			return list[index];
-		}
-
-		size_t size() const {
-			return list.size();
-		}
-	};
-
-	/**
-	 * List of detailed field types.
-	 */
-	static FieldTypeList fieldTypesList;
 
 	/**
 	 * Field object abstraction of a Bolota document.
@@ -207,6 +149,7 @@ namespace Bolota {
 			Field::Copy(field, bReplace);
 		};
 	};
+
 }
 
 #endif // __cplusplus

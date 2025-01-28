@@ -9,6 +9,7 @@
 #include "FieldManagerDialog.h"
 
 #include <windowsx.h>
+#include <vector>
 
 #include "Bolota/Errors/SystemError.h"
 #include "Bolota/DateField.h"
@@ -215,7 +216,7 @@ void FieldManagerDialog::Close(INT_PTR nResult, bool bSelfDispose) {
  * @return TRUE if the event was handled.
  */
 INT_PTR FieldManagerDialog::OnTypeChange(int index) {
-	m_fieldType = Bolota::fieldTypesList[index];
+	m_fieldType = Bolota::FieldTypeList::List()[index];
 	
 	// Get date time picker window position and dimensions.
 	RECT rcDTP;
@@ -489,16 +490,16 @@ bool FieldManagerDialog::OnCancel() {
  */
 void FieldManagerDialog::SetupFieldTypeCombo() {
 	UINT8 i = 0;
+	std::vector<FieldType*> list = Bolota::FieldTypeList::List();
 
 	// Add field types to the combobox.
-	for (i = 0; i < Bolota::fieldTypesList.size(); ++i) {
-		ComboBox_AddString(cmbType,
-			Bolota::fieldTypesList[i]->name->GetNativeString());
+	for (i = 0; i < list.size(); ++i) {
+		ComboBox_AddString(cmbType, list[i]->name->GetNativeString());
 	}
 
 	// Select our field type.
-	for (i = 0; i < Bolota::fieldTypesList.size(); ++i) {
-		if (AssociatedField()->Type() == Bolota::fieldTypesList[i]->code) {
+	for (i = 0; i < list.size(); ++i) {
+		if (AssociatedField()->Type() == list[i]->code) {
 			ComboBox_SetCurSel(cmbType, i);
 			OnTypeChange(i);
 			break;
