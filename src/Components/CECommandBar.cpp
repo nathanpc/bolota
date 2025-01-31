@@ -110,27 +110,30 @@ LONG CommandBar::Height() const {
 #ifndef SHELL_AYGSHELL
 	return CommandBar_Height(this->hWnd);
 #else
+	RECT rcMenuBar;
+	GetWindowRect(this->hWnd, &rcMenuBar);
+	return rcMenuBar.bottom - rcMenuBar.top;
+#endif // SHELL_AYGSHELL
+}
+
+#ifdef SHELL_AYGSHELL
+/**
+ * Gets the visible desktop area where we can draw our window when the SIP is
+ * open and visible.
+ *
+ * @return Visible desktop area in client coordinates.
+ */
+RECT CommandBar::SIPVisibleDesktop() const {
 	SIPINFO si = {0};
 	int cx, cy;
 
-	// Query the SIP state and size our window appropriately.
+	// Query the SIP state.
 	si.cbSize = sizeof(si);
 	SHSipInfo(SPI_GETSIPINFO, 0, (PVOID)&si, 0);
-	cx = si.rcVisibleDesktop.right - si.rcVisibleDesktop.left;
-	cy = si.rcVisibleDesktop.bottom - si.rcVisibleDesktop.top;
 
-	// Correct the window height based on the menu bar height.
-	if (!(si.fdwFlags & SIPF_ON) || ((si.fdwFlags & SIPF_ON) &&
-			(si.fdwFlags & SIPF_DOCKED))) {
-		RECT rcMenuBar;
-		GetWindowRect(this->hWnd, &rcMenuBar);
-
-		cy -= (rcMenuBar.bottom - rcMenuBar.top);
-	}
-
-	return cy;
-#endif // SHELL_AYGSHELL
+	return si.rcVisibleDesktop;
 }
+#endif // SHELL_AYGSHELL
 
 /**
  * Gets the handle of the associated CommandBar control.

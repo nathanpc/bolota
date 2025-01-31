@@ -149,11 +149,14 @@ BOOL MainWindow::ResizeWindows(HWND hwndParent) {
 	// Resize the application's toolbar and offset the viewer by its height.
 	RECT rcToolbar = m_toolBar->Resize(rcParent);
 	rcViewer.top = rcToolbar.bottom;
-#else
+#elif !defined(SHELL_AYGSHELL)
 	// Offset by the CommandBar's height.
 	rcViewer.top += m_cmdBar->Height();
 #endif // !UNDER_CE
 	rcViewer.bottom -= rcViewer.top;
+#ifdef SHELL_AYGSHELL
+	rcViewer.top = rcParent.top;
+#endif // SHELL_AYGSHELL
 
 	// Resize document viewer.
 	m_wndBolota->Resize(rcViewer);
