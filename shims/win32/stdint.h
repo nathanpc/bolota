@@ -42,7 +42,7 @@
 
 // Shims for Windows CE.
 #ifdef UNDER_CE
-	#include <wce_defs.h>
+	#include "../../wince/STL/wce_defs.h"
 #endif // UNDER_CE
 
 #include <limits.h>
@@ -59,13 +59,17 @@
 //#ifdef __cplusplus
 //}
 //#endif
-#ifdef __cplusplus
-extern "C++" {
-#endif
-#  include <wchar.h>
-#ifdef __cplusplus
-}
-#endif
+#if _MSC_VER < 1400
+	#ifdef __cplusplus
+		extern "C++" {
+	#endif
+			#include <wchar.h>
+	#ifdef __cplusplus
+		}
+	#endif
+#else
+	#include <wchar.h>
+#endif // _MSC_VER < 1400
 
 
 // INT_PTR and UINT_PTR on Windows CE.

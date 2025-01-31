@@ -694,8 +694,10 @@ DEP_CPP_APPLI=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_APPLI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -724,8 +726,10 @@ DEP_CPP_APPLI=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_APPLI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -754,7 +758,9 @@ DEP_CPP_APPLI=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_APPLI=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -783,7 +789,9 @@ DEP_CPP_APPLI=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_APPLI=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -812,8 +820,10 @@ DEP_CPP_APPLI=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_APPLI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -842,8 +852,10 @@ DEP_CPP_APPLI=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_APPLI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -872,8 +884,10 @@ DEP_CPP_APPLI=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_APPLI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -902,8 +916,10 @@ DEP_CPP_APPLI=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_APPLI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -988,8 +1004,10 @@ DEP_CPP_APPLI=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_APPLI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -1018,8 +1036,10 @@ DEP_CPP_APPLI=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_APPLI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ENDIF 
@@ -1044,8 +1064,10 @@ DEP_CPP_STDAF=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_STDAF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -1059,8 +1081,10 @@ DEP_CPP_STDAF=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_STDAF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -1074,7 +1098,9 @@ DEP_CPP_STDAF=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_STDAF=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -1088,7 +1114,9 @@ DEP_CPP_STDAF=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_STDAF=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -1102,8 +1130,10 @@ DEP_CPP_STDAF=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_STDAF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -1117,8 +1147,10 @@ DEP_CPP_STDAF=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_STDAF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -1132,8 +1164,10 @@ DEP_CPP_STDAF=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_STDAF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -1147,8 +1181,10 @@ DEP_CPP_STDAF=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_STDAF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -1188,8 +1224,10 @@ DEP_CPP_STDAF=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_STDAF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -1203,8 +1241,10 @@ DEP_CPP_STDAF=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_STDAF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ENDIF 
@@ -1239,8 +1279,10 @@ DEP_CPP_CONSI=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CONSI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -1257,8 +1299,10 @@ DEP_CPP_CONSI=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CONSI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -1275,7 +1319,9 @@ DEP_CPP_CONSI=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CONSI=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -1292,7 +1338,9 @@ DEP_CPP_CONSI=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CONSI=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -1309,8 +1357,10 @@ DEP_CPP_CONSI=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CONSI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -1327,8 +1377,10 @@ DEP_CPP_CONSI=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CONSI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -1345,8 +1397,10 @@ DEP_CPP_CONSI=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CONSI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -1363,8 +1417,10 @@ DEP_CPP_CONSI=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CONSI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -1413,8 +1469,10 @@ DEP_CPP_CONSI=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CONSI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -1431,8 +1489,10 @@ DEP_CPP_CONSI=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CONSI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ENDIF 
@@ -1497,8 +1557,10 @@ DEP_CPP_SYSTE=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_SYSTE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -1513,8 +1575,10 @@ DEP_CPP_SYSTE=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_SYSTE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -1529,7 +1593,9 @@ DEP_CPP_SYSTE=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_SYSTE=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -1544,7 +1610,9 @@ DEP_CPP_SYSTE=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_SYSTE=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -1559,8 +1627,10 @@ DEP_CPP_SYSTE=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_SYSTE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -1575,8 +1645,10 @@ DEP_CPP_SYSTE=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_SYSTE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -1591,8 +1663,10 @@ DEP_CPP_SYSTE=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_SYSTE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -1607,8 +1681,10 @@ DEP_CPP_SYSTE=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_SYSTE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -1651,8 +1727,10 @@ DEP_CPP_SYSTE=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_SYSTE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -1667,8 +1745,10 @@ DEP_CPP_SYSTE=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_SYSTE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ENDIF 
@@ -1679,6 +1759,9 @@ DEP_CPP_SYSTE=\
 SOURCE=..\src\Bolota\Errors\SystemError.h
 # End Source File
 # End Group
+# Begin Group "Fields"
+
+# PROP Default_Filter ""
 # Begin Source File
 
 SOURCE=..\src\Bolota\DateField.cpp
@@ -1699,8 +1782,10 @@ DEP_CPP_DATEF=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DATEF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -1719,8 +1804,10 @@ DEP_CPP_DATEF=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DATEF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -1739,7 +1826,9 @@ DEP_CPP_DATEF=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DATEF=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -1758,7 +1847,9 @@ DEP_CPP_DATEF=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DATEF=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -1777,8 +1868,10 @@ DEP_CPP_DATEF=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DATEF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -1797,8 +1890,10 @@ DEP_CPP_DATEF=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DATEF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -1817,8 +1912,10 @@ DEP_CPP_DATEF=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DATEF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -1837,8 +1934,10 @@ DEP_CPP_DATEF=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DATEF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -1893,8 +1992,10 @@ DEP_CPP_DATEF=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DATEF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -1913,8 +2014,10 @@ DEP_CPP_DATEF=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DATEF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ENDIF 
@@ -1924,6 +2027,272 @@ DEP_CPP_DATEF=\
 
 SOURCE=..\src\Bolota\DateField.h
 # End Source File
+# Begin Source File
+
+SOURCE=..\src\Bolota\IconField.cpp
+
+!IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
+
+DEP_CPP_ICONF=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\ErrorCollection.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ICONF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
+
+DEP_CPP_ICONF=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\ErrorCollection.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ICONF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
+
+DEP_CPP_ICONF=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\ErrorCollection.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ICONF=\
+	".\ipapi.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
+
+DEP_CPP_ICONF=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\ErrorCollection.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ICONF=\
+	".\ipapi.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
+
+DEP_CPP_ICONF=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\ErrorCollection.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ICONF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
+
+DEP_CPP_ICONF=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\ErrorCollection.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ICONF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
+
+DEP_CPP_ICONF=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\ErrorCollection.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ICONF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
+
+DEP_CPP_ICONF=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\ErrorCollection.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ICONF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
+
+DEP_CPP_ICONF=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\ErrorCollection.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
+
+DEP_CPP_ICONF=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\ErrorCollection.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
+
+DEP_CPP_ICONF=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\ErrorCollection.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ICONF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
+
+DEP_CPP_ICONF=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\ErrorCollection.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\Bolota\Field.h"\
+	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\UString.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	
+NODEP_CPP_ICONF=\
+	".\ipapi.h"\
+	".\ygshell.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\Bolota\IconField.h
+# End Source File
+# End Group
 # Begin Source File
 
 SOURCE=..\src\Bolota\Document.cpp
@@ -1946,8 +2315,10 @@ DEP_CPP_DOCUM=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DOCUM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -1968,8 +2339,10 @@ DEP_CPP_DOCUM=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DOCUM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -1990,7 +2363,9 @@ DEP_CPP_DOCUM=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DOCUM=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -2011,7 +2386,9 @@ DEP_CPP_DOCUM=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DOCUM=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -2032,8 +2409,10 @@ DEP_CPP_DOCUM=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DOCUM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -2054,8 +2433,10 @@ DEP_CPP_DOCUM=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DOCUM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -2076,8 +2457,10 @@ DEP_CPP_DOCUM=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DOCUM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -2098,8 +2481,10 @@ DEP_CPP_DOCUM=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DOCUM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -2160,8 +2545,10 @@ DEP_CPP_DOCUM=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DOCUM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -2182,8 +2569,10 @@ DEP_CPP_DOCUM=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DOCUM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ENDIF 
@@ -2215,8 +2604,10 @@ DEP_CPP_FIELD=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELD=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -2237,8 +2628,10 @@ DEP_CPP_FIELD=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELD=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -2259,7 +2652,9 @@ DEP_CPP_FIELD=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELD=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -2280,7 +2675,9 @@ DEP_CPP_FIELD=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELD=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -2301,8 +2698,10 @@ DEP_CPP_FIELD=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELD=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -2323,8 +2722,10 @@ DEP_CPP_FIELD=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELD=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -2345,8 +2746,10 @@ DEP_CPP_FIELD=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELD=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -2367,8 +2770,10 @@ DEP_CPP_FIELD=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELD=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -2429,8 +2834,10 @@ DEP_CPP_FIELD=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELD=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -2451,8 +2858,10 @@ DEP_CPP_FIELD=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELD=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ENDIF 
@@ -2464,240 +2873,138 @@ SOURCE=..\src\Bolota\Field.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\IconField.cpp
+SOURCE=..\src\Bolota\FieldTypes.cpp
 
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
-DEP_CPP_ICONF=\
+DEP_CPP_FIELDT=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\ErrorCollection.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\FieldTypes.h"\
 	"..\src\Bolota\UString.h"\
-	"..\src\SharedResources.h"\
-	"..\src\stdafx.h"\
-	"..\src\Utilities\MsgBoxes.h"\
-	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	"..\wince\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
-DEP_CPP_ICONF=\
+DEP_CPP_FIELDT=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\ErrorCollection.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\FieldTypes.h"\
 	"..\src\Bolota\UString.h"\
-	"..\src\SharedResources.h"\
-	"..\src\stdafx.h"\
-	"..\src\Utilities\MsgBoxes.h"\
-	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	"..\wince\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
-DEP_CPP_ICONF=\
+DEP_CPP_FIELDT=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\ErrorCollection.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\FieldTypes.h"\
 	"..\src\Bolota\UString.h"\
-	"..\src\SharedResources.h"\
-	"..\src\stdafx.h"\
-	"..\src\Utilities\MsgBoxes.h"\
-	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	"..\wince\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
-DEP_CPP_ICONF=\
+DEP_CPP_FIELDT=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\ErrorCollection.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\FieldTypes.h"\
 	"..\src\Bolota\UString.h"\
-	"..\src\SharedResources.h"\
-	"..\src\stdafx.h"\
-	"..\src\Utilities\MsgBoxes.h"\
-	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	"..\wince\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
-DEP_CPP_ICONF=\
+DEP_CPP_FIELDT=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\ErrorCollection.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\FieldTypes.h"\
 	"..\src\Bolota\UString.h"\
-	"..\src\SharedResources.h"\
-	"..\src\stdafx.h"\
-	"..\src\Utilities\MsgBoxes.h"\
-	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	"..\wince\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
-DEP_CPP_ICONF=\
+DEP_CPP_FIELDT=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\ErrorCollection.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\FieldTypes.h"\
 	"..\src\Bolota\UString.h"\
-	"..\src\SharedResources.h"\
-	"..\src\stdafx.h"\
-	"..\src\Utilities\MsgBoxes.h"\
-	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	"..\wince\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
-DEP_CPP_ICONF=\
+DEP_CPP_FIELDT=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\ErrorCollection.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\FieldTypes.h"\
 	"..\src\Bolota\UString.h"\
-	"..\src\SharedResources.h"\
-	"..\src\stdafx.h"\
-	"..\src\Utilities\MsgBoxes.h"\
-	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	"..\wince\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
-DEP_CPP_ICONF=\
+DEP_CPP_FIELDT=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\ErrorCollection.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\FieldTypes.h"\
 	"..\src\Bolota\UString.h"\
-	"..\src\SharedResources.h"\
-	"..\src\stdafx.h"\
-	"..\src\Utilities\MsgBoxes.h"\
-	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	"..\wince\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
-DEP_CPP_ICONF=\
+DEP_CPP_FIELDT=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\ErrorCollection.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\FieldTypes.h"\
 	"..\src\Bolota\UString.h"\
-	"..\src\SharedResources.h"\
-	"..\src\stdafx.h"\
-	"..\src\Utilities\MsgBoxes.h"\
-	"..\src\Utilities\WindowUtilities.h"\
+	"..\wince\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
-DEP_CPP_ICONF=\
+DEP_CPP_FIELDT=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\ErrorCollection.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\FieldTypes.h"\
 	"..\src\Bolota\UString.h"\
-	"..\src\SharedResources.h"\
-	"..\src\stdafx.h"\
-	"..\src\Utilities\MsgBoxes.h"\
-	"..\src\Utilities\WindowUtilities.h"\
+	"..\wince\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
-DEP_CPP_ICONF=\
+DEP_CPP_FIELDT=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\ErrorCollection.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\FieldTypes.h"\
 	"..\src\Bolota\UString.h"\
-	"..\src\SharedResources.h"\
-	"..\src\stdafx.h"\
-	"..\src\Utilities\MsgBoxes.h"\
-	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	"..\wince\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
-DEP_CPP_ICONF=\
+DEP_CPP_FIELDT=\
 	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\ErrorCollection.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
+	"..\src\Bolota\FieldTypes.h"\
 	"..\src\Bolota\UString.h"\
-	"..\src\SharedResources.h"\
-	"..\src\stdafx.h"\
-	"..\src\Utilities\MsgBoxes.h"\
-	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	"..\wince\STL\wce_defs.h"\
 	
 
 !ENDIF 
@@ -2705,7 +3012,7 @@ DEP_CPP_ICONF=\
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\IconField.h
+SOURCE=..\src\Bolota\FieldTypes.h
 # End Source File
 # Begin Source File
 
@@ -2835,8 +3142,10 @@ DEP_CPP_ABOUT=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_ABOUT=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -2852,8 +3161,10 @@ DEP_CPP_ABOUT=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_ABOUT=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -2869,7 +3180,9 @@ DEP_CPP_ABOUT=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_ABOUT=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -2885,7 +3198,9 @@ DEP_CPP_ABOUT=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_ABOUT=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -2901,8 +3216,10 @@ DEP_CPP_ABOUT=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_ABOUT=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -2918,8 +3235,10 @@ DEP_CPP_ABOUT=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_ABOUT=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -2935,8 +3254,10 @@ DEP_CPP_ABOUT=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_ABOUT=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -2952,8 +3273,10 @@ DEP_CPP_ABOUT=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_ABOUT=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -2999,8 +3322,10 @@ DEP_CPP_ABOUT=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_ABOUT=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -3016,8 +3341,10 @@ DEP_CPP_ABOUT=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_ABOUT=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ENDIF 
@@ -3051,8 +3378,10 @@ DEP_CPP_FIELDM=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELDM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -3075,8 +3404,10 @@ DEP_CPP_FIELDM=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELDM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -3099,7 +3430,9 @@ DEP_CPP_FIELDM=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELDM=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -3122,7 +3455,9 @@ DEP_CPP_FIELDM=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELDM=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -3145,8 +3480,10 @@ DEP_CPP_FIELDM=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELDM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -3169,8 +3506,10 @@ DEP_CPP_FIELDM=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELDM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -3193,8 +3532,10 @@ DEP_CPP_FIELDM=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELDM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -3217,8 +3558,10 @@ DEP_CPP_FIELDM=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELDM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -3285,8 +3628,10 @@ DEP_CPP_FIELDM=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELDM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -3309,8 +3654,10 @@ DEP_CPP_FIELDM=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELDM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ENDIF 
@@ -3350,8 +3697,10 @@ DEP_CPP_MAINW=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_MAINW=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -3380,8 +3729,10 @@ DEP_CPP_MAINW=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_MAINW=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -3410,7 +3761,9 @@ DEP_CPP_MAINW=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_MAINW=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -3439,7 +3792,9 @@ DEP_CPP_MAINW=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_MAINW=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -3468,8 +3823,10 @@ DEP_CPP_MAINW=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_MAINW=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -3498,8 +3855,10 @@ DEP_CPP_MAINW=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_MAINW=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -3528,8 +3887,10 @@ DEP_CPP_MAINW=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_MAINW=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -3558,8 +3919,10 @@ DEP_CPP_MAINW=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_MAINW=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -3644,8 +4007,10 @@ DEP_CPP_MAINW=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_MAINW=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -3674,8 +4039,10 @@ DEP_CPP_MAINW=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_MAINW=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ENDIF 
@@ -3708,8 +4075,10 @@ DEP_CPP_PROPE=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_PROPE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -3731,8 +4100,10 @@ DEP_CPP_PROPE=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_PROPE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -3754,7 +4125,9 @@ DEP_CPP_PROPE=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_PROPE=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -3776,7 +4149,9 @@ DEP_CPP_PROPE=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_PROPE=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -3798,8 +4173,10 @@ DEP_CPP_PROPE=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_PROPE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -3821,8 +4198,10 @@ DEP_CPP_PROPE=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_PROPE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -3844,8 +4223,10 @@ DEP_CPP_PROPE=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_PROPE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -3867,8 +4248,10 @@ DEP_CPP_PROPE=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_PROPE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -3932,8 +4315,10 @@ DEP_CPP_PROPE=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_PROPE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -3955,8 +4340,10 @@ DEP_CPP_PROPE=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_PROPE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ENDIF 
@@ -3998,8 +4385,10 @@ DEP_CPP_BOLOT=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_BOLOT=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -4026,8 +4415,10 @@ DEP_CPP_BOLOT=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_BOLOT=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -4054,7 +4445,9 @@ DEP_CPP_BOLOT=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_BOLOT=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -4081,7 +4474,9 @@ DEP_CPP_BOLOT=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_BOLOT=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -4108,8 +4503,10 @@ DEP_CPP_BOLOT=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_BOLOT=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -4136,8 +4533,10 @@ DEP_CPP_BOLOT=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_BOLOT=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -4164,8 +4563,10 @@ DEP_CPP_BOLOT=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_BOLOT=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -4192,8 +4593,10 @@ DEP_CPP_BOLOT=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_BOLOT=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -4272,8 +4675,10 @@ DEP_CPP_BOLOT=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_BOLOT=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -4300,8 +4705,10 @@ DEP_CPP_BOLOT=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_BOLOT=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ENDIF 
@@ -4327,8 +4734,10 @@ DEP_CPP_CECOM=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CECOM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -4343,8 +4752,10 @@ DEP_CPP_CECOM=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CECOM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -4359,7 +4770,9 @@ DEP_CPP_CECOM=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CECOM=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -4374,7 +4787,9 @@ DEP_CPP_CECOM=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CECOM=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -4389,8 +4804,10 @@ DEP_CPP_CECOM=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CECOM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -4405,8 +4822,10 @@ DEP_CPP_CECOM=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CECOM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -4421,8 +4840,10 @@ DEP_CPP_CECOM=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CECOM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -4437,8 +4858,10 @@ DEP_CPP_CECOM=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CECOM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -4481,8 +4904,10 @@ DEP_CPP_CECOM=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CECOM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -4497,8 +4922,10 @@ DEP_CPP_CECOM=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CECOM=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ENDIF 
@@ -4528,8 +4955,10 @@ DEP_CPP_FIELDI=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELDI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -4548,8 +4977,10 @@ DEP_CPP_FIELDI=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELDI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -4568,7 +4999,9 @@ DEP_CPP_FIELDI=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELDI=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -4587,7 +5020,9 @@ DEP_CPP_FIELDI=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELDI=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -4606,8 +5041,10 @@ DEP_CPP_FIELDI=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELDI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -4626,8 +5063,10 @@ DEP_CPP_FIELDI=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELDI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -4646,8 +5085,10 @@ DEP_CPP_FIELDI=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELDI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -4666,8 +5107,10 @@ DEP_CPP_FIELDI=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELDI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -4722,8 +5165,10 @@ DEP_CPP_FIELDI=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELDI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -4742,8 +5187,10 @@ DEP_CPP_FIELDI=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_FIELDI=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ENDIF 
@@ -4757,6 +5204,188 @@ SOURCE=..\src\Components\FieldImageList.h
 # Begin Group "Utilities"
 
 # PROP Default_Filter ""
+# Begin Group "Unicode"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\shims\cvtutf\ConvertUTF.cpp
+
+!IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
+
+DEP_CPP_CONVE=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
+
+DEP_CPP_CONVE=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
+
+DEP_CPP_CONVE=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
+
+DEP_CPP_CONVE=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
+
+DEP_CPP_CONVE=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
+
+DEP_CPP_CONVE=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
+
+DEP_CPP_CONVE=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
+
+DEP_CPP_CONVE=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
+
+DEP_CPP_CONVE=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
+
+DEP_CPP_CONVE=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
+
+DEP_CPP_CONVE=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
+
+DEP_CPP_CONVE=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\shims\cvtutf\ConvertUTF.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\shims\cvtutf\Unicode.cpp
+
+!IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
+
+DEP_CPP_UNICO=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\shims\cvtutf\Unicode.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
+
+DEP_CPP_UNICO=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\shims\cvtutf\Unicode.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
+
+DEP_CPP_UNICO=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\shims\cvtutf\Unicode.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
+
+DEP_CPP_UNICO=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\shims\cvtutf\Unicode.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
+
+DEP_CPP_UNICO=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\shims\cvtutf\Unicode.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
+
+DEP_CPP_UNICO=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\shims\cvtutf\Unicode.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
+
+DEP_CPP_UNICO=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\shims\cvtutf\Unicode.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
+
+DEP_CPP_UNICO=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\shims\cvtutf\Unicode.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
+
+DEP_CPP_UNICO=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\shims\cvtutf\Unicode.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
+
+DEP_CPP_UNICO=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\shims\cvtutf\Unicode.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
+
+DEP_CPP_UNICO=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\shims\cvtutf\Unicode.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
+
+DEP_CPP_UNICO=\
+	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\shims\cvtutf\Unicode.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\shims\cvtutf\Unicode.h
+# End Source File
+# End Group
 # Begin Source File
 
 SOURCE=..\src\Utilities\DialogWindow.cpp
@@ -4893,8 +5522,10 @@ DEP_CPP_IMAGE=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_IMAGE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -4910,8 +5541,10 @@ DEP_CPP_IMAGE=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_IMAGE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -4927,7 +5560,9 @@ DEP_CPP_IMAGE=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_IMAGE=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -4943,7 +5578,9 @@ DEP_CPP_IMAGE=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_IMAGE=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -4959,8 +5596,10 @@ DEP_CPP_IMAGE=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_IMAGE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -4976,8 +5615,10 @@ DEP_CPP_IMAGE=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_IMAGE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -4993,8 +5634,10 @@ DEP_CPP_IMAGE=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_IMAGE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -5010,8 +5653,10 @@ DEP_CPP_IMAGE=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_IMAGE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -5057,8 +5702,10 @@ DEP_CPP_IMAGE=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_IMAGE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -5074,8 +5721,10 @@ DEP_CPP_IMAGE=\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_IMAGE=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ENDIF 
@@ -5100,8 +5749,10 @@ DEP_CPP_MSGBO=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_MSGBO=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
@@ -5115,8 +5766,10 @@ DEP_CPP_MSGBO=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_MSGBO=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
@@ -5130,7 +5783,9 @@ DEP_CPP_MSGBO=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_MSGBO=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
@@ -5144,7 +5799,9 @@ DEP_CPP_MSGBO=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_MSGBO=\
+	".\ipapi.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
@@ -5158,8 +5815,10 @@ DEP_CPP_MSGBO=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_MSGBO=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
@@ -5173,8 +5832,10 @@ DEP_CPP_MSGBO=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_MSGBO=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
@@ -5188,8 +5849,10 @@ DEP_CPP_MSGBO=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_MSGBO=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
@@ -5203,8 +5866,10 @@ DEP_CPP_MSGBO=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_MSGBO=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
@@ -5244,8 +5909,10 @@ DEP_CPP_MSGBO=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_MSGBO=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
@@ -5259,8 +5926,10 @@ DEP_CPP_MSGBO=\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\WindowUtilities.h"\
-	{$(INCLUDE)}"aygshell.h"\
-	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_MSGBO=\
+	".\ipapi.h"\
+	".\ygshell.h"\
 	
 
 !ENDIF 

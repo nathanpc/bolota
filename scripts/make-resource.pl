@@ -15,7 +15,7 @@ use constant SNIPPET_DIR  => PROJECT_ROOT . '/res/snippets';
 
 # Substitutes variables in a string.
 sub substitute_variables {
-	my ($vars, $str) = @_;
+	my ($vars, $str, $opts) = @_;
 	
 	# Check if we actually have a variable to replace.
 	while ($str =~ m/%(?<varname>[\w]+)%/) {
@@ -28,6 +28,22 @@ sub substitute_variables {
 		
 		# Substitute the variable.
 		$str =~ s/%\Q$varname\E%/$vars->{$varname}/g;
+	}
+	
+	# Check if we have any special needs.
+	if (defined $opts) {
+		# Handle Windows Mobile specific stuff.
+		if (exists $opts->{'windows_mobile'}) {
+			# Remove & from PocketPC top menus.
+			if ($str =~ m/[\t ]+POPUP "[\w\d&]+"/) {
+				$str =~ s/&//;
+			}
+			
+			# Remove shortcuts from menu items.
+			if ($str =~ m/([\t ]+MENUITEM "[^\\"]+)([^"]+)",(.+)/) {
+				$str = $1 . '",' . (' ' x length($2)) . $3;
+			}
+		}
 	}
 	
 	return $str;
@@ -74,7 +90,7 @@ sub generate_rc {
 
 # Renders a template to its final destination.
 sub render_template {
-	my ($label, $tpname, $outfile, $vars) = @_;
+	my ($label, $tpname, $outfile, $vars, $opts) = @_;
 	
 	# Generate the rendered output lines.
 	print "Generating $label resource file:\n";
@@ -83,7 +99,7 @@ sub render_template {
 	# Write lines to the output file.
 	print '    Writing resource file... ';
 	open(my $fh, '>:encoding(UTF-8)', $outfile);
-	print $fh substitute_variables($vars, $_) for @lines;
+	print $fh substitute_variables($vars, $_, $opts) for @lines;
 	close($fh);
 	print "ok\n";
 }
@@ -108,7 +124,11 @@ sub main {
 	render_template('eMbedded Visual C++ 3 (WinCE)', 'wince.rc', PROJECT_ROOT .
 		"/wince/Bolota.rc", $vars);
 	render_template('eMbedded Visual C++ 3 (PocketPC)', 'wince.rc', PROJECT_ROOT .
-		"/pocketpc/Bolota.rc", $vars);
+		"/pocketpc/Bolota.rc", $vars, { 'windows_mobile' => 1 });
+	render_template('Visual Studio 2005 (PocketPC)', 'wmppc.rc', PROJECT_ROOT .
+		"/winmobile/Bolotappc.rc", $vars, { 'windows_mobile' => 1 });
+	render_template('Visual Studio 2005 (Smartphone)', 'wmsp.rc', PROJECT_ROOT .
+		"/winmobile/Bolotasp.rc", $vars, { 'windows_mobile' => 1 });
 }
 
 # Execute the script.

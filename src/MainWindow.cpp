@@ -80,6 +80,12 @@ MainWindow::~MainWindow() {
  * @return TRUE if the operation was successful.
  */
 BOOL MainWindow::SetupControls(HWND hWnd) {
+#if defined(WIN32_PLATFORM_PSPC) || defined(WIN32_PLATFORM_WFSP)
+	// SHInitExtraControls should be called once during your application's initialization to initialize any
+	// of the device specific controls such as CAPEDIT and SIPPREF.
+	SHInitExtraControls();
+#endif // WIN32_PLATFORM_PSPC || WIN32_PLATFORM_WFSP
+
 	// Ensure that the common controls DLL is loaded and initialized. 
 	INITCOMMONCONTROLSEX icex;
 	icex.dwSize = sizeof(INITCOMMONCONTROLSEX);

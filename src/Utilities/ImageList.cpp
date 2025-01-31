@@ -12,6 +12,11 @@
 #include "../Bolota/Errors/SystemError.h"
 #include "../SharedResources.h"
 
+// Fixes a problem in Visual Studio 2005.
+#ifndef ImageList_AddIcon
+	#define ImageList_AddIcon(himl, hicon) ImageList_ReplaceIcon(himl, -1, hicon)
+#endif // !ImageList_AddIcon
+
 using namespace Bolota;
 
 /**

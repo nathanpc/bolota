@@ -52,7 +52,9 @@
 
 // Controls (Main Window)
 #define IDC_BASE                        2100
+#ifndef IDC_CMDBAR
 #define IDC_CMDBAR                      (IDC_BASE + 2)
+#endif // !IDC_CMDBAR
 #define IDC_TBRFILE                     (IDC_BASE + 3)
 #define IDC_TBRTOPICS                   (IDC_BASE + 4)
 

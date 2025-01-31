@@ -64,26 +64,30 @@ CommandBar::CommandBar(HINSTANCE hInst, HWND hwndParent) {
 #else
 	SHMENUBARINFO mbi = {0};
 
-	// Initialize the shell to activate the info structure.
-	memset(&m_sai, 0, sizeof(SHACTIVATEINFO));
-	m_sai.cbSize = sizeof(SHACTIVATEINFO);
-
 	// Setup the menu bar.
 	mbi.cbSize     = sizeof(SHMENUBARINFO);
-	mbi.hwndParent = hWnd;               // Parent window.
+	mbi.hwndParent = hwndParent;         // Parent window.
 	mbi.nToolBarId = IDM_MAIN;           // ID of the toolbar resource.
 	mbi.hInstRes   = hInst;              // Instance handle of our application.
 	mbi.nBmpId     = 0;                  // Bitmap resource ID.
 	mbi.cBmpImages = 0;                  // Number of images in the bitmap.
+	mbi.dwFlags    = SHCMBF_HMENU;       // nToolBarId is a menu resource.
 	
 	// Create the menu bar.
 	if (!SHCreateMenuBar(&mbi)) {
 		MsgBoxError(hWnd, _T("UI Error"), _T("Couldn't create the menu bar."));
+		MsgBoxLastError(hWnd);
 		DestroyWindow(hWnd);
 	}
 
 	// Save the menu bar handle.
 	this->hWnd = mbi.hwndMB;
+
+#ifndef WIN32_PLATFORM_WFSP
+	// Initialize the shell to activate the info structure.
+	memset(&m_sai, 0, sizeof(SHACTIVATEINFO));
+	m_sai.cbSize = sizeof(SHACTIVATEINFO);
+#endif // !WIN32_PLATFORM_WFSP
 #endif // !SHELL_AYGSHELL
 }
 

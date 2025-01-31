@@ -46,7 +46,15 @@
 	#define SHELL_AYGSHELL
 	#include <aygshell.h>
 	#include <sipapi.h>
-#endif // defined(WIN32_PLATFORM_PSPC) || defined(WIN32_PLATFORM_WFSP)
+
+	// Windows Mobile stuff.
+	#include "../winmobile/wmstdafx.h"
+	#if defined(POCKETPC2003_UI_MODEL)
+		#include "../winmobile/resourceppc.h"
+	#elif defined(SMARTPHONE2003_UI_MODEL)
+		#include "../winmobile/resourcesp.h"
+	#endif // POCKETPC2003_UI_MODEL // SMARTPHONE2003_UI_MODEL
+#endif // WIN32_PLATFORM_PSPC || WIN32_PLATFORM_WFSP
 
 // Resource definitions.
 #if _MSC_VER >= 1900
@@ -66,7 +74,7 @@
 // Shims for Windows CE.
 #ifdef UNDER_CE
 	#include <stdint.h>
-	#include <wce_defs.h>
+	#include "../wince/STL/wce_defs.h"
 #endif // UNDER_CE
 
 // Error handling.

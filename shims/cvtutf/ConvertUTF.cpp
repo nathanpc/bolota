@@ -64,7 +64,9 @@
 #include "ConvertUTF.h"
 
 #ifndef UNDER_CE
-#include <assert.h>
+	#include <assert.h>
+#else
+	#include "../../wince/STL/wce_defs.h"
 #endif // !UNDER_CE
 
 namespace Unicode {
@@ -417,9 +419,7 @@ findMaximalSubpartOfIllFormedUTF8Sequence(const UTF8 *source,
                                           const UTF8 *sourceEnd) {
   UTF8 b1, b2, b3;
 
-#ifndef UNDER_CE
   assert(!isLegalUTF8Sequence(source, sourceEnd));
-#endif // !UNDER_CE
 
   /*
    * Unicode 6.3.0, D93b:
@@ -497,9 +497,7 @@ findMaximalSubpartOfIllFormedUTF8Sequence(const UTF8 *source,
     return 1;
   }
 
-#ifndef UNDER_CE
   assert((b1 >= 0x80 && b1 <= 0xC1) || b1 >= 0xF5);
-#endif // !UNDER_CE
 
   /*
    * There are no valid sequences that start with these bytes.  Maximal subpart

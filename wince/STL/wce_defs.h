@@ -46,12 +46,12 @@ charT buffer[512];
 
 #define assert(expr)	wce_assert<TCHAR>((expr), TEXT(__FILE__), __LINE__, L# expr)
 
-#ifndef __PLACEMENT_NEW_INLINE
+#if !defined(__PLACEMENT_NEW_INLINE) && (_MSC_VER < 1400)
 #define __PLACEMENT_NEW_INLINE
 #  ifndef _MFC_VER
    inline void * operator new(size_t, void *_P) {return (_P); }
 #  endif
-#endif
+#endif // !__PLACEMENT_NEW_INLINE && (_MSC_VER < 1400)
 
 //size_t and wchar_t are defined in many different places in all SDKs.
 //let's put them here (just to be sure)

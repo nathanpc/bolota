@@ -494,6 +494,10 @@ LRESULT WndMainClose(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
  * @return 0 if everything worked.
  */
 LRESULT WndMainDestroy(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
+#ifdef SHELL_AYGSHELL
+	CommandBar_Destroy(wndMain->CommandBar()->Handle());
+#endif // SHELL_AYGSHELL
+
 	// Post quit message and return.
 	PostQuitMessage(0);
 	return 0;

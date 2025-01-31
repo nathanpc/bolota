@@ -1,25 +1,23 @@
-//Microsoft eMbedded Visual C++ generated resource script.
+//Microsoft Visual C++ generated resource script.
 //
-#include "resource.h"
+#include "resourcesp.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-#include "newres.h"
-#include "../src/SharedResources.h"
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
-/////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+#include "../src/SharedResources.h"
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
-LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+LANGUAGE 9, 1
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -69,31 +67,12 @@ IDI_FI_WOMAN            ICON  DISCARDABLE       "..\\icons\\fields\\Woman.ico"
 IDI_FI_WRENCH           ICON  DISCARDABLE       "..\\icons\\fields\\Wrench.ico"
 // End of field icons.
 
-#ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
 //
-// TEXTINCLUDE
+// Bitmap
 //
 
-1 TEXTINCLUDE DISCARDABLE 
-BEGIN
-    "resource.h\0"
-END
-
-2 TEXTINCLUDE DISCARDABLE 
-BEGIN
-	"#include ""newres.h""\r\n"
-    "#include ""../src/SharedResources.h""\r\n"
-    "\0"
-END
-
-3 TEXTINCLUDE DISCARDABLE 
-BEGIN
-    "\r\n"
-    "\0"
-END
-
-#endif    // APSTUDIO_INVOKED
+IDB_TBCLASSIC           BITMAP  DISCARDABLE     "..\\icons\\toolbars\\classic\\classic.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -117,6 +96,40 @@ BEGIN
     POPUP "Help"
     BEGIN
         MENUITEM "&About...",                       IDM_HELP_ABOUT    END
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ACCELERATORS ACCELERATORS DISCARDABLE
+BEGIN
+    "/",            IDM_HELP_ABOUT,         ASCII,  ALT, NOINVERT
+    "?",            IDM_HELP_ABOUT,         ASCII,  ALT, NOINVERT
+    VK_F1,          IDM_HELP_ABOUT,         VIRTKEY, NOINVERT
+    "O",            IDM_FIELD_APPEND,       VIRTKEY, NOINVERT
+    "Y",            IDM_FIELD_APPENDPARENT, VIRTKEY, NOINVERT
+    "P",            IDM_FIELD_CREATECHILD,  VIRTKEY, NOINVERT
+    "H",            IDM_FIELD_DEINDENT,     VIRTKEY, NOINVERT
+    VK_TAB,         IDM_FIELD_DEINDENT,     VIRTKEY, SHIFT, NOINVERT
+    "D",            IDM_FIELD_DELETE,       VIRTKEY, NOINVERT
+    VK_DELETE,      IDM_FIELD_DELETE,       VIRTKEY, NOINVERT
+    "I",            IDM_FIELD_EDIT,         VIRTKEY, NOINVERT
+    "L",            IDM_FIELD_INDENT,       VIRTKEY, NOINVERT
+    VK_TAB,         IDM_FIELD_INDENT,       VIRTKEY, NOINVERT
+    "J",            IDM_FIELD_MOVEDOWN,     VIRTKEY, NOINVERT
+    VK_DOWN,        IDM_FIELD_MOVEDOWN,     VIRTKEY, SHIFT, NOINVERT
+    "K",            IDM_FIELD_MOVEUP,       VIRTKEY, NOINVERT
+    VK_UP,          IDM_FIELD_MOVEUP,       VIRTKEY, SHIFT, NOINVERT
+    "U",            IDM_FIELD_PREPEND,      VIRTKEY, NOINVERT
+    "N",            IDM_FILE_NEW,           VIRTKEY, CONTROL, NOINVERT
+    "O",            IDM_FILE_OPEN,          VIRTKEY, CONTROL, NOINVERT
+    "R",            IDM_FILE_RELOAD,        VIRTKEY, CONTROL, NOINVERT
+    VK_F5,          IDM_FILE_RELOAD,        VIRTKEY, NOINVERT
+    "S",            IDM_FILE_SAVE,          VIRTKEY, CONTROL, NOINVERT
+    "S",            IDM_FILE_SAVEAS,        VIRTKEY, SHIFT, CONTROL, NOINVERT
+    VK_F2,          IDM_FILE_PROPERTIES,    VIRTKEY, NOINVERT
 END
 
 /////////////////////////////////////////////////////////////////////////////
@@ -203,40 +216,6 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Accelerator
-//
-
-IDR_ACCELERATORS ACCELERATORS DISCARDABLE
-BEGIN
-    "/",            IDM_HELP_ABOUT,         ASCII,  ALT, NOINVERT
-    "?",            IDM_HELP_ABOUT,         ASCII,  ALT, NOINVERT
-    VK_F1,          IDM_HELP_ABOUT,         VIRTKEY, NOINVERT
-    "O",            IDM_FIELD_APPEND,       VIRTKEY, NOINVERT
-    "Y",            IDM_FIELD_APPENDPARENT, VIRTKEY, NOINVERT
-    "P",            IDM_FIELD_CREATECHILD,  VIRTKEY, NOINVERT
-    "H",            IDM_FIELD_DEINDENT,     VIRTKEY, NOINVERT
-    VK_TAB,         IDM_FIELD_DEINDENT,     VIRTKEY, SHIFT, NOINVERT
-    "D",            IDM_FIELD_DELETE,       VIRTKEY, NOINVERT
-    VK_DELETE,      IDM_FIELD_DELETE,       VIRTKEY, NOINVERT
-    "I",            IDM_FIELD_EDIT,         VIRTKEY, NOINVERT
-    "L",            IDM_FIELD_INDENT,       VIRTKEY, NOINVERT
-    VK_TAB,         IDM_FIELD_INDENT,       VIRTKEY, NOINVERT
-    "J",            IDM_FIELD_MOVEDOWN,     VIRTKEY, NOINVERT
-    VK_DOWN,        IDM_FIELD_MOVEDOWN,     VIRTKEY, SHIFT, NOINVERT
-    "K",            IDM_FIELD_MOVEUP,       VIRTKEY, NOINVERT
-    VK_UP,          IDM_FIELD_MOVEUP,       VIRTKEY, SHIFT, NOINVERT
-    "U",            IDM_FIELD_PREPEND,      VIRTKEY, NOINVERT
-    "N",            IDM_FILE_NEW,           VIRTKEY, CONTROL, NOINVERT
-    "O",            IDM_FILE_OPEN,          VIRTKEY, CONTROL, NOINVERT
-    "R",            IDM_FILE_RELOAD,        VIRTKEY, CONTROL, NOINVERT
-    VK_F5,          IDM_FILE_RELOAD,        VIRTKEY, NOINVERT
-    "S",            IDM_FILE_SAVE,          VIRTKEY, CONTROL, NOINVERT
-    "S",            IDM_FILE_SAVEAS,        VIRTKEY, SHIFT, CONTROL, NOINVERT
-    VK_F2,          IDM_FILE_PROPERTIES,    VIRTKEY, NOINVERT
-END
-
-/////////////////////////////////////////////////////////////////////////////
-//
 // Version
 //
 
@@ -277,12 +256,38 @@ BEGIN
     END
 END
 
+#ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
 //
-// Bitmap
+// TEXTINCLUDE
 //
+1 TEXTINCLUDE  
+BEGIN
+    "resourcesp.h\0"
+END
 
-IDB_TBCLASSIC           BITMAP  DISCARDABLE     "..\\icons\\toolbars\\classic\\classic.bmp"
+2 TEXTINCLUDE  
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resdefce.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\r\n"
+    "#include ""../src/SharedResources.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE  
+BEGIN
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""Bolotasp.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -303,13 +308,17 @@ END
 /////////////////////////////////////////////////////////////////////////////
 
 
-
 #ifndef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
 //
 // Generated from the TEXTINCLUDE 3 resource.
 //
 
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "Bolotasp.rc2"  // non-Microsoft Visual C++ edited resources
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED

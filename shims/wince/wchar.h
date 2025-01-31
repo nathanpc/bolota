@@ -8,6 +8,6 @@
 #ifndef _SHIMS_WINCE_WCHAR_H
 #define _SHIMS_WINCE_WCHAR_H
 
-#include <wce_defs.h>
+#include "../../wince/STL/wce_defs.h"
 
 #endif /* _SHIMS_WINCE_WCHAR_H */
