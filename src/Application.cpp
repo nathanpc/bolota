@@ -466,6 +466,14 @@ LRESULT WndMainClose(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
 	if (!wndMain->OnClose())
 		return 0;
 
+	// Save the window width and height for later.
+	RECT rcWindow;
+	GetWindowRect(hWnd, &rcWindow);
+	configManager->Get<DWordSetting>(ConfigManager::WindowWidth)->SetValue(
+		rcWindow.right - rcWindow.left)->Save(REG_DWORD, sizeof(DWORD));
+	configManager->Get<DWordSetting>(ConfigManager::WindowHeight)->SetValue(
+		rcWindow.bottom - rcWindow.top)->Save(REG_DWORD, sizeof(DWORD));
+
 	// Send main window destruction message.
 	delete wndMain;
 

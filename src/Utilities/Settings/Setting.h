@@ -69,12 +69,12 @@ namespace Settings {
 
 		// Registry management.
 		LSTATUS Load();
-		bool Save(DWORD dwType, DWORD dwLength, LPCBYTE lpData);
+		bool SaveValue(DWORD dwType, DWORD dwLength, LPCBYTE lpData);
 		bool Save(DWORD dwType, DWORD dwLength);
 
 		// Getters and setters.
 		T Value() const;
-		void SetValue(T value);
+		Setting<T>* SetValue(T value);
 	};
 
 	/**
@@ -92,7 +92,10 @@ namespace Settings {
 
 		// Getters and setters.
 		DWORD Value() const { return m_value; };
-		void SetValue(DWORD value) { Setting<DWORD>::SetValue(value); };
+		Setting<DWORD>* SetValue(DWORD value) {
+			m_value = value;
+			return this;
+		};
 	};
 
 	/**
@@ -112,17 +115,18 @@ namespace Settings {
 
 		// Registry management.
 		bool Save() {
-			return Setting::Save(REG_SZ,
+			return Setting::SaveValue(REG_SZ,
 				((DWORD)_tcslen(m_value) + 1) * (DWORD)sizeof(TCHAR),
 				(LPCBYTE)m_value);
 		};
 
 		// Getters and setters.
 		TCHAR* Value() const { return m_value; };
-		void SetValue(TCHAR* value) {
+		Setting<TCHAR*>* SetValue(TCHAR* value) {
 			if (m_value)
 				free(m_value);
-			Setting<TCHAR*>::SetValue(value);
+			m_value = value;
+			return this;
 		};
 	};
 

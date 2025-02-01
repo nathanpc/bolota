@@ -94,7 +94,7 @@ LSTATUS Setting<DWORD>::Load() {
  * @return TRUE if the value was saved, FALSE if an error occurred.
  */
 template<typename T>
-bool Setting<T>::Save(DWORD dwType, DWORD dwLength, LPCBYTE lpData) {
+bool Setting<T>::SaveValue(DWORD dwType, DWORD dwLength, LPCBYTE lpData) {
 	HKEY hKey;
 
 	// Open the registry key.
@@ -125,9 +125,9 @@ bool Setting<T>::Save(DWORD dwType, DWORD dwLength, LPCBYTE lpData) {
  *
  * @return TRUE if the value was saved, FALSE if an error occurred.
  */
-template<typename T>
-bool Setting<T>::Save(DWORD dwType, DWORD dwLength) {
-	return Save(dwType, dwLength, (LPBYTE)&m_value);
+template<>
+bool Setting<DWORD>::Save(DWORD dwType, DWORD dwLength) {
+	return SaveValue(dwType, dwLength, (LPBYTE)&m_value);
 }
 
 /**
@@ -146,8 +146,9 @@ T Setting<T>::Value() const {
  * @param value New value of the setting.
  */
 template<typename T>
-void Setting<T>::SetValue(T value) {
+Setting<T>* Setting<T>::SetValue(T value) {
 	m_value = value;
+	return this;
 }
 
 /**
