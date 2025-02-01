@@ -15,8 +15,12 @@
 
 #include "../shims/cvtutf/Unicode.h"
 #include "MainWindow.h"
+#include "Utilities/Settings/ConfigManager.h"
+
+using namespace Settings;
 
 // Global variables.
+static ConfigManager* configManager = NULL;
 static MainWindow *wndMain = NULL;
 static TCHAR szWindowClass[20];
 static TCHAR szAppTitle[20];
@@ -61,6 +65,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// Initialize application's singletons.
 	Bolota::ErrorStack* errorStack = Bolota::ErrorStack::Instance();
 	Bolota::FieldTypeList* listFieldTypes = Bolota::FieldTypeList::Instance();
+	configManager = Settings::ConfigManager::Instance();
 
 	// Load the application class and title.
 	LoadString(hInstance, IDS_APP_CLASS, szWindowClass, 20);
@@ -108,6 +113,8 @@ terminate:
 	errorStack = NULL;
 	delete listFieldTypes;
 	listFieldTypes = NULL;
+	delete configManager;
+	configManager = NULL;
 
 #if defined(DEBUG) && !defined(UNDER_CE)
 	// Detect memory leaks.
@@ -222,13 +229,19 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 
 	// Create the main window.
 #ifndef UNDER_CE
+	// Get window size from settings.
+	DWordSetting* dwsWidth = configManager->Get<DWordSetting>(
+		ConfigManager::WindowWidth);
+	DWordSetting* dwsHeight = configManager->Get<DWordSetting>(
+		ConfigManager::WindowHeight);
+
 	hWnd = CreateWindow(szWindowClass,			// Window class.
 						szAppTitle,				// Window title.
 						WS_OVERLAPPEDWINDOW,	// Style flags.
 						CW_USEDEFAULT,			// X position.
 						CW_USEDEFAULT,			// Y position.
-						600,					// Initial width,
-						400,					// Initial height.
+						dwsWidth->Value(),		// Initial width,
+						dwsHeight->Value(),		// Initial height.
 						NULL,					// Parent window.
 						NULL,					// Menu class. (Always NULL)
 						hInstance,				// Application instance.

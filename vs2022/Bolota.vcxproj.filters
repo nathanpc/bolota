@@ -38,6 +38,9 @@
     <Filter Include="Bolota\Utilities">
       <UniqueIdentifier>{35cef116-97fa-4d36-b1d6-13bdb072a518}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utilities\Settings">
+      <UniqueIdentifier>{afded9c2-5149-479c-9e12-be86e23f6ad6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Bolota.rc">
@@ -238,6 +241,12 @@
     <ClInclude Include="..\src\Bolota\Field.h">
       <Filter>Bolota</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Utilities\Settings\ConfigManager.h">
+      <Filter>Utilities\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Utilities\Settings\Setting.h">
+      <Filter>Utilities\Settings</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Utilities\DialogWindow.cpp">
@@ -311,6 +320,12 @@
     </ClCompile>
     <ClCompile Include="..\src\Bolota\Field.cpp">
       <Filter>Bolota</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Utilities\Settings\ConfigManager.cpp">
+      <Filter>Utilities\Settings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Utilities\Settings\Setting.cpp">
+      <Filter>Utilities\Settings</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

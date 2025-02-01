@@ -162,6 +162,8 @@
     <ClInclude Include="..\src\Utilities\DialogWindow.h" />
     <ClInclude Include="..\src\Utilities\ImageList.h" />
     <ClInclude Include="..\src\Utilities\MsgBoxes.h" />
+    <ClInclude Include="..\src\Utilities\Settings\ConfigManager.h" />
+    <ClInclude Include="..\src\Utilities\Settings\Setting.h" />
     <ClInclude Include="..\src\Utilities\WindowUtilities.h" />
     <ClInclude Include="Resource.h" />
   </ItemGroup>
@@ -232,6 +234,8 @@
     <ClCompile Include="..\src\Utilities\DialogWindow.cpp" />
     <ClCompile Include="..\src\Utilities\ImageList.cpp" />
     <ClCompile Include="..\src\Utilities\MsgBoxes.cpp" />
+    <ClCompile Include="..\src\Utilities\Settings\ConfigManager.cpp" />
+    <ClCompile Include="..\src\Utilities\Settings\Setting.cpp" />
     <ClCompile Include="..\src\Utilities\WindowUtilities.cpp" />
   </ItemGroup>
   <ItemGroup>
