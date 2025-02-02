@@ -309,6 +309,7 @@ HMENU MainWindow::Menu() const {
 #ifndef UNDER_CE
 	return GetMenu(hWnd);
 #else
+	return m_cmdBar->Menu();
 #endif // !UNDER_CE
 }
 

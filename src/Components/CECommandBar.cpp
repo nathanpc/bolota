@@ -125,7 +125,6 @@ LONG CommandBar::Height() const {
  */
 RECT CommandBar::SIPVisibleDesktop() const {
 	SIPINFO si = {0};
-	int cx, cy;
 
 	// Query the SIP state.
 	si.cbSize = sizeof(si);
@@ -142,6 +141,19 @@ RECT CommandBar::SIPVisibleDesktop() const {
  */
 HWND CommandBar::Handle() const {
 	return this->hWnd;
+}
+
+/**
+ * Gets the handle of the menu in the CommandBar control.
+ *
+ * @return CommandBar menu handle.
+ */
+HMENU CommandBar::Menu() const {
+#ifdef SHELL_AYGSHELL
+	return (HMENU)SendMessage(this->hWnd, SHCMBM_GETMENU, 0, 0);
+#else
+	return CommandBar_GetMenu(this->hWnd, 0);
+#endif // SHELL_AYGSHELL
 }
 
 #ifdef SHELL_AYGSHELL

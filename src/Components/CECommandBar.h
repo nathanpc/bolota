@@ -37,6 +37,7 @@ namespace WinCE {
 		// Helpers
 		LONG Height() const;
 		HWND Handle() const;
+		HMENU Menu() const;
 #ifdef SHELL_AYGSHELL
 		RECT SIPVisibleDesktop() const;
 		SHACTIVATEINFO SHActivateInfo() const;
