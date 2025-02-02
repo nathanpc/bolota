@@ -238,21 +238,12 @@ INT_PTR CALLBACK DialogWindow::DlgProcWrapper(HWND hDlg, UINT wMsg,
 	// Handle the translation to a C++ call.
 	if (WM_INITDIALOG == wMsg) {
 		pThis = reinterpret_cast<DialogWindow *>(lParam);
-#ifdef SetWindowLongPtr
 		SetWindowLongPtr(hDlg, GWLP_USERDATA,
 						 reinterpret_cast<LONG_PTR>(pThis));
-#else
-		SetWindowLong(hDlg, GWL_USERDATA, reinterpret_cast<LONG_PTR>(pThis));
-#endif // SetWindowLongPtr
 		pThis->RegisterHandle(hDlg);
 	} else {
-#ifdef GetWindowLongPtr
 		pThis = reinterpret_cast<DialogWindow *>(
 			GetWindowLongPtr(hDlg, GWLP_USERDATA));
-#else
-		pThis = reinterpret_cast<DialogWindow *>(
-			GetWindowLong(hDlg, GWL_USERDATA));
-#endif // GetWindowLongPtr
 	}
 
 	// Call our object's dialog procedure.

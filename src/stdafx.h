@@ -77,6 +77,14 @@
 	#include "../wince/STL/wce_defs.h"
 #endif // UNDER_CE
 
+// Ensure we don't have to guard against LongPtr on 32-bit systems.
+#ifndef SetWindowLongPtr
+	#define SetWindowLongPtr SetWindowLong
+#endif // !SetWindowLongPtr
+#ifndef GetWindowLongPtr
+	#define GetWindowLongPtr GetWindowLong
+#endif // !GetWindowLongPtr
+
 // Error handling.
 #include "Bolota/Errors/Error.h"
 
