@@ -238,8 +238,8 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 						WS_OVERLAPPEDWINDOW,	// Style flags.
 						CW_USEDEFAULT,			// X position.
 						CW_USEDEFAULT,			// Y position.
-						setWidth->Value(),		// Initial width,
-						setHeight->Value(),		// Initial height.
+						dwWidth,				// Initial width,
+						dwHeight,				// Initial height.
 						NULL,					// Parent window.
 						NULL,					// Menu class. (Always NULL)
 						hInstance,				// Application instance.
