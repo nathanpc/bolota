@@ -21,7 +21,7 @@
 /**
  * Gets the subkey of the application.
  */
-#define BOLOTA_REG_KEY _T("Software\\Bolota\\")
+#define BOLOTA_REG_KEY _T("Software\\Bolota")
 
 /**
  * Gets the entry name for a setting of the application.
@@ -57,7 +57,7 @@ namespace Settings {
 	/**
 	 * Abstraction over a single setting in the configuration manager.
 	 */
-	template <typename T>
+	template <class T>
 	class Setting : public BaseSetting {
 	protected:
 		T m_tValue;
@@ -101,39 +101,51 @@ namespace Settings {
 		 *         ERROR_FILE_NOT_FOUND the key doesn't exist. Everything else
 		 *         should be treated as an error.
 		 */
-		LSTATUS Load(LPBYTE lpValue, DWORD* lpdwLength) {
+		DWORD Load(LPBYTE lpValue, DWORD* lpdwLength) {
 			HKEY hKey;
 
 			// Open the registry key.
-			LSTATUS lResult = RegOpenKeyEx(HKEY_CURRENT_USER, BOLOTA_REG_KEY,
+			DWORD dwResult = RegOpenKeyEx(HKEY_CURRENT_USER, BOLOTA_REG_KEY,
 				0, KEY_READ, &hKey);
-			if (lResult != ERROR_SUCCESS) {
+			if (dwResult != ERROR_SUCCESS) {
 				// Key wasn't found. We should fallback to the default value.
-				if (lResult == ERROR_FILE_NOT_FOUND)
-					return lResult;
+#if defined(UNDER_CE) && (_MSC_VER <= 1200)
+				if (dwResult == ERROR_INVALID_PARAMETER)
+#else
+				if (dwResult == ERROR_FILE_NOT_FOUND)
+#endif // UNDER_CE && (_MSC_VER <= 1200)
+					return dwResult;
 
 				// Looks like bad things happened.
 				ThrowError(EMSG("Failed to open registry subkey for ")
 					_T("reading"));
-				return lResult;
+				return dwResult;
 			}
 
 			// Get value from registry.
-			lResult = RegQueryValueEx(hKey, m_szKey, NULL, NULL, lpValue,
+			DWORD dwType;
+			dwResult = RegQueryValueEx(hKey, m_szKey, NULL, &dwType, lpValue,
 				lpdwLength);
-			if (lResult != ERROR_SUCCESS) {
+			if ((dwResult == ERROR_SUCCESS) && (dwType != m_dwType))
+				ThrowError(EMSG("Loaded key type doesn't match expected"));
+			if (dwResult != ERROR_SUCCESS) {
 				// Key wasn't found. We should fallback to the default value.
-				if (lResult == ERROR_FILE_NOT_FOUND)
-					return lResult;
+#if defined(UNDER_CE) && (_MSC_VER <= 1200)
+				if (dwResult == ERROR_INVALID_PARAMETER)
+#else
+				if (dwResult == ERROR_FILE_NOT_FOUND)
+#endif // UNDER_CE && (_MSC_VER <= 1200)
+					goto closekey;
 
 				ThrowError(EMSG("Failed to get setting value from ")
 					_T("registry"));
 			}
 
+closekey:
 			// Close the key handle.
 			RegCloseKey(hKey);
 
-			return lResult;
+			return dwResult;
 		};
 
 		/**
@@ -147,7 +159,7 @@ namespace Settings {
 		 *         ERROR_FILE_NOT_FOUND the key doesn't exist. Everything else
 		 *         should be treated as an error.
 		 */
-		LSTATUS Load() {
+		DWORD Load() {
 			DWORD dwLength = sizeof(m_tValue);
 			return Load((LPBYTE)&m_tValue, &dwLength);
 		}
@@ -159,28 +171,30 @@ namespace Settings {
 		 *
 		 * @return TRUE if the value was saved, FALSE if an error occurred.
 		 */
-		bool Save(LPCBYTE lpData, DWORD dwLength) {
+		bool Save(const LPBYTE lpData, DWORD dwLength) {
 			HKEY hKey;
 
 			// Open the registry key.
-			LSTATUS lResult = RegCreateKeyEx(HKEY_CURRENT_USER, BOLOTA_REG_KEY,
-				0, NULL, REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, NULL);
-			if (lResult != ERROR_SUCCESS) {
+			DWORD dwDisposition;
+			DWORD dwResult = RegCreateKeyEx(HKEY_CURRENT_USER, BOLOTA_REG_KEY,
+				0, NULL, REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey,
+				&dwDisposition);
+			if (dwResult != ERROR_SUCCESS) {
 				// Looks like bad things happened.
 				ThrowError(EMSG("Failed to open registry subkey for writing"));
 				return false;
 			}
 
 			// Get value from registry.
-			lResult = RegSetValueEx(hKey, m_szKey, 0, m_dwType, lpData,
+			dwResult = RegSetValueEx(hKey, m_szKey, 0, m_dwType, lpData,
 				dwLength);
-			if (lResult != ERROR_SUCCESS)
+			if (dwResult != ERROR_SUCCESS)
 				ThrowError(EMSG("Failed to set setting value to registry"));
 
 			// Close the key handle.
 			RegCloseKey(hKey);
 
-			return lResult == ERROR_SUCCESS;
+			return dwResult == ERROR_SUCCESS;
 		};
 
 		/**

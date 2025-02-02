@@ -805,6 +805,26 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Settings"
+				>
+				<File
+					RelativePath="..\src\Utilities\Settings\ConfigManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\Utilities\Settings\ConfigManager.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\Utilities\Settings\Setting.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\src\Utilities\Settings\Setting.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 	</Files>
 	<Globals>
