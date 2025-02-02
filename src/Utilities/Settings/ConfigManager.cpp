@@ -28,10 +28,10 @@ ConfigManager::ConfigManager() {
 	}
 
 	// Populate the settings array.
-	m_settings[WindowWidth] = new DWordSetting(_T("WindowWidth"),
-		_T("Window width"), (DWORD)600);
-	m_settings[WindowHeight] = new DWordSetting(_T("WindowHeight"),
-		_T("Window height"), (DWORD)400);
+	m_settings[WindowWidth] = new Setting<DWORD>(_T("WindowWidth"),
+		_T("Window width"), REG_DWORD, (DWORD)600);
+	m_settings[WindowHeight] = new Setting<DWORD>(_T("WindowHeight"),
+		_T("Window height"), REG_DWORD, (DWORD)400);
 }
 
 /**
@@ -58,16 +58,4 @@ ConfigManager* ConfigManager::Instance() {
 		manager = new ConfigManager();
 
 	return manager;
-}
-
-/**
- * Gets the setting at the specified index.
- * 
- * @param index Index where the desired setting object is.
- * 
- * @return Desired setting object.
- */
-template <>
-DWordSetting* ConfigManager::Get(SettingIndex index) const {
-	return static_cast<DWordSetting*>(m_settings[index]);
 }

@@ -230,9 +230,9 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 	// Create the main window.
 #ifndef UNDER_CE
 	// Get window size from settings.
-	DWordSetting* dwsWidth = configManager->Get<DWordSetting>(
+	Setting<DWORD>* setWidth = configManager->Get<DWORD>(
 		ConfigManager::WindowWidth);
-	DWordSetting* dwsHeight = configManager->Get<DWordSetting>(
+	Setting<DWORD>* setHeight = configManager->Get<DWORD>(
 		ConfigManager::WindowHeight);
 
 	hWnd = CreateWindow(szWindowClass,			// Window class.
@@ -240,8 +240,8 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 						WS_OVERLAPPEDWINDOW,	// Style flags.
 						CW_USEDEFAULT,			// X position.
 						CW_USEDEFAULT,			// Y position.
-						dwsWidth->Value(),		// Initial width,
-						dwsHeight->Value(),		// Initial height.
+						setWidth->Value(),		// Initial width,
+						setHeight->Value(),		// Initial height.
 						NULL,					// Parent window.
 						NULL,					// Menu class. (Always NULL)
 						hInstance,				// Application instance.
@@ -466,13 +466,13 @@ LRESULT WndMainClose(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
 	if (!wndMain->OnClose())
 		return 0;
 
-	// Save the window width and height for later.
+	// Save the window width and height for when we reopen the application.
 	RECT rcWindow;
 	GetWindowRect(hWnd, &rcWindow);
-	configManager->Get<DWordSetting>(ConfigManager::WindowWidth)->SetValue(
-		rcWindow.right - rcWindow.left)->Save(REG_DWORD, sizeof(DWORD));
-	configManager->Get<DWordSetting>(ConfigManager::WindowHeight)->SetValue(
-		rcWindow.bottom - rcWindow.top)->Save(REG_DWORD, sizeof(DWORD));
+	configManager->Get<DWORD>(ConfigManager::WindowWidth)->SetValue(
+		rcWindow.right - rcWindow.left)->Save();
+	configManager->Get<DWORD>(ConfigManager::WindowHeight)->SetValue(
+		rcWindow.bottom - rcWindow.top)->Save();
 
 	// Send main window destruction message.
 	delete wndMain;

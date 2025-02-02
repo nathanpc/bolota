@@ -47,9 +47,17 @@ namespace Settings {
 		static ConfigManager* Instance();
 		virtual ~ConfigManager();
 
-		// Getters
+		/**
+		 * Gets the setting at the specified index.
+		 *
+		 * @param index Index where the desired setting object is.
+		 *
+		 * @return Desired setting object.
+		 */
 		template <typename T>
-		T* Get(SettingIndex index) const;
+		Setting<T>* Get(SettingIndex index) const {
+			return static_cast<Setting<T>*>(m_settings[index]);
+		}
 	};
 
 } // Settings
