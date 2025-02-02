@@ -66,3 +66,13 @@ LPCTSTR BaseSetting::Description() const {
 DWORD BaseSetting::Type() const {
 	return this->m_dwType;
 }
+
+DWORD BaseSetting::Load() {
+	ThrowError(EMSG("BaseSetting::Load should never be called directly"));
+	return ERROR_INVALID_FUNCTION;
+}
+
+bool BaseSetting::Save() {
+	ThrowError(EMSG("BaseSetting::Save should never be called directly"));
+	return false;
+}

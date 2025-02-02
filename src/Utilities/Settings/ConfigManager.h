@@ -22,6 +22,51 @@
  */
 #define BOLOTA_SETTINGS_NUM 2
 
+/**
+ * Gets a Setting object from the manager.
+ *
+ * @param type  Setting data type.
+ * @param index Index of which setting to get.
+ *
+ * @return Specified setting object.
+ */
+#define Settings_Get(type, index) (\
+	static_cast<Setting<type>*>(ConfigManager::Instance()->Get(index)))
+
+/**
+ * Gets the value of a setting from the manager.
+ *
+ * @param type  Setting data type.
+ * @param index Index of which setting to get.
+ *
+ * @return Specified setting value.
+ */
+#define Settings_GetValue(type, index) (Settings_Get(type, index)->Value())
+
+/**
+ * Sets the value of a setting.
+ *
+ * @param type  Setting data type.
+ * @param index Index of which setting we want to set the value of.
+ * @param value New value to put in the setting object.
+ *
+ * @return Specified setting object.
+ */
+#define Settings_SetValue(type, index, value) ( \
+	Settings_Get(type, index)->SetValue(value))
+
+/**
+ * Sets the value of a setting and save it instantly.
+ *
+ * @param type  Setting data type.
+ * @param index Index of which setting we want to set the value of.
+ * @param value New value to put in the setting object.
+ *
+ * @return Specified setting object.
+ */
+#define Settings_SaveValue(type, index, value) ( \
+	Settings_SetValue(type, index, value)->Save())
+
 namespace Settings {
 
 	/**
@@ -47,17 +92,8 @@ namespace Settings {
 		static ConfigManager* Instance();
 		virtual ~ConfigManager();
 
-		/**
-		 * Gets the setting at the specified index.
-		 *
-		 * @param index Index where the desired setting object is.
-		 *
-		 * @return Desired setting object.
-		 */
-		template <typename T>
-		Setting<T>* Get(SettingIndex index) const {
-			return static_cast<Setting<T>*>(m_settings[index]);
-		}
+		// Getters
+		BaseSetting* Get(SettingIndex index) const;
 	};
 
 } // Settings

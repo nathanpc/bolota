@@ -45,8 +45,8 @@ namespace Settings {
 		virtual ~BaseSetting();
 
 		// Registry management.
-		virtual LSTATUS Load() = 0;
-		virtual bool Save() = 0;
+		virtual DWORD Load();
+		virtual bool Save();
 
 		// Getters
 		LPCTSTR Key() const;

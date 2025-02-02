@@ -230,10 +230,8 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 	// Create the main window.
 #ifndef UNDER_CE
 	// Get window size from settings.
-	Setting<DWORD>* setWidth = configManager->Get<DWORD>(
-		ConfigManager::WindowWidth);
-	Setting<DWORD>* setHeight = configManager->Get<DWORD>(
-		ConfigManager::WindowHeight);
+	DWORD dwWidth = Settings_GetValue(DWORD, ConfigManager::WindowWidth);
+	DWORD dwHeight = Settings_GetValue(DWORD, ConfigManager::WindowHeight);
 
 	hWnd = CreateWindow(szWindowClass,			// Window class.
 						szAppTitle,				// Window title.
@@ -466,13 +464,15 @@ LRESULT WndMainClose(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
 	if (!wndMain->OnClose())
 		return 0;
 
+#ifndef UNDER_CE
 	// Save the window width and height for when we reopen the application.
 	RECT rcWindow;
 	GetWindowRect(hWnd, &rcWindow);
-	configManager->Get<DWORD>(ConfigManager::WindowWidth)->SetValue(
-		rcWindow.right - rcWindow.left)->Save();
-	configManager->Get<DWORD>(ConfigManager::WindowHeight)->SetValue(
-		rcWindow.bottom - rcWindow.top)->Save();
+	Settings_SaveValue(DWORD, ConfigManager::WindowWidth,
+		rcWindow.right - rcWindow.left);
+	Settings_SaveValue(DWORD, ConfigManager::WindowHeight,
+		rcWindow.bottom - rcWindow.top);
+#endif // !UNDER_CE
 
 	// Send main window destruction message.
 	delete wndMain;

@@ -59,3 +59,14 @@ ConfigManager* ConfigManager::Instance() {
 
 	return manager;
 }
+
+/**
+ * Gets the setting at the specified index.
+ *
+ * @param index Index where the desired setting object is.
+ *
+ * @return Desired setting object.
+ */
+BaseSetting* ConfigManager::Get(SettingIndex index) const {
+	return m_settings[index];
+};
