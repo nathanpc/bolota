@@ -10,6 +10,7 @@
 #include <stdint.h>
 #include <tchar.h>
 
+#include "../stdafx.h"
 #include "MsgBoxes.h"
 
 /**

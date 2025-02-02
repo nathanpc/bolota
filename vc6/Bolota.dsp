@@ -448,6 +448,26 @@ SOURCE=..\shims\cvtutf\Unicode.cpp
 SOURCE=..\shims\cvtutf\Unicode.h
 # End Source File
 # End Group
+# Begin Group "Settings"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\src\Utilities\Settings\ConfigManager.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\Utilities\Settings\ConfigManager.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\Utilities\Settings\Setting.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\Utilities\Settings\Setting.h
+# End Source File
+# End Group
 # Begin Source File
 
 SOURCE=..\src\Utilities\DialogWindow.cpp

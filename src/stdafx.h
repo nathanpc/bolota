@@ -84,6 +84,9 @@
 #ifndef GetWindowLongPtr
 	#define GetWindowLongPtr GetWindowLong
 #endif // !GetWindowLongPtr
+#ifndef GWLP_USERDATA
+	#define GWLP_USERDATA GWL_USERDATA
+#endif // !GWLP_USERDATA
 
 // Error handling.
 #include "Bolota/Errors/Error.h"
