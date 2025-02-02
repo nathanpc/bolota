@@ -31,13 +31,14 @@ private:
 	HINSTANCE m_hInst;
 	HWND m_hWnd;
 	HWND m_hwndParent;
+	HMENU m_hmnuParent;
 
 	// Image lists.
 	FieldImageList *m_imlFieldIcons;
 
 public:
 	// Constructors and destructors.
-	BolotaView(HINSTANCE hInst, HWND hwndParent, RECT rc);
+	BolotaView(HINSTANCE hInst, HWND hwndParent, HMENU hMenu, RECT rc);
 	virtual ~BolotaView();
 
 	// Document handling.
@@ -72,6 +73,10 @@ public:
 
 	// Examples
 	void OpenExampleDocument();
+
+	// Settings
+	LRESULT ViewSettingUpdate(UINT_PTR uMenuId);
+	bool UpdateViewFromSettings() const;
 
 protected:
 	// Field updates.

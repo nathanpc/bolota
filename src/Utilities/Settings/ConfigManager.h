@@ -20,7 +20,7 @@
 /**
  * Number of available settings to use.
  */
-#define BOLOTA_SETTINGS_NUM 2
+#define BOLOTA_SETTINGS_NUM 3
 
 /**
  * Gets a Setting object from the manager.
@@ -76,7 +76,8 @@ namespace Settings {
 	public:
 		enum SettingIndex {
 			WindowWidth = 0,
-			WindowHeight
+			WindowHeight,
+			TreeViewStyleFlags
 		};
 
 	private:

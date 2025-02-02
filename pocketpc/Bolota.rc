@@ -108,6 +108,9 @@ BEGIN
         MENUITEM "&Save",                           IDM_FILE_SAVE        MENUITEM "Save &As..",                      IDM_FILE_SAVEAS        MENUITEM SEPARATOR
         MENUITEM "&Properties...",                  IDM_FILE_PROPERTIES        MENUITEM SEPARATOR
         MENUITEM "E&xi",                            IDM_FILE_EXIT    END
+    POPUP "View"
+    BEGIN
+        MENUITEM "Show Child Line",                 IDM_VIEW_SHOWSUBLINES        MENUITEM "Show Root Line",                  IDM_VIEW_SHOWROOTLINES        MENUITEM "Show Expand Button",              IDM_VIEW_SHOWBUTTONS    END
     POPUP "Field"
     BEGIN
         MENUITEM "Ed&it...",                        IDM_FIELD_EDIT        MENUITEM "&Delete...",                      IDM_FIELD_DELETE        MENUITEM SEPARATOR

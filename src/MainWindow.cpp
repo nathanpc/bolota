@@ -34,9 +34,11 @@ MainWindow::MainWindow(HINSTANCE hInstance, LPCTSTR szURI) {
 	// Initialize default values.
 	this->hWnd = NULL;
 	m_wndBolota = NULL;
-#ifdef UNDER_CE
+#ifndef UNDER_CE
+	m_toolBar = NULL;
+#else
 	m_cmdBar = NULL;
-#endif // UNDER_CE
+#endif // !UNDER_CE
 }
 
 /**
@@ -118,7 +120,7 @@ BOOL MainWindow::SetupControls(HWND hWnd) {
 #endif // SHELL_AYGSHELL
 
 	// Setup the document viewer.
-	m_wndBolota = new BolotaView(this->hInst, this->hWnd, rcViewer);
+	m_wndBolota = new BolotaView(this->hInst, this->hWnd, Menu(), rcViewer);
 	if (BolotaHasError) {
 		MsgBoxBolotaError(hWnd, _T("Failed to initialize document viewer"));
 		return FALSE;
@@ -239,7 +241,14 @@ LRESULT MainWindow::OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent) {
 	case IDM_FIELD_DEINDENT:
 		lr = m_wndBolota->DeindentField();
 		break;
+	case IDM_VIEW_SHOWSUBLINES:
+	case IDM_VIEW_SHOWROOTLINES:
+	case IDM_VIEW_SHOWBUTTONS:
+		// BolotaView view settings.
+		lr = m_wndBolota->ViewSettingUpdate(wmId);
+		break;
 	case IDM_HELP_ABOUT:
+		// Shows the About dialog.
 		AboutDialog(this->hInst, hWnd).ShowModal();
 		break;
 	default:
@@ -281,6 +290,26 @@ bool MainWindow::OnContextMenu(HWND hWnd, int xPos, int yPos) {
  */
 bool MainWindow::OnClose() const {
 	return m_wndBolota->Close();
+}
+
+/*
+ * +===========================================================================+
+ * |                                                                           |
+ * |                                 Getters                                   |
+ * |                                                                           |
+ * +===========================================================================+
+ */
+
+/**
+ * Gets the menu associated with the window.
+ * 
+ * @return The handle to the associated menu.
+ */
+HMENU MainWindow::Menu() const {
+#ifndef UNDER_CE
+	return GetMenu(hWnd);
+#else
+#endif // !UNDER_CE
 }
 
 #ifdef UNDER_CE

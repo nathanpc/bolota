@@ -9,6 +9,7 @@
 
 #include <stdlib.h>
 #include <windows.h>
+#include <commctrl.h>
 
 #include "../../Bolota/Errors/Error.h"
 #include "Setting.h"
@@ -32,6 +33,9 @@ ConfigManager::ConfigManager() {
 		_T("Window width"), REG_DWORD, (DWORD)600);
 	m_settings[WindowHeight] = new Setting<DWORD>(_T("WindowHeight"),
 		_T("Window height"), REG_DWORD, (DWORD)400);
+	m_settings[TreeViewStyleFlags] = new Setting<DWORD>(
+		_T("TreeViewStyleFlags"), _T("TreeView style flags"), REG_DWORD,
+		(DWORD)(TVS_HASLINES | TVS_LINESATROOT | TVS_HASBUTTONS));
 }
 
 /**

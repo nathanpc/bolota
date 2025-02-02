@@ -100,6 +100,12 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "E&xit",                           IDM_FILE_EXIT
     END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "Show Child Lines",                IDM_VIEW_SHOWSUBLINES
+        MENUITEM "Show Root Lines",                 IDM_VIEW_SHOWROOTLINES
+        MENUITEM "Show Expand Buttons",             IDM_VIEW_SHOWBUTTONS
+    END
     POPUP "Fie&ld"
     BEGIN
         MENUITEM "Ed&it...\tI",                     IDM_FIELD_EDIT

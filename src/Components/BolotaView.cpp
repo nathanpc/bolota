@@ -10,6 +10,7 @@
 #include "../stdafx.h"
 #include "../PropertiesDialog.h"
 #include "../Bolota/Errors/Error.h"
+#include "../Utilities/Settings/ConfigManager.h"
 
 #ifndef UNDER_CE
 	#include <shlwapi.h>
@@ -19,6 +20,7 @@
 #define PARENT_MENU_FIELD_IDX 1
 
 using namespace Bolota;
+using namespace Settings;
 
 /*
  * +===========================================================================+
@@ -33,23 +35,25 @@ using namespace Bolota;
  *
  * @param hInst      Application instance.
  * @param hwndParent Parent window.
+ * @param hMenu      Application's main menu handle.
  * @param rc         Desired position and size of the component.
  */
-BolotaView::BolotaView(HINSTANCE hInst, HWND hwndParent, RECT rc) {
+BolotaView::BolotaView(HINSTANCE hInst, HWND hwndParent, HMENU hMenu, RECT rc) {
 	// Initialize some defaults.
 	m_doc = NULL;
 	m_hInst = hInst;
 	m_hwndParent = hwndParent;
+	m_hmnuParent = hMenu;
 
 	// Initialize ImageLists.
 	m_imlFieldIcons = new FieldImageList(hInst);
 
 	// Create the window instance.
-	m_hWnd = CreateWindowEx(
-		0, WC_TREEVIEW, _T("BolotaView"),
-		WS_VISIBLE | WS_CHILD | TVS_HASLINES | TVS_LINESATROOT | TVS_HASBUTTONS,
-		rc.left, rc.top, rc.right, rc.bottom,
-		hwndParent, (HMENU)NULL, hInst, NULL);
+	m_hWnd = CreateWindowEx(0, WC_TREEVIEW, _T("BolotaView"), WS_VISIBLE |
+		WS_CHILD | TVS_HASLINES | TVS_LINESATROOT | TVS_HASBUTTONS,
+		rc.left, rc.top, rc.right, rc.bottom, hwndParent, (HMENU)NULL, hInst,
+		NULL);
+	UpdateViewFromSettings();
 	ShowWindow(m_hWnd, SW_SHOW);
 
 	// Set the ImageList associated with the TreeView.
@@ -1205,6 +1209,78 @@ bool BolotaView::ShowFileDialog(LPTSTR szFilename, bool bSave) const {
 	if (bSave)
 		return GetSaveFileName(&ofn) != 0;
 	return GetOpenFileName(&ofn) != 0;
+}
+
+/*
+ * +===========================================================================+
+ * |                                                                           |
+ * |                                Settings                                   |
+ * |                                                                           |
+ * +===========================================================================+
+ */
+
+/**
+ * Updates the view settings of our document viewer.
+ * 
+ * @param uMenuId ID of the menu item that was clicked.
+ * 
+ * @return 0 if everything worked.
+ */
+LRESULT BolotaView::ViewSettingUpdate(UINT_PTR uMenuId) {
+	// Get style flags from settings.
+	DWORD dwStyle = Settings_GetValue(DWORD, ConfigManager::TreeViewStyleFlags);
+
+	// Update the flags accordingly.
+	UINT uState = 0;
+	switch (uMenuId) {
+	case IDM_VIEW_SHOWSUBLINES:
+		dwStyle ^= TVS_HASLINES;
+		break;
+	case IDM_VIEW_SHOWROOTLINES:
+		dwStyle ^= TVS_LINESATROOT;
+		break;
+	case IDM_VIEW_SHOWBUTTONS:
+		dwStyle ^= TVS_HASBUTTONS;
+		break;
+	}
+
+	// Update the application's settings.
+	Settings_SaveValue(DWORD, ConfigManager::TreeViewStyleFlags, dwStyle);
+
+	// Update the view and menu items.
+	if (!UpdateViewFromSettings())
+		return 1;
+
+	return 0;
+}
+
+/**
+ * Updates the style of the Tree-View and menu items according to the associated
+ * styling flags setting.
+ * 
+ * @return TRUE if the operation was successful, FALSE otherwise.
+ */
+bool BolotaView::UpdateViewFromSettings() const {
+	// Get style flags from settings.
+	LONG_PTR dwStyle = WS_VISIBLE | WS_CHILD | Settings_GetValue(DWORD,
+		ConfigManager::TreeViewStyleFlags);
+
+	// Set the checkboxes inside the View menu.
+	CheckMenuItem(m_hmnuParent, IDM_VIEW_SHOWSUBLINES,
+		(dwStyle & TVS_HASLINES) ? MF_CHECKED : MF_UNCHECKED);
+	CheckMenuItem(m_hmnuParent, IDM_VIEW_SHOWROOTLINES,
+		(dwStyle & TVS_LINESATROOT) ? MF_CHECKED : MF_UNCHECKED);
+	CheckMenuItem(m_hmnuParent, IDM_VIEW_SHOWBUTTONS,
+		(dwStyle & TVS_HASBUTTONS) ? MF_CHECKED : MF_UNCHECKED);
+
+	// Set the style of the Tree-View.
+	if (!SetWindowLongPtr(this->m_hWnd, GWL_STYLE, dwStyle)) {
+		ThrowError(new SystemError(
+			EMSG("Failed to set Tree-View style from settings")));
+		return false;
+	}
+
+	return true;
 }
 
 /*
