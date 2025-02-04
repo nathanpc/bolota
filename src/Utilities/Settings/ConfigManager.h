@@ -82,6 +82,7 @@ namespace Settings {
 
 	private:
 		BaseSetting** m_settings;
+		HINSTANCE hInst;
 
 		// Singleton stuff.
 		ConfigManager();
@@ -93,8 +94,12 @@ namespace Settings {
 		static ConfigManager* Instance();
 		virtual ~ConfigManager();
 
-		// Getters
+		// Helpers
+		bool AssociateFileExtension() const;
+
+		// Getters and setters.
 		BaseSetting* Get(SettingIndex index) const;
+		void SetHInstance(HINSTANCE hInst);
 	};
 
 } // Settings

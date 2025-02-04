@@ -14,8 +14,8 @@
 #endif // defined(DEBUG) && !defined(UNDER_CE)
 
 #include "../shims/cvtutf/Unicode.h"
-#include "MainWindow.h"
 #include "Utilities/Settings/ConfigManager.h"
+#include "MainWindow.h"
 
 using namespace Settings;
 
@@ -66,6 +66,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	Bolota::ErrorStack* errorStack = Bolota::ErrorStack::Instance();
 	Bolota::FieldTypeList* listFieldTypes = Bolota::FieldTypeList::Instance();
 	configManager = Settings::ConfigManager::Instance();
+	configManager->SetHInstance(hInstance);
 
 	// Load the application class and title.
 	LoadString(hInstance, IDS_APP_CLASS, szWindowClass, 20);

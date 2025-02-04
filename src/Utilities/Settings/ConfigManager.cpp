@@ -10,17 +10,38 @@
 #include <stdlib.h>
 #include <windows.h>
 #include <commctrl.h>
+#include <shlobj.h>
 
-#include "../../Bolota/Errors/Error.h"
+#include "../../stdafx.h"
+#include "../../Bolota/Errors/SystemError.h"
 #include "Setting.h"
 
 using namespace Settings;
+
+// File association definitions.
+#define BOLOTA_PROGID   _T("Bolota.Document.1")
+#define BOLOTA_MIMETYPE _T("application/x.bolota.document")
+
+// Helpers for error checking.
+#define ThrowErrorRegOpen(name, code) \
+	if (dwResult != ERROR_SUCCESS) { \
+		ThrowError(new SystemError(EMSG("Failed to open registry " name \
+			" subkey for writing"), code)); \
+		return false; \
+	}
+#define ThrowErrorRegWrite(name, code) \
+	if (dwResult != ERROR_SUCCESS) { \
+		ThrowError(new SystemError(EMSG("Failed to write " name \
+			" subkey value to registry"), code)); \
+		return false; \
+	}
 
 /**
  * Initializes the configuration manager.
  */
 ConfigManager::ConfigManager() {
 	// Initialize internals.
+	hInst = NULL;
 	m_settings = (BaseSetting**)malloc(BOLOTA_SETTINGS_NUM *
 		sizeof(BaseSetting*));
 	if (m_settings == NULL) {
@@ -65,6 +86,113 @@ ConfigManager* ConfigManager::Instance() {
 }
 
 /**
+ * Associates our file extension with the application that's currently running.
+ * 
+ * @return TRUE if the operation was successful. FALSE otherwise.
+ */
+bool ConfigManager::AssociateFileExtension() const {
+#if 0
+	HKEY hkeyRoot = HKEY_CLASSES_ROOT;
+	LPCTSTR szClassRoot = _T("");
+#endif
+	HKEY hkeyRoot = HKEY_CURRENT_USER;
+	LPCTSTR szClassRoot = _T("Software\\Classes");
+	TCHAR szKeyPath[200];
+	TCHAR szValue[200];
+	TCHAR szExePath[MAX_PATH];
+	DWORD dwDisposition;
+	DWORD dwResult;
+	HKEY hKey;
+	DWORD dwLength;
+
+	// Get the path to ourselves.
+	GetModuleFileName(NULL, szExePath, MAX_PATH);
+	
+	/* HKEY_CLASSES_ROOT\Bolota.Document.1\ */
+	_stprintf(szKeyPath, _T("%s\\") BOLOTA_PROGID, szClassRoot);
+	dwResult = RegCreateKeyEx(hkeyRoot, szKeyPath, 0, NULL,
+		REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, &dwDisposition);
+	ThrowErrorRegOpen("PROGID", dwResult);
+	LoadString(hInst, IDS_DOC_DESC, szValue, 200);
+	dwResult = RegSetValueEx(hKey, _T(""), 0, REG_SZ, (LPBYTE)szValue,
+		(DWORD)((_tcslen(szValue) + 1) * sizeof(TCHAR)));
+	ThrowErrorRegWrite("PROGID", dwResult);
+
+	/* HKEY_CLASSES_ROOT\Bolota.Document.1\FriendlyTypeName */
+	dwLength = _stprintf(szValue, _T("@%s,%d"), szExePath, IDS_DOC_DESC);
+	dwResult = RegSetValueEx(hKey, _T("FriendlyTypeName"), 0, REG_SZ,
+		(LPBYTE)szValue, (DWORD)((dwLength + 1) * sizeof(TCHAR)));
+	ThrowErrorRegWrite("PROGID\\FriendlyTypeName", dwResult);
+	RegCloseKey(hKey);
+
+	/* HKEY_CLASSES_ROOT\Bolota.Document.1\CurVer */
+	_stprintf(szKeyPath, _T("%s\\") BOLOTA_PROGID _T("\\CurVer"), szClassRoot);
+	dwResult = RegCreateKeyEx(hkeyRoot, szKeyPath, 0, NULL,
+		REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, &dwDisposition);
+	ThrowErrorRegOpen("PROGID\\CurVer", dwResult);
+	dwLength = _stprintf(szValue, BOLOTA_PROGID);
+	dwResult = RegSetValueEx(hKey, _T(""), 0, REG_SZ, (LPBYTE)szValue,
+		(DWORD)((dwLength + 1) * sizeof(TCHAR)));
+	ThrowErrorRegWrite("PROGID\\CurVer", dwResult);
+	RegCloseKey(hKey);
+
+	/* HKEY_CLASSES_ROOT\Bolota.Document.1\DefaultIcon */
+	_stprintf(szKeyPath, _T("%s\\") BOLOTA_PROGID _T("\\DefaultIcon"), szClassRoot);
+	dwResult = RegCreateKeyEx(hkeyRoot, szKeyPath, 0, NULL,
+		REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, &dwDisposition);
+	ThrowErrorRegOpen("PROGID\\DefaultIcon", dwResult);
+	dwLength = _stprintf(szValue, _T("%s,%d"), szExePath, IDI_BOLOTA);
+	dwResult = RegSetValueEx(hKey, _T(""), 0, REG_SZ, (LPBYTE)szValue,
+		(DWORD)((dwLength + 1) * sizeof(TCHAR)));
+	ThrowErrorRegWrite("PROGID\\DefaultIcon", dwResult);
+	RegCloseKey(hKey);
+
+	/* HKEY_CLASSES_ROOT\Bolota.Document.1\shell\open\command */
+	_stprintf(szKeyPath, _T("%s\\") BOLOTA_PROGID _T("\\shell\\open\\command"),
+		szClassRoot);
+	dwResult = RegCreateKeyEx(hkeyRoot, szKeyPath, 0, NULL,
+		REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, &dwDisposition);
+	ThrowErrorRegOpen("PROGID\\shell\\open\\command", dwResult);
+	dwLength = _stprintf(szValue, _T("\"%s\" \"%%1\""), szExePath);
+	dwResult = RegSetValueEx(hKey, _T(""), 0, REG_SZ, (LPBYTE)szValue,
+		(DWORD)((dwLength + 1) * sizeof(TCHAR)));
+	ThrowErrorRegWrite("PROGID\\shell\\open\\command", dwResult);
+	RegCloseKey(hKey);
+
+	/* HKEY_CLASSES_ROOT\.bol\ */
+	_stprintf(szKeyPath, _T("%s\\.bol"), szClassRoot);
+	dwResult = RegCreateKeyEx(hkeyRoot, szKeyPath, 0, NULL,
+		REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, &dwDisposition);
+	ThrowErrorRegOpen(".bol", dwResult);
+	dwLength = _stprintf(szValue, BOLOTA_PROGID);
+	dwResult = RegSetValueEx(hKey, _T(""), 0, REG_SZ, (LPBYTE)szValue,
+		(DWORD)((dwLength + 1) * sizeof(TCHAR)));
+	ThrowErrorRegWrite(".bol", dwResult);
+
+	/* HKEY_CLASSES_ROOT\.bol\PerceivedType */
+	dwLength = _stprintf(szValue, _T("Document"));
+	dwResult = RegSetValueEx(hKey, _T("PerceivedType"), 0, REG_SZ,
+		(LPBYTE)szValue, (DWORD)((dwLength + 1) * sizeof(TCHAR)));
+	ThrowErrorRegWrite(".bol\\PerceivedType", dwResult);
+
+	/* HKEY_CLASSES_ROOT\.bol\Content Type */
+	dwLength = _stprintf(szValue, BOLOTA_MIMETYPE);
+	dwResult = RegSetValueEx(hKey, _T("Content Type"), 0, REG_SZ,
+		(LPBYTE)szValue, (DWORD)((dwLength + 1) * sizeof(TCHAR)));
+	ThrowErrorRegWrite(".bol\\Content Type", dwResult);
+	RegCloseKey(hKey);
+
+	// Ensure the shell gets notified of this change.
+	SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, NULL, NULL);
+
+	// Notify the user about the association.
+	MsgBoxInfo(NULL, _T("File Association Changed"),
+		_T("Successfully associated *.bol files with the application."));
+
+	return true;
+}
+
+/**
  * Gets the setting at the specified index.
  *
  * @param index Index where the desired setting object is.
@@ -74,3 +202,12 @@ ConfigManager* ConfigManager::Instance() {
 BaseSetting* ConfigManager::Get(SettingIndex index) const {
 	return m_settings[index];
 };
+
+/**
+ * Sets the HINSTANCE associated with the manager.
+ * 
+ * @param hInst Application's HINSTANCE.
+ */
+void ConfigManager::SetHInstance(HINSTANCE hInst) {
+	this->hInst = hInst;
+}

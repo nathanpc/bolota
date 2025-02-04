@@ -119,6 +119,7 @@ BEGIN
         MENUITEM "Inden&t",                         IDM_FIELD_INDENT        MENUITEM "D&e-indent",                      IDM_FIELD_DEINDENT    END
     POPUP "Help"
     BEGIN
+        MENUITEM "Associate File Extensio",         IDM_HELP_ASSOCIATE        MENUITEM SEPARATOR
         MENUITEM "&About...",                       IDM_HELP_ABOUT    END
 END
 
@@ -296,6 +297,7 @@ STRINGTABLE DISCARDABLE
 BEGIN
    IDS_APP_CLASS       "BOLOTA"
    IDS_APP_TITLE       "Bolota"
+   IDS_DOC_DESC        "Bolota Outliner Document"
    IDS_COPYRIGHT       "Copyright © Innove Workshop 2024-2025"
    IDS_AUTHORWEBSITE   "http://nathancampos.me/"
    IDS_TBFILELABELS    "/New/Open/Save/Refresh/Properties//"

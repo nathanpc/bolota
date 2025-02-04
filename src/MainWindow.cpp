@@ -9,6 +9,7 @@
 
 #include <commctrl.h>
 
+#include "Utilities/Settings/ConfigManager.h"
 #include "AboutDialog.h"
 
 using namespace Bolota;
@@ -246,6 +247,9 @@ LRESULT MainWindow::OnMenuCommand(UINT_PTR wmId, UINT_PTR wmEvent) {
 	case IDM_VIEW_SHOWBUTTONS:
 		// BolotaView view settings.
 		lr = m_wndBolota->ViewSettingUpdate(wmId);
+		break;
+	case IDM_HELP_ASSOCIATE:
+		Settings::ConfigManager::Instance()->AssociateFileExtension();
 		break;
 	case IDM_HELP_ABOUT:
 		// Shows the About dialog.

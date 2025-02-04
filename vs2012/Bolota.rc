@@ -124,6 +124,8 @@ BEGIN
     END
     POPUP "&Help"
     BEGIN
+        MENUITEM "Associate File Extension",        IDM_HELP_ASSOCIATE
+        MENUITEM SEPARATOR
         MENUITEM "&About...\tF1",                   IDM_HELP_ABOUT
     END
 END
@@ -335,6 +337,7 @@ STRINGTABLE DISCARDABLE
 BEGIN
    IDS_APP_CLASS       "BOLOTA"
    IDS_APP_TITLE       "Bolota"
+   IDS_DOC_DESC        "Bolota Outliner Document"
    IDS_COPYRIGHT       "Copyright © Innove Workshop 2024-2025"
    IDS_AUTHORWEBSITE   "http://nathancampos.me/"
    IDS_TBFILELABELS    "/New/Open/Save/Refresh/Properties//"

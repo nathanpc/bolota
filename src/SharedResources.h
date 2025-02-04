@@ -24,10 +24,11 @@
 #endif // !UNDER_CE
 
 // Strings
-#define IDS_COPYRIGHT                   201
-#define IDS_AUTHORWEBSITE               202
-#define IDS_TBFILELABELS                203
-#define IDS_TBTOPICSLABELS              204
+#define IDS_DOC_DESC                    201
+#define IDS_COPYRIGHT                   202
+#define IDS_AUTHORWEBSITE               203
+#define IDS_TBFILELABELS                204
+#define IDS_TBTOPICSLABELS              205
 
 // Menus
 #define IDM_BASE                        2000
@@ -51,7 +52,8 @@
 #define IDM_VIEW_SHOWSUBLINES			(IDM_BASE + 18)
 #define IDM_VIEW_SHOWROOTLINES			(IDM_BASE + 19)
 #define IDM_VIEW_SHOWBUTTONS			(IDM_BASE + 20)
-#define IDM_HELP_ABOUT					(IDM_BASE + 21)
+#define IDM_HELP_ASSOCIATE				(IDM_BASE + 21)
+#define IDM_HELP_ABOUT					(IDM_BASE + 22)
 
 // Controls (Main Window)
 #define IDC_BASE                        2100
