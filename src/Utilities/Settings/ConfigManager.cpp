@@ -119,7 +119,7 @@ bool ConfigManager::AssociateFileExtension() const {
 	ThrowErrorRegWrite("PROGID", dwResult);
 
 	/* HKEY_CLASSES_ROOT\Bolota.Document.1\FriendlyTypeName */
-	dwLength = _stprintf(szValue, _T("@%s,%d"), szExePath, IDS_DOC_DESC);
+	dwLength = _stprintf(szValue, _T("@%s,-%d"), szExePath, IDS_DOC_DESC);
 	dwResult = RegSetValueEx(hKey, _T("FriendlyTypeName"), 0, REG_SZ,
 		(LPBYTE)szValue, (DWORD)((dwLength + 1) * sizeof(TCHAR)));
 	ThrowErrorRegWrite("PROGID\\FriendlyTypeName", dwResult);
@@ -141,7 +141,7 @@ bool ConfigManager::AssociateFileExtension() const {
 	dwResult = RegCreateKeyEx(hkeyRoot, szKeyPath, 0, NULL,
 		REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, &dwDisposition);
 	ThrowErrorRegOpen("PROGID\\DefaultIcon", dwResult);
-	dwLength = _stprintf(szValue, _T("%s,%d"), szExePath, IDI_BOLOTA);
+	dwLength = _stprintf(szValue, _T("%s,-%d"), szExePath, IDI_BOLOTA);
 	dwResult = RegSetValueEx(hKey, _T(""), 0, REG_SZ, (LPBYTE)szValue,
 		(DWORD)((dwLength + 1) * sizeof(TCHAR)));
 	ThrowErrorRegWrite("PROGID\\DefaultIcon", dwResult);
