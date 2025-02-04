@@ -17,6 +17,7 @@
 #include <tchar.h>
 
 #include "../../Bolota/Errors/Error.h"
+#include "../../Bolota/Errors/SystemError.h"
 
 /**
  * Gets the subkey of the application.
@@ -117,8 +118,8 @@ namespace Settings {
 					return dwResult;
 
 				// Looks like bad things happened.
-				ThrowError(EMSG("Failed to open registry subkey for ")
-					_T("reading"));
+				ThrowError(new SystemError(EMSG("Failed to open registry ")
+					_T("subkey for reading"), dwResult));
 				return dwResult;
 			}
 
@@ -127,7 +128,8 @@ namespace Settings {
 			dwResult = RegQueryValueEx(hKey, m_szKey, NULL, &dwType, lpValue,
 				lpdwLength);
 			if ((dwResult == ERROR_SUCCESS) && (dwType != m_dwType))
-				ThrowError(EMSG("Loaded key type doesn't match expected"));
+				ThrowError(new SystemError(EMSG("Loaded key type doesn't ")
+					_T("match expected"), dwResult));
 			if (dwResult != ERROR_SUCCESS) {
 				// Key wasn't found. We should fallback to the default value.
 #if defined(UNDER_CE) && (_MSC_VER <= 1200)
@@ -137,8 +139,8 @@ namespace Settings {
 #endif // UNDER_CE && (_MSC_VER <= 1200)
 					goto closekey;
 
-				ThrowError(EMSG("Failed to get setting value from ")
-					_T("registry"));
+				ThrowError(new SystemError(EMSG("Failed to get setting value ")
+					_T("from registry"), dwResult));
 			}
 
 closekey:
@@ -181,15 +183,18 @@ closekey:
 				&dwDisposition);
 			if (dwResult != ERROR_SUCCESS) {
 				// Looks like bad things happened.
-				ThrowError(EMSG("Failed to open registry subkey for writing"));
+				ThrowError(new SystemError(EMSG("Failed to open registry ")
+					_T("subkey for writing"), dwResult));
 				return false;
 			}
 
 			// Get value from registry.
 			dwResult = RegSetValueEx(hKey, m_szKey, 0, m_dwType, lpData,
 				dwLength);
-			if (dwResult != ERROR_SUCCESS)
-				ThrowError(EMSG("Failed to set setting value to registry"));
+			if (dwResult != ERROR_SUCCESS) {
+				ThrowError(new SystemError(EMSG("Failed to set setting value ")
+					_T("to registry"), dwResult));
+			}
 
 			// Close the key handle.
 			RegCloseKey(hKey);
