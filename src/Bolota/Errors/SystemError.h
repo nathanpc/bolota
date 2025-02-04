@@ -26,11 +26,12 @@ protected:
 	TCHAR *m_szLastErrorMessage;
 
 	// Constructor helper.
-	void Initialize(const TCHAR *szMessage);
+	void Initialize(const TCHAR *szMessage, DWORD dwError);
 
 public:
 	// Constructors and destructors.
-	SystemError(const TCHAR *szMessage);
+	SystemError(const TCHAR* szMessage);
+	SystemError(const TCHAR* szMessage, DWORD dwError);
 	SystemError();
 	virtual ~SystemError();
 
