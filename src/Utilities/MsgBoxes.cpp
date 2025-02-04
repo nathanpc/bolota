@@ -65,21 +65,17 @@ int MsgBoxError(HWND hwndParent, LPCTSTR szTitle, LPCTSTR szText) {
 }
 
 /**
- * Win32 last error message box.
+ * Win32 system error code message box.
  *
  * @param hwndParent Parent window's handle or NULL if it doesn't have one.
+ * @param dwError    System error code for FormatMessage.
  *
  * @return ID of the button that was clicked by the user or 0 if no error was
  *         reported.
  */
-int MsgBoxLastError(HWND hwndParent) {
-	DWORD dwError;
+int MsgBoxSystemError(HWND hwndParent, DWORD dwError) {
 	LPTSTR szError;
 	int nRet;
-
-	// Get the last error code.
-	if ((dwError = GetLastError()) == 0)
-		return 0;
 
 	// Get the detailed description of the error.
 	FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM |
@@ -91,6 +87,24 @@ int MsgBoxLastError(HWND hwndParent) {
 	LocalFree(szError);
 
 	return nRet;
+}
+
+/**
+ * Win32 last error message box.
+ *
+ * @param hwndParent Parent window's handle or NULL if it doesn't have one.
+ *
+ * @return ID of the button that was clicked by the user or 0 if no error was
+ *         reported.
+ */
+int MsgBoxLastError(HWND hwndParent) {
+	DWORD dwError;
+
+	// Get the last error code.
+	if ((dwError = GetLastError()) == 0)
+		return 0;
+
+	return MsgBoxSystemError(hwndParent, dwError);
 }
 
 /**
