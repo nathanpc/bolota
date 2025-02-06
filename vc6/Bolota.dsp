@@ -470,6 +470,14 @@ SOURCE=..\src\Utilities\Settings\Setting.h
 # End Group
 # Begin Source File
 
+SOURCE=..\src\Utilities\Capabilities.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\Utilities\Capabilities.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\Utilities\DialogWindow.cpp
 # End Source File
 # Begin Source File

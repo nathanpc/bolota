@@ -754,6 +754,14 @@
 			Name="Utilities"
 			>
 			<File
+				RelativePath="..\src\Utilities\Capabilities.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\Utilities\Capabilities.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\Utilities\DialogWindow.cpp"
 				>
 			</File>

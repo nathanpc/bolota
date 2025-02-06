@@ -3309,6 +3309,8 @@ DEP_CPP_MAINW=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\Settings\ConfigManager.h"\
+	"..\src\Utilities\Settings\Setting.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	"..\winmobile\wmstdafx.h"\
 	".\STL\wce_defs.h"\
@@ -3849,6 +3851,8 @@ DEP_CPP_BOLOT=\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\ImageList.h"\
 	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\Settings\ConfigManager.h"\
+	"..\src\Utilities\Settings\Setting.h"\
 	"..\src\Utilities\WindowUtilities.h"\
 	"..\winmobile\wmstdafx.h"\
 	".\STL\wce_defs.h"\
@@ -4605,12 +4609,24 @@ DEP_CPP_CONFI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_CONFI=\
+	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
 	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\Settings\ConfigManager.h"\
 	"..\src\Utilities\Settings\Setting.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	"..\winmobile\wmstdafx.h"\
 	".\STL\wce_defs.h"\
+	{$(INCLUDE)}"ceconfig.h"\
+	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_CONFI=\
+	"..\winmobile\DeviceResolutionAware.h"\
 	
 
 !ENDIF 
@@ -4704,8 +4720,23 @@ DEP_CPP_SETTI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_SETTI=\
+	"..\shims\win32\newcpp.h"\
+	"..\shims\win32\ssize_t.h"\
+	"..\shims\win32\stdint.h"\
 	"..\src\Bolota\Errors\Error.h"\
+	"..\src\Bolota\Errors\SystemError.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
+	"..\src\Utilities\MsgBoxes.h"\
 	"..\src\Utilities\Settings\Setting.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	"..\winmobile\wmstdafx.h"\
+	".\STL\wce_defs.h"\
+	{$(INCLUDE)}"ceconfig.h"\
+	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_SETTI=\
+	"..\winmobile\DeviceResolutionAware.h"\
 	
 
 !ENDIF 
@@ -4716,6 +4747,89 @@ DEP_CPP_SETTI=\
 SOURCE=..\src\Utilities\Settings\Setting.h
 # End Source File
 # End Group
+# Begin Source File
+
+SOURCE=..\src\Utilities\Capabilities.cpp
+
+!IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
+
+DEP_CPP_CAPAB=\
+	"..\src\Utilities\Capabilities.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
+
+DEP_CPP_CAPAB=\
+	"..\src\Utilities\Capabilities.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
+
+DEP_CPP_CAPAB=\
+	"..\src\Utilities\Capabilities.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
+
+DEP_CPP_CAPAB=\
+	"..\src\Utilities\Capabilities.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
+
+DEP_CPP_CAPAB=\
+	"..\src\Utilities\Capabilities.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
+
+DEP_CPP_CAPAB=\
+	"..\src\Utilities\Capabilities.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
+
+DEP_CPP_CAPAB=\
+	"..\src\Utilities\Capabilities.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
+
+DEP_CPP_CAPAB=\
+	"..\src\Utilities\Capabilities.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
+
+DEP_CPP_CAPAB=\
+	"..\src\Utilities\Capabilities.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
+
+DEP_CPP_CAPAB=\
+	"..\src\Utilities\Capabilities.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
+
+DEP_CPP_CAPAB=\
+	"..\src\Utilities\Capabilities.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
+
+DEP_CPP_CAPAB=\
+	"..\src\Utilities\Capabilities.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\src\Utilities\Capabilities.h
+# End Source File
 # Begin Source File
 
 SOURCE=..\src\Utilities\DialogWindow.cpp
@@ -4800,11 +4914,22 @@ DEP_CPP_DIALO=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_DIALO=\
+	"..\shims\win32\newcpp.h"\
 	"..\shims\win32\ssize_t.h"\
 	"..\shims\win32\stdint.h"\
+	"..\src\Bolota\Errors\Error.h"\
+	"..\src\SharedResources.h"\
+	"..\src\stdafx.h"\
 	"..\src\Utilities\DialogWindow.h"\
 	"..\src\Utilities\MsgBoxes.h"\
+	"..\src\Utilities\WindowUtilities.h"\
+	"..\winmobile\wmstdafx.h"\
 	".\STL\wce_defs.h"\
+	{$(INCLUDE)}"ceconfig.h"\
+	{$(INCLUDE)}"sipapi.h"\
+	
+NODEP_CPP_DIALO=\
+	"..\winmobile\DeviceResolutionAware.h"\
 	
 
 !ENDIF 

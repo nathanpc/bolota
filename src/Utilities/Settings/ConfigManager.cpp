@@ -26,14 +26,14 @@ using namespace Settings;
 // Helpers for error checking.
 #define ThrowErrorRegOpen(name, code) \
 	if (dwResult != ERROR_SUCCESS) { \
-		ThrowError(new SystemError(EMSG("Failed to open registry " name \
-			" subkey for writing"), code)); \
+		ThrowError(new SystemError(EMSG("Failed to open registry ") _T(name) \
+			_T(" subkey for writing"), code)); \
 		return false; \
 	}
 #define ThrowErrorRegWrite(name, code) \
 	if (dwResult != ERROR_SUCCESS) { \
-		ThrowError(new SystemError(EMSG("Failed to write " name \
-			" subkey value to registry"), code)); \
+		ThrowError(new SystemError(EMSG("Failed to write subkey") _T(name) \
+			_T(" value to registry"), code)); \
 		return false; \
 	}
 
@@ -93,7 +93,7 @@ ConfigManager* ConfigManager::Instance() {
  */
 bool ConfigManager::AssociateFileExtension() const {
 	HKEY hkeyRoot = HKEY_CLASSES_ROOT;
-	TCHAR szClassRoot[17] = _T("");
+	TCHAR szClassRoot[18] = _T("");
 	TCHAR szKeyPath[200];
 	TCHAR szValue[200];
 	TCHAR szExePath[MAX_PATH];
@@ -102,17 +102,19 @@ bool ConfigManager::AssociateFileExtension() const {
 	HKEY hKey;
 	DWORD dwLength;
 
+#ifndef UNDER_CE
 	// Use the user registry keys introduced in Windows Vista.
 	if (Capability::AtLeastWindowsVista()) {
 		hkeyRoot = HKEY_CURRENT_USER;
-		_tcscpy(szClassRoot, _T("Software\\Classes"));
+		_tcscpy(szClassRoot, _T("Software\\Classes\\"));
 	}
+#endif // !UNDER_CE
 
 	// Get the path to ourselves.
 	GetModuleFileName(NULL, szExePath, MAX_PATH);
 	
 	/* HKEY_CLASSES_ROOT\Bolota.Document.1\ */
-	_stprintf(szKeyPath, _T("%s\\") BOLOTA_PROGID, szClassRoot);
+	_stprintf(szKeyPath, _T("%s") BOLOTA_PROGID, szClassRoot);
 	dwResult = RegCreateKeyEx(hkeyRoot, szKeyPath, 0, NULL,
 		REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, &dwDisposition);
 	ThrowErrorRegOpen("PROGID", dwResult);
@@ -129,7 +131,7 @@ bool ConfigManager::AssociateFileExtension() const {
 	RegCloseKey(hKey);
 
 	/* HKEY_CLASSES_ROOT\Bolota.Document.1\CurVer */
-	_stprintf(szKeyPath, _T("%s\\") BOLOTA_PROGID _T("\\CurVer"), szClassRoot);
+	_stprintf(szKeyPath, _T("%s") BOLOTA_PROGID _T("\\CurVer"), szClassRoot);
 	dwResult = RegCreateKeyEx(hkeyRoot, szKeyPath, 0, NULL,
 		REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, &dwDisposition);
 	ThrowErrorRegOpen("PROGID\\CurVer", dwResult);
@@ -140,7 +142,7 @@ bool ConfigManager::AssociateFileExtension() const {
 	RegCloseKey(hKey);
 
 	/* HKEY_CLASSES_ROOT\Bolota.Document.1\DefaultIcon */
-	_stprintf(szKeyPath, _T("%s\\") BOLOTA_PROGID _T("\\DefaultIcon"), szClassRoot);
+	_stprintf(szKeyPath, _T("%s") BOLOTA_PROGID _T("\\DefaultIcon"), szClassRoot);
 	dwResult = RegCreateKeyEx(hkeyRoot, szKeyPath, 0, NULL,
 		REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, &dwDisposition);
 	ThrowErrorRegOpen("PROGID\\DefaultIcon", dwResult);
@@ -151,7 +153,7 @@ bool ConfigManager::AssociateFileExtension() const {
 	RegCloseKey(hKey);
 
 	/* HKEY_CLASSES_ROOT\Bolota.Document.1\shell\open\command */
-	_stprintf(szKeyPath, _T("%s\\") BOLOTA_PROGID _T("\\shell\\open\\command"),
+	_stprintf(szKeyPath, _T("%s") BOLOTA_PROGID _T("\\shell\\open\\command"),
 		szClassRoot);
 	dwResult = RegCreateKeyEx(hkeyRoot, szKeyPath, 0, NULL,
 		REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, &dwDisposition);
@@ -163,7 +165,7 @@ bool ConfigManager::AssociateFileExtension() const {
 	RegCloseKey(hKey);
 
 	/* HKEY_CLASSES_ROOT\.bol\ */
-	_stprintf(szKeyPath, _T("%s\\.bol"), szClassRoot);
+	_stprintf(szKeyPath, _T("%s.bol"), szClassRoot);
 	dwResult = RegCreateKeyEx(hkeyRoot, szKeyPath, 0, NULL,
 		REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, &dwDisposition);
 	ThrowErrorRegOpen(".bol", dwResult);
