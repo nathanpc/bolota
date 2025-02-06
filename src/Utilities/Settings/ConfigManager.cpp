@@ -142,7 +142,8 @@ bool ConfigManager::AssociateFileExtension() const {
 	RegCloseKey(hKey);
 
 	/* HKEY_CLASSES_ROOT\Bolota.Document.1\DefaultIcon */
-	_stprintf(szKeyPath, _T("%s") BOLOTA_PROGID _T("\\DefaultIcon"), szClassRoot);
+	_stprintf(szKeyPath, _T("%s") BOLOTA_PROGID _T("\\DefaultIcon"),
+		szClassRoot);
 	dwResult = RegCreateKeyEx(hkeyRoot, szKeyPath, 0, NULL,
 		REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, &dwDisposition);
 	ThrowErrorRegOpen("PROGID\\DefaultIcon", dwResult);
@@ -158,7 +159,11 @@ bool ConfigManager::AssociateFileExtension() const {
 	dwResult = RegCreateKeyEx(hkeyRoot, szKeyPath, 0, NULL,
 		REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, &dwDisposition);
 	ThrowErrorRegOpen("PROGID\\shell\\open\\command", dwResult);
+#ifndef UNDER_CE
 	dwLength = _stprintf(szValue, _T("\"%s\" \"%%1\""), szExePath);
+#else
+	dwLength = _stprintf(szValue, _T("\"%s\" %%1"), szExePath);
+#endif // !UNDER_CE
 	dwResult = RegSetValueEx(hKey, _T(""), 0, REG_SZ, (LPBYTE)szValue,
 		(DWORD)((dwLength + 1) * sizeof(TCHAR)));
 	ThrowErrorRegWrite("PROGID\\shell\\open\\command", dwResult);
@@ -187,8 +192,10 @@ bool ConfigManager::AssociateFileExtension() const {
 	ThrowErrorRegWrite(".bol\\Content Type", dwResult);
 	RegCloseKey(hKey);
 
+#ifndef UNDER_CE
 	// Ensure the shell gets notified of this change.
 	SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, NULL, NULL);
+#endif // !UNDER_CE
 
 	// Notify the user about the association.
 	MsgBoxInfo(NULL, _T("File Association Changed"),

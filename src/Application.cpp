@@ -217,15 +217,20 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 #ifndef UNDER_CE
 	int numArgs = 0;
 	LPTSTR *lpArgs = CommandLineToArgvW(GetCommandLine(), &numArgs);
-	LPCTSTR szAddress = NULL;
+	LPCTSTR szFilename = NULL;
 	if (numArgs > 1)
-		szAddress = lpArgs[1];
-	wndMain = new MainWindow(hInstance, szAddress);
+		szFilename = lpArgs[1];
+	wndMain = new MainWindow(hInstance, szFilename);
 	LocalFree(lpArgs);
 	lpArgs = NULL;
-	szAddress = NULL;
+	szFilename = NULL;
 #else
-	wndMain = new MainWindow(hInstance, NULL);
+#ifdef GetCommandLine
+	LPTSTR szFilename = GetCommandLine();
+#else
+	LPTSTR szFilename = lpCmdLine;
+#endif // GetCommandLine
+	wndMain = new MainWindow(hInstance, (*szFilename) ? szFilename : NULL);
 #endif // !UNDER_CE
 
 	// Create the main window.
