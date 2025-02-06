@@ -50,6 +50,7 @@ public:
 	bool OnClose() const;
 
 	// Getters
+	BolotaView* DocumentViewer() const;
 	HMENU Menu() const;
 #ifdef UNDER_CE
 	WinCE::CommandBar* CommandBar() const;

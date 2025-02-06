@@ -19,6 +19,9 @@
 
 using namespace Settings;
 
+// Misc. definitions.
+#define CD_BOLOTA_OPENDOCUMENT (1001)
+
 // Global variables.
 static ConfigManager* configManager = NULL;
 static MainWindow *wndMain = NULL;
@@ -74,6 +77,8 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	// Initialize the application.
 	rc = RegisterApplication(hInstance);
+	if (rc == CD_BOLOTA_OPENDOCUMENT)
+		goto terminate;
 	if (rc == 0) {
 		MsgBoxError(NULL, _T("Error Registering Class"),
 			_T("An error occurred while trying to register the application's ")
@@ -148,8 +153,22 @@ ATOM RegisterApplication(HINSTANCE hInstance) {
 	// Only allow one instance of the application under Pocket PC.
 	HWND hWnd = FindWindow(szWindowClass, NULL);
 	if (hWnd) {
+		// Switch to the previous instance window.
 		SetForegroundWindow((HWND)(((DWORD)hWnd) | 0x01));
-		return FALSE;
+
+		// Check if we actually got a filename to send over.
+		LPTSTR szFilename = GetCommandLine();
+		if (*szFilename == _T('\0'))
+			return CD_BOLOTA_OPENDOCUMENT;
+
+		// Send filename to previous instance.
+		COPYDATASTRUCT cds = {0};
+		cds.dwData = CD_BOLOTA_OPENDOCUMENT;
+		cds.lpData = szFilename;
+		cds.cbData = (_tcslen(szFilename) + 1) * sizeof(TCHAR);
+		SendMessage(hWnd, WM_COPYDATA, NULL, (LPARAM)&cds);
+
+		return CD_BOLOTA_OPENDOCUMENT;
 	}
 #endif // SHELL_AYGSHELL
 
@@ -338,6 +357,8 @@ LRESULT CALLBACK MainWindowProc(HWND hWnd, UINT wMsg, WPARAM wParam,
 				&wndMain->CommandBar()->SHActivateInfo());
 			break;
 #endif // SHELL_AYGSHELL
+		case WM_COPYDATA:
+			return WndMainCopyData(hWnd, wMsg, wParam, lParam);
 		case WM_CLOSE:
 			return WndMainClose(hWnd, wMsg, wParam, lParam);
 		case WM_DESTROY:
@@ -451,6 +472,26 @@ LRESULT WndMainSize(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
 
 	// Resize child windows.
 	wndMain->ResizeWindows(hWnd);
+
+	return DefWindowProc(hWnd, wMsg, wParam, lParam);
+}
+
+/**
+ * Process the WM_COPYDATA message for the window.
+ *
+ * @param hWnd   Window handler.
+ * @param wMsg   Message type.
+ * @param wParam This parameter is not used.
+ * @param lParam This parameter is not used.
+ *
+ * @return 0 if everything worked.
+ */
+LRESULT WndMainCopyData(HWND hWnd, UINT wMsg, WPARAM wParam, LPARAM lParam) {
+	COPYDATASTRUCT *cds = (COPYDATASTRUCT*)lParam;
+
+	// We are getting a document filename to open.
+	if (cds->dwData == CD_BOLOTA_OPENDOCUMENT)
+		wndMain->DocumentViewer()->OpenDocument((LPTSTR)cds->lpData);
 
 	return DefWindowProc(hWnd, wMsg, wParam, lParam);
 }

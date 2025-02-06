@@ -319,6 +319,15 @@ bool MainWindow::OnClose() const {
  */
 
 /**
+ * Gets the document viewer window object.
+ *
+ * @return Bolota document viewer object.
+ */
+BolotaView* MainWindow::DocumentViewer() const {
+	return m_wndBolota;
+}
+
+/**
  * Gets the menu associated with the window.
  * 
  * @return The handle to the associated menu.
