@@ -159,6 +159,7 @@
     <ClInclude Include="..\src\PropertiesDialog.h" />
     <ClInclude Include="..\src\SharedResources.h" />
     <ClInclude Include="..\src\stdafx.h" />
+    <ClInclude Include="..\src\Utilities\Capabilities.h" />
     <ClInclude Include="..\src\Utilities\DialogWindow.h" />
     <ClInclude Include="..\src\Utilities\ImageList.h" />
     <ClInclude Include="..\src\Utilities\MsgBoxes.h" />
@@ -231,6 +232,7 @@
     <ClCompile Include="..\src\MainWindow.cpp" />
     <ClCompile Include="..\src\PropertiesDialog.cpp" />
     <ClCompile Include="..\src\stdafx.cpp" />
+    <ClCompile Include="..\src\Utilities\Capabilities.cpp" />
     <ClCompile Include="..\src\Utilities\DialogWindow.cpp" />
     <ClCompile Include="..\src\Utilities\ImageList.cpp" />
     <ClCompile Include="..\src\Utilities\MsgBoxes.cpp" />

@@ -247,6 +247,9 @@
     <ClInclude Include="..\src\Utilities\Settings\Setting.h">
       <Filter>Utilities\Settings</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Utilities\Capabilities.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Utilities\DialogWindow.cpp">
@@ -326,6 +329,9 @@
     </ClCompile>
     <ClCompile Include="..\src\Utilities\Settings\Setting.cpp">
       <Filter>Utilities\Settings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Utilities\Capabilities.cpp">
+      <Filter>Utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

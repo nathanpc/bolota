@@ -14,6 +14,7 @@
 
 #include "../../stdafx.h"
 #include "../../Bolota/Errors/SystemError.h"
+#include "../Capabilities.h"
 #include "Setting.h"
 
 using namespace Settings;
@@ -91,12 +92,8 @@ ConfigManager* ConfigManager::Instance() {
  * @return TRUE if the operation was successful. FALSE otherwise.
  */
 bool ConfigManager::AssociateFileExtension() const {
-#if 0
 	HKEY hkeyRoot = HKEY_CLASSES_ROOT;
-	LPCTSTR szClassRoot = _T("");
-#endif
-	HKEY hkeyRoot = HKEY_CURRENT_USER;
-	LPCTSTR szClassRoot = _T("Software\\Classes");
+	TCHAR szClassRoot[17] = _T("");
 	TCHAR szKeyPath[200];
 	TCHAR szValue[200];
 	TCHAR szExePath[MAX_PATH];
@@ -104,6 +101,12 @@ bool ConfigManager::AssociateFileExtension() const {
 	DWORD dwResult;
 	HKEY hKey;
 	DWORD dwLength;
+
+	// Use the user registry keys introduced in Windows Vista.
+	if (Capability::AtLeastWindowsVista()) {
+		hkeyRoot = HKEY_CURRENT_USER;
+		_tcscpy(szClassRoot, _T("Software\\Classes"));
+	}
 
 	// Get the path to ourselves.
 	GetModuleFileName(NULL, szExePath, MAX_PATH);
