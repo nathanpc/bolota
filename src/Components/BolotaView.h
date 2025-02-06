@@ -43,7 +43,8 @@ public:
 
 	// Document handling.
 	void NewDocument();
-	void OpenDocument(Bolota::Document *doc);
+	bool OpenDocument(Bolota::Document *doc);
+	bool OpenDocument(LPCTSTR szFilename);
 	void CloseDocument();
 
 	// Event handling.

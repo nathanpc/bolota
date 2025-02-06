@@ -216,7 +216,7 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 	// Initialize main window object.
 #ifndef UNDER_CE
 	int numArgs = 0;
-	LPTSTR *lpArgs = CommandLineToArgvW(lpCmdLine, &numArgs);
+	LPTSTR *lpArgs = CommandLineToArgvW(GetCommandLine(), &numArgs);
 	LPCTSTR szAddress = NULL;
 	if (numArgs > 1)
 		szAddress = lpArgs[1];

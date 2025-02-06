@@ -29,6 +29,7 @@ private:
 #else
 	WinCE::CommandBar *m_cmdBar;
 #endif // !UNDER_CE
+	LPTSTR m_szInitialDocPath;
 
 public:
 	// Global handles.
@@ -36,7 +37,7 @@ public:
 	HWND hWnd;
 
 	// Constructors and destructors.
-	MainWindow(HINSTANCE hInstance, LPCTSTR szURI);
+	MainWindow(HINSTANCE hInstance, LPCTSTR szFilename);
 	virtual ~MainWindow();
 
 	// Controls setup.

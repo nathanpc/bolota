@@ -111,11 +111,13 @@ void BolotaView::NewDocument() {
  *
  * @param doc Document to be associated with the view. Will take ownership of
  *            it and control its allocation.
+ * 
+ * @return TRUE if the operation was successful. FALSE otherwise.
  */
-void BolotaView::OpenDocument(Document *doc) {
+bool BolotaView::OpenDocument(Document *doc) {
 	// Prevent the user from doing something stupid.
 	if (!Close())
-		return;
+		return true;
 
 	// Close the current document first and take ownership of the new one.
 	CloseDocument();
@@ -124,6 +126,46 @@ void BolotaView::OpenDocument(Document *doc) {
 	// Populate the view and flag saved changes
 	ReloadView(doc->FirstTopic());
 	SetDirty(false);
+
+	return true;
+}
+
+/**
+ * Associates a document with the view and populates it.
+ *
+ * @param doc Document to be associated with the view. Will take ownership of
+ *            it and control its allocation.
+ * 
+ * @return TRUE if the operation was successful. FALSE otherwise.
+ */
+bool BolotaView::OpenDocument(LPCTSTR szFilename) {
+	// Prevent the user from doing something stupid.
+	if (!Close())
+		return true;
+
+	// Read the file into a document object.
+	Document* doc = Document::ReadFile(szFilename);
+	if (doc == BOLOTA_ERR_NULL) {
+		MsgBoxBolotaError(m_hwndParent, _T("Cannot open document"));
+		return false;
+	}
+
+	// Update the Tree-View with the contents of the document.
+	OpenDocument(doc);
+
+	// Set the window title to match the filename.
+#ifndef UNDER_CE
+	SetWindowText(m_hwndParent, PathFindFileName(szFilename));
+#else
+	SHFILEINFO sfi = { 0 };
+	SHGetFileInfo(szFilename, -1, &sfi, sizeof(SHFILEINFO), SHGFI_DISPLAYNAME);
+	SetWindowText(m_hwndParent, sfi.szDisplayName);
+#endif // !UNDER_CE
+
+	// Flag saved changes.
+	SetDirty(false);
+
+	return true;
 }
 
 /**
@@ -898,25 +940,7 @@ bool BolotaView::OpenFile() {
 	if (!ShowFileDialog(szFilename, false))
 		return true;
 
-	// Open the document and set the window title.
-	Document* doc = Document::ReadFile(szFilename);
-	if (doc == BOLOTA_ERR_NULL) {
-		MsgBoxBolotaError(m_hwndParent, _T("Cannot open document"));
-		return false;
-	}
-	OpenDocument(doc);
-#ifndef UNDER_CE
-	SetWindowText(m_hwndParent, PathFindFileName(szFilename));
-#else
-	SHFILEINFO sfi = {0};
-	SHGetFileInfo(szFilename, -1, &sfi, sizeof(SHFILEINFO), SHGFI_DISPLAYNAME);
-	SetWindowText(m_hwndParent, sfi.szDisplayName);
-#endif // !UNDER_CE
-
-	// Flag saved changes.
-	SetDirty(false);
-
-	return true;
+	return OpenDocument(szFilename);
 }
 
 /**

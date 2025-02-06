@@ -25,15 +25,16 @@ using namespace Bolota;
 /**
  * Constructs the main window object.
  *
- * @param hInstance Application instance.
- * @param szURI     Optional. Initial URI to load on open.
+ * @param hInstance  Application instance.
+ * @param szFilename Optional. Document to load on open.
  */
-MainWindow::MainWindow(HINSTANCE hInstance, LPCTSTR szURI) {
+MainWindow::MainWindow(HINSTANCE hInstance, LPCTSTR szFilename) {
 	// Initialize important stuff.
 	this->hInst = hInstance;
 
 	// Initialize default values.
 	this->hWnd = NULL;
+	m_szInitialDocPath = _tcsdup(szFilename);
 	m_wndBolota = NULL;
 #ifndef UNDER_CE
 	m_toolBar = NULL;
@@ -46,6 +47,11 @@ MainWindow::MainWindow(HINSTANCE hInstance, LPCTSTR szURI) {
  * Cleans up everything that was allocated by the main window.
  */
 MainWindow::~MainWindow() {
+	// Dispose of the initial document path.
+	if (m_szInitialDocPath)
+		free(m_szInitialDocPath);
+	m_szInitialDocPath = NULL;
+
 	// Destroy the document viewer.
 	delete m_wndBolota;
 	m_wndBolota = NULL;
@@ -126,10 +132,18 @@ BOOL MainWindow::SetupControls(HWND hWnd) {
 		MsgBoxBolotaError(hWnd, _T("Failed to initialize document viewer"));
 		return FALSE;
 	}
-	m_wndBolota->OpenExampleDocument();
-	if (BolotaHasError) {
-		MsgBoxBolotaError(hWnd, _T("Failed to open example document"));
-		return FALSE;
+
+	// Open the initial document.
+	if (m_szInitialDocPath) {
+		m_wndBolota->OpenDocument(m_szInitialDocPath);
+		free(m_szInitialDocPath);
+		m_szInitialDocPath = NULL;
+	} else {
+		m_wndBolota->OpenExampleDocument();
+		if (BolotaHasError) {
+			MsgBoxBolotaError(hWnd, _T("Failed to open example document"));
+			return FALSE;
+		}
 	}
 
 	return TRUE;
