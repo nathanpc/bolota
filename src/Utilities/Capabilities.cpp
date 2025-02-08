@@ -39,3 +39,14 @@ bool Capability::AtLeastWindowsVista() {
 	GetOSVersionInfo();
 	return osvi.dwMajorVersion >= 6;
 }
+
+/**
+ * Checks wheter the current running system version is Windows XP or later.
+ * 
+ * @return TRUE if the running system version is at least Windows XP.
+ */
+bool Capability::AtLeastWindowsXP() {
+	GetOSVersionInfo();
+	return (osvi.dwMajorVersion >= 5) ||
+		((osvi.dwMajorVersion >= 5) && (osvi.dwMinorVersion >= 1));
+}

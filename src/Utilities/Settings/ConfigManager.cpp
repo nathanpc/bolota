@@ -97,6 +97,7 @@ bool ConfigManager::AssociateFileExtension() const {
 	TCHAR szKeyPath[200];
 	TCHAR szValue[200];
 	TCHAR szExePath[MAX_PATH];
+	int resFileIcon;
 	DWORD dwDisposition;
 	DWORD dwResult;
 	HKEY hKey;
@@ -109,6 +110,22 @@ bool ConfigManager::AssociateFileExtension() const {
 		_tcscpy(szClassRoot, _T("Software\\Classes\\"));
 	}
 #endif // !UNDER_CE
+
+#ifdef UNDER_CE
+	// Use a more modern file icon on Windows Mobile.
+	#if _MSC_VER >= 1400
+	resFileIcon = IDI_FILE_XP;
+	#else
+	resFileIcon = IDI_FILE_95;
+	#endif // _MSC_VER >= 1400
+#else
+	// Determine the correct file icon for the platform.
+	if (Capability::AtLeastWindowsXP()) {
+		resFileIcon = IDI_FILE_XP;
+	} else {
+		resFileIcon = IDI_FILE_95;
+	}
+#endif // UNDER_CE
 
 	// Get the path to ourselves.
 	GetModuleFileName(NULL, szExePath, MAX_PATH);
@@ -147,7 +164,7 @@ bool ConfigManager::AssociateFileExtension() const {
 	dwResult = RegCreateKeyEx(hkeyRoot, szKeyPath, 0, NULL,
 		REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, &dwDisposition);
 	ThrowErrorRegOpen("PROGID\\DefaultIcon", dwResult);
-	dwLength = _stprintf(szValue, _T("%s,-%d"), szExePath, IDI_BOLOTA);
+	dwLength = _stprintf(szValue, _T("%s,-%d"), szExePath, resFileIcon);
 	dwResult = RegSetValueEx(hKey, _T(""), 0, REG_SZ, (LPBYTE)szValue,
 		(DWORD)((dwLength + 1) * sizeof(TCHAR)));
 	ThrowErrorRegWrite("PROGID\\DefaultIcon", dwResult);

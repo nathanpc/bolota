@@ -685,6 +685,18 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="File Icons"
+				>
+				<File
+					RelativePath="..\icons\files\bolota_doc_95.ico"
+					>
+				</File>
+				<File
+					RelativePath="..\icons\files\bolota_doc_xp.ico"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Windows and Dialogs"

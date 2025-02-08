@@ -228,6 +228,18 @@ SOURCE=..\icons\fields\Woman.ico
 SOURCE=..\icons\fields\Wrench.ico
 # End Source File
 # End Group
+# Begin Group "File Icons"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\icons\files\bolota_doc_95.ico
+# End Source File
+# Begin Source File
+
+SOURCE=..\icons\files\bolota_doc_xp.ico
+# End Source File
+# End Group
 # Begin Source File
 
 SOURCE=..\icons\blank.ico

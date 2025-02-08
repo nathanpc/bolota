@@ -23,6 +23,10 @@
 #define IDC_STATIC                      -1
 #endif // !UNDER_CE
 
+// File icons.
+#define IDI_FILE_95                     130
+#define IDI_FILE_XP                     131
+
 // Strings
 #define IDS_DOC_DESC                    201
 #define IDS_COPYRIGHT                   202

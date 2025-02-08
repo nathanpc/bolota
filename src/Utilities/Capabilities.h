@@ -14,6 +14,7 @@
 
 namespace Capability {
 	bool AtLeastWindowsVista();
+	bool AtLeastWindowsXP();
 }
 
 #endif // _UTILITIES_CAPABILITIES_H
