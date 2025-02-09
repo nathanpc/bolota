@@ -35,6 +35,7 @@ IDI_SMALL               ICON  DISCARDABLE       "..\\icons\\bolota-icon.ico"
 // File icons.
 IDI_FILE_95             ICON  DISCARDABLE       "..\\icons\\files\\bolota_doc_95.ico"
 IDI_FILE_XP             ICON  DISCARDABLE       "..\\icons\\files\\bolota_doc_xp.ico"
+IDI_FILE_VISTA          ICON  DISCARDABLE       "..\\icons\\files\\bolota_doc_vista.ico"
 
 // Blank icon.
 IDI_BLANK               ICON  DISCARDABLE       "..\\icons\\blank.ico"

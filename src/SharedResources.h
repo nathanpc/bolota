@@ -26,6 +26,7 @@
 // File icons.
 #define IDI_FILE_95                     130
 #define IDI_FILE_XP                     131
+#define IDI_FILE_VISTA                  132
 
 // Strings
 #define IDS_DOC_DESC                    201

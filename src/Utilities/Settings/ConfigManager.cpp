@@ -120,7 +120,9 @@ bool ConfigManager::AssociateFileExtension() const {
 	#endif // _MSC_VER >= 1400
 #else
 	// Determine the correct file icon for the platform.
-	if (Capability::AtLeastWindowsXP()) {
+	if (Capability::AtLeastWindowsVista()) {
+		resFileIcon = IDI_FILE_VISTA;
+	} else if (Capability::AtLeastWindowsXP()) {
 		resFileIcon = IDI_FILE_XP;
 	} else {
 		resFileIcon = IDI_FILE_95;
