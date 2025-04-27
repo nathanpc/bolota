@@ -15,11 +15,14 @@
 
 #ifdef __cplusplus
 #include <stdint.h>
-#include <windows.h>
 #include <vector>
-#if _MSC_VER <= 1200
-#include <newcpp.h>
-#endif // _MSC_VER == 1200
+
+#ifdef _WIN32
+	#include <windows.h>
+	#if _MSC_VER <= 1200
+		#include <newcpp.h>
+	#endif // _MSC_VER == 1200
+#endif // _WIN32
 
 #include "UString.h"
 

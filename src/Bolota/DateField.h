@@ -96,12 +96,14 @@ namespace Bolota {
 			Field(parent, BOLOTA_TYPE_DATE, wstr) {
 			InitializeDate(ts);
 		};
-		
+
 		// Helpers
 		virtual void Copy(const DateField *field, bool bReplace);
 		static DateField* Now();
 		void RefreshText();
+#ifdef _WIN32
 		SYSTEMTIME ToSystemTime() const;
+#endif // _WIN32
 
 		// Overrides
 		uint16_t FieldLength() const override;
@@ -111,7 +113,9 @@ namespace Bolota {
 		// Getters and setters.
 		timestamp_t Timestamp() const;
 		void SetTimestamp(const timestamp_t *ts);
+#ifdef _WIN32
 		void SetTimestamp(const SYSTEMTIME *st);
+#endif // _WIN32
 
 	protected:
 		// Helpers

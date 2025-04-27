@@ -87,6 +87,7 @@ void DateField::RefreshText() {
 	SetTextOwner(szTimestamp);
 }
 
+#ifdef _WIN32
 /**
  * Gets the field's timestamp in the system's native Date-Time format.
  *
@@ -104,6 +105,7 @@ SYSTEMTIME DateField::ToSystemTime() const {
 
 	return st;
 }
+#endif // _WIN32
 
 /*
  * +===========================================================================+

@@ -15,7 +15,7 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-#if _MSC_VER <= 1200
+#if defined(_WIN32) && _MSC_VER <= 1200
 	#include <newcpp.h>
 #endif // _MSC_VER == 1200
 

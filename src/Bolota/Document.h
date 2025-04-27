@@ -16,7 +16,11 @@
 
 #ifdef __cplusplus
 
-#include <windows.h>
+#ifdef _WIN32
+	#include <windows.h>
+#else
+	#include <wintypes.h>
+#endif // _WIN32
 
 #include "UString.h"
 #include "Errors/ErrorCollection.h"
@@ -122,7 +126,9 @@ namespace Bolota {
 		void SetSubTitle(LPTSTR szSubTitle);
 		DateField* Date() const;
 		void SetDate(DateField *date);
+#ifdef _WIN32
 		void SetDate(const SYSTEMTIME *st);
+#endif // _WIN32
 
 		// Dirtiness.
 		void SetDirty(bool dirty);

@@ -30,6 +30,7 @@ ifeq ($(PLATFORM), Darwin)
 endif
 
 # Flags
-CFLAGS  = -Wall -Wno-psabi --std=c++98 -I$(ROOT)/common/ -I$(ROOT)/src/Bolota
+CFLAGS  = -Wall -Wno-psabi --std=c++11 -I$(ROOT)/shims/linux \
+	-I$(ROOT)/src/Bolota
 LDFLAGS =
 LIBS    =

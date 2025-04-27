@@ -13,7 +13,10 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "../../stdafx.h"
+#ifdef _WIN32
+	#include "../../stdafx.h"
+#endif // _WIN32
+
 #include "Error.h"
 #include "../Field.h"
 

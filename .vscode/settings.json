@@ -2,4 +2,8 @@
 	"C_Cpp.default.cStandard": "c99",
 	"C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, TabWidth: 4, UseTab: Always, ColumnLimit: 0 }",
 	"C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
+	"files.associations": {
+		"cpanfile": "perl",
+		"string": "cpp"
+	},
 }

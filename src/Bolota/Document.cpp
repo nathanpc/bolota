@@ -915,6 +915,7 @@ void Document::SetDate(DateField *date) {
 	SetDirty(true);
 }
 
+#ifdef _WIN32
 /**
  * Sets the document's creation date property.
  *
@@ -924,6 +925,7 @@ void Document::SetDate(const SYSTEMTIME *st) {
 	this->m_date->SetTimestamp(st);
 	SetDirty(true);
 }
+#endif // _WIN32
 
 /**
  * Sets the dirtiness (unsaved changes) status of the document.
