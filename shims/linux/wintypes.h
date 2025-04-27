@@ -13,6 +13,7 @@
 #endif // _MSC_VER > 1000
 
 #include <stdio.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -24,9 +25,9 @@ extern "C" {
 typedef size_t DWORD;
 
 /**
- * File handle pointer.
+ * 8 bits of unsigned integer glory.
  */
-typedef FILE* HANDLE;
+typedef uint8_t UINT8;
 
 #ifdef __cplusplus
 }

@@ -15,9 +15,13 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-#if defined(_WIN32) && _MSC_VER <= 1200
-	#include <newcpp.h>
-#endif // _MSC_VER == 1200
+#ifdef _WIN32
+	#if _MSC_VER <= 1200
+		#include <newcpp.h>
+	#endif // _MSC_VER == 1200
+#else
+	#include <winfile.h>
+#endif // _WIN32
 
 #include "UString.h"
 #include "FieldTypes.h"

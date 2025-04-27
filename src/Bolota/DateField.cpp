@@ -133,6 +133,7 @@ void DateField::SetTimestamp(const timestamp_t *ts) {
 	this->m_ts = *ts;
 }
 
+#ifdef _WIN32
 /**
  * Sets the timestamp of the field from a Windows SYSTEMTIME structure.
  *
@@ -147,6 +148,7 @@ void DateField::SetTimestamp(const SYSTEMTIME *st) {
 	m_ts.second = (uint8_t)st->wSecond;
 	m_ts.reserved = 0;
 }
+#endif // _WIN32
 
 /*
  * +===========================================================================+

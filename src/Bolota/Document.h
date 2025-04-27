@@ -20,6 +20,7 @@
 	#include <windows.h>
 #else
 	#include <wintypes.h>
+	#include <winfile.h>
 #endif // _WIN32
 
 #include "UString.h"

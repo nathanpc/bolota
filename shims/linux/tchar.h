@@ -43,8 +43,11 @@ typedef char* LPTSTR;
  */
 typedef const char* LPCTSTR;
 
-
+/* stdio non-standard naming. */
 #define _sntprintf snprintf
+#define _stprintf sprintf
+#define _strdup strdup
+#define _wcsdup wcsdup
 
 
 #ifdef __cplusplus
