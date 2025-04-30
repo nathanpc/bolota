@@ -115,6 +115,8 @@ namespace Bolota {
 		void SetTimestamp(const timestamp_t *ts);
 #ifdef _WIN32
 		void SetTimestamp(const SYSTEMTIME *st);
+#else
+		void SetTimestamp(time_t tm);
 #endif // _WIN32
 
 	protected:

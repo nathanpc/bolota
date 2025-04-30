@@ -48,6 +48,7 @@ typedef const char* LPCTSTR;
 #define _stprintf sprintf
 #define _strdup strdup
 #define _wcsdup wcsdup
+#define _tcsdup strdup
 
 
 #ifdef __cplusplus

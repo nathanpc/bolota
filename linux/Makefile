@@ -2,7 +2,8 @@ include ../variables.mk
 
 # Source file names.
 SRCNAMES = Document.cpp UString.cpp Field.cpp FieldTypes.cpp DateField.cpp \
-	IconField.cpp Errors/Error.cpp SystemError.cpp ConsistencyError.cpp
+	IconField.cpp Errors/Error.cpp Errors/ConsistencyError.cpp \
+	Errors/SystemError.cpp
 
 # Sources and Objects
 PROJECT  = libbolota
@@ -23,6 +24,7 @@ $(BUILDDIR)/$(PROJECT)/%.o: $(SRCDIR)/%.cpp
 
 $(BUILDDIR)/$(PROJECT)/stamp:
 	$(MKDIR) $(@D)
+	$(MKDIR) $(@D)/Errors
 	$(TOUCH) $@
 
 run: test

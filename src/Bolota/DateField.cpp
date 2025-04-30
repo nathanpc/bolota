@@ -65,9 +65,13 @@ DateField* DateField::Now() {
 	DateField *self = new DateField();
 
 	// Set the timestamp to the current time.
+#ifdef _WIN32
 	SYSTEMTIME st;
 	GetSystemTime(&st);
-	self->SetTimestamp(&st);
+	self->SetTimestamp(&ts);
+#else
+	self->SetTimestamp(time(NULL));
+#endif // _WIN32
 	self->RefreshText();
 
 	return self;
@@ -135,7 +139,7 @@ void DateField::SetTimestamp(const timestamp_t *ts) {
 
 #ifdef _WIN32
 /**
- * Sets the timestamp of the field from a Windows SYSTEMTIME structure.
+ * Sets the timestamp of the field from an UTC Windows SYSTEMTIME structure.
  *
  * @param st Windows SYSTEMTIME structure.
  */
@@ -146,6 +150,22 @@ void DateField::SetTimestamp(const SYSTEMTIME *st) {
 	m_ts.hour = (uint8_t)st->wHour;
 	m_ts.minute = (uint8_t)st->wMinute;
 	m_ts.second = (uint8_t)st->wSecond;
+	m_ts.reserved = 0;
+}
+#else
+/**
+ * Sets the timestamp of the field with a UNIX timestamp in UTC.
+ *
+ * @param tm UNIX timestamp in UTC, as retrieved from POSIX time().
+ */
+void DateField::SetTimestamp(time_t tm) {
+	struct tm *uts = gmtime(&tm);
+	m_ts.year = (uint16_t)(1900 + uts->tm_year);
+	m_ts.month = (uint8_t)(uts->tm_mon + 1);
+	m_ts.day = (uint8_t)uts->tm_mday;
+	m_ts.hour = (uint8_t)uts->tm_hour;
+	m_ts.minute = (uint8_t)uts->tm_min;
+	m_ts.second = (uint8_t)uts->tm_sec;
 	m_ts.reserved = 0;
 }
 #endif // _WIN32

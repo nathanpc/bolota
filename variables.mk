@@ -23,14 +23,15 @@ MKDIR = mkdir -p
 TOUCH = touch
 MAKE  = make
 
-# Handle OS X-specific tools.
-ifeq ($(PLATFORM), Darwin)
-	CXX = clang
-	GDB = lldb
-endif
-
 # Flags
 CFLAGS  = -Wall -Wno-psabi --std=c++11 -I$(ROOT)/shims/linux \
 	-I$(ROOT)/src/Bolota
 LDFLAGS =
 LIBS    =
+
+# Handle OS X-specific tools.
+ifeq ($(PLATFORM), Darwin)
+	CXX = clang++
+	GDB = lldb
+	CFLAGS += -Wno-deprecated
+endif

@@ -12,6 +12,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdint.h>
@@ -41,6 +42,18 @@ typedef FILE* HANDLE;
 #define CREATE_ALWAYS 0
 #define FILE_ATTRIBUTE_NORMAL 0
 #define FILE_ATTRIBUTE_ARCHIVE 0
+
+/**
+ * Frees a dynamically allocated memory object.
+ *
+ * @param hMem Pointer to some dynamically allocated memory object.
+ *
+ * @return Always NULL.
+ */
+void* LocalFree(void* hMem) {
+	free(hMem);
+	return NULL;
+}
 
 /**
  * Closes a file handle.

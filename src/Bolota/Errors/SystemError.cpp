@@ -7,6 +7,15 @@
 
 #include "SystemError.h"
 
+#ifndef _WIN32
+	#include <errno.h>
+
+	/**
+	 * Wrapper for Windows GetLastError() to map to UNIX errno.
+	 */
+	#define GetLastError() (errno)
+#endif // !_WIN32
+
 using namespace Bolota;
 
 /**
@@ -27,6 +36,7 @@ SystemError::SystemError(const TCHAR *szMessage) : Error(szMessage) {
 	Initialize(NULL, GetLastError());
 }
 
+#ifdef _WIN32
 /**
  * Initializes the system error with a message.
  *
@@ -43,7 +53,7 @@ SystemError::SystemError(const TCHAR* szMessage, DWORD dwError) :
  * Gets the last error and populates the exception.
  *
  * @param szMessage Optional. An error message to override the default one.
- * @paeam dwError   System error code for FormatMessage.
+ * @param dwError   System error code for FormatMessage.
  */
 void SystemError::Initialize(const TCHAR *szMessage, DWORD dwError) {
 	// Get last error message.
@@ -62,6 +72,27 @@ void SystemError::Initialize(const TCHAR *szMessage, DWORD dwError) {
 	m_szLastErrorMessage = szLastErrorMsg;
 	RefreshMessage(szMessage);
 }
+#else
+/**
+ * Gets the last error and populates the exception.
+ *
+ * @param szMessage Optional. An error message to override the default one.
+ * @param iError    System error code from errno.
+ */
+void SystemError::Initialize(const TCHAR *szMessage, int iError) {
+	// Get last error message.
+	m_iError = iError;
+	LPTSTR szLastErrorMsg = strdup(strerror(iError));
+
+	// Free any previous error message if required.
+	if (m_szLastErrorMessage)
+		LocalFree(m_szLastErrorMessage);
+
+	// Set the new error message and build up the full exception message.
+	m_szLastErrorMessage = szLastErrorMsg;
+	RefreshMessage(szMessage);
+}
+#endif // _WIN32
 
 /**
  * Handles the proper deallocation of objects inside the exception.
