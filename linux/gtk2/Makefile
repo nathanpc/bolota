@@ -26,7 +26,7 @@ $(BUILDDIR)/$(PROJECT)/%.o: %.cpp
 	$(CXX) $(CFLAGS) -c $< -o $@
 
 $(BUILDDIR)/libbolota/libbolota.a:
-	cd .. && $(MAKE) $(MAKECMDGOALS)
+	cd $(SRCDIR) && $(MAKE) $(MAKECMDGOALS)
 
 $(BUILDDIR)/$(PROJECT)/stamp:
 	$(MKDIR) $(@D)

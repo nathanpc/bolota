@@ -8,4 +8,8 @@
 		"string": "cpp"
 	},
 	"sonarlint.pathToCompileCommands": "${workspaceFolder}/.vscode/compile_commands.json",
+	"cSpell.words": [
+		"BOLOTA",
+		"FHND"
+	],
 }

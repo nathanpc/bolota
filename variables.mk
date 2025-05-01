@@ -11,7 +11,7 @@ PLATFORM := $(shell uname -s)
 
 # Directories and Paths
 ROOT     := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
-SRCDIR   := $(ROOT)/src/Bolota
+SRCDIR   := $(ROOT)/bolota
 BUILDDIR := $(ROOT)/build
 
 # Tools
@@ -24,8 +24,7 @@ TOUCH = touch
 MAKE  = make
 
 # Flags
-CFLAGS  = -Wall -Wno-psabi --std=c++11 -I$(ROOT)/shims/linux \
-	-I$(ROOT)/src/Bolota
+CFLAGS  = -Wall -Wno-psabi --std=c++11 -I$(ROOT)/shims/linux -I$(SRCDIR)
 LDFLAGS =
 LIBS    =
 

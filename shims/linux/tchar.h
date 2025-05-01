@@ -13,10 +13,21 @@
 #endif // _MSC_VER > 1000
 
 #include <string.h>
+#ifdef __cplusplus
+	#include <string>
+#endif // __cplusplus
+
+/**
+ * DWORD on Windows becomes size_t.
+ */
+typedef size_t DWORD;
+
+/**
+ * 8 bits of unsigned integer glory.
+ */
+typedef uint8_t UINT8;
 
 #ifdef __cplusplus
-
-#include <string>
 
 /**
  * Universal C++ std::string.
