@@ -182,7 +182,7 @@ uint16_t DateField::FieldLength() const {
 	return Field::FieldLength() + sizeof(timestamp_t);
 }
 
-uint8_t DateField::ReadField(HANDLE hFile, size_t *bytes) {
+uint8_t DateField::ReadField(FHND hFile, size_t *bytes) {
 	DWORD dwRead = 0;
 
 	// Read the field's base.
@@ -191,7 +191,7 @@ uint8_t DateField::ReadField(HANDLE hFile, size_t *bytes) {
 		return BOLOTA_ERR_UINT8;
 
 	// Read the timestamp.
-	if (!::ReadFile(hFile, &this->m_ts, sizeof(timestamp_t), &dwRead, NULL)) {
+	if (!FileUtils::Read(hFile, &this->m_ts, sizeof(timestamp_t), &dwRead)) {
 		ThrowError(new ReadError(hFile, *bytes, true));
 		return BOLOTA_ERR_UINT8;
 	}
@@ -200,7 +200,7 @@ uint8_t DateField::ReadField(HANDLE hFile, size_t *bytes) {
 	return depth;
 }
 
-size_t DateField::Write(HANDLE hFile) const {
+size_t DateField::Write(FHND hFile) const {
 	// Write base of the field.
 	size_t ulBytes = Field::Write(hFile);
 	DWORD dwWritten = 0;
@@ -210,7 +210,7 @@ size_t DateField::Write(HANDLE hFile) const {
 		return BOLOTA_ERR_SIZET;
 
 	// Write the timestamp.
-	if (!::WriteFile(hFile, &m_ts, sizeof(timestamp_t), &dwWritten, NULL)) {
+	if (!FileUtils::Write(hFile, &m_ts, sizeof(timestamp_t), &dwWritten)) {
 		ThrowError(new WriteError(hFile, ulBytes, true));
 		return BOLOTA_ERR_SIZET;
 	}

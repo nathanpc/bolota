@@ -18,13 +18,11 @@
 
 #ifdef _WIN32
 	#include <windows.h>
-#else
-	#include <wintypes.h>
-	#include <winfile.h>
 #endif // _WIN32
 
-#include "UString.h"
+#include "Utilities/FileUtils.h"
 #include "Errors/ErrorCollection.h"
+#include "UString.h"
 #include "Field.h"
 #include "DateField.h"
 
@@ -84,7 +82,7 @@ namespace Bolota {
 		Field *m_topics;
 
 		// File handle.
-		HANDLE m_hFile;
+		FHND m_hFile;
 		UString m_strPath;
 
 		// State
@@ -139,7 +137,7 @@ namespace Bolota {
 		// Construtor helpers.
 		Document();
 		void Initialize(TextField *title, TextField *subtitle, DateField *date,
-			LPCTSTR szPath, HANDLE hFile);
+			LPCTSTR szPath, FHND hFile);
 
 		// Section lengths.
 		uint32_t PropertiesLength() const;

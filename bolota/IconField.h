@@ -125,14 +125,14 @@ namespace Bolota {
 			Field(parent, BOLOTA_TYPE_ICON, wstr) {
 			m_icon_index = BOLOTA_ICON_NONE;
 		};
-		
+
 		// Helpers
 		virtual void Copy(const IconField *field, bool bReplace);
 
 		// Overrides
 		uint16_t FieldLength() const override;
-		uint8_t ReadField(HANDLE hFile, size_t *bytes) override;
-		size_t Write(HANDLE hFile) const override;
+		uint8_t ReadField(FHND hFile, size_t *bytes) override;
+		size_t Write(FHND hFile) const override;
 
 		// Getters and setters.
 		field_icon_t IconIndex() const;

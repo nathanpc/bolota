@@ -14,10 +14,9 @@
 
 #ifdef _WIN32
 	#include "../../stdafx.h"
-#else
-	#include <winfile.h>
 #endif // _WIN32
 
+#include "../Utilities/FileUtils.h"
 #include "Error.h"
 
 /**

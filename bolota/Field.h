@@ -19,10 +19,9 @@
 	#if _MSC_VER <= 1200
 		#include <newcpp.h>
 	#endif // _MSC_VER == 1200
-#else
-	#include <winfile.h>
 #endif // _WIN32
 
+#include "Utilities/FileUtils.h"
 #include "UString.h"
 #include "FieldTypes.h"
 #include "Errors/Error.h"
@@ -83,8 +82,8 @@ namespace Bolota {
 		virtual void Copy(const Field *field, bool bReplace);
 
 		// File operations.
-		static Field* Read(HANDLE hFile, size_t *bytes, uint8_t *depth);
-		virtual size_t Write(HANDLE hFile) const;
+		static Field* Read(FHND hFile, size_t *bytes, uint8_t *depth);
+		virtual size_t Write(FHND hFile) const;
 
 		// Getters and setters.
 		bolota_type_t Type() const;
@@ -126,7 +125,7 @@ namespace Bolota {
 			Field *child, Field *prev, Field *next);
 
 		// File operations.
-		virtual uint8_t ReadField(HANDLE hFile, size_t *bytes);
+		virtual uint8_t ReadField(FHND hFile, size_t *bytes);
 	};
 
 	/**

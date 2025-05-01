@@ -11,6 +11,12 @@ TARGET   = $(BUILDDIR)/$(PROJECT)/$(PROJECT).a
 SOURCES += $(addprefix $(SRCDIR)/, $(SRCNAMES))
 OBJECTS := $(patsubst $(SRCDIR)/%.cpp, $(BUILDDIR)/$(PROJECT)/%.o, $(SOURCES))
 
+# Unicode conversion shim.
+SOURCES += $(SRCDIR)/../shims/cvtutf/ConvertUTF.cpp \
+	$(SRCDIR)/../shims/cvtutf/Unicode.cpp
+OBJECTS += $(BUILDDIR)/$(PROJECT)/Unicode/ConvertUTF.o \
+	$(BUILDDIR)/$(PROJECT)/Unicode/Unicode.o
+
 .PHONY: all compile debug memcheck clean
 all: compile
 
@@ -22,8 +28,12 @@ $(TARGET): $(OBJECTS)
 $(BUILDDIR)/$(PROJECT)/%.o: $(SRCDIR)/%.cpp
 	$(CXX) $(CFLAGS) -c $< -o $@
 
+$(BUILDDIR)/$(PROJECT)/Unicode/%.o: $(SRCDIR)/../shims/cvtutf/%.cpp
+	$(CXX) $(CFLAGS) -c $< -o $@
+
 $(BUILDDIR)/$(PROJECT)/stamp:
 	$(MKDIR) $(@D)
+	$(MKDIR) $(@D)/Unicode
 	$(MKDIR) $(@D)/Errors
 	$(MKDIR) $(@D)/Utilities
 	$(TOUCH) $@

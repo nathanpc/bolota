@@ -86,7 +86,11 @@ void SystemError::Initialize(const TCHAR *szMessage, int iError) {
 
 	// Free any previous error message if required.
 	if (m_szLastErrorMessage)
+#ifdef _WIN32
 		LocalFree(m_szLastErrorMessage);
+#else
+		free(m_szLastErrorMessage);
+#endif // _WIN32
 
 	// Set the new error message and build up the full exception message.
 	m_szLastErrorMessage = szLastErrorMsg;
@@ -99,7 +103,11 @@ void SystemError::Initialize(const TCHAR *szMessage, int iError) {
  */
 SystemError::~SystemError() {
 	if (m_szLastErrorMessage) {
+#ifdef _WIN32
 		LocalFree(m_szLastErrorMessage);
+#else
+		free(m_szLastErrorMessage);
+#endif // _WIN32
 		m_szLastErrorMessage = NULL;
 	}
 }

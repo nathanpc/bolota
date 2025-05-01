@@ -111,8 +111,8 @@ namespace Bolota {
 
 		// Overrides
 		uint16_t FieldLength() const override;
-		uint8_t ReadField(HANDLE hFile, size_t *bytes) override;
-		size_t Write(HANDLE hFile) const override;
+		uint8_t ReadField(FHND hFile, size_t *bytes) override;
+		size_t Write(FHND hFile) const override;
 
 		// Getters and setters.
 		timestamp_t Timestamp() const;

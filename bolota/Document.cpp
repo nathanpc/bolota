@@ -55,7 +55,7 @@ Document::~Document() {
 
 	// Close the file handle.
 	if ((m_hFile != NULL) && (m_hFile != INVALID_HANDLE_VALUE)) {
-		CloseHandle(m_hFile);
+		FileUtils::Close(m_hFile);
 		m_hFile = NULL;
 	}
 }
@@ -70,7 +70,7 @@ Document::~Document() {
  * @param hFile    A file handle to be associated with the object.
  */
 void Document::Initialize(TextField *title, TextField *subtitle,
-						  DateField *date, LPCTSTR szPath, HANDLE hFile) {
+						  DateField *date, LPCTSTR szPath, FHND hFile) {
 	m_title = title;
 	m_subtitle = subtitle;
 	m_date = date;
@@ -442,8 +442,7 @@ Document* Document::ReadFile(LPCTSTR szPath) {
 	DWORD dwRead = 0;
 
 	// Open a file handle for us to operate on.
-	HANDLE hFile = CreateFile(szPath, GENERIC_READ, FILE_SHARE_READ, NULL,
-		OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+	FHND hFile = FileUtils::Open(szPath, false, true);
 	if (hFile == INVALID_HANDLE_VALUE) {
 		ThrowError(new SystemError(EMSG("Could not open file for reading")));
 		return BOLOTA_ERR_NULL;
@@ -451,7 +450,7 @@ Document* Document::ReadFile(LPCTSTR szPath) {
 
 	// Read the file magic anc check if it's a Bolota document.
 	char szMagic[BOLOTA_DOC_MAGIC_LEN + 1];
-	if (!::ReadFile(hFile, szMagic, BOLOTA_DOC_MAGIC_LEN, &dwRead, NULL)) {
+	if (!FileUtils::Read(hFile, szMagic, BOLOTA_DOC_MAGIC_LEN, &dwRead)) {
 		ThrowError(new ReadError(hFile, ulLength, true));
 		return BOLOTA_ERR_NULL;
 	}
@@ -464,7 +463,7 @@ Document* Document::ReadFile(LPCTSTR szPath) {
 
 	// Read and check if the version number is compatible.
 	uint8_t ucVersion = 0;
-	if (!::ReadFile(hFile, &ucVersion, sizeof(uint8_t), &dwRead, NULL)) {
+	if (!FileUtils::Read(hFile, &ucVersion, sizeof(uint8_t), &dwRead)) {
 		ThrowError(new ReadError(hFile, ulLength, true));
 		return BOLOTA_ERR_NULL;
 	}
@@ -476,7 +475,7 @@ Document* Document::ReadFile(LPCTSTR szPath) {
 
 	//  Read the length of the properties section.
 	uint32_t dwLengthProp = 0;
-	if (!::ReadFile(hFile, &dwLengthProp, sizeof(uint32_t), &dwRead, NULL)) {
+	if (!FileUtils::Read(hFile, &dwLengthProp, sizeof(uint32_t), &dwRead)) {
 		ThrowError(new ReadError(hFile, ulLength, true));
 		return BOLOTA_ERR_NULL;
 	}
@@ -484,7 +483,7 @@ Document* Document::ReadFile(LPCTSTR szPath) {
 
 	// Read the length of the topics section.
 	uint32_t dwLengthTopics = 0;
-	if (!::ReadFile(hFile, &dwLengthTopics, sizeof(uint32_t), &dwRead, NULL)) {
+	if (!FileUtils::Read(hFile, &dwLengthTopics, sizeof(uint32_t), &dwRead)) {
 		ThrowError(new ReadError(hFile, ulLength, true));
 		return BOLOTA_ERR_NULL;
 	}
@@ -542,8 +541,7 @@ size_t Document::WriteFile(LPCTSTR szPath, bool bAssociate) {
 	DWORD dwWritten = 0;
 
 	// Open a file handle for us to operate on.
-	m_hFile = CreateFile(szPath, GENERIC_WRITE, FILE_SHARE_READ, NULL,
-		CREATE_ALWAYS, FILE_ATTRIBUTE_ARCHIVE, NULL);
+	m_hFile = FileUtils::Open(szPath, true, true);
 	if (m_hFile == INVALID_HANDLE_VALUE) {
 		ThrowError(new SystemError(EMSG("Could not open file for writing")));
 		return BOLOTA_ERR_SIZET;
@@ -552,14 +550,14 @@ size_t Document::WriteFile(LPCTSTR szPath, bool bAssociate) {
 		m_strPath = szPath;
 
 	// Write file header.
-	if (!::WriteFile(m_hFile, BOLOTA_DOC_MAGIC, BOLOTA_DOC_MAGIC_LEN,
-			&dwWritten, NULL)) {
+	if (!FileUtils::Write(m_hFile, BOLOTA_DOC_MAGIC, BOLOTA_DOC_MAGIC_LEN,
+			&dwWritten)) {
 		ThrowError(new WriteError(m_hFile, ulBytes, true));
 		return BOLOTA_ERR_SIZET;
 	}
 	ulBytes += dwWritten;
 	uint8_t ucVersion = BOLOTA_DOC_VER;
-	if (!::WriteFile(m_hFile, &ucVersion, sizeof(uint8_t), &dwWritten, NULL)) {
+	if (!FileUtils::Write(m_hFile, &ucVersion, sizeof(uint8_t), &dwWritten)) {
 		ThrowError(new WriteError(m_hFile, ulBytes, true));
 		return BOLOTA_ERR_SIZET;
 	}
@@ -567,8 +565,8 @@ size_t Document::WriteFile(LPCTSTR szPath, bool bAssociate) {
 
 	// Write properties section length.
 	uint32_t ulSectionLength = PropertiesLength();
-	if (!::WriteFile(m_hFile, &ulSectionLength, sizeof(uint32_t), &dwWritten,
-			NULL)) {
+	if (!FileUtils::Write(m_hFile, &ulSectionLength, sizeof(uint32_t),
+			&dwWritten)) {
 		ThrowError(new WriteError(m_hFile, ulBytes, true));
 		return BOLOTA_ERR_SIZET;
 	}
@@ -576,8 +574,8 @@ size_t Document::WriteFile(LPCTSTR szPath, bool bAssociate) {
 
 	// Write topics section length.
 	ulSectionLength = TopicsLength();
-	if (!::WriteFile(m_hFile, &ulSectionLength, sizeof(uint32_t), &dwWritten,
-			NULL)) {
+	if (!FileUtils::Write(m_hFile, &ulSectionLength, sizeof(uint32_t),
+			&dwWritten)) {
 		ThrowError(new WriteError(m_hFile, ulBytes, true));
 		return BOLOTA_ERR_SIZET;
 	}
@@ -810,7 +808,7 @@ UString& Document::FilePath() {
  * Closes the file handle associated with this document.
  */
 void Document::CloseFile() {
-	CloseHandle(m_hFile);
+	FileUtils::Close(m_hFile);
 	m_hFile = NULL;
 }
 

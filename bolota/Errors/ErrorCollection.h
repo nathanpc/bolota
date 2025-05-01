@@ -27,10 +27,10 @@ namespace Bolota {
 	 */
 	class FileHandleError : public SystemError {
 	protected:
-		HANDLE hFile;
+		FHND hFile;
 		bool bHandleClosed;
 
-		void Initialize(HANDLE hFile, bool bClose) {
+		void Initialize(FHND hFile, bool bClose) {
 			// Set internal variables.
 			this->hFile = hFile;
 			bHandleClosed = false;
@@ -43,17 +43,17 @@ namespace Bolota {
 		};
 
 	public:
-		FileHandleError(HANDLE hFile, bool bClose, const TCHAR *szMessage) :
+		FileHandleError(FHND hFile, bool bClose, const TCHAR *szMessage) :
 			SystemError(szMessage) {
 			this->Initialize(hFile, bClose);
 		};
-		FileHandleError(HANDLE hFile, bool bClose) :
+		FileHandleError(FHND hFile, bool bClose) :
 			SystemError(_T("Unknown Bolota file handle error")) {
 			this->Initialize(hFile, bClose);
 		};
 
 		void CloseHandle() {
-			::CloseHandle(hFile);
+			FileUtils::Close(hFile);
 			bHandleClosed = true;
 		};
 
@@ -67,7 +67,7 @@ namespace Bolota {
 	 */
 	class InvalidMagic : public FileHandleError {
 	public:
-		InvalidMagic(HANDLE hFile) : FileHandleError(hFile, true,
+		InvalidMagic(FHND hFile) : FileHandleError(hFile, true,
 			_T("The file is not a valid Bolota document")) {};
 	};
 
@@ -76,7 +76,7 @@ namespace Bolota {
 	 */
 	class InvalidVersion : public FileHandleError {
 	public:
-		InvalidVersion(HANDLE hFile) : FileHandleError(hFile, true,
+		InvalidVersion(FHND hFile) : FileHandleError(hFile, true,
 			_T("The document was saved with a newer version of the application ")
 			_T("and may be incompatible with this one")) {};
 	};
@@ -88,12 +88,12 @@ namespace Bolota {
 	public:
 		size_t ulPosition;
 
-		ReadError(HANDLE hFile, bool bClose) :
+		ReadError(FHND hFile, bool bClose) :
 			FileHandleError(hFile, bClose, _T("Failed to read file")) {
 			this->ulPosition = -1L;
 		};
 
-		ReadError(HANDLE hFile, size_t ulPosition, bool bClose) :
+		ReadError(FHND hFile, size_t ulPosition, bool bClose) :
 			FileHandleError(hFile, bClose, _T("Failed to read file")) {
 			// Get position index as string.
 			TCHAR szIndex[20];
@@ -120,12 +120,12 @@ namespace Bolota {
 	public:
 		size_t ulPosition;
 
-		WriteError(HANDLE hFile, bool bClose) :
+		WriteError(FHND hFile, bool bClose) :
 			FileHandleError(hFile, bClose, _T("Failed to write file")) {
 			this->ulPosition = -1L;
 		};
 
-		WriteError(HANDLE hFile, size_t ulPosition, bool bClose) :
+		WriteError(FHND hFile, size_t ulPosition, bool bClose) :
 			FileHandleError(hFile, bClose, _T("Failed to write file")) {
 			// Get position index as string.
 			TCHAR szIndex[20];
@@ -153,7 +153,7 @@ namespace Bolota {
 		bolota_type_t m_type;
 
 	public:
-		UnknownFieldType(HANDLE hFile, size_t ulPosition, bool bClose,
+		UnknownFieldType(FHND hFile, size_t ulPosition, bool bClose,
 						 bolota_type_t type) :
 		ReadError(hFile, ulPosition, bClose) {
 			// Set the type variable.

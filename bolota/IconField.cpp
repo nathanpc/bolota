@@ -122,7 +122,7 @@ uint16_t IconField::FieldLength() const {
 	return Field::FieldLength() + sizeof(uint8_t);
 }
 
-uint8_t IconField::ReadField(HANDLE hFile, size_t *bytes) {
+uint8_t IconField::ReadField(FHND hFile, size_t *bytes) {
 	DWORD dwRead = 0;
 
 	// Read the field's base.
@@ -132,7 +132,7 @@ uint8_t IconField::ReadField(HANDLE hFile, size_t *bytes) {
 
 	// Read the icon index.
 	uint8_t index = 0;
-	if (!::ReadFile(hFile, &index, sizeof(uint8_t), &dwRead, NULL)) {
+	if (!FileUtils::Read(hFile, &index, sizeof(uint8_t), &dwRead)) {
 		ThrowError(new ReadError(hFile, *bytes, true));
 		return BOLOTA_ERR_UINT8;
 	}
@@ -142,7 +142,7 @@ uint8_t IconField::ReadField(HANDLE hFile, size_t *bytes) {
 	return depth;
 }
 
-size_t IconField::Write(HANDLE hFile) const {
+size_t IconField::Write(FHND hFile) const {
 	// Write base of the field.
 	size_t ulBytes = Field::Write(hFile);
 	DWORD dwWritten = 0;
@@ -153,7 +153,7 @@ size_t IconField::Write(HANDLE hFile) const {
 
 	// Write the icon index.
 	uint8_t index = (uint8_t)m_icon_index;
-	if (!::WriteFile(hFile, &index, sizeof(uint8_t), &dwWritten, NULL)) {
+	if (!FileUtils::Write(hFile, &index, sizeof(uint8_t), &dwWritten)) {
 		ThrowError(new WriteError(hFile, ulBytes, true));
 		return BOLOTA_ERR_SIZET;
 	}

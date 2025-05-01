@@ -186,13 +186,13 @@ void Field::Copy(const Field *field, bool bReplace) {
  * @return Fully populated field object that can later be cast to the
  *         appropriate specific object type.
  */
-Field* Field::Read(HANDLE hFile, size_t *bytes, uint8_t *depth) {
+Field* Field::Read(FHND hFile, size_t *bytes, uint8_t *depth) {
 	Field *self = NULL;
 	uint8_t ucType;
 	DWORD dwRead = 0;
 
 	// Get the type of the field to know which class to instantiate.
-	if (!::ReadFile(hFile, &ucType, sizeof(uint8_t), &dwRead, NULL)) {
+	if (!FileUtils::Read(hFile, &ucType, sizeof(uint8_t), &dwRead)) {
 		ThrowError(new ReadError(hFile, *bytes, true));
 		return BOLOTA_ERR_NULL;
 	}
@@ -241,24 +241,24 @@ error_handling:
  * @return Depth of the field found in the file or BOLOTA_ERR_UINT8 if an error
  *         happened.
  */
-uint8_t Field::ReadField(HANDLE hFile, size_t *bytes) {
+uint8_t Field::ReadField(FHND hFile, size_t *bytes) {
 	DWORD dwRead = 0;
 	uint8_t depth = 0;
 	uint16_t usFieldLength = 0;
 	uint16_t usTextLength = 0;
 
 	// Read important bits.
-	if (!::ReadFile(hFile, &depth, sizeof(uint8_t), &dwRead, NULL)) {
+	if (!FileUtils::Read(hFile, &depth, sizeof(uint8_t), &dwRead)) {
 		ThrowError(new ReadError(hFile, *bytes, true));
 		return BOLOTA_ERR_UINT8;
 	}
 	*bytes += dwRead;
-	if (!::ReadFile(hFile, &usFieldLength, sizeof(uint16_t), &dwRead, NULL)) {
+	if (!FileUtils::Read(hFile, &usFieldLength, sizeof(uint16_t), &dwRead)) {
 		ThrowError(new ReadError(hFile, *bytes, true));
 		return BOLOTA_ERR_UINT8;
 	}
 	*bytes += dwRead;
-	if (!::ReadFile(hFile, &usTextLength, sizeof(uint16_t), &dwRead, NULL)) {
+	if (!FileUtils::Read(hFile, &usTextLength, sizeof(uint16_t), &dwRead)) {
 		ThrowError(new ReadError(hFile, *bytes, true));
 		return BOLOTA_ERR_UINT8;
 	}
@@ -273,7 +273,7 @@ uint8_t Field::ReadField(HANDLE hFile, size_t *bytes) {
 	}
 	dwRead = 0;
 	if (usTextLength > 0) {
-		if (!::ReadFile(hFile, szText, usTextLength, &dwRead, NULL)) {
+		if (!FileUtils::Read(hFile, szText, usTextLength, &dwRead)) {
 			ThrowError(new ReadError(hFile, *bytes, true));
 			return BOLOTA_ERR_UINT8;
 		}
@@ -299,13 +299,13 @@ uint8_t Field::ReadField(HANDLE hFile, size_t *bytes) {
  * @return Number of bytes written to the file or BOLOTA_ERR_SIZET if an error
  *         occurred during the process.
  */
-size_t Field::Write(HANDLE hFile) const {
+size_t Field::Write(FHND hFile) const {
 	size_t ulBytes = 0;
 	DWORD dwWritten = 0;
 
 	// Type of the field.
 	uint8_t iValue = m_type;
-	if (!::WriteFile(hFile, &iValue, sizeof(uint8_t), &dwWritten, NULL)) {
+	if (!FileUtils::Write(hFile, &iValue, sizeof(uint8_t), &dwWritten)) {
 		ThrowError(new WriteError(hFile, ulBytes, true));
 		return BOLOTA_ERR_SIZET;
 	}
@@ -313,7 +313,7 @@ size_t Field::Write(HANDLE hFile) const {
 
 	// Depth of the field.
 	iValue = Depth();
-	if (!::WriteFile(hFile, &iValue, sizeof(uint8_t), &dwWritten, NULL)) {
+	if (!FileUtils::Write(hFile, &iValue, sizeof(uint8_t), &dwWritten)) {
 		ThrowError(new WriteError(hFile, ulBytes, true));
 		return BOLOTA_ERR_SIZET;
 	}
@@ -321,8 +321,8 @@ size_t Field::Write(HANDLE hFile) const {
 
 	// Length of data.
 	uint16_t usFieldLength = FieldLength();
-	if (!::WriteFile(hFile, &usFieldLength, sizeof(uint16_t), &dwWritten,
-			NULL)) {
+	if (!FileUtils::Write(hFile, &usFieldLength, sizeof(uint16_t),
+			&dwWritten)) {
 		ThrowError(new WriteError(hFile, ulBytes, true));
 		return BOLOTA_ERR_SIZET;
 	}
@@ -330,7 +330,7 @@ size_t Field::Write(HANDLE hFile) const {
 
 	// Length of data.
 	uint16_t usTextLength = TextLength();
-	if (!::WriteFile(hFile, &usTextLength, sizeof(uint16_t), &dwWritten, NULL)) {
+	if (!FileUtils::Write(hFile, &usTextLength, sizeof(uint16_t), &dwWritten)) {
 		ThrowError(new WriteError(hFile, ulBytes, true));
 		return BOLOTA_ERR_SIZET;
 	}
@@ -338,8 +338,8 @@ size_t Field::Write(HANDLE hFile) const {
 
 	// Data of the field.
 	if (m_text) {
-		if (!::WriteFile(hFile, m_text->GetMultiByteString(), usTextLength,
-				&dwWritten, NULL)) {
+		if (!FileUtils::Write(hFile, m_text->GetMultiByteString(), usTextLength,
+				&dwWritten)) {
 			ThrowError(new WriteError(hFile, ulBytes, true));
 			return BOLOTA_ERR_SIZET;
 		}
