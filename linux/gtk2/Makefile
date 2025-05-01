@@ -1,7 +1,7 @@
 include ../../variables.mk
 
 # Source file names.
-SRCNAMES = main.cpp
+SRCNAMES = main.cpp mainwindow.cpp
 
 # Sources and Objects
 PROJECT     = gBolota
@@ -10,9 +10,9 @@ SOURCES    += $(SRCNAMES)
 OBJECTS    := $(patsubst %.cpp, $(BUILDDIR)/$(PROJECT)/%.o, $(SOURCES))
 STATICLIBS := $(BUILDDIR)/libbolota/libbolota.a
 
-# Flags
-#CFLAGS += $(shell pkg-config --cflags gtk+-2.0 glib-2.0)
-#LIBS   += $(shell pkg-config --libs gtk+-2.0 glib-2.0)
+# GTK stuff.
+CFLAGS += $(shell pkg-config --cflags gtk+-2.0 glib-2.0)
+LIBS   += $(shell pkg-config --libs gtk+-2.0 glib-2.0)
 
 .PHONY: all compile test debug memcheck clean
 all: compile

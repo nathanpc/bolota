@@ -5,7 +5,7 @@
 
 include variables.mk
 
-.PHONY: all compiledb gtk2 debug memcheck clean
+.PHONY: all compiledb gtk2 run debug memcheck clean
 all: $(BUILDDIR)/stamp gtk2
 
 $(BUILDDIR)/stamp:
@@ -26,6 +26,9 @@ memcheck: clean all
 	cat $(BUILDDIR)/valgrind.log
 
 gtk2: $(BUILDDIR)/stamp
+	cd linux/gtk2/ && $(MAKE) $(MAKECMDGOALS)
+
+run:
 	cd linux/gtk2/ && $(MAKE) $(MAKECMDGOALS)
 
 clean:

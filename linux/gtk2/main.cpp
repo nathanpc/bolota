@@ -3,6 +3,8 @@
 #include <Document.h>
 #include <IconField.h>
 
+#include "mainwindow.h"
+
 using namespace std;
 using namespace Bolota;
 
@@ -23,6 +25,9 @@ void DumpTopic(Field *fld) {
 }
 
 int main(int argc, char **argv) {
+	// Initialize GTK+.
+	gtk_init(&argc, &argv);
+
 	cout << "Bolota Test" << endl;
 
 	// Create example document.
@@ -55,6 +60,12 @@ int main(int argc, char **argv) {
 
 	// Dump everything we have.
 	DumpTopic(doc->FirstTopic());
+
+	// Create the main window.
+	MainWindow window;
+
+	// Run GTK+ main loop.
+	gtk_main();
 
 	return 0;
 }
