@@ -12,7 +12,10 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+#include <string.h>
+
 #ifdef __cplusplus
+
 #include <string>
 
 /**
@@ -21,6 +24,7 @@
 #define tstring std::string
 
 extern "C" {
+
 #endif // __cplusplus
 
 /**

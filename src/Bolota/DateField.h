@@ -12,6 +12,10 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+#ifndef _WIN32
+	#include <time.h>
+#endif // !_WIN32
+
 #include "Field.h"
 
 #ifdef __cplusplus

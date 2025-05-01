@@ -1,4 +1,4 @@
 # Ensures we have proper code completion for this project.
 
 CompileFlags:
-  Add: [--language=c++, -std=c++11, -Wall, -I./shims/linux, -I./src/Bolota]
+  Add: [--language=c++, -std=c++11, -Wall]
