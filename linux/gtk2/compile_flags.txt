@@ -1,2 +1,2 @@
 -I../../shims/linux
--I../../src/Bolota
+-I../../bolota

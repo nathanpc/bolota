@@ -10,7 +10,11 @@ void DumpTopic(Field *fld) {
 	while (fld != NULL) {
 		for (uint8_t i = 0; i < fld->Depth(); ++i)
 			cout << "\t";
-		cout << "- " << fld->Text() << endl;
+		if (fld->HasText()) {
+			cout << "- " << fld->Text()->GetNativeString() << endl;
+		} else {
+			cout << "- (NULL)" << endl;
+		}
 
 		if (fld->HasChild())
 			DumpTopic(fld->Child());
