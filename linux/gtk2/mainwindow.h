@@ -10,11 +10,15 @@
 
 #include <gtk/gtk.h>
 
+#include "bolotatreeview.h"
+
 class MainWindow {
 private:
 	GtkWidget *window;
+	GtkWidget *vbox;
+	BolotaTreeView tree_view;
 
-public:
+   public:
 	// Constructors and destructors.
 	MainWindow();
 	virtual ~MainWindow();

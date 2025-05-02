@@ -1,7 +1,7 @@
 include ../../variables.mk
 
 # Source file names.
-SRCNAMES = main.cpp mainwindow.cpp
+SRCNAMES = main.cpp mainwindow.cpp bolotatreeview.cpp
 
 # Sources and Objects
 PROJECT     = gBolota

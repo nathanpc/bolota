@@ -5,11 +5,20 @@
 	"C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
 	"files.associations": {
 		"cpanfile": "perl",
-		"string": "cpp"
+		"string": "cpp",
+		"atomic": "cpp"
 	},
 	"sonarlint.pathToCompileCommands": "${workspaceFolder}/.vscode/compile_commands.json",
 	"cSpell.words": [
 		"BOLOTA",
+		"BOLOTATREEVIEW",
 		"FHND"
+	],
+	"makefile.launchConfigurations": [
+		{
+			"cwd": "/home/nathanpc/src/bolota//build/bin",
+			"binaryPath": "/home/nathanpc/src/bolota/build/bin/gBolota",
+			"binaryArgs": []
+		}
 	],
 }
