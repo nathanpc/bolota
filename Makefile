@@ -17,12 +17,16 @@ compiledb: clean
 	bear --output .vscode/compile_commands.json -- make debug
 
 debug: CFLAGS += -g3 -DDEBUG
-debug: clean all
+debug: all
 
 memcheck: CFLAGS += -g3 -DDEBUG -DMEMCHECK
-memcheck: clean all
-	valgrind --tool=memcheck --leak-check=yes --show-leak-kinds=all \
-		--track-origins=yes --log-file=$(BUILDDIR)/valgrind.log ./build/bin/gl s
+memcheck: all
+	G_SLICE=always-malloc G_DEBUG=gc-friendly valgrind --tool=memcheck \
+		--leak-check=full --show-leak-kinds=all --track-origins=yes \
+		--suppressions=/usr/share/glib-2.0/valgrind/glib.supp \
+		--suppressions=/usr/share/gtk-3.0/valgrind/gtk.supp \
+		--log-file=$(BUILDDIR)/valgrind.log \
+		./build/bin/gBolota
 	cat $(BUILDDIR)/valgrind.log
 
 gtk2: $(BUILDDIR)/stamp

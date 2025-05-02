@@ -38,7 +38,6 @@ BolotaTreeView::BolotaTreeView() {
 	GtkCellRenderer *renderer = gtk_cell_renderer_text_new();
 	gtk_tree_view_column_pack_start(col, renderer, true);
 	gtk_tree_view_column_add_attribute(col, renderer, "text", COL_TEXT);
-	//gtk_tree_view_column_add_attribute(col, renderer, "text", COL_FIELD);
 
 	// Setup view model.
 	GtkTreeStore *store = gtk_tree_store_new(NUM_COLS, G_TYPE_STRING,
@@ -71,8 +70,12 @@ void BolotaTreeView::OpenDocument(Document *doc) {
 	GtkTreeStore *store = GTK_TREE_STORE(gtk_tree_view_get_model(
 		GTK_TREE_VIEW(widget)));
 	// TODO: Clear model before populating.
+	gtk_tree_store_clear(store);
 	GtkTreeIter iter;
 	AddTreeViewItem(store, nullptr, &iter, doc->FirstTopic());
+
+	// Expand all nodes.
+	gtk_tree_view_expand_all(GTK_TREE_VIEW(widget));
 }
 
 /**
@@ -88,8 +91,9 @@ void BolotaTreeView::AddTreeViewItem(GtkTreeStore *store, GtkTreeIter *parent,
 	while (field != nullptr) {
 		// Append field to TreeView.
 		gtk_tree_store_append(store, prev, parent);
-		gtk_tree_store_set(store, prev, COL_TEXT, field->HasText() ?
-			field->Text()->GetNativeString() : "", field, -1);
+		gtk_tree_store_set(store, prev,
+			COL_TEXT, field->HasText() ? field->Text()->GetNativeString() : "",
+			COL_FIELD, field, -1);
 
 		// Append child if field has any.
 		if (field->HasChild()) {

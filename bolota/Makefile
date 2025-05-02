@@ -41,10 +41,10 @@ $(BUILDDIR)/$(PROJECT)/stamp:
 run: test
 
 debug: CFLAGS += -g3 -DDEBUG
-debug: clean all
+debug: all
 
 memcheck: CFLAGS += -g3 -DDEBUG -DMEMCHECK
-memcheck: compile
+memcheck: all
 
 clean:
 	$(RM) -r $(BUILDDIR)/$(PROJECT)
