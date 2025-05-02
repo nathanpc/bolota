@@ -31,6 +31,7 @@ MainWindow::MainWindow() {
 
 	// Show all widgets.
 	gtk_widget_show_all(this->window);
+	tree_view.OpenExampleDocument();
 }
 
 /**
