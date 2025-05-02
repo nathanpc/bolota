@@ -66,11 +66,12 @@ void BolotaTreeView::OpenDocument(Document *doc) {
 	// Associate document with widget.
 	this->document = doc;
 
-	// Populate TreeView.
+	// Get TreeView model and clear it.
 	GtkTreeStore *store = GTK_TREE_STORE(gtk_tree_view_get_model(
 		GTK_TREE_VIEW(widget)));
-	// TODO: Clear model before populating.
 	gtk_tree_store_clear(store);
+
+	// Populate TreeView model store.
 	GtkTreeIter iter;
 	AddTreeViewItem(store, nullptr, &iter, doc->FirstTopic());
 
