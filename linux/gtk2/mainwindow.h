@@ -14,10 +14,14 @@
 
 class MainWindow {
 private:
+	// GTK stuff.
 	GtkWidget *window;
 	GtkAccelGroup *accel;
 	GtkWidget *vbox;
 	GtkWidget *menubar;
+	GtkWidget *toolbar;
+
+	// Custom controls.
 	BolotaTreeView tree_view;
 
    public:
@@ -26,7 +30,8 @@ private:
 	virtual ~MainWindow();
 
 	// Setup and things.
-	GtkWidget* SetupMenu();
+	GtkWidget* SetupMenubar();
+	GtkWidget* SetupToolbar();
 
 	// Event handlers.
 	static void Event_Destroy(const GtkWidget* widget, gpointer data);

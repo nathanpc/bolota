@@ -27,9 +27,11 @@ MainWindow::MainWindow() {
 	// Setup main vertical layout box.
 	vbox = gtk_vbox_new(false, 0);
 	gtk_container_add(GTK_CONTAINER(window), vbox);
-	menubar = SetupMenu();
+	menubar = SetupMenubar();
+	toolbar = SetupToolbar();
 	gtk_box_pack_start(GTK_BOX(vbox), menubar, false, false, 0);
-	gtk_box_pack_start(GTK_BOX(vbox), tree_view.widget, true, true, 1);
+	gtk_box_pack_start(GTK_BOX(vbox), toolbar, false, false, 0);
+	gtk_box_pack_start(GTK_BOX(vbox), tree_view.widget, true, true, 0);
 
 	// Setup window closing event.
 	g_signal_connect(G_OBJECT(window), "destroy",
@@ -53,7 +55,7 @@ MainWindow::~MainWindow() {
  *
  * @return Menu bar widget.
  */
-GtkWidget* MainWindow::SetupMenu() {
+GtkWidget* MainWindow::SetupMenubar() {
 	GtkWidget* menu;
 	GtkWidget* item;
 	GtkWidget* icon;
@@ -158,6 +160,75 @@ GtkWidget* MainWindow::SetupMenu() {
 							   (GdkModifierType)0, GTK_ACCEL_VISIBLE);
 	gtk_menu_shell_append(GTK_MENU_SHELL(menu), item);
 	gtk_menu_shell_append(GTK_MENU_SHELL(bar), field_menu);
+
+	return bar;
+}
+
+/**
+ * Sets up the toolbar for the application.
+ *
+ * @return Toolbar widget.
+ */
+GtkWidget* MainWindow::SetupToolbar() {
+	GtkToolItem* item;
+	GtkWidget* icon;
+
+	// Create the toolbar.
+	GtkWidget* bar = gtk_toolbar_new();
+	gtk_toolbar_set_style(GTK_TOOLBAR(bar), GTK_TOOLBAR_ICONS);
+	GtkIconSize ics = GTK_ICON_SIZE_LARGE_TOOLBAR;
+
+	// File operation buttons.
+	item = gtk_tool_button_new_from_stock(GTK_STOCK_NEW);
+	gtk_toolbar_insert(GTK_TOOLBAR(bar), item, -1);
+	item = gtk_tool_button_new_from_stock(GTK_STOCK_OPEN);
+	gtk_toolbar_insert(GTK_TOOLBAR(bar), item, -1);
+	item = gtk_tool_button_new_from_stock(GTK_STOCK_SAVE);
+	gtk_toolbar_insert(GTK_TOOLBAR(bar), item, -1);
+	item = gtk_separator_tool_item_new();
+	gtk_toolbar_insert(GTK_TOOLBAR(bar), item, -1);
+
+	// Document operation buttons.
+	item = gtk_tool_button_new_from_stock(GTK_STOCK_REFRESH);
+	gtk_toolbar_insert(GTK_TOOLBAR(bar), item, -1);
+	item = gtk_tool_button_new_from_stock(GTK_STOCK_PROPERTIES);
+	gtk_toolbar_insert(GTK_TOOLBAR(bar), item, -1);
+	item = gtk_separator_tool_item_new();
+	gtk_toolbar_insert(GTK_TOOLBAR(bar), item, -1);
+
+	// Field creation buttons.
+	icon = gtk_image_new_from_icon_name("go-top", ics);
+	item = gtk_tool_button_new(icon, "Prepend");
+	gtk_toolbar_insert(GTK_TOOLBAR(bar), item, -1);
+	icon = gtk_image_new_from_icon_name("go-bottom", ics);
+	item = gtk_tool_button_new(icon, "Append");
+	gtk_toolbar_insert(GTK_TOOLBAR(bar), item, -1);
+	icon = gtk_image_new_from_icon_name("go-jump", ics);
+	item = gtk_tool_button_new(icon, "Create Child");
+	gtk_toolbar_insert(GTK_TOOLBAR(bar), item, -1);
+	icon = gtk_image_new_from_icon_name("go-first", ics);
+	item = gtk_tool_button_new(icon, "Append to Parent");
+	gtk_toolbar_insert(GTK_TOOLBAR(bar), item, -1);
+	item = gtk_separator_tool_item_new();
+	gtk_toolbar_insert(GTK_TOOLBAR(bar), item, -1);
+
+	// Field movement buttons.
+	icon = gtk_image_new_from_icon_name("up", ics);
+	item = gtk_tool_button_new(icon, "Move Up");
+	gtk_toolbar_insert(GTK_TOOLBAR(bar), item, -1);
+	icon = gtk_image_new_from_icon_name("down", ics);
+	item = gtk_tool_button_new(icon, "Move Down");
+	gtk_toolbar_insert(GTK_TOOLBAR(bar), item, -1);
+	item = gtk_separator_tool_item_new();
+	gtk_toolbar_insert(GTK_TOOLBAR(bar), item, -1);
+
+	// Field indentation buttons.
+	icon = gtk_image_new_from_icon_name("format-indent-more", ics);
+	item = gtk_tool_button_new(icon, "Indent");
+	gtk_toolbar_insert(GTK_TOOLBAR(bar), item, -1);
+	icon = gtk_image_new_from_icon_name("format-indent-less", ics);
+	item = gtk_tool_button_new(icon, "De-indent");
+	gtk_toolbar_insert(GTK_TOOLBAR(bar), item, -1);
 
 	return bar;
 }
