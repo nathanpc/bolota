@@ -22,7 +22,7 @@ private:
 	GtkWidget *toolbar;
 
 	// Custom controls.
-	BolotaTreeView tree_view;
+	BolotaTreeView *tree_view;
 
    public:
 	// Constructors and destructors.

@@ -21,11 +21,15 @@ enum {
 };
 
 /**
-    * Initializes the TreeView widget.
+ * Initializes the TreeView widget.
+ *
+ * @param parent Parent window.
  */
-BolotaTreeView::BolotaTreeView() {
-	// Create TreeView widget.
+BolotaTreeView::BolotaTreeView(GtkWidget *parent) {
+	this->parent = parent;
 	this->document = nullptr;
+
+	// Create TreeView widget.
 	this->widget = gtk_tree_view_new();
 	GtkTreeView *tree_view = GTK_TREE_VIEW(this->widget);
 
@@ -141,4 +145,49 @@ void BolotaTreeView::OpenExampleDocument() {
 
 	// Populate the widget.
 	OpenDocument(doc);
+}
+
+/**
+ * Moves the currently selected field up the tree.
+ *
+ * @param widget  Widget responsible for firing the event.
+ * @param vp_this Pointer to ourselves.
+ */
+void BolotaTreeView::Event_MoveUp(const GtkWidget* widget, gpointer vp_this) {
+	BolotaTreeView *pThis = static_cast<BolotaTreeView *>(vp_this);
+
+	// Get model and iterator from the current selection.
+	GtkTreeModel *model;
+	GtkTreeIter prev_iter;
+	GtkTreeIter iter;
+	GtkTreeSelection *selection = gtk_tree_view_get_selection(
+		GTK_TREE_VIEW(pThis->widget));
+	if (!gtk_tree_selection_get_selected(selection, &model, &iter)) {
+		GtkWidget *dialog = gtk_message_dialog_new(GTK_WINDOW(pThis->parent),
+			GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
+			"No field selected. To perform this operation a field must be "
+			"selected.");
+		gtk_dialog_run(GTK_DIALOG(dialog));
+		gtk_widget_destroy(dialog);
+		return;
+	}
+
+	// Get the previous iterator.
+	GtkTreePath *path = gtk_tree_model_get_path(model, &iter);
+	gtk_tree_path_prev(path);
+	if (!gtk_tree_model_get_iter(model, &prev_iter, path)) {
+		gchar *strpath = gtk_tree_path_to_string(path);
+		GtkWidget *dialog = gtk_message_dialog_new(GTK_WINDOW(pThis->parent),
+			GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
+			"Failed to get tree iterator from path \"%s\".", strpath);
+		gtk_dialog_run(GTK_DIALOG(dialog));
+		gtk_widget_destroy(dialog);
+		g_free(strpath);
+		gtk_tree_path_free(path);
+		return;
+	}
+	gtk_tree_path_free(path);
+
+	// Actually move the item.
+	gtk_tree_store_move_before(GTK_TREE_STORE(model), &iter, &prev_iter);
 }

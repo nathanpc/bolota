@@ -14,13 +14,14 @@
 
 class BolotaTreeView {
 private:
+	GtkWidget *parent;
 	Bolota::Document *document;
 
 public:
 	GtkWidget *widget;
 
 	// Constructors and destructors.
-	BolotaTreeView();
+	BolotaTreeView(GtkWidget *parent);
 	virtual ~BolotaTreeView();
 
 	// File operations.
@@ -30,6 +31,9 @@ public:
 	// TreeView operations.
 	void AddTreeViewItem(GtkTreeStore *store, GtkTreeIter *parent,
 		GtkTreeIter *prev, Bolota::Field *field);
+
+	// Event handlers.
+	static void Event_MoveUp(const GtkWidget* widget, gpointer vp_this);
 };
 
 #endif // _BOLOTA_GTK2_BOLOTATREEVIEW_H

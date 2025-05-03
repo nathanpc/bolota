@@ -20,6 +20,9 @@ MainWindow::MainWindow() {
 	gtk_window_set_default_size(GTK_WINDOW(window), 600, 600);
 	gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
 
+	// Setup document viewer.
+	this->tree_view = new BolotaTreeView(window);
+
 	// Setup accelerator.
 	this->accel = gtk_accel_group_new();
 	gtk_window_add_accel_group(GTK_WINDOW(window), accel);
@@ -31,7 +34,7 @@ MainWindow::MainWindow() {
 	toolbar = SetupToolbar();
 	gtk_box_pack_start(GTK_BOX(vbox), menubar, false, false, 0);
 	gtk_box_pack_start(GTK_BOX(vbox), toolbar, false, false, 0);
-	gtk_box_pack_start(GTK_BOX(vbox), tree_view.widget, true, true, 0);
+	gtk_box_pack_start(GTK_BOX(vbox), tree_view->widget, true, true, 0);
 
 	// Setup window closing event.
 	g_signal_connect(G_OBJECT(window), "destroy",
@@ -39,15 +42,22 @@ MainWindow::MainWindow() {
 
 	// Show all widgets.
 	gtk_widget_show_all(this->window);
-	tree_view.OpenExampleDocument();
+	tree_view->OpenExampleDocument();
 }
 
 /**
  * Takes care of deallocating the window and closing it if needed.
  */
 MainWindow::~MainWindow() {
+	// Destroy the window itself.
 	if (window != nullptr)
 		MainWindow::Event_Destroy(nullptr, (gpointer)this);
+
+	// Free the document viewer widget.
+	if (tree_view != nullptr) {
+		delete tree_view;
+		tree_view = nullptr;
+	}
 }
 
 /**
@@ -136,6 +146,8 @@ GtkWidget* MainWindow::SetupMenubar() {
 	gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(item), icon);
 	gtk_widget_add_accelerator(item, "activate", accel, GDK_k,
 							   (GdkModifierType)0, GTK_ACCEL_VISIBLE);
+	g_signal_connect(G_OBJECT(item), "activate",
+					 G_CALLBACK(BolotaTreeView::Event_MoveUp), tree_view);
 	gtk_menu_shell_append(GTK_MENU_SHELL(menu), item);
 	item = gtk_image_menu_item_new_with_mnemonic("Move Dow_n");
 	icon = gtk_image_new_from_icon_name("down", GTK_ICON_SIZE_MENU);
@@ -215,6 +227,8 @@ GtkWidget* MainWindow::SetupToolbar() {
 	// Field movement buttons.
 	icon = gtk_image_new_from_icon_name("up", ics);
 	item = gtk_tool_button_new(icon, "Move Up");
+	g_signal_connect(G_OBJECT(item), "clicked",
+					 G_CALLBACK(BolotaTreeView::Event_MoveUp), tree_view);
 	gtk_toolbar_insert(GTK_TOOLBAR(bar), item, -1);
 	icon = gtk_image_new_from_icon_name("down", ics);
 	item = gtk_tool_button_new(icon, "Move Down");
