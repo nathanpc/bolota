@@ -15,6 +15,7 @@
 class MainWindow {
 private:
 	GtkWidget *window;
+	GtkAccelGroup *accel;
 	GtkWidget *vbox;
 	GtkWidget *menubar;
 	BolotaTreeView tree_view;
