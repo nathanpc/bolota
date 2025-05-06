@@ -26,7 +26,7 @@ enum {
  * @param parent Parent window.
  */
 BolotaTreeView::BolotaTreeView(GtkWidget *parent) {
-	this->parent = parent;
+	this->parent_window = parent;
 	this->document = nullptr;
 
 	// Create TreeView widget.
@@ -148,6 +148,41 @@ void BolotaTreeView::OpenExampleDocument() {
 }
 
 /**
+ * Gets the iterator and path from the current selection in the TreeView.
+ *
+ * @param model       Pointer to store the tree model.
+ * @param iter        Pointer to store the iterator. Caller owned.
+ * @param path        Pointer to store the path. Must be freed with
+ *                    gtk_tree_path_free.
+ * @param show_dialog Should the method automatically show an error dialog in
+ *                    case of failure?
+ *
+ * @return TRUE if we could get the selection and populated the arguments with
+ *         data, FALSE otherwise.
+ */
+bool BolotaTreeView::GetSelection(GtkTreeModel **model, GtkTreeIter *iter,
+								  GtkTreePath **path, bool show_dialog) {
+	GtkTreeSelection *selection = gtk_tree_view_get_selection(
+		GTK_TREE_VIEW(widget));
+	if (!gtk_tree_selection_get_selected(selection, model, iter)) {
+		if (show_dialog) {
+			GtkWidget *dialog = gtk_message_dialog_new(
+				GTK_WINDOW(parent_window), GTK_DIALOG_DESTROY_WITH_PARENT,
+				GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, "No field selected. To "
+				"perform this operation a field must be selected.");
+			gtk_dialog_run(GTK_DIALOG(dialog));
+			gtk_widget_destroy(dialog);
+		}
+		return false;
+	}
+
+	// Convert selection to tree path.
+	*path = gtk_tree_model_get_path(*model, iter);
+
+	return true;
+}
+
+/**
  * Moves the currently selected field up the tree.
  *
  * @param widget  Widget responsible for firing the event.
@@ -158,28 +193,22 @@ void BolotaTreeView::Event_MoveUp(const GtkWidget* widget, gpointer vp_this) {
 
 	// Get model and iterator from the current selection.
 	GtkTreeModel *model;
-	GtkTreeIter prev_iter;
 	GtkTreeIter iter;
-	GtkTreeSelection *selection = gtk_tree_view_get_selection(
-		GTK_TREE_VIEW(pThis->widget));
-	if (!gtk_tree_selection_get_selected(selection, &model, &iter)) {
-		GtkWidget *dialog = gtk_message_dialog_new(GTK_WINDOW(pThis->parent),
-			GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
-			"No field selected. To perform this operation a field must be "
-			"selected.");
-		gtk_dialog_run(GTK_DIALOG(dialog));
-		gtk_widget_destroy(dialog);
+	GtkTreePath *path;
+	if (!pThis->GetSelection(&model, &iter, &path, true))
 		return;
-	}
 
-	// Get the previous iterator.
-	GtkTreePath *path = gtk_tree_model_get_path(model, &iter);
+	// Get the previous item path.
 	gtk_tree_path_prev(path);
+
+	// Get the previous item iterator.
+	GtkTreeIter prev_iter;
 	if (!gtk_tree_model_get_iter(model, &prev_iter, path)) {
 		gchar *strpath = gtk_tree_path_to_string(path);
-		GtkWidget *dialog = gtk_message_dialog_new(GTK_WINDOW(pThis->parent),
-			GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
-			"Failed to get tree iterator from path \"%s\".", strpath);
+		GtkWidget *dialog = gtk_message_dialog_new(
+			GTK_WINDOW(pThis->parent_window), GTK_DIALOG_DESTROY_WITH_PARENT,
+			GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, "Failed to get tree iterator "
+			"from path \"%s\".", strpath);
 		gtk_dialog_run(GTK_DIALOG(dialog));
 		gtk_widget_destroy(dialog);
 		g_free(strpath);

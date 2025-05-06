@@ -12,7 +12,8 @@
 	"cSpell.words": [
 		"BOLOTA",
 		"BOLOTATREEVIEW",
-		"FHND"
+		"FHND",
+		"gchar"
 	],
 	"makefile.launchConfigurations": [
 		{

@@ -14,7 +14,7 @@
 
 class BolotaTreeView {
 private:
-	GtkWidget *parent;
+	GtkWidget *parent_window;
 	Bolota::Document *document;
 
 public:
@@ -29,6 +29,8 @@ public:
 	void OpenExampleDocument();
 
 	// TreeView operations.
+	bool GetSelection(GtkTreeModel **model, GtkTreeIter *iter,
+		GtkTreePath **path, bool show_dialog);
 	void AddTreeViewItem(GtkTreeStore *store, GtkTreeIter *parent,
 		GtkTreeIter *prev, Bolota::Field *field);
 
