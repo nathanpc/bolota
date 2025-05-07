@@ -34,6 +34,10 @@ public:
 	void AddTreeViewItem(GtkTreeStore *store, GtkTreeIter *parent,
 		GtkTreeIter *prev, Bolota::Field *field);
 
+	// Field operations.
+	Bolota::Field* ExtractFieldFromTree(GtkTreeModel *model, GtkTreeIter *iter,
+		bool extensive);
+
 	// Event handlers.
 	static void Event_MoveUp(const GtkWidget* widget, gpointer vp_this);
 };

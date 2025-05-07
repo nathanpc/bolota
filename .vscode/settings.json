@@ -6,14 +6,18 @@
 	"files.associations": {
 		"cpanfile": "perl",
 		"string": "cpp",
-		"atomic": "cpp"
+		"atomic": "cpp",
+		"array": "cpp",
+		"string_view": "cpp"
 	},
 	"sonarlint.pathToCompileCommands": "${workspaceFolder}/.vscode/compile_commands.json",
 	"cSpell.words": [
 		"BOLOTA",
 		"BOLOTATREEVIEW",
+		"EMSG",
 		"FHND",
-		"gchar"
+		"gchar",
+		"gint"
 	],
 	"makefile.launchConfigurations": [
 		{
