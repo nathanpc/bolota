@@ -261,10 +261,21 @@ void BolotaTreeView::Event_MoveUp(const GtkWidget* widget, gpointer vp_this) {
 
 			// Remove selected item and recreate it as a child of previous.
 			gtk_tree_store_remove(GTK_TREE_STORE(model), &iter);
+			GtkTreeIter *append_iter = gtk_tree_iter_copy(&prev_iter);
 			pThis->AddTreeViewItem(GTK_TREE_STORE(model), &prev_iter,
 				&child_iter, field);
 
-			// TODO: Select newly created item and expand it.
+			// Select newly created item and expand it.
+			gtk_tree_model_iter_nth_child(model, append_iter, &prev_iter,
+				num_childs);
+			GtkTreePath *append_path = gtk_tree_model_get_path(model,
+				append_iter);
+			gtk_tree_iter_free(append_iter);
+			gtk_tree_view_expand_row(GTK_TREE_VIEW(pThis->widget), append_path,
+				true);
+			gtk_tree_selection_select_path(gtk_tree_view_get_selection(
+				GTK_TREE_VIEW(pThis->widget)), append_path);
+			gtk_tree_path_free(append_path);
 
 			return;
 		} else {
