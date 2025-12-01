@@ -244,11 +244,11 @@ HWND InitializeInstance(HINSTANCE hInstance, LPTSTR lpCmdLine, int nCmdShow) {
 	lpArgs = NULL;
 	szFilename = NULL;
 #else
-#ifdef GetCommandLine
+#if defined(GetCommandLine) && !defined(_WCE_OLDPPC)
 	LPTSTR szFilename = GetCommandLine();
 #else
 	LPTSTR szFilename = lpCmdLine;
-#endif // GetCommandLine
+#endif // GetCommandLine && !_WCE_OLDPPC
 	wndMain = new MainWindow(hInstance, (*szFilename) ? szFilename : NULL);
 #endif // !UNDER_CE
 

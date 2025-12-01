@@ -71,7 +71,9 @@ CommandBar::CommandBar(HINSTANCE hInst, HWND hwndParent) {
 	mbi.hInstRes   = hInst;              // Instance handle of our application.
 	mbi.nBmpId     = 0;                  // Bitmap resource ID.
 	mbi.cBmpImages = 0;                  // Number of images in the bitmap.
+#if _WIN32_WCE > 300
 	mbi.dwFlags    = SHCMBF_HMENU;       // nToolBarId is a menu resource.
+#endif // _WIN32_WCE > 300
 	
 	// Create the menu bar.
 	if (!SHCreateMenuBar(&mbi)) {

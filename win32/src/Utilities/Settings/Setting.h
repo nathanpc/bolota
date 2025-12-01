@@ -110,11 +110,11 @@ namespace Settings {
 				0, KEY_READ, &hKey);
 			if (dwResult != ERROR_SUCCESS) {
 				// Key wasn't found. We should fallback to the default value.
-#if defined(UNDER_CE) && (_MSC_VER <= 1200)
+#if defined(UNDER_CE) && (_WIN32_WCE <= 300) && !defined(_WCE_OLDPPC)
 				if (dwResult == ERROR_INVALID_PARAMETER)
 #else
 				if (dwResult == ERROR_FILE_NOT_FOUND)
-#endif // UNDER_CE && (_MSC_VER <= 1200)
+#endif // UNDER_CE && (_WIN32_WCE <= 300) && !_WCE_OLDPPC
 					return dwResult;
 
 				// Looks like bad things happened.

@@ -27,7 +27,7 @@
 	#pragma comment(lib, "aygshell.lib") 
 #endif // SHELL_AYGSHELL
 
-#if _MSC_VER >= 1400
+#if (_MSC_VER >= 1400) && (_WIN32_WCE > 300)
 	#if defined(WIN32_PLATFORM_PSPC) || defined(WIN32_PLATFORM_WFSP)
 		#ifndef _DEVICE_RESOLUTION_AWARE
 			#define _DEVICE_RESOLUTION_AWARE

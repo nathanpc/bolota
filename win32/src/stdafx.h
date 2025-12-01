@@ -77,6 +77,11 @@
 	#include "../wince/STL/wce_defs.h"
 #endif // UNDER_CE
 
+// Define a flag to check if we are building a PocketPC application under eVC.
+#if defined(SHELL_AYGSHELL) && (_WIN32_WCE <= 300)
+	#define _WCE_OLDPPC _WIN32_WCE
+#endif // SHELL_AYGSHELL && (_WIN32_WCE <= 300)
+
 // Ensure we don't have to guard against LongPtr on 32-bit systems.
 #ifndef SetWindowLongPtr
 	#define SetWindowLongPtr SetWindowLong
