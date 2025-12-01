@@ -11,8 +11,8 @@
 #include <windowsx.h>
 #include <vector>
 
-#include "Bolota/Errors/SystemError.h"
-#include "Bolota/DateField.h"
+#include "../../Bolota/Errors/SystemError.h"
+#include "../../Bolota/DateField.h"
 
 // Spacing between controls.
 #define CONTROL_SPACING 7

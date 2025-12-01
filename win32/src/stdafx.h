@@ -89,7 +89,7 @@
 #endif // !GWLP_USERDATA
 
 // Error handling.
-#include "Bolota/Errors/Error.h"
+#include "../../Bolota/Errors/Error.h"
 
 // Utilities
 #include "Utilities/MsgBoxes.h"

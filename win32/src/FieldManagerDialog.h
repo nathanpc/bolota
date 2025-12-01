@@ -16,7 +16,7 @@
 #include "stdafx.h"
 #include "Utilities/DialogWindow.h"
 #include "Components/FieldImageList.h"
-#include "Bolota/Field.h"
+#include "../../Bolota/Field.h"
 
 /**
  * A dialog to perform edit, create, append, prepend operations on a single

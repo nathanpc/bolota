@@ -14,7 +14,7 @@
 #endif // _MSC_VER > 1000
 
 #ifdef _WIN32
-	#include "../../stdafx.h"
+	#include "../../win32/src/stdafx.h"
 #endif // _WIN32
 
 #include "Error.h"

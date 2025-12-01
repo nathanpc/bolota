@@ -14,7 +14,7 @@
 
 #include "stdafx.h"
 #include "Utilities/DialogWindow.h"
-#include "Bolota/Document.h"
+#include "../../Bolota/Document.h"
 
 /**
  * A dialog to manage a Bolota document's properties.

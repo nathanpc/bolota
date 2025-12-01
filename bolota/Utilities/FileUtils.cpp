@@ -21,11 +21,11 @@ FHND FileUtils::Open(LPCTSTR szFilename, bool bWrite, bool bBinary) {
 	FHND hFile = INVALID_HANDLE_VALUE;
 
 	if (bWrite) {
-		hFile = CreateFile(szPath, GENERIC_WRITE, FILE_SHARE_READ, NULL,
+		hFile = CreateFile(szFilename, GENERIC_WRITE, FILE_SHARE_READ, NULL,
 			CREATE_ALWAYS, FILE_ATTRIBUTE_ARCHIVE, NULL);
 	} else {
-		CreateFile(szPath, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING,
-			FILE_ATTRIBUTE_NORMAL, NULL);
+		hFile = CreateFile(szFilename, GENERIC_READ, FILE_SHARE_READ, NULL,
+			OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 	}
 #else
 	// Build up the file operation flags.
@@ -52,7 +52,7 @@ FHND FileUtils::Open(LPCTSTR szFilename, bool bWrite, bool bBinary) {
  */
 bool FileUtils::Close(FHND hFile) {
 #ifdef _WIN32
-	return CloseHandle(hFile);
+	return CloseHandle(hFile) != 0;
 #else
 	return fclose(hFile) == 0;
 #endif // _WIN32
@@ -68,13 +68,13 @@ bool FileUtils::Close(FHND hFile) {
  *
  * @return TRUE on success, FALSE otherwise.
  */
-bool FileUtils::Read(FHND hFile, void* lpBuffer, size_t nBytesToRead,
-					 size_t* lpnBytesRead) {
+bool FileUtils::Read(FHND hFile, void* lpBuffer, fsize_t nBytesToRead,
+					 fsize_t* lpnBytesRead) {
 #ifdef _WIN32
-	return ReadFile(hFile, lpBuffer, nBytesToRead, lpnBytesRead, NULL);
+	return ReadFile(hFile, lpBuffer, nBytesToRead, lpnBytesRead, NULL) != 0;
 #else
 	// Read into buffer.
-	size_t nLen = fread(lpBuffer, sizeof(uint8_t), nBytesToRead, hFile);
+	fsize_t nLen = fread(lpBuffer, sizeof(uint8_t), nBytesToRead, hFile);
 	if (lpnBytesRead != NULL)
 		*lpnBytesRead = nLen;
 
@@ -99,12 +99,13 @@ bool FileUtils::Read(FHND hFile, void* lpBuffer, size_t nBytesToRead,
  *
  * @return TRUE on success, FALSE otherwise.
  */
-bool FileUtils::Write(FHND hFile, const void* lpBuffer, size_t nBytesToWrite,
-					  size_t* lpnBytesWritten) {
+bool FileUtils::Write(FHND hFile, const void* lpBuffer, fsize_t nBytesToWrite,
+					  fsize_t* lpnBytesWritten) {
 #ifdef _WIN32
-	return WriteFile(hFile, lpBuffer, nBytesToWrite, lpnBytesWritten, NULL);
+	return WriteFile(hFile, lpBuffer, nBytesToWrite, lpnBytesWritten, NULL)
+		!= 0;
 #else
-	size_t nLen = fwrite(lpBuffer, sizeof(uint8_t), nBytesToWrite,
+	fsize_t nLen = fwrite(lpBuffer, sizeof(uint8_t), nBytesToWrite,
 		hFile);
 	if (lpnBytesWritten != NULL)
 		*lpnBytesWritten = nLen;

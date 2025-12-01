@@ -9,7 +9,7 @@
 
 #include "../stdafx.h"
 #include "../PropertiesDialog.h"
-#include "../Bolota/Errors/Error.h"
+#include "../../Bolota/Errors/Error.h"
 #include "../Utilities/Settings/ConfigManager.h"
 
 #ifndef UNDER_CE

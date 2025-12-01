@@ -9,7 +9,7 @@ use Cwd qw(abs_path);
 use File::Basename qw(dirname basename);
 
 # Directories
-use constant PROJECT_ROOT => dirname(dirname(abs_path($0)));
+use constant PROJECT_ROOT => dirname(dirname(abs_path($0))) . '/win32';
 use constant TEMPLATE_DIR => PROJECT_ROOT . '/res/templates';
 use constant SNIPPET_DIR  => PROJECT_ROOT . '/res/snippets';
 

@@ -9,7 +9,7 @@
 #include "MsgBoxes.h"
 
 #include "../stdafx.h"
-#include "../Bolota/Errors/Error.h"
+#include "../../Bolota/Errors/Error.h"
 
 /**
  * Generic message box.

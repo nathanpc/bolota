@@ -43,7 +43,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /W3 /GX /O2 /I "..\shims\win32\\" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_UNICODE" /D "UNICODE" /D _WIN32_IE=0x0501 /FD /c
+# ADD CPP /nologo /W3 /GX /O2 /I "..\..\shims\win32\\" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_UNICODE" /D "UNICODE" /D _WIN32_IE=0x0501 /FD /c
 # SUBTRACT CPP /YX /Yc /Yu
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
@@ -70,7 +70,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Yu"stdafx.h" /FD /GZ /c
-# ADD CPP /nologo /W3 /Gm /GX /ZI /Od /I "..\shims\win32\\" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_UNICODE" /D "UNICODE" /D _WIN32_IE=0x0501 /FR /FD /GZ /c
+# ADD CPP /nologo /W3 /Gm /GX /ZI /Od /I "..\..\shims\win32\\" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_UNICODE" /D "UNICODE" /D _WIN32_IE=0x0501 /FR /FD /GZ /c
 # SUBTRACT CPP /YX /Yc /Yu
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
@@ -97,135 +97,135 @@ LINK32=link.exe
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\icons\fields\_Bullet1.ico
+SOURCE=..\..\icons\fields\_Bullet1.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Battery.ico
+SOURCE=..\..\icons\fields\Battery.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Box.ico
+SOURCE=..\..\icons\fields\Box.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Calendar.ico
+SOURCE=..\..\icons\fields\Calendar.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Camera.ico
+SOURCE=..\..\icons\fields\Camera.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Check.ico
+SOURCE=..\..\icons\fields\Check.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Clipboard.ico
+SOURCE=..\..\icons\fields\Clipboard.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Clock.ico
+SOURCE=..\..\icons\fields\Clock.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\CPU.ico
+SOURCE=..\..\icons\fields\CPU.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Find.ico
+SOURCE=..\..\icons\fields\Find.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Folder.ico
+SOURCE=..\..\icons\fields\Folder.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Gear.ico
+SOURCE=..\..\icons\fields\Gear.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Help.ico
+SOURCE=..\..\icons\fields\Help.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\History.ico
+SOURCE=..\..\icons\fields\History.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Laptop.ico
+SOURCE=..\..\icons\fields\Laptop.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\LICENSE.txt
+SOURCE=..\..\icons\fields\LICENSE.txt
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Light.ico
+SOURCE=..\..\icons\fields\Light.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Love.ico
+SOURCE=..\..\icons\fields\Love.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Men.ico
+SOURCE=..\..\icons\fields\Men.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Money.ico
+SOURCE=..\..\icons\fields\Money.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Movie.ico
+SOURCE=..\..\icons\fields\Movie.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Plus.ico
+SOURCE=..\..\icons\fields\Plus.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Redo.ico
+SOURCE=..\..\icons\fields\Redo.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Remove.ico
+SOURCE=..\..\icons\fields\Remove.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Signpost.ico
+SOURCE=..\..\icons\fields\Signpost.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Sound.ico
+SOURCE=..\..\icons\fields\Sound.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Star.ico
+SOURCE=..\..\icons\fields\Star.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Stop.ico
+SOURCE=..\..\icons\fields\Stop.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Tags.ico
+SOURCE=..\..\icons\fields\Tags.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Trash.ico
+SOURCE=..\..\icons\fields\Trash.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Undo.ico
+SOURCE=..\..\icons\fields\Undo.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Woman.ico
+SOURCE=..\..\icons\fields\Woman.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Wrench.ico
+SOURCE=..\..\icons\fields\Wrench.ico
 # End Source File
 # End Group
 # Begin Group "File Icons"
@@ -233,20 +233,20 @@ SOURCE=..\icons\fields\Wrench.ico
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\icons\files\bolota_doc_95.ico
+SOURCE=..\..\icons\files\bolota_doc_95.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\files\bolota_doc_xp.ico
+SOURCE=..\..\icons\files\bolota_doc_xp.ico
 # End Source File
 # End Group
 # Begin Source File
 
-SOURCE=..\icons\blank.ico
+SOURCE=..\..\icons\blank.ico
 # End Source File
 # Begin Source File
 
-SOURCE="..\icons\bolota-icon.ico"
+SOURCE="..\..\icons\bolota-icon.ico"
 # End Source File
 # Begin Source File
 
@@ -293,31 +293,31 @@ SOURCE=..\src\stdafx.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\src\Bolota\Errors\ConsistencyError.cpp
+SOURCE=..\..\bolota\Errors\ConsistencyError.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\Errors\ConsistencyError.h
+SOURCE=..\..\bolota\Errors\ConsistencyError.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\Errors\Error.cpp
+SOURCE=..\..\bolota\Errors\Error.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\Errors\Error.h
+SOURCE=..\..\bolota\Errors\Error.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\Errors\ErrorCollection.h
+SOURCE=..\..\bolota\Errors\ErrorCollection.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\Errors\SystemError.cpp
+SOURCE=..\..\bolota\Errors\SystemError.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\Errors\SystemError.h
+SOURCE=..\..\bolota\Errors\SystemError.h
 # End Source File
 # End Group
 # Begin Group "Fields"
@@ -325,52 +325,52 @@ SOURCE=..\src\Bolota\Errors\SystemError.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\src\Bolota\DateField.cpp
+SOURCE=..\..\bolota\DateField.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\DateField.h
+SOURCE=..\..\bolota\DateField.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\IconField.cpp
+SOURCE=..\..\bolota\IconField.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\IconField.h
+SOURCE=..\..\bolota\IconField.h
 # End Source File
 # End Group
 # Begin Source File
 
-SOURCE=..\src\Bolota\Document.cpp
+SOURCE=..\..\bolota\Document.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\Document.h
+SOURCE=..\..\bolota\Document.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\Field.cpp
+SOURCE=..\..\bolota\Field.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\Field.h
+SOURCE=..\..\bolota\Field.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\FieldTypes.cpp
+SOURCE=..\..\bolota\FieldTypes.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\FieldTypes.h
+SOURCE=..\..\bolota\FieldTypes.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\UString.cpp
+SOURCE=..\..\bolota\UString.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\UString.h
+SOURCE=..\..\bolota\UString.h
 # End Source File
 # End Group
 # Begin Group "Windows and Dialogs"
@@ -445,19 +445,19 @@ SOURCE=..\src\Components\Toolbar.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\shims\cvtutf\ConvertUTF.cpp
+SOURCE=..\..\shims\cvtutf\ConvertUTF.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\shims\cvtutf\ConvertUTF.h
+SOURCE=..\..\shims\cvtutf\ConvertUTF.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\shims\cvtutf\Unicode.cpp
+SOURCE=..\..\shims\cvtutf\Unicode.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\shims\cvtutf\Unicode.h
+SOURCE=..\..\shims\cvtutf\Unicode.h
 # End Source File
 # End Group
 # Begin Group "Settings"
@@ -498,6 +498,14 @@ SOURCE=..\src\Utilities\DialogWindow.h
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\bolota\Utilities\FileUtils.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\bolota\Utilities\FileUtils.h
+# End Source File
+# Begin Source File
+
 SOURCE=..\src\Utilities\ImageList.cpp
 # End Source File
 # Begin Source File
@@ -530,15 +538,15 @@ SOURCE="..\..\..\Program Files\Microsoft Visual Studio\VC98\Include\BASETSD.H"
 # End Source File
 # Begin Source File
 
-SOURCE=..\shims\win32\newcpp.h
+SOURCE=..\..\shims\win32\newcpp.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\shims\win32\ssize_t.h
+SOURCE=..\..\shims\win32\ssize_t.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\shims\win32\stdint.h
+SOURCE=..\..\shims\win32\stdint.h
 # End Source File
 # End Group
 # End Target

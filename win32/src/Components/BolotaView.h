@@ -15,7 +15,7 @@
 #include <windows.h>
 #include <commctrl.h>
 
-#include "../Bolota/Document.h"
+#include "../../Bolota/Document.h"
 #include "../FieldManagerDialog.h"
 #include "FieldImageList.h"
 

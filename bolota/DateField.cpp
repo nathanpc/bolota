@@ -68,7 +68,7 @@ DateField* DateField::Now() {
 #ifdef _WIN32
 	SYSTEMTIME st;
 	GetSystemTime(&st);
-	self->SetTimestamp(&ts);
+	self->SetTimestamp(&st);
 #else
 	self->SetTimestamp(time(NULL));
 #endif // _WIN32

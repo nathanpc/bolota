@@ -29,50 +29,50 @@ LANGUAGE 9, 1
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_BOLOTA              ICON  DISCARDABLE       "..\\icons\\bolota-icon.ico"
-IDI_SMALL               ICON  DISCARDABLE       "..\\icons\\bolota-icon.ico"
+IDI_BOLOTA              ICON  DISCARDABLE       "..\\..\\icons\\bolota-icon.ico"
+IDI_SMALL               ICON  DISCARDABLE       "..\\..\\icons\\bolota-icon.ico"
 
 // File icons.
-IDI_FILE_95             ICON  DISCARDABLE       "..\\icons\\files\\bolota_doc_95.ico"
-IDI_FILE_XP             ICON  DISCARDABLE       "..\\icons\\files\\bolota_doc_xp.ico"
-IDI_FILE_VISTA          ICON  DISCARDABLE       "..\\icons\\files\\bolota_doc_vista.ico"
+IDI_FILE_95             ICON  DISCARDABLE       "..\\..\\icons\\files\\bolota_doc_95.ico"
+IDI_FILE_XP             ICON  DISCARDABLE       "..\\..\\icons\\files\\bolota_doc_xp.ico"
+IDI_FILE_VISTA          ICON  DISCARDABLE       "..\\..\\icons\\files\\bolota_doc_vista.ico"
 
 // Blank icon.
-IDI_BLANK               ICON  DISCARDABLE       "..\\icons\\blank.ico"
+IDI_BLANK               ICON  DISCARDABLE       "..\\..\\icons\\blank.ico"
 
 // Begin field icons.
-IDI_FI_BULLET1          ICON  DISCARDABLE       "..\\icons\\fields\\_Bullet1.ico"
-IDI_FI_BATTERY          ICON  DISCARDABLE       "..\\icons\\fields\\Battery.ico"
-IDI_FI_BOX              ICON  DISCARDABLE       "..\\icons\\fields\\Box.ico"
-IDI_FI_CALENDAR         ICON  DISCARDABLE       "..\\icons\\fields\\Calendar.ico"
-IDI_FI_CAMERA           ICON  DISCARDABLE       "..\\icons\\fields\\Camera.ico"
-IDI_FI_CHECK            ICON  DISCARDABLE       "..\\icons\\fields\\Check.ico"
-IDI_FI_CLIPBOARD        ICON  DISCARDABLE       "..\\icons\\fields\\Clipboard.ico"
-IDI_FI_CLOCK            ICON  DISCARDABLE       "..\\icons\\fields\\Clock.ico"
-IDI_FI_CPU              ICON  DISCARDABLE       "..\\icons\\fields\\CPU.ico"
-IDI_FI_FIND             ICON  DISCARDABLE       "..\\icons\\fields\\Find.ico"
-IDI_FI_FOLDER           ICON  DISCARDABLE       "..\\icons\\fields\\Folder.ico"
-IDI_FI_GEAR             ICON  DISCARDABLE       "..\\icons\\fields\\Gear.ico"
-IDI_FI_HELP             ICON  DISCARDABLE       "..\\icons\\fields\\Help.ico"
-IDI_FI_HISTORY          ICON  DISCARDABLE       "..\\icons\\fields\\History.ico"
-IDI_FI_LAPTOP           ICON  DISCARDABLE       "..\\icons\\fields\\Laptop.ico"
-IDI_FI_LIGHT            ICON  DISCARDABLE       "..\\icons\\fields\\Light.ico"
-IDI_FI_LOVE             ICON  DISCARDABLE       "..\\icons\\fields\\Love.ico"
-IDI_FI_MEN              ICON  DISCARDABLE       "..\\icons\\fields\\Men.ico"
-IDI_FI_MONEY            ICON  DISCARDABLE       "..\\icons\\fields\\Money.ico"
-IDI_FI_MOVIE            ICON  DISCARDABLE       "..\\icons\\fields\\Movie.ico"
-IDI_FI_PLUS             ICON  DISCARDABLE       "..\\icons\\fields\\Plus.ico"
-IDI_FI_REDO             ICON  DISCARDABLE       "..\\icons\\fields\\Redo.ico"
-IDI_FI_REMOVE           ICON  DISCARDABLE       "..\\icons\\fields\\Remove.ico"
-IDI_FI_SIGNPOST         ICON  DISCARDABLE       "..\\icons\\fields\\Signpost.ico"
-IDI_FI_SOUND            ICON  DISCARDABLE       "..\\icons\\fields\\Sound.ico"
-IDI_FI_STAR             ICON  DISCARDABLE       "..\\icons\\fields\\Star.ico"
-IDI_FI_STOP             ICON  DISCARDABLE       "..\\icons\\fields\\Stop.ico"
-IDI_FI_TAGS             ICON  DISCARDABLE       "..\\icons\\fields\\Tags.ico"
-IDI_FI_TRASH            ICON  DISCARDABLE       "..\\icons\\fields\\Trash.ico"
-IDI_FI_UNDO             ICON  DISCARDABLE       "..\\icons\\fields\\Undo.ico"
-IDI_FI_WOMAN            ICON  DISCARDABLE       "..\\icons\\fields\\Woman.ico"
-IDI_FI_WRENCH           ICON  DISCARDABLE       "..\\icons\\fields\\Wrench.ico"
+IDI_FI_BULLET1          ICON  DISCARDABLE       "..\\..\\icons\\fields\\_Bullet1.ico"
+IDI_FI_BATTERY          ICON  DISCARDABLE       "..\\..\\icons\\fields\\Battery.ico"
+IDI_FI_BOX              ICON  DISCARDABLE       "..\\..\\icons\\fields\\Box.ico"
+IDI_FI_CALENDAR         ICON  DISCARDABLE       "..\\..\\icons\\fields\\Calendar.ico"
+IDI_FI_CAMERA           ICON  DISCARDABLE       "..\\..\\icons\\fields\\Camera.ico"
+IDI_FI_CHECK            ICON  DISCARDABLE       "..\\..\\icons\\fields\\Check.ico"
+IDI_FI_CLIPBOARD        ICON  DISCARDABLE       "..\\..\\icons\\fields\\Clipboard.ico"
+IDI_FI_CLOCK            ICON  DISCARDABLE       "..\\..\\icons\\fields\\Clock.ico"
+IDI_FI_CPU              ICON  DISCARDABLE       "..\\..\\icons\\fields\\CPU.ico"
+IDI_FI_FIND             ICON  DISCARDABLE       "..\\..\\icons\\fields\\Find.ico"
+IDI_FI_FOLDER           ICON  DISCARDABLE       "..\\..\\icons\\fields\\Folder.ico"
+IDI_FI_GEAR             ICON  DISCARDABLE       "..\\..\\icons\\fields\\Gear.ico"
+IDI_FI_HELP             ICON  DISCARDABLE       "..\\..\\icons\\fields\\Help.ico"
+IDI_FI_HISTORY          ICON  DISCARDABLE       "..\\..\\icons\\fields\\History.ico"
+IDI_FI_LAPTOP           ICON  DISCARDABLE       "..\\..\\icons\\fields\\Laptop.ico"
+IDI_FI_LIGHT            ICON  DISCARDABLE       "..\\..\\icons\\fields\\Light.ico"
+IDI_FI_LOVE             ICON  DISCARDABLE       "..\\..\\icons\\fields\\Love.ico"
+IDI_FI_MEN              ICON  DISCARDABLE       "..\\..\\icons\\fields\\Men.ico"
+IDI_FI_MONEY            ICON  DISCARDABLE       "..\\..\\icons\\fields\\Money.ico"
+IDI_FI_MOVIE            ICON  DISCARDABLE       "..\\..\\icons\\fields\\Movie.ico"
+IDI_FI_PLUS             ICON  DISCARDABLE       "..\\..\\icons\\fields\\Plus.ico"
+IDI_FI_REDO             ICON  DISCARDABLE       "..\\..\\icons\\fields\\Redo.ico"
+IDI_FI_REMOVE           ICON  DISCARDABLE       "..\\..\\icons\\fields\\Remove.ico"
+IDI_FI_SIGNPOST         ICON  DISCARDABLE       "..\\..\\icons\\fields\\Signpost.ico"
+IDI_FI_SOUND            ICON  DISCARDABLE       "..\\..\\icons\\fields\\Sound.ico"
+IDI_FI_STAR             ICON  DISCARDABLE       "..\\..\\icons\\fields\\Star.ico"
+IDI_FI_STOP             ICON  DISCARDABLE       "..\\..\\icons\\fields\\Stop.ico"
+IDI_FI_TAGS             ICON  DISCARDABLE       "..\\..\\icons\\fields\\Tags.ico"
+IDI_FI_TRASH            ICON  DISCARDABLE       "..\\..\\icons\\fields\\Trash.ico"
+IDI_FI_UNDO             ICON  DISCARDABLE       "..\\..\\icons\\fields\\Undo.ico"
+IDI_FI_WOMAN            ICON  DISCARDABLE       "..\\..\\icons\\fields\\Woman.ico"
+IDI_FI_WRENCH           ICON  DISCARDABLE       "..\\..\\icons\\fields\\Wrench.ico"
 // End of field icons.
 
 /////////////////////////////////////////////////////////////////////////////
@@ -80,7 +80,7 @@ IDI_FI_WRENCH           ICON  DISCARDABLE       "..\\icons\\fields\\Wrench.ico"
 // Bitmap
 //
 
-IDB_TBCLASSIC           BITMAP  DISCARDABLE     "..\\icons\\toolbars\\classic\\classic.bmp"
+IDB_TBCLASSIC           BITMAP  DISCARDABLE     "..\\..\\icons\\toolbars\\classic\\classic.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

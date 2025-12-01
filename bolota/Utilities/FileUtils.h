@@ -14,11 +14,12 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdbool.h>
 #include <stdint.h>
 #include <tchar.h>
 #ifdef _WIN32
 	#include <windows.h>
+#else
+	#include <stdbool.h>
 #endif // _WIN32
 
 /**
@@ -28,7 +29,16 @@
 typedef HANDLE FHND;
 #else
 typedef FILE* FHND;
-#endif
+#endif // _WIN32
+
+/**
+ * File size abstraction.
+ */
+#ifdef _WIN32
+typedef DWORD fsize_t;
+#else
+typedef size_t fsize_t;
+#endif // _WIN32
 
 /**
  * Representation of an invalid handle.
@@ -41,10 +51,10 @@ namespace FileUtils {
 
 FHND Open(LPCTSTR szFilename, bool bWrite, bool bBinary);
 bool Close(FHND hFile);
-bool Read(FHND hFile, void* lpBuffer, size_t nBytesToRead,
-	size_t* lpnBytesRead);
-bool Write(FHND hFile, const void* lpBuffer, size_t nBytesToWrite,
-	size_t* lpnBytesWritten);
+bool Read(FHND hFile, void* lpBuffer, fsize_t nBytesToRead,
+	fsize_t* lpnBytesRead);
+bool Write(FHND hFile, const void* lpBuffer, fsize_t nBytesToWrite,
+	fsize_t* lpnBytesWritten);
 
 }
 

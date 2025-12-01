@@ -13,7 +13,7 @@
 	#include <crtdbg.h>
 #endif // defined(DEBUG) && !defined(UNDER_CE)
 
-#include "../shims/cvtutf/Unicode.h"
+#include "../../shims/cvtutf/Unicode.h"
 #include "Utilities/Settings/ConfigManager.h"
 #include "MainWindow.h"
 

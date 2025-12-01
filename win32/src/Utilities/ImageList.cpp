@@ -9,7 +9,7 @@
 
 #include <tchar.h>
 
-#include "../Bolota/Errors/SystemError.h"
+#include "../../Bolota/Errors/SystemError.h"
 #include "../SharedResources.h"
 
 // Fixes a problem in Visual Studio 2005.
