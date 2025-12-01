@@ -66,7 +66,7 @@
 #ifndef UNDER_CE
 	#include <assert.h>
 #else
-	#include "../../wince/STL/wce_defs.h"
+	#include "../../win32/wince/STL/wce_defs.h"
 #endif // !UNDER_CE
 
 namespace Unicode {

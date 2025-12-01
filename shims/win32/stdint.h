@@ -42,7 +42,7 @@
 
 // Shims for Windows CE.
 #ifdef UNDER_CE
-	#include "../../wince/STL/wce_defs.h"
+	#include "../../win32/wince/STL/wce_defs.h"
 #endif // UNDER_CE
 
 #include <limits.h>

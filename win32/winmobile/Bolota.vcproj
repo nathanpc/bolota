@@ -44,7 +44,7 @@
 				Name="VCCLCompilerTool"
 				ExecutionBucket="7"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)\..\shims\win32\&quot;"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)\..\..\shims\win32\&quot;"
 				PreprocessorDefinitions="_DEBUG;_WIN32_WCE=$(CEVER);UNDER_CE;$(PLATFORMDEFINES);WINCE;DEBUG;_WINDOWS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE;POCKETPC2003_UI_MODEL;POCKETPC2003_UI_MODEL"
 				MinimalRebuild="true"
 				RuntimeLibrary="1"
@@ -127,7 +127,7 @@
 				Name="VCCLCompilerTool"
 				ExecutionBucket="7"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)\..\shims\win32\&quot;"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)\..\..\shims\win32\&quot;"
 				PreprocessorDefinitions="_DEBUG;_WIN32_WCE=$(CEVER);UNDER_CE;$(PLATFORMDEFINES);WINCE;DEBUG;_WINDOWS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE;SMARTPHONE2003_UI_MODEL;SMARTPHONE2003_UI_MODEL"
 				MinimalRebuild="true"
 				RuntimeLibrary="1"
@@ -210,7 +210,7 @@
 				Name="VCCLCompilerTool"
 				ExecutionBucket="7"
 				Optimization="2"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)\..\shims\win32\&quot;"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)\..\..\shims\win32\&quot;"
 				PreprocessorDefinitions="NDEBUG;_WIN32_WCE=$(CEVER);UNDER_CE;$(PLATFORMDEFINES);WINCE;_WINDOWS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE;POCKETPC2003_UI_MODEL;POCKETPC2003_UI_MODEL"
 				RuntimeLibrary="0"
 				UsePrecompiledHeader="0"
@@ -294,7 +294,7 @@
 				Name="VCCLCompilerTool"
 				ExecutionBucket="7"
 				Optimization="2"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)\..\shims\win32\&quot;"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)\..\..\shims\win32\&quot;"
 				PreprocessorDefinitions="NDEBUG;_WIN32_WCE=$(CEVER);UNDER_CE;$(PLATFORMDEFINES);WINCE;_WINDOWS;$(ARCHFAM);$(_ARCHFAM_);_UNICODE;UNICODE;SMARTPHONE2003_UI_MODEL;SMARTPHONE2003_UI_MODEL"
 				RuntimeLibrary="0"
 				UsePrecompiledHeader="0"
@@ -384,58 +384,58 @@
 			Name="Bolota"
 			>
 			<File
-				RelativePath="..\src\Bolota\Document.cpp"
+				RelativePath="..\..\Bolota\Document.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\Bolota\Document.h"
+				RelativePath="..\..\Bolota\Document.h"
 				>
 			</File>
 			<File
-				RelativePath="..\src\Bolota\Field.cpp"
+				RelativePath="..\..\Bolota\Field.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\Bolota\Field.h"
+				RelativePath="..\..\Bolota\Field.h"
 				>
 			</File>
 			<File
-				RelativePath="..\src\Bolota\FieldTypes.cpp"
+				RelativePath="..\..\Bolota\FieldTypes.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\Bolota\FieldTypes.h"
+				RelativePath="..\..\Bolota\FieldTypes.h"
 				>
 			</File>
 			<Filter
 				Name="Errors"
 				>
 				<File
-					RelativePath="..\src\Bolota\Errors\ConsistencyError.cpp"
+					RelativePath="..\..\Bolota\Errors\ConsistencyError.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\src\Bolota\Errors\ConsistencyError.h"
+					RelativePath="..\..\Bolota\Errors\ConsistencyError.h"
 					>
 				</File>
 				<File
-					RelativePath="..\src\Bolota\Errors\Error.cpp"
+					RelativePath="..\..\Bolota\Errors\Error.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\src\Bolota\Errors\Error.h"
+					RelativePath="..\..\Bolota\Errors\Error.h"
 					>
 				</File>
 				<File
-					RelativePath="..\src\Bolota\Errors\ErrorCollection.h"
+					RelativePath="..\..\Bolota\Errors\ErrorCollection.h"
 					>
 				</File>
 				<File
-					RelativePath="..\src\Bolota\Errors\SystemError.cpp"
+					RelativePath="..\..\Bolota\Errors\SystemError.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\src\Bolota\Errors\SystemError.h"
+					RelativePath="..\..\Bolota\Errors\SystemError.h"
 					>
 				</File>
 			</Filter>
@@ -443,19 +443,19 @@
 				Name="Fields"
 				>
 				<File
-					RelativePath="..\src\Bolota\DateField.cpp"
+					RelativePath="..\..\Bolota\DateField.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\src\Bolota\DateField.h"
+					RelativePath="..\..\Bolota\DateField.h"
 					>
 				</File>
 				<File
-					RelativePath="..\src\Bolota\IconField.cpp"
+					RelativePath="..\..\Bolota\IconField.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\src\Bolota\IconField.h"
+					RelativePath="..\..\Bolota\IconField.h"
 					>
 				</File>
 			</Filter>
@@ -463,11 +463,11 @@
 				Name="Utilities"
 				>
 				<File
-					RelativePath="..\src\Bolota\UString.cpp"
+					RelativePath="..\..\Bolota\UString.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\src\Bolota\UString.h"
+					RelativePath="..\..\Bolota\UString.h"
 					>
 				</File>
 			</Filter>
@@ -478,11 +478,11 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath="..\icons\blank.ico"
+				RelativePath="..\..\icons\blank.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\icons\bolota-icon.ico"
+				RelativePath="..\..\icons\bolota-icon.ico"
 				>
 			</File>
 			<File
@@ -549,131 +549,131 @@
 				Name="Field Icons"
 				>
 				<File
-					RelativePath="..\icons\fields\_Bullet1.ico"
+					RelativePath="..\..\icons\fields\_Bullet1.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Battery.ico"
+					RelativePath="..\..\icons\fields\Battery.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Box.ico"
+					RelativePath="..\..\icons\fields\Box.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Calendar.ico"
+					RelativePath="..\..\icons\fields\Calendar.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Camera.ico"
+					RelativePath="..\..\icons\fields\Camera.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Check.ico"
+					RelativePath="..\..\icons\fields\Check.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Clipboard.ico"
+					RelativePath="..\..\icons\fields\Clipboard.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Clock.ico"
+					RelativePath="..\..\icons\fields\Clock.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\CPU.ico"
+					RelativePath="..\..\icons\fields\CPU.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Find.ico"
+					RelativePath="..\..\icons\fields\Find.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Folder.ico"
+					RelativePath="..\..\icons\fields\Folder.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Gear.ico"
+					RelativePath="..\..\icons\fields\Gear.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Help.ico"
+					RelativePath="..\..\icons\fields\Help.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\History.ico"
+					RelativePath="..\..\icons\fields\History.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Laptop.ico"
+					RelativePath="..\..\icons\fields\Laptop.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Light.ico"
+					RelativePath="..\..\icons\fields\Light.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Love.ico"
+					RelativePath="..\..\icons\fields\Love.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Men.ico"
+					RelativePath="..\..\icons\fields\Men.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Money.ico"
+					RelativePath="..\..\icons\fields\Money.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Movie.ico"
+					RelativePath="..\..\icons\fields\Movie.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Plus.ico"
+					RelativePath="..\..\icons\fields\Plus.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Redo.ico"
+					RelativePath="..\..\icons\fields\Redo.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Remove.ico"
+					RelativePath="..\..\icons\fields\Remove.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Signpost.ico"
+					RelativePath="..\..\icons\fields\Signpost.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Sound.ico"
+					RelativePath="..\..\icons\fields\Sound.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Star.ico"
+					RelativePath="..\..\icons\fields\Star.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Stop.ico"
+					RelativePath="..\..\icons\fields\Stop.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Tags.ico"
+					RelativePath="..\..\icons\fields\Tags.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Trash.ico"
+					RelativePath="..\..\icons\fields\Trash.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Undo.ico"
+					RelativePath="..\..\icons\fields\Undo.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Woman.ico"
+					RelativePath="..\..\icons\fields\Woman.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\fields\Wrench.ico"
+					RelativePath="..\..\icons\fields\Wrench.ico"
 					>
 				</File>
 			</Filter>
@@ -681,7 +681,7 @@
 				Name="Toolbars"
 				>
 				<File
-					RelativePath="..\icons\toolbars\classic\classic.bmp"
+					RelativePath="..\..\icons\toolbars\classic\classic.bmp"
 					>
 				</File>
 			</Filter>
@@ -689,11 +689,11 @@
 				Name="File Icons"
 				>
 				<File
-					RelativePath="..\icons\files\bolota_doc_95.ico"
+					RelativePath="..\..\icons\files\bolota_doc_95.ico"
 					>
 				</File>
 				<File
-					RelativePath="..\icons\files\bolota_doc_xp.ico"
+					RelativePath="..\..\icons\files\bolota_doc_xp.ico"
 					>
 				</File>
 			</Filter>
@@ -782,6 +782,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\bolota\Utilities\FileUtils.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\bolota\Utilities\FileUtils.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\Utilities\ImageList.cpp"
 				>
 			</File>
@@ -809,19 +817,19 @@
 				Name="Unicode"
 				>
 				<File
-					RelativePath="..\shims\cvtutf\ConvertUTF.cpp"
+					RelativePath="..\..\shims\cvtutf\ConvertUTF.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\shims\cvtutf\ConvertUTF.h"
+					RelativePath="..\..\shims\cvtutf\ConvertUTF.h"
 					>
 				</File>
 				<File
-					RelativePath="..\shims\cvtutf\Unicode.cpp"
+					RelativePath="..\..\shims\cvtutf\Unicode.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\shims\cvtutf\Unicode.h"
+					RelativePath="..\..\shims\cvtutf\Unicode.h"
 					>
 				</File>
 			</Filter>
