@@ -64,7 +64,7 @@ RSC=rc.exe
 # ADD RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "MIPS" /d "_MIPS_" /r
 CPP=clmips.exe
 # ADD BASE CPP /nologo /W3 /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "MIPS" /D "_MIPS_" /D UNDER_CE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /Yu"stdafx.h" /Oxs /M$(CECrtMT) /c
-# ADD CPP /nologo /W3 /I ".\STL\\" /I "..\shims\wince\\" /I "..\shims\win32\\" /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "MIPS" /D "_MIPS_" /D UNDER_CE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /Oxs /M$(CECrtMT) /c
+# ADD CPP /nologo /W3 /I ".\STL\\" /I "..\..\shims\wince\\" /I "..\..\shims\win32\\" /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "MIPS" /D "_MIPS_" /D UNDER_CE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /Oxs /M$(CECrtMT) /c
 # SUBTRACT CPP /Fr /YX /Yc /Yu
 MTL=midl.exe
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
@@ -98,7 +98,7 @@ RSC=rc.exe
 # ADD RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "DEBUG" /d "$(CePlatform)" /d "MIPS" /d "_MIPS_" /r
 CPP=clmips.exe
 # ADD BASE CPP /nologo /W3 /Zi /Od /D "DEBUG" /D "MIPS" /D "_MIPS_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /Yu"stdafx.h" /M$(CECrtMTDebug) /c
-# ADD CPP /nologo /W3 /Zi /Od /I ".\STL\\" /I "..\shims\wince\\" /I "..\shims\win32\\" /D "DEBUG" /D "MIPS" /D "_MIPS_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /M$(CECrtMTDebug) /c
+# ADD CPP /nologo /W3 /Zi /Od /I ".\STL\\" /I "..\..\shims\wince\\" /I "..\..\shims\win32\\" /D "DEBUG" /D "MIPS" /D "_MIPS_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /M$(CECrtMTDebug) /c
 # SUBTRACT CPP /Fr /YX /Yc /Yu
 MTL=midl.exe
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
@@ -132,7 +132,7 @@ RSC=rc.exe
 # ADD RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "NDEBUG" /d "UNICODE" /d "_UNICODE" /d "$(CePlatform)" /d "SHx" /d "SH4" /d "_SH4_" /r
 CPP=shcl.exe
 # ADD BASE CPP /nologo /W3 /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "SHx" /D "SH4" /D "_SH4_" /D UNDER_CE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /Yu"stdafx.h" /Qsh4 /Oxs /M$(CECrtMT) /c
-# ADD CPP /nologo /W3 /I ".\STL\\" /I "..\shims\wince\\" /I "..\shims\win32\\" /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "SHx" /D "SH4" /D "_SH4_" /D UNDER_CE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /Qsh4 /Oxs /M$(CECrtMT) /c
+# ADD CPP /nologo /W3 /I ".\STL\\" /I "..\..\shims\wince\\" /I "..\..\shims\win32\\" /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "SHx" /D "SH4" /D "_SH4_" /D UNDER_CE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /Qsh4 /Oxs /M$(CECrtMT) /c
 # SUBTRACT CPP /Fr /YX /Yc /Yu
 MTL=midl.exe
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
@@ -166,7 +166,7 @@ RSC=rc.exe
 # ADD RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "DEBUG" /d "UNICODE" /d "_UNICODE" /d "$(CePlatform)" /d "SHx" /d "SH4" /d "_SH4_" /r
 CPP=shcl.exe
 # ADD BASE CPP /nologo /W3 /Zi /Od /D "DEBUG" /D "SHx" /D "SH4" /D "_SH4_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /Yu"stdafx.h" /Qsh4 /M$(CECrtMTDebug) /c
-# ADD CPP /nologo /W3 /Zi /Od /I ".\STL\\" /I "..\shims\wince\\" /I "..\shims\win32\\" /D "DEBUG" /D "SHx" /D "SH4" /D "_SH4_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /Qsh4 /M$(CECrtMTDebug) /c
+# ADD CPP /nologo /W3 /Zi /Od /I ".\STL\\" /I "..\..\shims\wince\\" /I "..\..\shims\win32\\" /D "DEBUG" /D "SHx" /D "SH4" /D "_SH4_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /Qsh4 /M$(CECrtMTDebug) /c
 # SUBTRACT CPP /Fr /YX /Yc /Yu
 MTL=midl.exe
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
@@ -200,7 +200,7 @@ RSC=rc.exe
 # ADD RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "SHx" /d "SH3" /d "_SH3_" /r
 CPP=shcl.exe
 # ADD BASE CPP /nologo /W3 /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "SHx" /D "SH3" /D "_SH3_" /D UNDER_CE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /Yu"stdafx.h" /Oxs /M$(CECrtMT) /c
-# ADD CPP /nologo /W3 /I ".\STL\\" /I "..\shims\wince\\" /I "..\shims\win32\\" /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "SHx" /D "SH3" /D "_SH3_" /D UNDER_CE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /Oxs /M$(CECrtMT) /c
+# ADD CPP /nologo /W3 /I ".\STL\\" /I "..\..\shims\wince\\" /I "..\..\shims\win32\\" /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "SHx" /D "SH3" /D "_SH3_" /D UNDER_CE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /Oxs /M$(CECrtMT) /c
 # SUBTRACT CPP /Fr /YX /Yc /Yu
 MTL=midl.exe
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
@@ -234,7 +234,7 @@ RSC=rc.exe
 # ADD RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "DEBUG" /d "$(CePlatform)" /d "SHx" /d "SH3" /d "_SH3_" /r
 CPP=shcl.exe
 # ADD BASE CPP /nologo /W3 /Zi /Od /D "DEBUG" /D "SHx" /D "SH3" /D "_SH3_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /Yu"stdafx.h" /M$(CECrtMTDebug) /c
-# ADD CPP /nologo /W3 /Zi /Od /I ".\STL\\" /I "..\shims\wince\\" /I "..\shims\win32\\" /D "DEBUG" /D "SHx" /D "SH3" /D "_SH3_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /M$(CECrtMTDebug) /c
+# ADD CPP /nologo /W3 /Zi /Od /I ".\STL\\" /I "..\..\shims\wince\\" /I "..\..\shims\win32\\" /D "DEBUG" /D "SHx" /D "SH3" /D "_SH3_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /M$(CECrtMTDebug) /c
 # SUBTRACT CPP /Fr /YX /Yc /Yu
 MTL=midl.exe
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
@@ -268,7 +268,7 @@ RSC=rc.exe
 # ADD RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "ARM" /d "_ARM_" /r
 CPP=clarm.exe
 # ADD BASE CPP /nologo /W3 /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "ARM" /D "_ARM_" /D UNDER_CE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /Yu"stdafx.h" /Oxs /M$(CECrtMT) /c
-# ADD CPP /nologo /W3 /I ".\STL\\" /I "..\shims\wince\\" /I "..\shims\win32\\" /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "ARM" /D "_ARM_" /D UNDER_CE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /Oxs /M$(CECrtMT) /c
+# ADD CPP /nologo /W3 /I ".\STL\\" /I "..\..\shims\wince\\" /I "..\..\shims\win32\\" /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "ARM" /D "_ARM_" /D UNDER_CE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "NDEBUG" /Oxs /M$(CECrtMT) /c
 # SUBTRACT CPP /Fr /YX /Yc /Yu
 MTL=midl.exe
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
@@ -302,7 +302,7 @@ RSC=rc.exe
 # ADD RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "DEBUG" /d "$(CePlatform)" /d "ARM" /d "_ARM_" /r
 CPP=clarm.exe
 # ADD BASE CPP /nologo /W3 /Zi /Od /D "DEBUG" /D "ARM" /D "_ARM_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /Yu"stdafx.h" /M$(CECrtMTDebug) /c
-# ADD CPP /nologo /W3 /Zi /Od /I ".\STL\\" /I "..\shims\wince\\" /I "..\shims\win32\\" /D "DEBUG" /D "ARM" /D "_ARM_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /M$(CECrtMTDebug) /c
+# ADD CPP /nologo /W3 /Zi /Od /I ".\STL\\" /I "..\..\shims\wince\\" /I "..\..\shims\win32\\" /D "DEBUG" /D "ARM" /D "_ARM_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /M$(CECrtMTDebug) /c
 # SUBTRACT CPP /Fr /YX /Yc /Yu
 MTL=midl.exe
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
@@ -336,7 +336,7 @@ RSC=rc.exe
 # ADD RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "_X86_" /d "x86" /d "_i386_" /r
 CPP=cl.exe
 # ADD BASE CPP /nologo /W3 /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "_i386_" /D UNDER_CE=$(CEVersion) /D "i_386_" /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /D "NDEBUG" /Yu"stdafx.h" /Gs8192 /GF /Oxs /c
-# ADD CPP /nologo /W3 /I ".\STL\\" /I "..\shims\wince\\" /I "..\shims\win32\\" /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "_i386_" /D UNDER_CE=$(CEVersion) /D "i_386_" /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /D "NDEBUG" /Gs8192 /GF /Oxs /c
+# ADD CPP /nologo /W3 /I ".\STL\\" /I "..\..\shims\wince\\" /I "..\..\shims\win32\\" /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "_i386_" /D UNDER_CE=$(CEVersion) /D "i_386_" /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /D "NDEBUG" /Gs8192 /GF /Oxs /c
 # SUBTRACT CPP /Fr /YX /Yc /Yu
 MTL=midl.exe
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
@@ -370,7 +370,7 @@ RSC=rc.exe
 # ADD RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "DEBUG" /d "$(CePlatform)" /d "_X86_" /d "x86" /d "_i386_" /r
 CPP=cl.exe
 # ADD BASE CPP /nologo /W3 /Zi /Od /D "DEBUG" /D "_i386_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "i_386_" /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /Yu"stdafx.h" /Gs8192 /GF /c
-# ADD CPP /nologo /W3 /Zi /Od /I ".\STL\\" /I "..\shims\wince\\" /I "..\shims\win32\\" /D "DEBUG" /D "_i386_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "i_386_" /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /Gs8192 /GF /c
+# ADD CPP /nologo /W3 /Zi /Od /I ".\STL\\" /I "..\..\shims\wince\\" /I "..\..\shims\win32\\" /D "DEBUG" /D "_i386_" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "$(CePlatform)" /D "i_386_" /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /Gs8192 /GF /c
 # SUBTRACT CPP /Fr /YX /Yc /Yu
 MTL=midl.exe
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
@@ -404,7 +404,7 @@ RSC=rc.exe
 # ADD RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "NDEBUG" /d "$(CePlatform)" /d "_X86_" /d "x86" /d "i486" /r
 CPP=cl.exe
 # ADD BASE CPP /nologo /W3 /D _WIN32_WCE=$(CEVersion) /D "WIN32" /D "STRICT" /D "_WIN32_WCE_EMULATION" /D "INTERNATIONAL" /D "USA" /D "INTLMSG_CODEPAGE" /D "$(CePlatform)" /D "i486" /D UNDER_CE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /D "NDEBUG" /Yu"stdafx.h" /Gz /Oxs /c
-# ADD CPP /nologo /W3 /I ".\STL\\" /I "..\shims\wince\\" /I "..\shims\win32\\" /D _WIN32_WCE=$(CEVersion) /D "WIN32" /D "STRICT" /D "_WIN32_WCE_EMULATION" /D "INTERNATIONAL" /D "USA" /D "INTLMSG_CODEPAGE" /D "$(CePlatform)" /D "i486" /D UNDER_CE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /D "NDEBUG" /Gz /Oxs /c
+# ADD CPP /nologo /W3 /I ".\STL\\" /I "..\..\shims\wince\\" /I "..\..\shims\win32\\" /D _WIN32_WCE=$(CEVersion) /D "WIN32" /D "STRICT" /D "_WIN32_WCE_EMULATION" /D "INTERNATIONAL" /D "USA" /D "INTLMSG_CODEPAGE" /D "$(CePlatform)" /D "i486" /D UNDER_CE=$(CEVersion) /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /D "NDEBUG" /Gz /Oxs /c
 # SUBTRACT CPP /Fr /YX /Yc /Yu
 MTL=midl.exe
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
@@ -438,7 +438,7 @@ RSC=rc.exe
 # ADD RSC /l 0x409 /d UNDER_CE=$(CEVersion) /d _WIN32_WCE=$(CEVersion) /d "UNICODE" /d "_UNICODE" /d "DEBUG" /d "$(CePlatform)" /d "_X86_" /d "x86" /d "i486" /r
 CPP=cl.exe
 # ADD BASE CPP /nologo /W3 /Zi /Od /D "DEBUG" /D "i486" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "WIN32" /D "STRICT" /D "_WIN32_WCE_EMULATION" /D "INTERNATIONAL" /D "USA" /D "INTLMSG_CODEPAGE" /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /Yu"stdafx.h" /Gz /c
-# ADD CPP /nologo /W3 /Zi /Od /I ".\STL\\" /I "..\shims\wince\\" /I "..\shims\win32\\" /D "DEBUG" /D "i486" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "WIN32" /D "STRICT" /D "_WIN32_WCE_EMULATION" /D "INTERNATIONAL" /D "USA" /D "INTLMSG_CODEPAGE" /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /Fr /Gz /c
+# ADD CPP /nologo /W3 /Zi /Od /I ".\STL\\" /I "..\..\shims\wince\\" /I "..\..\shims\win32\\" /D "DEBUG" /D "i486" /D UNDER_CE=$(CEVersion) /D _WIN32_WCE=$(CEVersion) /D "WIN32" /D "STRICT" /D "_WIN32_WCE_EMULATION" /D "INTERNATIONAL" /D "USA" /D "INTLMSG_CODEPAGE" /D "$(CePlatform)" /D "UNICODE" /D "_UNICODE" /D "_X86_" /D "x86" /Fr /Gz /c
 # SUBTRACT CPP /YX /Yc /Yu
 MTL=midl.exe
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
@@ -474,135 +474,135 @@ LINK32=link.exe
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\icons\fields\_Bullet1.ico
+SOURCE=..\..\icons\fields\_Bullet1.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Battery.ico
+SOURCE=..\..\icons\fields\Battery.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Box.ico
+SOURCE=..\..\icons\fields\Box.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Calendar.ico
+SOURCE=..\..\icons\fields\Calendar.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Camera.ico
+SOURCE=..\..\icons\fields\Camera.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Check.ico
+SOURCE=..\..\icons\fields\Check.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Clipboard.ico
+SOURCE=..\..\icons\fields\Clipboard.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Clock.ico
+SOURCE=..\..\icons\fields\Clock.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\CPU.ico
+SOURCE=..\..\icons\fields\CPU.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Find.ico
+SOURCE=..\..\icons\fields\Find.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Folder.ico
+SOURCE=..\..\icons\fields\Folder.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Gear.ico
+SOURCE=..\..\icons\fields\Gear.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Help.ico
+SOURCE=..\..\icons\fields\Help.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\History.ico
+SOURCE=..\..\icons\fields\History.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Laptop.ico
+SOURCE=..\..\icons\fields\Laptop.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\LICENSE.txt
+SOURCE=..\..\icons\fields\LICENSE.txt
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Light.ico
+SOURCE=..\..\icons\fields\Light.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Love.ico
+SOURCE=..\..\icons\fields\Love.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Men.ico
+SOURCE=..\..\icons\fields\Men.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Money.ico
+SOURCE=..\..\icons\fields\Money.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Movie.ico
+SOURCE=..\..\icons\fields\Movie.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Plus.ico
+SOURCE=..\..\icons\fields\Plus.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Redo.ico
+SOURCE=..\..\icons\fields\Redo.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Remove.ico
+SOURCE=..\..\icons\fields\Remove.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Signpost.ico
+SOURCE=..\..\icons\fields\Signpost.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Sound.ico
+SOURCE=..\..\icons\fields\Sound.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Star.ico
+SOURCE=..\..\icons\fields\Star.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Stop.ico
+SOURCE=..\..\icons\fields\Stop.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Tags.ico
+SOURCE=..\..\icons\fields\Tags.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Trash.ico
+SOURCE=..\..\icons\fields\Trash.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Undo.ico
+SOURCE=..\..\icons\fields\Undo.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Woman.ico
+SOURCE=..\..\icons\fields\Woman.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\fields\Wrench.ico
+SOURCE=..\..\icons\fields\Wrench.ico
 # End Source File
 # End Group
 # Begin Group "File Icons"
@@ -610,20 +610,20 @@ SOURCE=..\icons\fields\Wrench.ico
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\icons\files\bolota_doc_95.ico
+SOURCE=..\..\icons\files\bolota_doc_95.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\files\bolota_doc_xp.ico
+SOURCE=..\..\icons\files\bolota_doc_xp.ico
 # End Source File
 # End Group
 # Begin Source File
 
-SOURCE=..\icons\blank.ico
+SOURCE=..\..\icons\blank.ico
 # End Source File
 # Begin Source File
 
-SOURCE="..\icons\bolota-icon.ico"
+SOURCE="..\..\icons\bolota-icon.ico"
 # End Source File
 # Begin Source File
 
@@ -662,7 +662,7 @@ SOURCE=.\Bolota.rc
 # End Source File
 # Begin Source File
 
-SOURCE=..\icons\toolbars\classic\classic.bmp
+SOURCE=..\..\icons\toolbars\classic\classic.bmp
 # End Source File
 # Begin Source File
 
@@ -687,13 +687,13 @@ SOURCE=..\src\Application.cpp
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_APPLI=\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\AboutDialog.h"\
 	"..\src\Application.h"\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -712,13 +712,13 @@ NODEP_CPP_APPLI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_APPLI=\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\AboutDialog.h"\
 	"..\src\Application.h"\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -737,13 +737,13 @@ NODEP_CPP_APPLI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_APPLI=\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\AboutDialog.h"\
 	"..\src\Application.h"\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -762,13 +762,13 @@ NODEP_CPP_APPLI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_APPLI=\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\AboutDialog.h"\
 	"..\src\Application.h"\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -787,13 +787,13 @@ NODEP_CPP_APPLI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_APPLI=\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\AboutDialog.h"\
 	"..\src\Application.h"\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -812,13 +812,13 @@ NODEP_CPP_APPLI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_APPLI=\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\AboutDialog.h"\
 	"..\src\Application.h"\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -837,13 +837,13 @@ NODEP_CPP_APPLI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_APPLI=\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\AboutDialog.h"\
 	"..\src\Application.h"\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -862,13 +862,13 @@ NODEP_CPP_APPLI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_APPLI=\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\AboutDialog.h"\
 	"..\src\Application.h"\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -887,13 +887,13 @@ NODEP_CPP_APPLI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_APPLI=\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\AboutDialog.h"\
 	"..\src\Application.h"\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -912,13 +912,13 @@ NODEP_CPP_APPLI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_APPLI=\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\AboutDialog.h"\
 	"..\src\Application.h"\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -937,13 +937,13 @@ NODEP_CPP_APPLI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_APPLI=\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\AboutDialog.h"\
 	"..\src\Application.h"\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -962,20 +962,21 @@ NODEP_CPP_APPLI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_APPLI=\
-	"..\shims\cvtutf\Unicode.h"\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\ErrorCollection.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\cvtutf\Unicode.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Application.h"\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\ErrorCollection.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\CECommandBar.h"\
 	"..\src\Components\FieldImageList.h"\
@@ -1145,10 +1146,10 @@ NODEP_CPP_STDAF=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_STDAF=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1178,18 +1179,18 @@ SOURCE=..\src\stdafx.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\src\Bolota\Errors\ConsistencyError.cpp
+SOURCE=..\..\Bolota\Errors\ConsistencyError.cpp
 
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_CONSI=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\ConsistencyError.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Errors\ConsistencyError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1200,13 +1201,13 @@ DEP_CPP_CONSI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_CONSI=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\ConsistencyError.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Errors\ConsistencyError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1217,13 +1218,13 @@ DEP_CPP_CONSI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_CONSI=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\ConsistencyError.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Errors\ConsistencyError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1234,13 +1235,13 @@ DEP_CPP_CONSI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_CONSI=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\ConsistencyError.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Errors\ConsistencyError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1251,13 +1252,13 @@ DEP_CPP_CONSI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_CONSI=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\ConsistencyError.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Errors\ConsistencyError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1268,13 +1269,13 @@ DEP_CPP_CONSI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_CONSI=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\ConsistencyError.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Errors\ConsistencyError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1285,13 +1286,13 @@ DEP_CPP_CONSI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_CONSI=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\ConsistencyError.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Errors\ConsistencyError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1302,13 +1303,13 @@ DEP_CPP_CONSI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_CONSI=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\ConsistencyError.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Errors\ConsistencyError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1319,13 +1320,13 @@ DEP_CPP_CONSI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_CONSI=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\ConsistencyError.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Errors\ConsistencyError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1336,13 +1337,13 @@ DEP_CPP_CONSI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_CONSI=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\ConsistencyError.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Errors\ConsistencyError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1353,13 +1354,13 @@ DEP_CPP_CONSI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_CONSI=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\ConsistencyError.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Errors\ConsistencyError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1370,14 +1371,15 @@ DEP_CPP_CONSI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_CONSI=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\ConsistencyError.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Errors\ConsistencyError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1396,11 +1398,11 @@ NODEP_CPP_CONSI=\
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\Errors\ConsistencyError.h
+SOURCE=..\..\Bolota\Errors\ConsistencyError.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\Errors\Error.cpp
+SOURCE=..\..\Bolota\Errors\Error.cpp
 
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
@@ -1431,24 +1433,24 @@ SOURCE=..\src\Bolota\Errors\Error.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\Errors\Error.h
+SOURCE=..\..\Bolota\Errors\Error.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\Errors\ErrorCollection.h
+SOURCE=..\..\Bolota\Errors\ErrorCollection.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\Errors\SystemError.cpp
+SOURCE=..\..\Bolota\Errors\SystemError.cpp
 
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_SYSTE=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1459,11 +1461,11 @@ DEP_CPP_SYSTE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_SYSTE=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1474,11 +1476,11 @@ DEP_CPP_SYSTE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_SYSTE=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1489,11 +1491,11 @@ DEP_CPP_SYSTE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_SYSTE=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1504,11 +1506,11 @@ DEP_CPP_SYSTE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_SYSTE=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1519,11 +1521,11 @@ DEP_CPP_SYSTE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_SYSTE=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1534,11 +1536,11 @@ DEP_CPP_SYSTE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_SYSTE=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1549,11 +1551,11 @@ DEP_CPP_SYSTE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_SYSTE=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1564,11 +1566,11 @@ DEP_CPP_SYSTE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_SYSTE=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1579,11 +1581,11 @@ DEP_CPP_SYSTE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_SYSTE=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1594,11 +1596,11 @@ DEP_CPP_SYSTE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_SYSTE=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1609,11 +1611,12 @@ DEP_CPP_SYSTE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_SYSTE=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1632,7 +1635,7 @@ NODEP_CPP_SYSTE=\
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\Errors\SystemError.h
+SOURCE=..\..\Bolota\Errors\SystemError.h
 # End Source File
 # End Group
 # Begin Group "Fields"
@@ -1640,153 +1643,154 @@ SOURCE=..\src\Bolota\Errors\SystemError.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\src\Bolota\DateField.cpp
+SOURCE=..\..\Bolota\DateField.cpp
 
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_DATEF=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DATEF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_DATEF=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DATEF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_DATEF=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DATEF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_DATEF=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DATEF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_DATEF=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DATEF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_DATEF=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DATEF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_DATEF=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DATEF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_DATEF=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DATEF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_DATEF=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DATEF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_DATEF=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DATEF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_DATEF=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DATEF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_DATEF=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\ErrorCollection.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\ErrorCollection.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1805,157 +1809,158 @@ NODEP_CPP_DATEF=\
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\DateField.h
+SOURCE=..\..\Bolota\DateField.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\IconField.cpp
+SOURCE=..\..\Bolota\IconField.cpp
 
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_ICONF=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_ICONF=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_ICONF=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\ErrorCollection.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\ErrorCollection.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -1974,171 +1979,172 @@ NODEP_CPP_ICONF=\
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\IconField.h
+SOURCE=..\..\Bolota\IconField.h
 # End Source File
 # End Group
 # Begin Source File
 
-SOURCE=..\src\Bolota\Document.cpp
+SOURCE=..\..\Bolota\Document.cpp
 
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_DOCUM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DOCUM=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_DOCUM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DOCUM=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_DOCUM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DOCUM=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_DOCUM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DOCUM=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_DOCUM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DOCUM=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_DOCUM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DOCUM=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_DOCUM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DOCUM=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_DOCUM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DOCUM=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_DOCUM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DOCUM=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_DOCUM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DOCUM=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_DOCUM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_DOCUM=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_DOCUM=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Errors\ConsistencyError.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\ErrorCollection.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Errors\ConsistencyError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\ErrorCollection.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -2157,174 +2163,175 @@ NODEP_CPP_DOCUM=\
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\Document.h
+SOURCE=..\..\Bolota\Document.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\Exceptions.h
+SOURCE=..\..\Bolota\Exceptions.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\Field.cpp
+SOURCE=..\..\Bolota\Field.cpp
 
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_FIELD=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_FIELD=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_FIELD=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_FIELD=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_FIELD=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_FIELD=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_FIELD=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_FIELD=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_FIELD=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_FIELD=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_FIELD=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_FIELD=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_FIELD=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_FIELD=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_FIELD=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_FIELD=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_FIELD=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_FIELD=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_FIELD=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_FIELD=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_FIELD=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	
 NODEP_CPP_FIELD=\
-	"..\src\Bolota\Exceptions.h"\
+	"..\..\Bolota\Exceptions.h"\
 	"..\src\Exceptions\SystemException.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_FIELD=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Errors\ConsistencyError.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\ErrorCollection.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Errors\ConsistencyError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\ErrorCollection.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -2343,141 +2350,141 @@ NODEP_CPP_FIELD=\
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\Field.h
+SOURCE=..\..\Bolota\Field.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\FieldTypes.cpp
+SOURCE=..\..\Bolota\FieldTypes.cpp
 
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_FIELDT=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_FIELDT=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_FIELDT=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_FIELDT=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_FIELDT=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_FIELDT=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_FIELDT=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_FIELDT=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_FIELDT=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_FIELDT=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_FIELDT=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	".\STL\wce_defs.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_FIELDT=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	".\STL\wce_defs.h"\
 	
 
@@ -2486,85 +2493,85 @@ DEP_CPP_FIELDT=\
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\FieldTypes.h
+SOURCE=..\..\Bolota\FieldTypes.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\UString.cpp
+SOURCE=..\..\Bolota\UString.cpp
 
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_USTRI=\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\UString.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_USTRI=\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\UString.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_USTRI=\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\UString.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_USTRI=\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\UString.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_USTRI=\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\UString.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_USTRI=\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\UString.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_USTRI=\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\UString.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_USTRI=\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\UString.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_USTRI=\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\UString.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_USTRI=\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\UString.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_USTRI=\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\UString.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_USTRI=\
-	"..\shims\cvtutf\Unicode.h"\
-	"..\shims\wince\wce_string.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\shims\cvtutf\Unicode.h"\
+	"..\..\shims\wince\wce_string.h"\
 	
 
 !ENDIF 
@@ -2572,7 +2579,7 @@ DEP_CPP_USTRI=\
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\Bolota\UString.h
+SOURCE=..\..\Bolota\UString.h
 # End Source File
 # End Group
 # Begin Group "Windows and Dialogs"
@@ -2739,11 +2746,11 @@ NODEP_CPP_ABOUT=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_ABOUT=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\AboutDialog.h"\
-	"..\src\Bolota\Errors\Error.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\DialogWindow.h"\
@@ -2772,10 +2779,10 @@ SOURCE=..\src\FieldManagerDialog.cpp
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_FIELDM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
@@ -2793,10 +2800,10 @@ NODEP_CPP_FIELDM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_FIELDM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
@@ -2814,10 +2821,10 @@ NODEP_CPP_FIELDM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_FIELDM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
@@ -2835,10 +2842,10 @@ NODEP_CPP_FIELDM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_FIELDM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
@@ -2856,10 +2863,10 @@ NODEP_CPP_FIELDM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_FIELDM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
@@ -2877,10 +2884,10 @@ NODEP_CPP_FIELDM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_FIELDM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
@@ -2898,10 +2905,10 @@ NODEP_CPP_FIELDM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_FIELDM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
@@ -2919,10 +2926,10 @@ NODEP_CPP_FIELDM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_FIELDM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
@@ -2940,10 +2947,10 @@ NODEP_CPP_FIELDM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_FIELDM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
@@ -2961,10 +2968,10 @@ NODEP_CPP_FIELDM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_FIELDM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
@@ -2982,10 +2989,10 @@ NODEP_CPP_FIELDM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_FIELDM=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
@@ -3003,16 +3010,17 @@ NODEP_CPP_FIELDM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_FIELDM=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
 	"..\src\SharedResources.h"\
@@ -3044,11 +3052,11 @@ SOURCE=..\src\MainWindow.cpp
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_MAINW=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3067,11 +3075,11 @@ NODEP_CPP_MAINW=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_MAINW=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3090,11 +3098,11 @@ NODEP_CPP_MAINW=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_MAINW=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3113,11 +3121,11 @@ NODEP_CPP_MAINW=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_MAINW=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3136,11 +3144,11 @@ NODEP_CPP_MAINW=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_MAINW=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3159,11 +3167,11 @@ NODEP_CPP_MAINW=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_MAINW=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3182,11 +3190,11 @@ NODEP_CPP_MAINW=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_MAINW=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3205,11 +3213,11 @@ NODEP_CPP_MAINW=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_MAINW=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3228,11 +3236,11 @@ NODEP_CPP_MAINW=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_MAINW=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3251,11 +3259,11 @@ NODEP_CPP_MAINW=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_MAINW=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3274,11 +3282,11 @@ NODEP_CPP_MAINW=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_MAINW=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3297,19 +3305,20 @@ NODEP_CPP_MAINW=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_MAINW=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\ErrorCollection.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\AboutDialog.h"\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\ErrorCollection.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\CECommandBar.h"\
 	"..\src\Components\FieldImageList.h"\
@@ -3347,10 +3356,10 @@ SOURCE=..\src\PropertiesDialog.cpp
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_PROPE=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -3365,10 +3374,10 @@ NODEP_CPP_PROPE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_PROPE=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -3383,10 +3392,10 @@ NODEP_CPP_PROPE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_PROPE=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -3401,10 +3410,10 @@ NODEP_CPP_PROPE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_PROPE=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -3419,10 +3428,10 @@ NODEP_CPP_PROPE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_PROPE=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -3437,10 +3446,10 @@ NODEP_CPP_PROPE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_PROPE=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -3455,10 +3464,10 @@ NODEP_CPP_PROPE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_PROPE=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -3473,10 +3482,10 @@ NODEP_CPP_PROPE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_PROPE=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -3491,10 +3500,10 @@ NODEP_CPP_PROPE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_PROPE=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -3509,10 +3518,10 @@ NODEP_CPP_PROPE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_PROPE=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -3527,10 +3536,10 @@ NODEP_CPP_PROPE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_PROPE=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -3545,17 +3554,18 @@ NODEP_CPP_PROPE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_PROPE=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\ErrorCollection.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\ErrorCollection.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\PropertiesDialog.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -3589,11 +3599,11 @@ SOURCE=..\src\Components\BolotaView.cpp
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_BOLOT=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3612,11 +3622,11 @@ NODEP_CPP_BOLOT=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_BOLOT=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3635,11 +3645,11 @@ NODEP_CPP_BOLOT=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_BOLOT=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3658,11 +3668,11 @@ NODEP_CPP_BOLOT=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_BOLOT=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3681,11 +3691,11 @@ NODEP_CPP_BOLOT=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_BOLOT=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3704,11 +3714,11 @@ NODEP_CPP_BOLOT=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_BOLOT=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3727,11 +3737,11 @@ NODEP_CPP_BOLOT=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_BOLOT=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3750,11 +3760,11 @@ NODEP_CPP_BOLOT=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_BOLOT=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3773,11 +3783,11 @@ NODEP_CPP_BOLOT=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_BOLOT=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3796,11 +3806,11 @@ NODEP_CPP_BOLOT=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_BOLOT=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3819,11 +3829,11 @@ NODEP_CPP_BOLOT=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_BOLOT=\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3842,18 +3852,19 @@ NODEP_CPP_BOLOT=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_BOLOT=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\DateField.h"\
-	"..\src\Bolota\Document.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\ErrorCollection.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\DateField.h"\
+	"..\..\Bolota\Document.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\ErrorCollection.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Components\BolotaView.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\FieldManagerDialog.h"\
@@ -3889,10 +3900,10 @@ SOURCE=..\src\Components\CECommandBar.cpp
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_CECOM=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Components\CECommandBar.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -3904,10 +3915,10 @@ DEP_CPP_CECOM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_CECOM=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Components\CECommandBar.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -3919,10 +3930,10 @@ DEP_CPP_CECOM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_CECOM=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Components\CECommandBar.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -3934,10 +3945,10 @@ DEP_CPP_CECOM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_CECOM=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Components\CECommandBar.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -3949,10 +3960,10 @@ DEP_CPP_CECOM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_CECOM=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Components\CECommandBar.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -3964,10 +3975,10 @@ DEP_CPP_CECOM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_CECOM=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Components\CECommandBar.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -3979,10 +3990,10 @@ DEP_CPP_CECOM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_CECOM=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Components\CECommandBar.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -3994,10 +4005,10 @@ DEP_CPP_CECOM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_CECOM=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Components\CECommandBar.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -4009,10 +4020,10 @@ DEP_CPP_CECOM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_CECOM=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Components\CECommandBar.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -4024,10 +4035,10 @@ DEP_CPP_CECOM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_CECOM=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Components\CECommandBar.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -4039,10 +4050,10 @@ DEP_CPP_CECOM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_CECOM=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Components\CECommandBar.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -4054,10 +4065,10 @@ DEP_CPP_CECOM=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_CECOM=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Components\CECommandBar.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -4086,9 +4097,9 @@ SOURCE=..\src\Components\FieldImageList.cpp
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_FIELDI=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -4103,9 +4114,9 @@ NODEP_CPP_FIELDI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_FIELDI=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -4120,9 +4131,9 @@ NODEP_CPP_FIELDI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_FIELDI=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -4137,9 +4148,9 @@ NODEP_CPP_FIELDI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_FIELDI=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -4154,9 +4165,9 @@ NODEP_CPP_FIELDI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_FIELDI=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -4171,9 +4182,9 @@ NODEP_CPP_FIELDI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_FIELDI=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -4188,9 +4199,9 @@ NODEP_CPP_FIELDI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_FIELDI=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -4205,9 +4216,9 @@ NODEP_CPP_FIELDI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_FIELDI=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -4222,9 +4233,9 @@ NODEP_CPP_FIELDI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_FIELDI=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -4239,9 +4250,9 @@ NODEP_CPP_FIELDI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_FIELDI=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -4256,9 +4267,9 @@ NODEP_CPP_FIELDI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_FIELDI=\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -4273,14 +4284,15 @@ NODEP_CPP_FIELDI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_FIELDI=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Field.h"\
-	"..\src\Bolota\FieldTypes.h"\
-	"..\src\Bolota\IconField.h"\
-	"..\src\Bolota\UString.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Field.h"\
+	"..\..\Bolota\FieldTypes.h"\
+	"..\..\Bolota\IconField.h"\
+	"..\..\Bolota\UString.h"\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Components\FieldImageList.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
@@ -4312,78 +4324,78 @@ SOURCE=..\src\Components\FieldImageList.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\shims\cvtutf\ConvertUTF.cpp
+SOURCE=..\..\shims\cvtutf\ConvertUTF.cpp
 
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_CONVE=\
-	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_CONVE=\
-	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_CONVE=\
-	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_CONVE=\
-	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_CONVE=\
-	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_CONVE=\
-	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_CONVE=\
-	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_CONVE=\
-	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_CONVE=\
-	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_CONVE=\
-	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_CONVE=\
-	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_CONVE=\
-	"..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
 	".\STL\wce_defs.h"\
 	
 
@@ -4392,94 +4404,94 @@ DEP_CPP_CONVE=\
 # End Source File
 # Begin Source File
 
-SOURCE=..\shims\cvtutf\ConvertUTF.h
+SOURCE=..\..\shims\cvtutf\ConvertUTF.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\shims\cvtutf\Unicode.cpp
+SOURCE=..\..\shims\cvtutf\Unicode.cpp
 
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_UNICO=\
-	"..\shims\cvtutf\ConvertUTF.h"\
-	"..\shims\cvtutf\Unicode.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\Unicode.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_UNICO=\
-	"..\shims\cvtutf\ConvertUTF.h"\
-	"..\shims\cvtutf\Unicode.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\Unicode.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_UNICO=\
-	"..\shims\cvtutf\ConvertUTF.h"\
-	"..\shims\cvtutf\Unicode.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\Unicode.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_UNICO=\
-	"..\shims\cvtutf\ConvertUTF.h"\
-	"..\shims\cvtutf\Unicode.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\Unicode.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_UNICO=\
-	"..\shims\cvtutf\ConvertUTF.h"\
-	"..\shims\cvtutf\Unicode.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\Unicode.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_UNICO=\
-	"..\shims\cvtutf\ConvertUTF.h"\
-	"..\shims\cvtutf\Unicode.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\Unicode.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_UNICO=\
-	"..\shims\cvtutf\ConvertUTF.h"\
-	"..\shims\cvtutf\Unicode.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\Unicode.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_UNICO=\
-	"..\shims\cvtutf\ConvertUTF.h"\
-	"..\shims\cvtutf\Unicode.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\Unicode.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_UNICO=\
-	"..\shims\cvtutf\ConvertUTF.h"\
-	"..\shims\cvtutf\Unicode.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\Unicode.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_UNICO=\
-	"..\shims\cvtutf\ConvertUTF.h"\
-	"..\shims\cvtutf\Unicode.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\Unicode.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_UNICO=\
-	"..\shims\cvtutf\ConvertUTF.h"\
-	"..\shims\cvtutf\Unicode.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\Unicode.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_UNICO=\
-	"..\shims\cvtutf\ConvertUTF.h"\
-	"..\shims\cvtutf\Unicode.h"\
+	"..\..\shims\cvtutf\ConvertUTF.h"\
+	"..\..\shims\cvtutf\Unicode.h"\
 	
 
 !ENDIF 
@@ -4487,7 +4499,7 @@ DEP_CPP_UNICO=\
 # End Source File
 # Begin Source File
 
-SOURCE=..\shims\cvtutf\Unicode.h
+SOURCE=..\..\shims\cvtutf\Unicode.h
 # End Source File
 # End Group
 # Begin Group "Settings"
@@ -4500,9 +4512,9 @@ SOURCE=..\src\Utilities\Settings\ConfigManager.cpp
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_CONFI=\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Utilities\Settings\ConfigManager.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	".\STL\wce_defs.h"\
@@ -4511,9 +4523,9 @@ DEP_CPP_CONFI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_CONFI=\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Utilities\Settings\ConfigManager.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	".\STL\wce_defs.h"\
@@ -4522,9 +4534,9 @@ DEP_CPP_CONFI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_CONFI=\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Utilities\Settings\ConfigManager.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	".\STL\wce_defs.h"\
@@ -4533,9 +4545,9 @@ DEP_CPP_CONFI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_CONFI=\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Utilities\Settings\ConfigManager.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	".\STL\wce_defs.h"\
@@ -4544,9 +4556,9 @@ DEP_CPP_CONFI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_CONFI=\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Utilities\Settings\ConfigManager.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	".\STL\wce_defs.h"\
@@ -4555,9 +4567,9 @@ DEP_CPP_CONFI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_CONFI=\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Utilities\Settings\ConfigManager.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	".\STL\wce_defs.h"\
@@ -4566,9 +4578,9 @@ DEP_CPP_CONFI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_CONFI=\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Utilities\Settings\ConfigManager.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	".\STL\wce_defs.h"\
@@ -4577,9 +4589,9 @@ DEP_CPP_CONFI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_CONFI=\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Utilities\Settings\ConfigManager.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	".\STL\wce_defs.h"\
@@ -4588,9 +4600,9 @@ DEP_CPP_CONFI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_CONFI=\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Utilities\Settings\ConfigManager.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	".\STL\wce_defs.h"\
@@ -4599,9 +4611,9 @@ DEP_CPP_CONFI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_CONFI=\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Utilities\Settings\ConfigManager.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	".\STL\wce_defs.h"\
@@ -4610,9 +4622,9 @@ DEP_CPP_CONFI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_CONFI=\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\Utilities\Settings\ConfigManager.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	".\STL\wce_defs.h"\
@@ -4621,11 +4633,12 @@ DEP_CPP_CONFI=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_CONFI=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\Capabilities.h"\
@@ -4656,88 +4669,89 @@ SOURCE=..\src\Utilities\Settings\Setting.cpp
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_SETTI=\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_SETTI=\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_SETTI=\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_SETTI=\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_SETTI=\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_SETTI=\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_SETTI=\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_SETTI=\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_SETTI=\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_SETTI=\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_SETTI=\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
 	"..\src\Utilities\Settings\Setting.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_SETTI=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -4927,10 +4941,10 @@ DEP_CPP_DIALO=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_DIALO=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\DialogWindow.h"\
@@ -4951,6 +4965,125 @@ NODEP_CPP_DIALO=\
 # Begin Source File
 
 SOURCE=..\src\Utilities\DialogWindow.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\bolota\Utilities\FileUtils.cpp
+
+!IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
+
+DEP_CPP_FILEU=\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
+
+DEP_CPP_FILEU=\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
+
+DEP_CPP_FILEU=\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
+
+DEP_CPP_FILEU=\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
+
+DEP_CPP_FILEU=\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
+
+DEP_CPP_FILEU=\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
+
+DEP_CPP_FILEU=\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
+
+DEP_CPP_FILEU=\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
+
+DEP_CPP_FILEU=\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
+
+DEP_CPP_FILEU=\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
+
+DEP_CPP_FILEU=\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
+
+DEP_CPP_FILEU=\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
+	".\STL\wce_defs.h"\
+	
+
+!ENDIF 
+
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\bolota\Utilities\FileUtils.h
 # End Source File
 # Begin Source File
 
@@ -5069,11 +5202,12 @@ NODEP_CPP_IMAGE=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_IMAGE=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
-	"..\src\Bolota\Errors\SystemError.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\SystemError.h"\
+	"..\..\bolota\Utilities\FileUtils.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\ImageList.h"\
@@ -5168,10 +5302,10 @@ DEP_CPP_MSGBO=\
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_MSGBO=\
-	"..\shims\win32\newcpp.h"\
-	"..\shims\win32\ssize_t.h"\
-	"..\shims\win32\stdint.h"\
-	"..\src\Bolota\Errors\Error.h"\
+	"..\..\Bolota\Errors\Error.h"\
+	"..\..\shims\win32\newcpp.h"\
+	"..\..\shims\win32\ssize_t.h"\
+	"..\..\shims\win32\stdint.h"\
 	"..\src\SharedResources.h"\
 	"..\src\stdafx.h"\
 	"..\src\Utilities\MsgBoxes.h"\
@@ -5281,19 +5415,19 @@ SOURCE=..\src\Utilities\WindowUtilities.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\shims\win32\inttypes.h
+SOURCE=..\..\shims\win32\inttypes.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\shims\win32\newcpp.h
+SOURCE=..\..\shims\win32\newcpp.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\shims\win32\ssize_t.h
+SOURCE=..\..\shims\win32\ssize_t.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\shims\win32\stdint.h
+SOURCE=..\..\shims\win32\stdint.h
 # End Source File
 # Begin Source File
 
@@ -5301,78 +5435,78 @@ SOURCE=.\STL\wce_defs.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\shims\wince\wce_string.cpp
+SOURCE=..\..\shims\wince\wce_string.cpp
 
 !IF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Release"
 
 DEP_CPP_WCE_S=\
-	"..\shims\wince\wce_string.h"\
+	"..\..\shims\wince\wce_string.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE MIPS) Debug"
 
 DEP_CPP_WCE_S=\
-	"..\shims\wince\wce_string.h"\
+	"..\..\shims\wince\wce_string.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Release"
 
 DEP_CPP_WCE_S=\
-	"..\shims\wince\wce_string.h"\
+	"..\..\shims\wince\wce_string.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH4) Debug"
 
 DEP_CPP_WCE_S=\
-	"..\shims\wince\wce_string.h"\
+	"..\..\shims\wince\wce_string.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Release"
 
 DEP_CPP_WCE_S=\
-	"..\shims\wince\wce_string.h"\
+	"..\..\shims\wince\wce_string.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE SH3) Debug"
 
 DEP_CPP_WCE_S=\
-	"..\shims\wince\wce_string.h"\
+	"..\..\shims\wince\wce_string.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Release"
 
 DEP_CPP_WCE_S=\
-	"..\shims\wince\wce_string.h"\
+	"..\..\shims\wince\wce_string.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE ARM) Debug"
 
 DEP_CPP_WCE_S=\
-	"..\shims\wince\wce_string.h"\
+	"..\..\shims\wince\wce_string.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Release"
 
 DEP_CPP_WCE_S=\
-	"..\shims\wince\wce_string.h"\
+	"..\..\shims\wince\wce_string.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86) Debug"
 
 DEP_CPP_WCE_S=\
-	"..\shims\wince\wce_string.h"\
+	"..\..\shims\wince\wce_string.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Release"
 
 DEP_CPP_WCE_S=\
-	"..\shims\wince\wce_string.h"\
+	"..\..\shims\wince\wce_string.h"\
 	
 
 !ELSEIF  "$(CFG)" == "Bolota - Win32 (WCE x86em) Debug"
 
 DEP_CPP_WCE_S=\
-	"..\shims\wince\wce_string.h"\
+	"..\..\shims\wince\wce_string.h"\
 	
 
 !ENDIF 
@@ -5380,7 +5514,7 @@ DEP_CPP_WCE_S=\
 # End Source File
 # Begin Source File
 
-SOURCE=..\shims\wince\wce_string.h
+SOURCE=..\..\shims\wince\wce_string.h
 # End Source File
 # End Group
 # End Target
